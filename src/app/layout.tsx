@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Template",
-  description: "A minimal Next.js starter template",
+  title: "JesAI - Law & Order Chatbot",
+  description: "AI-powered legal assistant for your questions",
 };
 
 export default function RootLayout({
