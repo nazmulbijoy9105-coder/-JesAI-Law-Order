@@ -14,6 +14,7 @@
 - [x] Add voice input support
 - [x] Add escalation option to Supreme Court Advocate
 - [x] Deploy to Vercel
+- [x] Update UI with sidebar, suggested questions, modern chat design
 
 ## Session History
 
