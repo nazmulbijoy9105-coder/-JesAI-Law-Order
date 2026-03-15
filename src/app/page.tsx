@@ -1,63 +1,88 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { Send, Plus, Menu, X, ChevronRight, Scale, Zap, Shield } from "lucide-react";
 
 interface Message {
   id: number;
   role: "user" | "assistant";
   content: string;
+  timestamp: Date;
   language?: "en" | "bn";
 }
 
 const knowledgeStore: Record<string, { en: string; bn: string }> = {
   "property": {
     en: "Property law covers ownership, transfer, and disputes of land and buildings. In Bangladesh, the Transfer of Property Act, 1882 governs movable property. For immovable property, registration is mandatory under the Registration Act, 1908.",
-    bn: "সম্পত্তি আইন জমি ও ভবনের মালিকানা, হস্তান্তর এবং বিরোধ নিয়ে কাজ করে। বাংলাদেশে, সম্পত্তি হস্তান্তর আইন, ১৮৮২ চলমান সম্পত্তি নিয়ন্ত্রণ করে। অস্থাবর সম্পত্তির জন্য, নিবন্ধন আইন, ১৯০৮ এর অধীনে নিবন্ধন বাধ্যতামূলক।"
+    bn: "সম্পত্তি আইন জমি ও ভবনের মালিকানা, হস্তান্তর এবং বিরোধ নিয়ে কাজ করে। বাংলাদেশে, সম্পত্তি হস্তান্তর আইন, ১৮৮২ চলমান সম্পত্তি নিয়ন্ত্রণ করে।"
   },
   "criminal": {
     en: "Criminal law in Bangladesh is primarily governed by the Penal Code, 1860 and the Criminal Procedure Code, 1898. Offenses are classified as cognizable or non-cognizable. Bail is a fundamental right under certain conditions.",
-    bn: "বাংলাদেশে ফৌজদারি আইন মূলত দণ্ডবিধি, ১৮৬০ এবং ফৌজদারি কার্যবিধি, ১৮৯৮ দ্বারা নিয়ন্ত্রিত। অপরাধ গ্রেপ্তারযোগ্য বা অ-গ্রেপ্তারযোগ্য হিসেবে শ্রেণীবদ্ধ। জামিন কিছু শর্তে মৌলিক অধিকার।"
+    bn: "বাংলাদেশে ফৌজদারি আইন মূলত দণ্ডবিধি, ১৮৬০ এবং ফৌজদারি কার্যবিধি, ১৮৯৮ দ্বারা নিয়ন্ত্রিত।"
   },
   "family": {
-    en: "Family law in Bangladesh covers marriage, divorce, guardianship, and inheritance. The Muslim Family Laws Ordinance, 1961 governs Muslim family matters. The Hindu Marriage Registration Act, 2012 applies to Hindus.",
-    bn: "বাংলাদেশে পরিবার আইন বিয়ে, তালাক, অভিভাবকত্ব এবং উত্তরাধিকার নিয়ে কাজ করে। মুসলিম পরিবার আইন অধ্যাদেশ, ১৯৬১ মুসলিম পরিবারের বিষয় নিয়ন্ত্রণ করে। হিন্দু বিয়ে নিবন্ধন আইন, ২০১২ হিন্দুদের ক্ষেত্রে প্রযোজ্য।"
+    en: "Family law in Bangladesh covers marriage, divorce, guardianship, and inheritance. The Muslim Family Laws Ordinance, 1961 governs Muslim family matters.",
+    bn: "বাংলাদেশে পরিবার আইন বিয়ে, তালাক, অভিভাবকত্ব এবং উত্তরাধিকার নিয়ে কাজ করে।"
   },
   "labour": {
-    en: "Labor law in Bangladesh is governed by the Labor Code, 2006. It covers working hours, wages, leave, safety, and termination. Workers have rights to form associations and collective bargaining.",
-    bn: "বাংলাদেশে শ্রম আইন শ্রম কোড, ২০০৬ দ্বারা নিয়ন্ত্রিত। এতে কাজের সময়, মজুরি, ছুটি, নিরাপত্তা এবং চাকরি বিচ্ছেদ অন্তর্ভুক্ত। শ্রমিকদের সমিতি গঠন ও সম্মিলিত দরকষ্কারের অধিকার আছে।"
+    en: "Labor law in Bangladesh is governed by the Labor Code, 2006. It covers working hours, wages, leave, safety, and termination. Workers have rights to form associations.",
+    bn: "বাংলাদেশে শ্রম আইন শ্রম কোড, ২০০৬ দ্বারা নিয়ন্ত্রিত। এতে কাজের সময়, মজুরি, ছুটি অন্তর্ভুক্ত।"
   },
   "constitutional": {
-    en: "Constitutional law in Bangladesh is based on the Constitution of Bangladesh, 1972. It guarantees fundamental rights including equality, freedom of speech, and due process. The Supreme Court is the guardian of the constitution.",
-    bn: "বাংলাদেশে সাংবিধানিক আইন বাংলাদেশের সংবিধান, ১৯৭২ এর উপর ভিত্তি করে। এটি মৌলিক অধিকার নিশ্চিত করে যার মধ্যে সমতা, বাকস্বাধীনতা এবং ন্যায়বিচার অন্তর্ভুক্ত। সুপ্রিম কোর্ট সংবিধানের রক্ষক।"
+    en: "Constitutional law in Bangladesh is based on the Constitution of Bangladesh, 1972. It guarantees fundamental rights including equality, freedom of speech, and due process.",
+    bn: "বাংলাদেশে সাংবিধানিক আইন বাংলাদেশের সংবিধান, ১৯৭২ এর উপর ভিত্তি করে।"
   },
   "consumer": {
-    en: "Consumer protection in Bangladesh is governed by the Consumer Rights Protection Act, 2019. Consumers have the right to safety, information, choice, and fair treatment. Complaints can be filed with the Department of Consumer Affairs.",
-    bn: "বাংলাদেশে ভোক্তা সুরক্ষা ভোক্তা অধিকার সুরক্ষা আইন, ২০১৯ দ্বারা নিয়ন্ত্রিত। ভোক্তাদের নিরাপত্তা, তথ্য, পছন্দ এবং ন্যায্য আচরণের অধিকার আছে। অভিযোগ ভোক্তা বিষয়ক বিভাগে দায়ের করা যায়।"
+    en: "Consumer protection in Bangladesh is governed by the Consumer Rights Protection Act, 2019. Consumers have the right to safety, information, choice, and fair treatment.",
+    bn: "বাংলাদেশে ভোক্তা সুরক্ষা ভোক্তা অধিকার সুরক্ষা আইন, ২০১৯ দ্বারা নিয়ন্ত্রিত।"
   },
   "cyber": {
-    en: "Cyber law in Bangladesh includes the Digital Security Act, 2018 and the Information and Communication Technology Act, 2006. It addresses online crimes, data protection, and electronic transactions. Offenses carry significant penalties.",
-    bn: "বাংলাদেশে সাইবার আইনে ডিজিটাল নিরাপত্তা আইন, ২০১৮ এবং তথ্য ও যোগাযোগ প্রযুক্তি আইন, ২০০৬ অন্তর্ভুক্ত। এটি অনলাইন অপরাধ, ডেটা সুরক্ষা এবং ইলেকট্রনিক লেনদেন সম্পর্কে। অপরাধে উল্লেখযোগ্য শাস্তি হয়।"
+    en: "Cyber law in Bangladesh includes the Digital Security Act, 2018 and the Information and Communication Technology Act, 2006. It addresses online crimes, data protection, and electronic transactions.",
+    bn: "বাংলাদেশে সাইবার আইনে ডিজিটাল নিরাপত্তা আইন, ২০১৮ অন্তর্ভুক্ত।"
   }
 };
 
 const generalResponses: Record<string, { en: string; bn: string }> = {
   "greeting": {
-    en: "Hello! I'm JesAI, your legal assistant. I can help with questions about Property Law, Criminal Law, Family Law, Labour Law, Constitutional Law, Consumer Law, and Cyber Law. How can I assist you today? / আসসালামুয়ালাইকুম! আমি JesAI, আপনার আইনি সহকারী। আমি সম্পত্তি আইন, ফৌজদারি আইন, পরিবার আইন, শ্রম আইন, সাংবিধানিক আইন, ভোক্তা আইন এবং সাইবার আইন সম্পর্কে প্রশ্নে সাহায্য করতে পারি।",
-    bn: "আসসালামুয়ালাইকুম! আমি JesAI, আপনার আইনি সহকারী। আমি সম্পত্তি আইন, ফৌজদারি আইন, পরিবার আইন, শ্রম আইন, সাংবিধানিক আইন, ভোক্তা আইন এবং সাইবার আইন সম্পর্কে প্রশ্নে সাহায্য করতে পারি।"
+    en: "Hello! I'm JesAI, your legal assistant. I can help with questions about Property Law, Criminal Law, Family Law, Labour Law, Constitutional Law, Consumer Law, and Cyber Law. How can I assist you today?",
+    bn: "আসসালামুয়ালাইকুম! আমি JesAI, আপনার আইনি সহকারী।"
   },
   "help": {
     en: "I can help you understand legal concepts in Bangladesh. Just ask me about any legal topic and I'll provide information based on our knowledge base. For complex cases, I may recommend consulting a licensed advocate.",
-    bn: "আমি আপনাকে বাংলাদেশের আইনি ধারণাগুলি বুঝতে সাহায্য করতে পারি। যেকোনো আইনি বিষয়ে আমাকে জিজ্ঞাসা করুন এবং আমি আমাদের জ্ঞান ভিত্তি থেকে তথ্য প্রদান করব। জটিল মামলার জন্য, আমি একজন লাইসেন্সধারী অ্যাডভোকেটের সাথে পরামর্শ করার সুপারিশ করতে পারি।"
+    bn: "আমি আপনাকে বাংলাদেশের আইনি ধারণাগুলি বুঝতে সাহায্য করতে পারি।"
   },
   "escalation": {
-    en: "For complex legal matters requiring personalized advice, you may consult a licensed Supreme Court Advocate. Would you like more information about legal consultation?",
-    bn: "ব্যক্তিগত পরামর্শ প্রয়োজন জটিল আইনি বিষয়ের জন্য, আপনি একজন লাইসেন্সধারী সুপ্রিম কোর্ট অ্যাডভোকেটের সাথে পরামর্শ করতে পারেন। আইনি পরামর্শ সম্পর্কে আরও তথ্য পেতে চান?"
+    en: "For complex legal matters requiring personalized advice, you may consult a licensed Supreme Court Advocate.",
+    bn: "ব্যক্তিগত পরামর্শ প্রয়োজন জটিল আইনি বিষয়ের জন্য, আপনি একজন লাইসেন্সধারী সুপ্রিম কোর্ট অ্যাডভোকেটের সাথে পরামর্শ করতে পারেন।"
   },
   "not_understood": {
     en: "I didn't quite understand that. Could you please rephrase your question? You can ask about: Property, Criminal, Family, Labour, Constitutional, Consumer, or Cyber Law.",
-    bn: "আমি তা বুঝতে পারিনি। আপনি কি আপনার প্রশ্নটি পুনরায় লিখতে পারেন? আপনি জিজ্ঞাসা করতে পারেন: সম্পত্তি, ফৌজদারি, পরিবার, শ্রম, সাংবিধানিক, ভোক্তা, বা সাইবার আইন সম্পর্কে।"
+    bn: "আমি তা বুঝতে পারিনি। আপনি কি আপনার প্রশ্নটি পুনরায় লিখতে পারেন?"
   }
 };
+
+const suggestedQuestions = [
+  {
+    icon: Scale,
+    title: "Property Law",
+    description: "Land, house, ownership queries"
+  },
+  {
+    icon: Shield,
+    title: "Criminal Defense",
+    description: "Legal protection rights"
+  },
+  {
+    icon: Zap,
+    title: "Family Matters",
+    description: "Marriage, divorce, inheritance"
+  },
+  {
+    icon: Scale,
+    title: "Consumer Rights",
+    description: "Product safety & complaints"
+  }
+];
 
 function detectLanguage(text: string): "en" | "bn" {
   const bengaliChars = /[\u0980-\u09FF]/;
@@ -68,13 +93,13 @@ function findRelevantAnswer(query: string): { en: string; bn: string } | null {
   const lowerQuery = query.toLowerCase();
   
   const lawKeywords: Record<string, string[]> = {
-    "property": ["property", "land", "house", "flat", "rent", "ownership", "deed", "registry", "সম্পত্তি", "জমি", "বাড়ি", "ফ্ল্যাট", "ভাড়া", "মালিকানা", "দলিল"],
-    "criminal": ["crime", "criminal", "theft", "fraud", "murder", "assault", "bail", "police", "cognizable", "অপরাধ", "চুরি", "প্রতারণা", "খুন", "মারধর", "জামিন", "পুলিশ"],
-    "family": ["marriage", "divorce", "dowry", "guardianship", "inheritance", "will", "maintenance", "nikah", "talaq", "বিয়ে", "তালাক", "দাস্ত", "অভিভাবকত্ব", "উত্তরাধিকার", "উইল", "নিকাহ"],
-    "labour": ["worker", "labor", "wage", "salary", "leave", "termination", "factory", "industrial", "শ্রমিক", "মজুরি", "বেতন", "ছুটি", "বরখাস্ত", "কারখানা"],
-    "constitutional": ["constitution", "fundamental", "rights", "article", "supreme court", "high court", "fundamental rights", "সংবিধান", "মৌলিক", "অধিকার", "আর্টিকেল", "সুপ্রিম কোর্ট", "হাই কোর্ট"],
-    "consumer": ["consumer", "product", "defective", "refund", "complaint", "protection", "ভোক্তা", "পণ্য", "ত্রুটিপূর্ণ", "ফেরত", "অভিযোগ", "সুরক্ষা"],
-    "cyber": ["cyber", "online", "digital", "hacking", "privacy", "data", "social media", "সাইবার", "অনলাইন", "ডিজিটাল", "হ্যাকিং", "গোপনীয়তা", "ডেটা", "সোশ্যাল মিডিয়া"]
+    "property": ["property", "land", "house", "flat", "rent", "ownership", "deed", "সম্পত্তি", "জমি", "বাড়ি"],
+    "criminal": ["crime", "criminal", "theft", "fraud", "murder", "bail", "police", "অপরাধ", "চুরি", "প্রতারণা"],
+    "family": ["marriage", "divorce", "dowry", "guardianship", "inheritance", "nikah", "talaq", "বিয়ে", "তালাক"],
+    "labour": ["worker", "labor", "wage", "salary", "leave", "termination", "শ্রমিক", "মজুরি"],
+    "constitutional": ["constitution", "fundamental", "rights", "supreme court", "সংবিধান", "মৌলিক"],
+    "consumer": ["consumer", "product", "defective", "refund", "complaint", "ভোক্তা", "পণ্য"],
+    "cyber": ["cyber", "online", "digital", "hacking", "privacy", "data", "সাইবার", "অনলাইন"]
   };
 
   for (const [law, keywords] of Object.entries(lawKeywords)) {
@@ -87,12 +112,15 @@ function findRelevantAnswer(query: string): { en: string; bn: string } | null {
 }
 
 export default function Home() {
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 0, role: "assistant", content: generalResponses.greeting.en + "\n\n" + generalResponses.greeting.bn, language: "en" }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const [isListening, setIsListening] = useState(false);
-  const [showEscalation, setShowEscalation] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [conversations, setConversations] = useState([
+    { id: 1, title: "Corporate Law Questions", date: "Today" },
+    { id: 2, title: "Labor Rights Guidance", date: "Yesterday" }
+  ]);
+  const [nextId, setNextId] = useState(() => 0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -107,16 +135,19 @@ export default function Home() {
     if (!input.trim()) return;
 
     const lang = detectLanguage(input);
+    const currentId = nextId;
+    setNextId((prev) => prev + 2);
     const userMessage: Message = {
-      id: messages.length,
+      id: currentId,
       role: "user",
       content: input,
+      timestamp: new Date(),
       language: lang
     };
 
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
-    setShowEscalation(false);
+    setIsLoading(true);
 
     setTimeout(() => {
       const answer = findRelevantAnswer(input);
@@ -126,10 +157,7 @@ export default function Home() {
       if (answer) {
         response = lang === "bn" ? answer.bn : answer.en;
         responseLang = lang;
-        if (Math.random() > 0.7) {
-          setShowEscalation(true);
-        }
-      } else if (lowerMatches(input, ["help", "can you", "what can", "how", "সাহায্য", "কি করতে পার"])) {
+      } else if (lowerMatches(input, ["help", "can you", "what can", "how", "সাহায্য"])) {
         response = lang === "bn" ? generalResponses.help.bn : generalResponses.help.en;
         responseLang = lang;
       } else {
@@ -138,18 +166,29 @@ export default function Home() {
       }
 
       const assistantMessage: Message = {
-        id: messages.length + 1,
+        id: currentId + 1,
         role: "assistant",
         content: response,
+        timestamp: new Date(),
         language: responseLang
       };
       setMessages((prev) => [...prev, assistantMessage]);
+      setIsLoading(false);
     }, 800);
   };
 
   const lowerMatches = (text: string, keywords: string[]): boolean => {
     const lower = text.toLowerCase();
     return keywords.some(k => lower.includes(k));
+  };
+
+  const handleSuggestedQuestion = (question: typeof suggestedQuestions[0]) => {
+    setInput(question.title);
+  };
+
+  const newChat = () => {
+    setMessages([]);
+    setSidebarOpen(false);
   };
 
   const handleVoice = () => {
@@ -173,27 +212,16 @@ export default function Home() {
     recognition.continuous = false;
     recognition.interimResults = false;
 
-    if (isListening) {
-      recognition.stop();
-      setIsListening(false);
-    } else {
-      recognition.start();
-      setIsListening(true);
+    recognition.start();
 
-      recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
-        setInput(transcript);
-        setIsListening(false);
-      };
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setInput(transcript);
+    };
 
-      recognition.onerror = () => {
-        setIsListening(false);
-      };
-
-      recognition.onend = () => {
-        setIsListening(false);
-      };
-    }
+    recognition.onerror = () => {
+      console.error("Speech recognition error");
+    };
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -204,103 +232,252 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
-      <header className="bg-slate-900/80 backdrop-blur-md border-b border-amber-500/30 sticky top-0 z-10">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-700 rounded-lg flex items-center justify-center shadow-lg">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-              </svg>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-white">JesAI</h1>
-              <p className="text-xs text-amber-400">Law & Order Assistant</p>
-            </div>
+    <div className="flex h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 overflow-hidden">
+      {/* Sidebar */}
+      <div
+        className={`${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 fixed lg:relative w-64 h-full bg-white border-r border-slate-200 z-40 transition-transform duration-300 ease-out flex flex-col shadow-lg lg:shadow-none`}
+      >
+        <div className="p-4 border-b border-slate-200">
+          <button
+            onClick={newChat}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium text-sm shadow-md hover:shadow-lg"
+          >
+            <Plus size={18} />
+            New Chat
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto p-3 space-y-2">
+          <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider px-3 py-2">
+            Recent Chats
           </div>
-          <div className="flex items-center gap-4">
-            <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              Live
-            </span>
-            <span className="text-xs text-slate-400">500+ Q&A</span>
+          {conversations.map((conv) => (
+            <button
+              key={conv.id}
+              className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-slate-100 transition-colors duration-150 text-sm text-slate-700 group"
+            >
+              <div className="font-medium truncate">{conv.title}</div>
+              <div className="text-xs text-slate-500">{conv.date}</div>
+            </button>
+          ))}
+        </div>
+
+        <div className="p-3 border-t border-slate-200 space-y-2">
+          <button className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 text-sm text-slate-700 transition-colors">
+            Settings
+          </button>
+          <div className="text-xs text-slate-500 px-3 py-2">
+            JesAI Legal v1.0
           </div>
         </div>
-      </header>
+      </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <div className="bg-slate-800/50 rounded-2xl border border-slate-700 h-[calc(100vh-220px)] flex flex-col">
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-[85%] rounded-2xl px-4 py-3 ${
-                    message.role === "user"
-                      ? "bg-gradient-to-r from-amber-600 to-amber-700 text-white"
-                      : "bg-slate-700/80 text-slate-100 border border-slate-600"
-                  }`}
-                >
-                  <p className="whitespace-pre-wrap text-sm leading-relaxed">{message.content}</p>
-                </div>
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden">
+        {/* Top Header */}
+        <div className="flex items-center justify-between px-4 lg:px-6 py-4 border-b border-slate-200 bg-white shadow-sm">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="lg:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors"
+            >
+              {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <Scale size={20} className="text-white" />
               </div>
-            ))}
-            
-            {showEscalation && (
-              <div className="flex justify-start">
-                <div className="max-w-[85%] rounded-2xl px-4 py-3 bg-red-900/30 border border-red-500/30 text-red-200">
-                  <p className="text-sm">{generalResponses.escalation.en}</p>
-                  <button className="mt-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm rounded-lg transition-colors">
-                    Contact Supreme Court Advocate
-                  </button>
-                </div>
+              <div>
+                <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+                  JesAI Legal
+                </h1>
+                <p className="text-xs text-slate-500">Law Order Advisor</p>
               </div>
-            )}
-            
-            <div ref={messagesEndRef} />
+            </div>
           </div>
+        </div>
 
-          <div className="p-4 border-t border-slate-700 bg-slate-800/50 rounded-b-2xl">
-            <div className="flex items-center gap-3">
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6 scroll-smooth">
+          {messages.length === 0 ? (
+            <div className="h-full flex flex-col items-center justify-center py-8">
+              <div className="text-center max-w-2xl mx-auto">
+                <div className="mb-6 flex justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl flex items-center justify-center">
+                    <Scale size={32} className="text-blue-600" />
+                  </div>
+                </div>
+                <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-3">
+                  Welcome to JesAI Legal
+                </h2>
+                <p className="text-slate-600 mb-8 text-base lg:text-lg">
+                  Your intelligent legal advisor for Bangladesh laws - Property, Criminal, Family, Labour, Constitutional, Consumer & Cyber Law
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {suggestedQuestions.map((q, idx) => {
+                    const Icon = q.icon;
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => handleSuggestedQuestion(q)}
+                        className="p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white hover:bg-blue-50 transition-all duration-200 text-left group cursor-pointer shadow-sm hover:shadow-md"
+                      >
+                        <div className="flex items-start gap-3">
+                          <Icon size={20} className="text-blue-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                          <div>
+                            <div className="font-semibold text-slate-900 text-sm">
+                              {q.title}
+                            </div>
+                            <div className="text-xs text-slate-500 mt-1">
+                              {q.description}
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-6 py-4">
+              {messages.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                >
+                  <div
+                    className={`max-w-xs sm:max-w-md lg:max-w-xl px-4 py-3 rounded-xl ${
+                      msg.role === "user"
+                        ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-br-none shadow-md"
+                        : "bg-slate-100 text-slate-900 rounded-bl-none border border-slate-200"
+                    }`}
+                  >
+                    <p className="text-sm lg:text-base leading-relaxed whitespace-pre-wrap">
+                      {msg.content}
+                    </p>
+                    <div className={`text-xs mt-2 ${msg.role === "user" ? "text-blue-100" : "text-slate-500"}`}>
+                      {msg.timestamp.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit"
+                      })}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-slate-100 border border-slate-200 px-4 py-3 rounded-xl rounded-bl-none">
+                    <div className="flex gap-2">
+                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-100"></div>
+                      <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-200"></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          )}
+        </div>
+
+        {/* Input Area */}
+        <div className="border-t border-slate-200 bg-white p-4 lg:p-6">
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="max-w-4xl mx-auto">
+            <div className="flex gap-3">
               <button
+                type="button"
                 onClick={handleVoice}
-                className={`p-3 rounded-full transition-all ${
-                  isListening
-                    ? "bg-red-500 text-white animate-pulse"
-                    : "bg-slate-700 text-slate-300 hover:bg-slate-600"
-                }`}
+                className="p-3 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                </svg>
+                <Zap size={18} className="text-slate-600" />
               </button>
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder="Ask your legal question in English or Bengali..."
-                className="flex-1 bg-slate-700 text-white placeholder-slate-400 rounded-xl px-4 py-3 focus outline-none focus:ring-2 focus:ring-amber-500 border border-slate-600"
+                placeholder="Ask about property, criminal, family law..."
+                className="flex-1 px-4 py-3 rounded-xl border border-slate-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20 text-sm lg:text-base transition-all duration-200 placeholder-slate-500"
               />
               <button
-                onClick={handleSend}
-                className="p-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-xl hover:from-amber-700 hover:to-amber-800 transition-all shadow-lg"
+                type="submit"
+                disabled={isLoading || !input.trim()}
+                className="px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 disabled:from-slate-400 disabled:to-slate-400 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center shadow-md hover:shadow-lg disabled:shadow-none"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+                <Send size={18} />
               </button>
             </div>
-            <div className="flex items-center justify-center gap-4 mt-3">
-              <span className="text-xs text-slate-500">
-                Available: Property | Criminal | Family | Labour | Constitutional | Consumer | Cyber
-              </span>
-            </div>
-          </div>
+            <p className="text-xs text-slate-500 mt-2 text-center">
+              AI responses are for informational purposes. Always consult qualified legal professionals.
+            </p>
+          </form>
         </div>
       </div>
-    </main>
+
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <button
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+        />
+      )}
+
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+
+        * {
+          font-family: 'Outfit', sans-serif;
+        }
+
+        .scroll-smooth {
+          scroll-behavior: smooth;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        .delay-100 {
+          animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        ::-webkit-scrollbar {
+          width: 6px;
+          height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+          background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: rgba(100, 116, 139, 0.3);
+          border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+          background: rgba(100, 116, 139, 0.5);
+        }
+      `}</style>
+    </div>
   );
 }
