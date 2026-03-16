@@ -116,12 +116,13 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [conversations, setConversations] = useState([
+  const [conversations] = useState([
     { id: 1, title: "Corporate Law Questions", date: "Today" },
     { id: 2, title: "Labor Rights Guidance", date: "Yesterday" }
   ]);
   const [nextId, setNextId] = useState(() => 0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const isClient = typeof window !== "undefined";
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -192,6 +193,8 @@ export default function Home() {
   };
 
   const handleVoice = () => {
+    if (!isClient) return;
+    
     const win = window as unknown as { SpeechRecognition?: new () => unknown; webkitSpeechRecognition?: new () => unknown };
     const SpeechRecognitionClass = win.SpeechRecognition || win.webkitSpeechRecognition;
 
@@ -425,59 +428,6 @@ export default function Home() {
           className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
         />
       )}
-
-      <style jsx>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
-
-        * {
-          font-family: 'Outfit', sans-serif;
-        }
-
-        .scroll-smooth {
-          scroll-behavior: smooth;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-
-        ::-webkit-scrollbar {
-          width: 6px;
-          height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-          background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-          background: rgba(100, 116, 139, 0.3);
-          border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-          background: rgba(100, 116, 139, 0.5);
-        }
-      `}</style>
     </div>
   );
 }
