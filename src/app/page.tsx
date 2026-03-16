@@ -236,16 +236,16 @@ export default function Home() {
           } lg:translate-x-0 fixed lg:relative w-64 h-full bg-white border-r border-slate-200 z-40 transition-transform duration-300 ease-out flex flex-col shadow-lg lg:shadow-none`}
         >
           <div className="p-4 border-b border-slate-200">
-            <button
+              <button
               onClick={newChat}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-xl hover:from-blue-800 hover:to-blue-900 transition-all duration-200 font-semibold text-sm shadow-md hover:shadow-lg"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium text-sm shadow-md hover:shadow-lg"
             >
               <Plus size={18} />
               New Chat
             </button>
             <button
               onClick={() => setShowChat(false)}
-              className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition-colors text-sm"
+              className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 text-slate-700 rounded-lg hover:bg-slate-200 transition-colors text-sm"
             >
               ← Back to Home
             </button>
@@ -288,7 +288,7 @@ export default function Home() {
                 {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-700 to-blue-800 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
                   <Scale size={20} className="text-white" />
                 </div>
                 <div>
@@ -324,7 +324,7 @@ export default function Home() {
                       className="p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white hover:bg-blue-50 transition-all duration-200 text-left group cursor-pointer shadow-sm hover:shadow-md"
                     >
                       <div className="flex items-start gap-3">
-                        <Scale size={20} className="text-blue-700 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                        <Scale size={20} className="text-blue-600 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
                         <div>
                           <div className="font-semibold text-slate-900 text-sm">
                             Property Law
@@ -362,10 +362,10 @@ export default function Home() {
                     className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-xs sm:max-w-md lg:max-w-xl px-4 py-3 rounded-2xl ${
+                      className={`max-w-[80%] sm:max-w-[60%] lg:max-w-[50%] px-4 py-3 rounded-2xl ${
                         msg.role === "user"
-                          ? "bg-gradient-to-br from-blue-700 to-blue-800 text-white rounded-br-none shadow-md"
-                          : "bg-white text-slate-900 rounded-bl-none border border-slate-200 shadow-sm"
+                          ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-br-none shadow-md"
+                          : "bg-slate-100 text-slate-900 rounded-bl-none border border-slate-200 shadow-sm"
                       }`}
                     >
                       <p className="text-sm lg:text-base leading-relaxed whitespace-pre-wrap">
@@ -382,7 +382,7 @@ export default function Home() {
                 ))}
                 {isLoading && (
                   <div className="flex justify-start">
-                    <div className="bg-white border border-slate-200 px-4 py-3 rounded-2xl rounded-bl-none">
+                    <div className="bg-slate-100 border border-slate-200 px-4 py-3 rounded-2xl rounded-bl-none">
                       <div className="flex gap-2">
                         <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div>
                         <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-100"></div>
@@ -403,7 +403,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={handleVoice}
-                  className="p-3 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
+                  className="p-3 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
                 >
                   <Zap size={18} className="text-slate-600" />
                 </button>
@@ -413,12 +413,12 @@ export default function Home() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="Ask about property, criminal, family law..."
-                  className="flex-1 px-4 py-3 rounded-xl border border-slate-300 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 text-sm lg:text-base transition-all duration-200 placeholder-slate-500"
+                  className="flex-1 h-11 px-4 py-3 rounded-lg border border-slate-200 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-20 text-sm lg:text-base transition-all duration-200 placeholder-slate-500"
                 />
                 <button
                   type="submit"
                   disabled={isLoading || !input.trim()}
-                  className="px-4 py-3 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-xl hover:from-blue-800 hover:to-blue-900 disabled:from-slate-400 disabled:to-slate-400 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center shadow-md hover:shadow-lg disabled:shadow-none"
+                  className="px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 disabled:from-slate-400 disabled:to-slate-400 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center shadow-md hover:shadow-lg disabled:shadow-none"
                 >
                   <Send size={18} />
                 </button>
@@ -447,22 +447,22 @@ export default function Home() {
       <header className="bg-white shadow-sm border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-700 to-blue-800 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
               <Scale size={24} className="text-white" />
             </div>
             <div>
               <h1 className="text-xl font-bold text-slate-900">LEGAL LITERACY</h1>
-              <p className="text-xs text-blue-700 font-medium">Powered by JesAI</p>
+              <p className="text-xs text-blue-600 font-medium">Powered by JesAI</p>
             </div>
           </div>
-          <button className="text-sm text-slate-600 hover:text-blue-700 font-medium">
+          <button className="text-sm text-slate-600 hover:text-blue-600 font-medium">
             English | বাংলা
           </button>
         </div>
       </header>
 
       {/* Hero Banner */}
-      <div className="bg-gradient-to-r from-blue-700 to-blue-800 py-3">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 py-3">
         <p className="text-center text-white font-semibold text-sm">
           Free Legal Literacy for Every Bangladeshi 🇧🇩
         </p>
@@ -474,7 +474,7 @@ export default function Home() {
           {/* Bold Headline */}
           <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
             Your Legal Rights,<br />
-            <span className="text-blue-700">Explained Simply</span>
+            <span className="text-blue-600">Explained Simply</span>
           </h2>
 
           {/* Supporting Text */}
@@ -488,14 +488,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={startChat}
-              className="px-8 py-4 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:from-blue-800 hover:to-blue-900 transition-all duration-200 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-200 flex items-center justify-center gap-2"
             >
               <MessageCircle size={22} />
               Ask JesAI Now
             </button>
             <button
               onClick={() => setShowChat(true)}
-              className="px-8 py-4 bg-white text-blue-700 border-2 border-blue-700 rounded-xl font-semibold text-lg hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors flex items-center justify-center gap-2"
             >
               <BookOpen size={22} />
               Explore Law Areas
@@ -508,7 +508,7 @@ export default function Home() {
           <h3 className="text-2xl font-bold text-slate-900 text-center mb-8">
             Explore Legal Areas
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {lawAreas.map((area) => {
               const Icon = area.icon;
               return (
@@ -535,15 +535,15 @@ export default function Home() {
         <div className="mt-20 bg-slate-50 rounded-2xl p-8 text-center">
           <div className="grid md:grid-cols-3 gap-6">
             <div>
-              <div className="text-3xl font-bold text-blue-700 mb-2">500+</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
               <div className="text-slate-600">Legal Q&A</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-700 mb-2">7</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">7</div>
               <div className="text-slate-600">Law Categories</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-700 mb-2">24/7</div>
+              <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
               <div className="text-slate-600">Available</div>
             </div>
           </div>
