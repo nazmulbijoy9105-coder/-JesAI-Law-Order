@@ -136,8 +136,12 @@ export default function Home() {
     { id: 2, title: "Labor Rights Guidance", date: "Yesterday" }
   ]);
   const [nextId, setNextId] = useState(() => 0);
+  const [isClient, setIsClient] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const isClient = typeof window !== "undefined";
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
