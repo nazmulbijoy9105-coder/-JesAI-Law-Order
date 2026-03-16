@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Send, Plus, Menu, X, Scale, Zap, Shield, BookOpen, ArrowRight, MessageCircle } from "lucide-react";
+import Link from "next/link";
 
 interface Message {
   id: number;
@@ -548,9 +549,17 @@ export default function Home() {
               <p className="text-xs text-blue-600 font-medium">Powered by JesAI</p>
             </div>
           </div>
-          <button className="text-sm text-slate-600 hover:text-blue-600 font-medium">
-            English | বাংলা
-          </button>
+          <div className="flex items-center gap-3">
+            <Link href="/services" className="text-sm text-slate-600 hover:text-blue-600 font-medium">
+              Pricing
+            </Link>
+            <Link href="/login" className="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
+              Login
+            </Link>
+            <Link href="/register" className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700">
+              Sign Up
+            </Link>
+          </div>
         </div>
       </header>
 
