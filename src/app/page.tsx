@@ -146,7 +146,28 @@ export default function Home() {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = () => {
+  const callGroqAPI = async (message: string, lang: "en" | "bn"): Promise<{ reply: string; source: string; confidence: "high" | "medium" | "low" } | null> => {
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, language: lang }),
+      });
+      
+      if (!res.ok) return null;
+      
+      const data = await res.json();
+      return {
+        reply: data.reply,
+        source: data.source || "Groq AI",
+        confidence: data.confidence || "medium"
+      };
+    } catch {
+      return null;
+    }
+  };
+
+  const handleSend = async () => {
     if (!input.trim()) return;
 
     const lang = detectLanguage(input);
@@ -164,35 +185,46 @@ export default function Home() {
     setInput("");
     setIsLoading(true);
 
+    // Try Groq API first, fallback to knowledge store
+    const aiResponse = await callGroqAPI(input, lang);
+
     setTimeout(() => {
-      const answer = findRelevantAnswer(input);
       let response: string;
       let responseLang: "en" | "bn";
       let source = "";
       let confidence: "high" | "medium" | "low" = "high";
 
-      if (answer) {
-        response = lang === "bn" ? answer.bn : answer.en;
+      if (aiResponse) {
+        response = aiResponse.reply;
         responseLang = lang;
-        source = answer.source;
-        confidence = "high";
-      } else if (lowerMatches(input, ["help", "can you", "what can", "how", "who are you", "সাহায্য", "তুমি কে"])) {
-        response = lang === "bn" ? generalResponses.help.bn : generalResponses.help.en;
-        responseLang = lang;
-        source = "JesAI Legal Assistant";
-        confidence = "high";
-      } else if (lowerMatches(input, ["thank", "thanks", "good", "great", "ধন্যবাদ", "ভালো"])) {
-        response = lang === "bn" ? "আপনাকে স্বাগতম! আরও প্রশ্ন থাকলে জানাবেন।" : "You're welcome! Feel free to ask more questions.";
-        responseLang = lang;
-        source = "JesAI Legal Assistant";
-        confidence = "high";
+        source = aiResponse.source;
+        confidence = aiResponse.confidence;
       } else {
-        response = lang === "bn" 
-          ? "আমি এই বিষয়ে নিশ্চিত তথ্য পাইনি। অনুগ্রহ করে অন্য প্রশ্ন করুন অথবা আইনি পরামর্শের জন্য একজন লাইসেন্সধারী অ্যাডভোকেটের সাথে যোগাযোগ করুন।"
-          : "I don't have specific information on this. Please rephrase your question or consult a licensed advocate for legal advice.";
-        responseLang = lang;
-        source = "No verified source";
-        confidence = "low";
+        const answer = findRelevantAnswer(input);
+
+        if (answer) {
+          response = lang === "bn" ? answer.bn : answer.en;
+          responseLang = lang;
+          source = answer.source;
+          confidence = "high";
+        } else if (lowerMatches(input, ["help", "can you", "what can", "how", "who are you", "সাহায্য", "তুমি কে"])) {
+          response = lang === "bn" ? generalResponses.help.bn : generalResponses.help.en;
+          responseLang = lang;
+          source = "JesAI Legal Assistant";
+          confidence = "high";
+        } else if (lowerMatches(input, ["thank", "thanks", "good", "great", "ধন্যবাদ", "ভালো"])) {
+          response = lang === "bn" ? "আপনাকে স্বাগতম! আরও প্রশ্ন থাকলে জানাবেন।" : "You're welcome! Feel free to ask more questions.";
+          responseLang = lang;
+          source = "JesAI Legal Assistant";
+          confidence = "high";
+        } else {
+          response = lang === "bn" 
+            ? "আমি এই বিষয়ে নিশ্চিত তথ্য পাইনি। অনুগ্রহ করে অন্য প্রশ্ন করুন অথবা আইনি পরামর্শের জন্য একজন লাইসেন্সধারী অ্যাডভোকেটের সাথে যোগাযোগ করুন।"
+            : "I don't have specific information on this. Please rephrase your question or consult a licensed advocate for legal advice.";
+          responseLang = lang;
+          source = "No verified source";
+          confidence = "low";
+        }
       }
 
       if (response.length > MAX_RESPONSE_LENGTH) {
@@ -210,7 +242,7 @@ export default function Home() {
       };
       setMessages((prev) => [...prev, assistantMessage]);
       setIsLoading(false);
-    }, 800);
+    }, aiResponse ? 500 : 800);
   };
 
   const handleSuggestedQuestion = (question: string) => {
