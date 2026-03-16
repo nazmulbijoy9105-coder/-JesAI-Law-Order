@@ -9,36 +9,57 @@ interface Message {
   content: string;
   timestamp: Date;
   language?: "en" | "bn";
+  source?: string;
+  confidence?: "high" | "medium" | "low";
 }
 
-const knowledgeStore: Record<string, { en: string; bn: string }> = {
+const SYSTEM_PROMPT = `You are JesAI, a legal information assistant for Bangladesh.
+STRICT RULES:
+- Only answer questions related to Bangladesh law (Property, Criminal, Family, Labour, Constitutional, Consumer, Cyber)
+- If question is not about Bangladeshi law, politely decline
+- If you don't know the answer from verified sources, clearly say "I don't have that information"
+- Never make up laws, case names, or legal provisions
+- Always recommend consulting a licensed advocate for specific legal advice
+- Keep responses concise (max 500 words)
+- Respond in the same language as the question (English or Bengali)`;
+
+const MAX_RESPONSE_LENGTH = 2000;
+
+const knowledgeStore: Record<string, { en: string; bn: string; source: string }> = {
   "property": {
-    en: "Property law covers ownership, transfer, and disputes of land and buildings. In Bangladesh, the Transfer of Property Act, 1882 governs movable property. For immovable property, registration is mandatory under the Registration Act, 1908.",
-    bn: "সম্পত্তি আইন জমি ও ভবনের মালিকানা, হস্তান্তর এবং বিরোধ নিয়ে কাজ করে। বাংলাদেশে, সম্পত্তি হস্তান্তর আইন, ১৮৮২ চলমান সম্পত্তি নিয়ন্ত্রণ করে।"
+    en: "Property law in Bangladesh is primarily governed by the Transfer of Property Act, 1882 and the Registration Act, 1908. Key points:\n\n• Ownership: Transfer of property requires registered deeds\n• Registration: Mandatory for immovable property over Tk. 100\n• Rent: Governed by Tenant Protection Act\n• Inheritance: Follows Muslim Family Laws Ordinance or Hindu law\n\nFor specific cases, consult a licensed property lawyer.",
+    bn: "বাংলাদেশে সম্পত্তি আইন মূলত সম্পত্তি হস্তান্তর আইন, ১৮৮২ এবং নিবন্ধন আইন, ১৯০৮ দ্বারা নিয়ন্ত্রিত।\n\n• মালিকানা: নিবন্ধিত দলিল প্রয়োজন\n• নিবন্ধন: ১০০ টাকার বেশি সম্পত্তির জন্য বাধ্যতামূলক\n• ভাড়া: ভাড়াটি সুরক্ষা আইন দ্বারা নিয়ন্ত্রিত\n\nনির্দিষ্ট মামলার জন্য একজন লাইসেন্সধারী আইনজীবীর পরামর্শ নিন।",
+    source: "Transfer of Property Act 1882, Registration Act 1908"
   },
   "criminal": {
-    en: "Criminal law in Bangladesh is primarily governed by the Penal Code, 1860 and the Criminal Procedure Code, 1898. Offenses are classified as cognizable or non-cognizable. Bail is a fundamental right under certain conditions.",
-    bn: "বাংলাদেশে ফৌজদারি আইন মূলত দণ্ডবিধি, ১৮৬০ এবং ফৌজদারি কার্যবিধি, ১৮৯৮ দ্বারা নিয়ন্ত্রিত।"
+    en: "Criminal law in Bangladesh is governed by the Penal Code, 1860 and Criminal Procedure Code, 1898. Key points:\n\n• Cognizable offenses: Police can arrest without warrant (theft, fraud, assault)\n• Non-cognizable: Police need warrant (defamation, cheating)\n• Bail: Available for bailable offenses; difficult for non-bailable\n• Rights: Right to legal counsel, protection from self-incrimination\n\nFor legal defense, contact a criminal law specialist.",
+    bn: "বাংলাদেশে ফৌজদারি আইন দণ্ডবিধি, ১৮৬০ এবং ফৌজদারি কার্যবিধি, ১৮৯৮ দ্বারা নিয়ন্ত্রিত।\n\n• গ্রেপ্তারযোগ্য অপরাধ: পুলিশ ওয়ারেন্ট ছাড়া গ্রেপ্তার করতে পারে\n• জামিন: জামিনযোগ্য অপরাধে জামিন পাওয়া যায়\n• অধিকার: আইনি পরামর্শ পাওয়ার অধিকার\n\nআইনি প্রতিরক্ষার জন্য একজন ফৌজদারি বিশেষজ্ঞের সাথে যোগাযোগ করুন।",
+    source: "Penal Code 1860, CrPC 1898"
   },
   "family": {
-    en: "Family law in Bangladesh covers marriage, divorce, guardianship, and inheritance. The Muslim Family Laws Ordinance, 1961 governs Muslim family matters.",
-    bn: "বাংলাদেশে পরিবার আইন বিয়ে, তালাক, অভিভাবকত্ব এবং উত্তরাধিকার নিয়ে কাজ করে।"
+    en: "Family law in Bangladesh varies by religion:\n\nMUSLIM FAMILY LAW:\n• Marriage: Nikah Registration Act 1974\n• Divorce: Muslim Family Laws Ordinance 1961 (Talaq requires Arbitration Council)\n• Dowry: Dowry Prohibition Act 1980 (criminal offense)\n• Maintenance: Wife and children entitled to maintenance\n\nHINDU FAMILY LAW:\n• Marriage: Hindu Marriage Registration Act 2012\n• Succession: Hindu Inheritance Act 1929\n\nFor family disputes, consult a family law advocate.",
+    bn: "বাংলাদেশে পরিবার আইন ধর্ম অনুযায়ী পৃথক:\n\nমুসলিম পরিবার আইন:\n• বিয়ে: নিকাহ নিবন্ধন আইন ১৯৭৪\n• তালাক: মুসলিম পরিবার আইন অধ্যাদেশ ১৯৬১\n• দাস্ত: দাস্ত নিষিদ্ধ আইন ১৯৮০\n\nহিন্দু পরিবার আইন:\n• বিয়ে: হিন্দু বিয়ে নিবন্ধন আইন ২০১২\n\nপারিবারিক বিরোধের জন্য পরিবার আইন বিশেষজ্ঞের পরামর্শ নিন।",
+    source: "Muslim Family Laws Ordinance 1961, Hindu Marriage Act 2012"
   },
   "labour": {
-    en: "Labor law in Bangladesh is governed by the Labor Code, 2006. It covers working hours, wages, leave, safety, and termination. Workers have rights to form associations.",
-    bn: "বাংলাদেশে শ্রম আইন শ্রম কোড, ২০০৬ দ্বারা নিয়ন্ত্রিত। এতে কাজের সময়, মজুরি, ছুটি অন্তর্ভুক্ত।"
+    en: "Labour law in Bangladesh is governed by the Labour Code 2006. Key provisions:\n\n• Working Hours: 8 hours/day, 48 hours/week max\n• Minimum Wage: Set by Wages Board (varies by sector)\n• Overtime: Double pay for extra hours\n• Leave: Annual leave (14-30 days), sick leave, maternity leave\n• Safety: Employer must provide safe working conditions\n• Termination: Notice required; illegal dismissal can be challenged\n\nWorkers have right to form associations and collective bargaining.",
+    bn: "বাংলাদেশে শ্রম আইন শ্রম কোড ২০০৬ দ্বারা নিয়ন্ত্রিত।\n\n• কাজের সময়: সর্বোচ্চ ৮ ঘণ্টা/দিন\n• ন্যূনতম মজুরি: মজুরি বোর্ড নির্ধারণ করে\n• অতিরিক্ত কাজ: দ্বিগুণ মজুরি\n• ছুটি: বার্ষিক ছুটি (১৪-৩০ দিন), অসুস্থতার ছুটি, মাতৃত্বকালীন ছুটি\n• নিরাপত্তা: নিয়োগকর্তা নিরাপদ পরিবেশ নিশ্চিত করতে বাধ্য\n• চাকরি বিচ্ছেদ: নোটিশ প্রয়োজন\n\nশ্রমিকদের সমিতি গঠনের অধিকার আছে।",
+    source: "Labour Code 2006"
   },
   "constitutional": {
-    en: "Constitutional law in Bangladesh is based on the Constitution of Bangladesh, 1972. It guarantees fundamental rights including equality, freedom of speech, and due process.",
-    bn: "বাংলাদেশে সাংবিধানিক আইন বাংলাদেশের সংবিধান, ১৯৭২ এর উপর ভিত্তি করে।"
+    en: "Constitutional law of Bangladesh is based on the Constitution 1972. Fundamental rights include:\n\n• Article 27: Equality before law\n• Article 28: Prohibition of discrimination\n• Article 32: Protection of right to life and personal liberty\n• Article 34: Prohibition of forced labor\n• Article 39: Freedom of thought and speech\n• Article 44: Right to constitutional remedies\n\nViolations can be challenged in High Court under Article 102.",
+    bn: "বাংলাদেশের সাংবিধানিক আইন সংবিধান ১৯৭২ এর উপর ভিত্তি করে। মৌলিক অধিকার:\n\n• আর্টিকেল ২৭: আইনের সমান সুরক্ষা\n• আর্টিকেল ২৮: বৈষম্য নিষিদ্ধ\n• আর্টিকেল ৩২: জীবন ও ব্যক্তিগত স্বাধীনতার সুরক্ষা\n• আর্টিকেল ৩৯: চিন্তা ও বাকস্বাধীনতা\n\nউচ্চ আদালতে চ্যালেঞ্জ করা যায়।",
+    source: "Constitution of Bangladesh 1972"
   },
   "consumer": {
-    en: "Consumer protection in Bangladesh is governed by the Consumer Rights Protection Act, 2019. Consumers have the right to safety, information, choice, and fair treatment.",
-    bn: "বাংলাদেশে ভোক্তা সুরক্ষা ভোক্তা অধিকার সুরক্ষা আইন, ২০১৯ দ্বারা নিয়ন্ত্রিত।"
+    en: "Consumer protection in Bangladesh is governed by the Consumer Rights Protection Act 2019. Consumer rights include:\n\n• Right to safety from defective products\n• Right to information about products\n• Right to choose products\n• Right to fair treatment\n• Right to compensation for damages\n\nComplaints can be filed with local Consumer Rights Protection offices or courts.",
+    bn: "বাংলাদেশে ভোক্তা সুরক্ষা ভোক্তা অধিকার সুরক্ষা আইন ২০১৯ দ্বারা নিয়ন্ত্রিত। ভোক্তার অধিকার:\n\n• ত্রুটিপূর্ণ পণ্য থে�ে নিরাপত্তা\n• পণ্য সম্পর্কে তথ্য পাওয়ার অধিকার\n• পছন্দের অধিকার\n• ক্ষতিপূরণ পাওয়ার অধিকার\n\nঅভিযোগ স্থানীয় ভোক্তা অধিকার অফিসে দায়ের করা যায়।",
+    source: "Consumer Rights Protection Act 2019"
   },
   "cyber": {
-    en: "Cyber law in Bangladesh includes the Digital Security Act, 2018 and the Information and Communication Technology Act, 2006. It addresses online crimes, data protection, and electronic transactions.",
-    bn: "বাংলাদেশে সাইবার আইনে ডিজিটাল নিরাপত্তা আইন, ২০১৮ অন্তর্ভুক্ত।"
+    en: "Cyber law in Bangladesh includes:\n\n• Digital Security Act 2018: Addresses online crimes, unauthorized access, data theft\n• ICT Act 2006: Electronic transactions, cybercrime provisions\n\nCommon offenses:\n• Hacking: Up to 14 years imprisonment\n• Data theft: Up to 10 years\n• Online harassment: Punishable offense\n• Defamation via social media: Criminal liability\n\nFor cyber crimes, contact cybercrime police unit.",
+    bn: "বাংলাদেশে সাইবার আইন:\n\n• ডিজিটাল নিরাপত্তা আইন ২০১৮: অনলাইন অপরাধ\n• তথ্য ও যোগাযোগ প্রযুক্তি আইন ২০০৬\n\nসাধারণ অপরাধ:\n• হ্যাকিং: সর্বোচ্চ ১৪ বছর কারাদণ্ড\n• ডেটা চুরি: সর্বোচ্চ ১০ বছর\n• অনলাইন উৎপীড়ন: দণ্ডনীয় অপরাধ\n\nসাইবার অপরাধের জন্য সাইবার পুলিশ ইউনিটে যোগাযোগ করুন।",
+    source: "Digital Security Act 2018, ICT Act 2006"
   }
 };
 
@@ -76,17 +97,17 @@ function detectLanguage(text: string): "en" | "bn" {
   return bengaliChars.test(text) ? "bn" : "en";
 }
 
-function findRelevantAnswer(query: string): { en: string; bn: string } | null {
+function findRelevantAnswer(query: string): { en: string; bn: string; source: string } | null {
   const lowerQuery = query.toLowerCase();
   
   const lawKeywords: Record<string, string[]> = {
-    "property": ["property", "land", "house", "flat", "rent", "ownership", "deed", "সম্পত্তি", "জমি", "বাড়ি"],
-    "criminal": ["crime", "criminal", "theft", "fraud", "murder", "bail", "police", "অপরাধ", "চুরি", "প্রতারণা"],
-    "family": ["marriage", "divorce", "dowry", "guardianship", "inheritance", "nikah", "talaq", "বিয়ে", "তালাক"],
-    "labour": ["worker", "labor", "wage", "salary", "leave", "termination", "শ্রমিক", "মজুরি"],
-    "constitutional": ["constitution", "fundamental", "rights", "supreme court", "সংবিধান", "মৌলিক"],
-    "consumer": ["consumer", "product", "defective", "refund", "complaint", "ভোক্তা", "পণ্য"],
-    "cyber": ["cyber", "online", "digital", "hacking", "privacy", "data", "সাইবার", "অনলাইন"]
+    "property": ["property", "land", "house", "flat", "rent", "ownership", "deed", "registration", "সম্পত্তি", "জমি", "বাড়ি", "দলিল"],
+    "criminal": ["crime", "criminal", "theft", "fraud", "murder", "bail", "police", "arrest", "অপরাধ", "চুরি", "প্রতারণা", "গ্রেপ্তার"],
+    "family": ["marriage", "divorce", "dowry", "guardianship", "inheritance", "nikah", "talaq", "maintenance", "বিয়ে", "তালাক", "দাস্ত", "উত্তরাধিকার"],
+    "labour": ["worker", "labor", "wage", "salary", "leave", "termination", "工厂", "শ্রমিক", "মজুরি", "চাকরি", "ছুটি"],
+    "constitutional": ["constitution", "fundamental", "rights", "supreme court", "high court", "article", "সংবিধান", "মৌলিক", "অধিকার", "আর্টিকেল"],
+    "consumer": ["consumer", "product", "defective", "refund", "complaint", "warranty", "ভোক্তা", "পণ্য", "ক্ষতিপূরণ"],
+    "cyber": ["cyber", "online", "digital", "hacking", "privacy", "data", "social media", "আইবার", "অনলাইন", "হ্যাকিং", "গোপনীয়তা"]
   };
 
   for (const [law, keywords] of Object.entries(lawKeywords)) {
@@ -147,16 +168,35 @@ export default function Home() {
       const answer = findRelevantAnswer(input);
       let response: string;
       let responseLang: "en" | "bn";
+      let source = "";
+      let confidence: "high" | "medium" | "low" = "high";
 
       if (answer) {
         response = lang === "bn" ? answer.bn : answer.en;
         responseLang = lang;
-      } else if (lowerMatches(input, ["help", "can you", "what can", "how", "সাহায্য"])) {
+        source = answer.source;
+        confidence = "high";
+      } else if (lowerMatches(input, ["help", "can you", "what can", "how", "who are you", "সাহায্য", "তুমি কে"])) {
         response = lang === "bn" ? generalResponses.help.bn : generalResponses.help.en;
         responseLang = lang;
-      } else {
-        response = lang === "bn" ? generalResponses.not_understood.bn : generalResponses.not_understood.en;
+        source = "JesAI Legal Assistant";
+        confidence = "high";
+      } else if (lowerMatches(input, ["thank", "thanks", "good", "great", "ধন্যবাদ", "ভালো"])) {
+        response = lang === "bn" ? "আপনাকে স্বাগতম! আরও প্রশ্ন থাকলে জানাবেন।" : "You're welcome! Feel free to ask more questions.";
         responseLang = lang;
+        source = "JesAI Legal Assistant";
+        confidence = "high";
+      } else {
+        response = lang === "bn" 
+          ? "আমি এই বিষয়ে নিশ্চিত তথ্য পাইনি। অনুগ্রহ করে অন্য প্রশ্ন করুন অথবা আইনি পরামর্শের জন্য একজন লাইসেন্সধারী অ্যাডভোকেটের সাথে যোগাযোগ করুন।"
+          : "I don't have specific information on this. Please rephrase your question or consult a licensed advocate for legal advice.";
+        responseLang = lang;
+        source = "No verified source";
+        confidence = "low";
+      }
+
+      if (response.length > MAX_RESPONSE_LENGTH) {
+        response = response.substring(0, MAX_RESPONSE_LENGTH) + "...";
       }
 
       const assistantMessage: Message = {
@@ -164,7 +204,9 @@ export default function Home() {
         role: "assistant",
         content: response,
         timestamp: new Date(),
-        language: responseLang
+        language: responseLang,
+        source,
+        confidence
       };
       setMessages((prev) => [...prev, assistantMessage]);
       setIsLoading(false);
@@ -371,7 +413,25 @@ export default function Home() {
                       <p className="text-sm lg:text-base leading-relaxed whitespace-pre-wrap">
                         {msg.content}
                       </p>
-                      <div className={`text-xs mt-2 ${msg.role === "user" ? "text-blue-100" : "text-slate-500"}`}>
+                      {msg.role === "assistant" && (
+                        <div className="flex items-center gap-2 mt-2 flex-wrap">
+                          <span className="text-[10px] px-2 py-0.5 bg-slate-200 rounded-full text-slate-600">
+                            {msg.source || "JesAI"}
+                          </span>
+                          {msg.confidence && (
+                            <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                              msg.confidence === "high" 
+                                ? "bg-green-100 text-green-700" 
+                                : msg.confidence === "medium"
+                                ? "bg-yellow-100 text-yellow-700"
+                                : "bg-red-100 text-red-700"
+                            }`}>
+                              {msg.confidence === "high" ? "✓ Verified" : msg.confidence === "medium" ? "? Uncertain" : "⚠ Limited"}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      <div className={`text-xs mt-2 ${msg.role === "user" ? "text-blue-100" : "text-slate-400"}`}>
                         {msg.timestamp.toLocaleTimeString([], {
                           hour: "2-digit",
                           minute: "2-digit"
@@ -423,8 +483,9 @@ export default function Home() {
                   <Send size={18} />
                 </button>
               </div>
-              <p className="text-xs text-slate-500 mt-2 text-center">
-                AI responses are for informational purposes. Always consult qualified legal professionals.
+              <p className="text-xs text-slate-500 mt-2 text-center flex items-center justify-center gap-1">
+                <span>⚠️</span>
+                <span>Information only - not legal advice. Consult a licensed advocate for specific cases.</span>
               </p>
             </form>
           </div>
