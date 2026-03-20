@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@kilocode/app-builder-db": "github:Kilo-Org/app-builder-db#main",
+    "@supabase/supabase-js": "^2.99.3",
     "bcryptjs": "^3.0.3",
     "drizzle-orm": "^0.45.1",
     "lucide-react": "^0.577.0",
