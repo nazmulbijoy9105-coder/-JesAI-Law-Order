@@ -394,13 +394,13 @@ export async function POST(req: NextRequest) {
     // 4b: Knowledge store formatted response
     if (result.matched && result.qaEntry) {
       const formatted = formatResponse(result);
-      let responseText = formatted.response;
-      if (formatted.paywallActive && formatted.paywallTeaser) {
-        const price   = formatted.price   ?? (TIER_PRICING[selectedArea ?? result.area ?? "general"]?.price ?? 99);
-        const label   = formatted.priceLabel ?? "Full Legal Guide";
+      let responseText = typeof formatted === "string" ? formatted : (formatted as any).response ?? "";
+      if (!isPaid) {
+        const price = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.price ?? 99;
+        const label = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.label ?? "Full Legal Guide";
         const paywall = lang === "bn"
-          ? `\n\n${formatted.paywallTeaser}\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **01XXXXXXXXX**`
-          : `\n\n${formatted.paywallTeaser}\n\n🔒 **Unlock full answer — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **01XXXXXXXXX**`;
+          ? `\n\nUnlock the full legal strategy and step-by-step action plan.\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **01XXXXXXXXX**`
+          : `\n\nUnlock the full legal strategy and step-by-step action plan.\n\n🔒 **Unlock full answer — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **01XXXXXXXXX**`;
         responseText += paywall;
       }
       return NextResponse.json({
