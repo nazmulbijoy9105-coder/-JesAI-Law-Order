@@ -92,7 +92,7 @@ export function queryKnowledge(
   lockedArea: LawArea | null = null
 ): KnowledgeResult {
   const area = lockedArea ?? detectArea(message);
-  const qaEntry = matchQA(message, area, lockedArea);
+  const qaEntry = matchQA(message, area);
 
   const rules = area
     ? MODULES.flatMap((m) =>
