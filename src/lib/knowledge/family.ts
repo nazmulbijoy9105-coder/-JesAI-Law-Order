@@ -935,3 +935,25 @@ export const FAMILY_RELIGIONS = [
   { key: "adibashi",  label: "Adibashi/Upojati (আদিবাসী)" },
   { key: "general",   label: "General (সাধারণ)" },
 ]
+
+import type { KnowledgeModule } from './types';
+
+const familyModule: KnowledgeModule = {
+  area: "family",
+  label: "Family Law — Muslim, Hindu, Christian, Adibashi",
+  description: "Bangladesh family law covering all religions and communities.",
+  rules: [],
+  qaBank: familyLaw.map(q => ({
+    id: q.id,
+    area: "family" as const,
+    jurisdiction: "BD" as const,
+    triggerKeywords: q.keywords,
+    question: q.question_en,
+    irac: { issue: q.question_en, rule: q.source_act, application: q.answer_en, conclusion: q.answer_en },
+    escalate: false,
+    relatedRules: [],
+    lastVerified: "2026-03-20",
+  })),
+};
+
+export default familyModule;

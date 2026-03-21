@@ -149,3 +149,18 @@ export function formatIRACResponse(result: KnowledgeResult): string {
 
   return response;
 }
+
+// Aliases for route.ts compatibility
+export const formatResponse = formatIRACResponse;
+
+export const TIER_PRICING: Record<string, { price: number; label: string }> = {
+  property:       { price: 999,  label: "Property Law Full Guide" },
+  criminal:       { price: 999,  label: "Criminal Law Full Guide" },
+  family:         { price: 999,  label: "Family Law Full Guide"   },
+  company:        { price: 1999, label: "Company Law Full Guide"  },
+  tax:            { price: 1999, label: "Tax Law Full Guide"      },
+  nrb:            { price: 1999, label: "NRB Investment Guide"    },
+  constitutional: { price: 999,  label: "Constitutional Law Guide"},
+  labour:         { price: 999,  label: "Labour Law Full Guide"   },
+  general:        { price: 99,   label: "Legal Guide"             },
+};
