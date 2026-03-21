@@ -406,7 +406,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         response: responseText,
         source: "knowledge",
-        metadata: { area: result.area, confidence: result.confidence, escalate: result.escalate, language: lang, paywallActive: formatted.paywallActive },
+        metadata: { area: result.area, confidence: result.confidence, escalate: result.escalate, language: lang, paywallActive: !isPaid },
       });
     }
 
