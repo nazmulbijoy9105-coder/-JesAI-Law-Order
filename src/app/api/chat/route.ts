@@ -393,7 +393,7 @@ export async function POST(req: NextRequest) {
 
     // 4b: Knowledge store formatted response
     if (result.matched && result.qaEntry) {
-      const formatted = formatResponse(result, isPaid);
+      const formatted = formatResponse(result);
       let responseText = formatted.response;
       if (formatted.paywallActive && formatted.paywallTeaser) {
         const price   = formatted.price   ?? (TIER_PRICING[selectedArea ?? result.area ?? "general"]?.price ?? 99);
