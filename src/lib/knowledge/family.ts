@@ -3,6 +3,7 @@
  * Bangladesh Family Law — Muslim, Hindu, Christian, Adibashi/Upojati
  * Validated by: Md Nazmul Islam (Bijoy), Advocate, Supreme Court of Bangladesh
  * Last updated: March 2026
+ * Q&As: 18 (FAM-001 to FAM-018)
  */
 
 export interface FamilyQA {
@@ -184,7 +185,7 @@ If wife dies before collecting deferred mahr — her heirs can claim it from hus
 
 দাবির উপায়: পারিবারিক আদালতে মামলা করুন। কাবিননামা প্রধান প্রমাণ। আদালত স্বামীর সম্পদ জব্দ করতে পারে।
 
-গুরুত্বপূর্ণ: তাৎক্ষণিক মোহর না পেলে স্ত্রী সহবাস অস্বীকার করতে পারেন।`
+গুরুত্বপূর্ণ: তাৎক্ষণিক মোহর না পেলে স্ত্রী সহবাস অস্বীকার করতে পারেন (হাবসে নাফস)।`
   },
 
   // ── MAINTENANCE ──────────────────────────────────────────────────────────
@@ -597,16 +598,10 @@ CONSTITUTIONAL STATUS:
 • Bangladesh Constitution Article 23A — protects indigenous culture
 • BUT land rights not fully codified — major ongoing dispute
 
-PRACTICAL ISSUES:
-• Many adibashi landless due to settlement of Bengali settlers (post-1971)
-• CHT Peace Accord 1997 promised land restoration — implementation incomplete
-• Adibashi can file land dispute in both traditional and civil courts
-
 ADVICE: Consult CHT-specialist advocate for land disputes.`,
     answer_bn: `পার্বত্য চট্টগ্রামে আদিবাসীদের জমির অধিকার CHT রেগুলেশন ১৯০০ ও CHT শান্তিচুক্তি ১৯৯৭ দ্বারা সুরক্ষিত।
 
-মূল সুরক্ষা: অ-উপজাতি ব্যক্তি অনুমতি ছাড়া CHT-তে জমি কিনতে পারবেন না।
-ঐতিহ্যবাহী অধিকার: জুম চাষের জমি, বসতভিটা স্বীকৃত।`
+মূল সুরক্ষা: অ-উপজাতি ব্যক্তি অনুমতি ছাড়া CHT-তে জমি কিনতে পারবেন না।`
   },
 
   // ── GENERAL FAMILY LAW ────────────────────────────────────────────────────
@@ -648,21 +643,16 @@ APPEAL:
 • District Judge Court
 • Then High Court Division
 
-SPECIAL FEATURES:
-• No court fees on denmahr suits (affordable for women)
-• Speedy trial intended — 6 months target (rarely achieved in practice)
-• Mediation mandatory before trial
-
 LEGAL AID:
 • National Legal Aid Services Organisation (NLASO) provides free lawyers for poor women
-• Women and Children Repression Prevention Act cases — free legal aid available`,
+• Call: 16430`,
     answer_bn: `বাংলাদেশে পারিবারিক মামলা পারিবারিক আদালতে হয় (সহকারী জজ আদালত)।
 
 এখতিয়ার: বিবাহ বিচ্ছেদ, দেনমোহর, ভরণপোষণ, শিশু হেফাজত।
 
 ফাইল করুন: যেখানে স্ত্রী থাকেন বা বিয়ে হয়েছিল সেই জেলায়।
 
-আপিল: জেলা জজ → হাইকোর্ট বিভাগ।`
+আপিল: জেলা জজ → হাইকোর্ট বিভাগ। আইনি সহায়তা: ১৬৪৩০।`
   },
 
   {
@@ -681,9 +671,6 @@ LEGAL MINIMUM AGE:
 • Male: 21 years
 • Female: 18 years
 
-SPECIAL EXCEPTION (Controversial):
-• Section 19 — "Special cases" — court can allow marriage below minimum age in "best interest of minor" — criticized as allowing child marriage loophole
-
 PUNISHMENT for child marriage:
 • Those who arrange/conduct child marriage: Imprisonment up to 2 years or fine BDT 50,000 or both
 • Parents/guardians who allow: Same punishment
@@ -695,16 +682,7 @@ THE MARRIAGE IS VOIDABLE:
 
 REPORTING:
 • Any person can report child marriage to Upazila Nirbahi Officer (UNO) or Police
-• Courts can issue injunction to stop child marriage
-
-PROTECTION:
-• Women and Children Repression Prevention Act also applies
-• Child Rights Act 2013 provides additional protection
-
-PRACTICAL REALITY:
-• Child marriage remains widespread in rural Bangladesh despite law
-• Enforcement is weak
-• NGOs and local government officers can intervene`,
+• Courts can issue injunction to stop child marriage`,
     answer_bn: `বাল্যবিবাহ নিরোধ আইন ২০১৭:
 
 বিবাহের বয়স: ছেলে ২১ বছর, মেয়ে ১৮ বছর।
@@ -731,12 +709,6 @@ WHAT IS DOMESTIC VIOLENCE (Section 3):
 • Psychological/emotional abuse (threats, humiliation)
 • Sexual abuse
 • Economic abuse (denying money, destroying property)
-• Any harm by family member in shared household
-
-WHO CAN FILE:
-• Wife, ex-wife, female partner
-• Mother, daughter, sister living in same house
-• Any woman in domestic relationship
 
 HOW TO GET PROTECTION:
 
@@ -750,22 +722,14 @@ HOW TO GET PROTECTION:
 • Can remove abuser from home
 
 3. MONETARY RELIEF:
-• Court can order abuser to pay compensation
-• Medical expenses, loss of earnings
-
-4. CUSTODY ORDER during violence proceedings
-
-ENFORCEMENT:
-• Magistrate can take cognizance immediately
-• Police must assist — failure to assist is misconduct
+• Court can order abuser to pay compensation for medical expenses, loss of earnings
 
 NATIONAL HELPLINES:
 • 109 — Women and Children helpline (free, 24 hours)
 • One Stop Crisis Centre (OCC) — in major hospitals
 • National Legal Aid: 16430
 
-PUNISHMENT for domestic violence:
-• Up to 2 years imprisonment or fine or both`,
+PUNISHMENT: Up to 2 years imprisonment or fine or both`,
     answer_bn: `গৃহ নির্যাতন (প্রতিরোধ ও সুরক্ষা) আইন ২০১০:
 
 সুরক্ষা আদেশ: ম্যাজিস্ট্রেট আদালতে আবেদন করুন — ৩ দিনের মধ্যে আদেশ পাওয়া যায়।
@@ -773,6 +737,146 @@ PUNISHMENT for domestic violence:
 জাতীয় হেল্পলাইন: ১০৯ (বিনামূল্যে, ২৪ ঘণ্টা)।
 
 শাস্তি: ২ বছর কারাদণ্ড বা জরিমানা বা উভয়।`
+  },
+
+  // ── NEW: FAM-016, FAM-017, FAM-018 ──────────────────────────────────────
+
+  {
+    id: "FAM-016",
+    topic: "marriage",
+    religion: "muslim",
+    is_free: true,
+    source_act: "Muslim Family Laws Ordinance 1961",
+    source_section: "Section 6",
+    keywords: ["polygamy", "second wife", "second marriage", "multiple wives", "bigamy", "arbitration council"],
+    question_en: "Can a Muslim man marry a second wife in Bangladesh? What permission is needed?",
+    question_bn: "বাংলাদেশে মুসলিম পুরুষ কি দ্বিতীয় বিয়ে করতে পারেন? কী অনুমতি প্রয়োজন?",
+    answer_en: `Under the Muslim Family Laws Ordinance 1961 (Section 6), a Muslim man CAN marry more than one wife but MUST follow a strict legal procedure.
+
+MANDATORY STEPS:
+1. APPLY to the Chairman of Union Parishad/Ward Commissioner for permission
+2. Chairman forms an ARBITRATION COUNCIL (one representative from each side)
+3. Council examines whether existing wife or wives consent and whether additional marriage is justified
+4. PERMISSION GRANTED or REFUSED by Chairman after council recommendation
+
+GROUNDS FOR PERMISSION:
+• Existing wife is unable to bear children
+• Existing wife has serious illness
+• Other just and sufficient cause
+
+WITHOUT PERMISSION:
+• Criminal offence under Section 6(5)
+• Punishment: Imprisonment up to 1 year OR fine BDT 10,000 OR both
+• Second marriage without permission is NOT automatically void — it is legally valid but husband is criminally liable
+• Existing wife has right to immediate prompt denmahr and can apply for divorce
+
+EXISTING WIFE'S RIGHTS:
+• Right to be notified
+• Right to represent in Arbitration Council
+• If husband proceeds without permission — she can claim:
+  - Full prompt denmahr immediately
+  - Divorce on ground of polygamy without permission
+  - Maintenance throughout proceedings
+
+PRACTICAL ADVICE: Permission is rarely granted. Any second marriage without permission exposes husband to criminal prosecution. First wife should file complaint immediately with Union Parishad Chairman.`,
+    answer_bn: `মুসলিম পারিবারিক আইন অধ্যাদেশ ১৯৬১ (ধারা ৬) অনুযায়ী মুসলিম পুরুষ একাধিক বিয়ে করতে পারেন, তবে আইনি অনুমতি বাধ্যতামূলক।
+
+বাধ্যতামূলক পদক্ষেপ: ইউনিয়ন পরিষদ চেয়ারম্যানের কাছে আবেদন → সালিশি পরিষদ গঠন → বিদ্যমান স্ত্রীর মতামত যাচাই → অনুমতি।
+
+অনুমতি ছাড়া বিয়ে: ১ বছর কারাদণ্ড বা ১০,০০০ টাকা জরিমানা বা উভয়।
+
+বিদ্যমান স্ত্রীর অধিকার: তাৎক্ষণিক দেনমোহর দাবি ও তালাকের আবেদন করতে পারবেন।`
+  },
+
+  {
+    id: "FAM-017",
+    topic: "divorce",
+    religion: "muslim",
+    is_free: true,
+    source_act: "Muslim Personal Law / Muslim Family Laws Ordinance 1961",
+    source_section: "Section 7 MFLO / Quran 2:228, 65:1-4",
+    keywords: ["iddat", "iddah", "waiting period", "remarriage", "after divorce", "after death"],
+    question_en: "What is Iddat (waiting period) after divorce or husband's death in Bangladesh?",
+    question_bn: "বাংলাদেশে তালাক বা স্বামীর মৃত্যুর পর ইদ্দত কী?",
+    answer_en: `IDDAT is the mandatory waiting period a Muslim woman must observe after divorce or husband's death before she can remarry.
+
+THREE TYPES OF IDDAT:
+
+1. IDDAT AFTER TALAQ (Divorce):
+• If wife menstruates: 3 menstrual cycles (approx 3 months)
+• If wife does not menstruate (old age/young): 3 lunar months
+• If wife is pregnant: Until delivery of child
+
+2. IDDAT AFTER HUSBAND'S DEATH:
+• Normal: 4 months and 10 days
+• If pregnant: Until delivery, even if longer than 4 months 10 days
+
+3. IDDAT AFTER KHUL/MUBARAT:
+• Same as after talaq — 3 menstrual cycles
+
+LEGAL SIGNIFICANCE IN BANGLADESH:
+• Under MFLO 1961 Section 7 — talaq only becomes final after 90 days (which aligns with iddat)
+• Maintenance: Husband must pay full maintenance during iddat after talaq
+• Housing: Wife has right to stay in matrimonial home during iddat
+• After iddat ends: No more maintenance obligation (unless pregnant)
+• Deferred mahr becomes payable on completion of iddat after talaq
+
+REMARRIAGE:
+• Woman CANNOT remarry during iddat — doing so is a criminal offence and makes second marriage void
+• After iddat completion — free to remarry`,
+    answer_bn: `ইদ্দত হলো তালাক বা স্বামীর মৃত্যুর পর মুসলিম নারীর বাধ্যতামূলক অপেক্ষাকালীন সময়।
+
+তালাকের পর: ৩টি মাসিক চক্র (প্রায় ৩ মাস)। গর্ভবতী হলে সন্তান প্রসব পর্যন্ত।
+
+স্বামীর মৃত্যুর পর: ৪ মাস ১০ দিন।
+
+আইনি গুরুত্ব: ইদ্দতকালে পূর্ণ ভরণপোষণ ও বাসস্থান পাবেন। ইদ্দত শেষ হওয়ার আগে পুনরায় বিয়ে করা যাবে না।`
+  },
+
+  {
+    id: "FAM-018",
+    topic: "general",
+    religion: "general",
+    is_free: false,
+    source_act: "Family Courts Ordinance 1985",
+    source_section: "Section 9",
+    keywords: ["restitution", "conjugal rights", "wife left", "husband left", "return home", "desertion"],
+    question_en: "What is Restitution of Conjugal Rights and how to file in Bangladesh?",
+    question_bn: "দাম্পত্য অধিকার পুনরুদ্ধার কী এবং বাংলাদেশে কীভাবে মামলা করবেন?",
+    answer_en: `RESTITUTION OF CONJUGAL RIGHTS (RCR) is a legal remedy where a spouse can ask the court to order their partner to return to the matrimonial home and resume marital life.
+
+LEGAL BASIS:
+Family Courts Ordinance 1985, Section 9
+
+WHO CAN FILE:
+• Husband — if wife has left matrimonial home without lawful excuse
+• Wife — if husband has abandoned or deserted her without cause
+
+COURT WILL REFUSE RCR if:
+• Respondent has valid reason to live separately (cruelty, non-payment of mahr, illness)
+• Petitioner is guilty of cruelty or misconduct
+• Petitioner failed to pay prompt denmahr (for wife's refusal)
+• Cohabitation would be harmful to respondent's health or safety
+
+PROCEDURE:
+1. File plaint in Family Court (Assistant Judge) of district where wife resides
+2. Mandatory mediation attempt
+3. If mediation fails — trial
+4. If court grants RCR — respondent must comply within time fixed
+
+ENFORCEMENT:
+• Court cannot physically force compliance
+• If respondent ignores RCR order — treated as desertion
+• Petitioner can then file for divorce on ground of desertion
+
+PRACTICAL NOTE: RCR suits are used as a step before divorce proceedings. A Muslim wife can resist by proving prompt mahr is unpaid — court will not force her to return until paid.`,
+    answer_bn: `দাম্পত্য অধিকার পুনরুদ্ধার: পারিবারিক আদালত অধ্যাদেশ ১৯৮৫, ধারা ৯।
+
+কে করতে পারেন: স্বামী (স্ত্রী চলে গেলে) বা স্ত্রী (স্বামী পরিত্যাগ করলে)।
+
+আদালত অস্বীকার করবে যদি: নিষ্ঠুর আচরণের প্রমাণ, তাৎক্ষণিক মোহর অপরিশোধিত, নিরাপত্তার ঝুঁকি।
+
+ব্যবহারিক: এই মামলা সাধারণত তালাকের আগের পদক্ষেপ। আদালত শারীরিকভাবে ফিরতে বাধ্য করতে পারে না।`
   },
 ]
 
@@ -793,37 +897,41 @@ export function getFamilyQA(lang: "en" | "bn" = "en") {
 
 export function searchFamilyLaw(query: string, lang: "en" | "bn" = "en") {
   const lower = query.toLowerCase()
-  return familyLaw.filter(q =>
-    q.keywords.some(k => k.includes(lower)) ||
-    q.question_en.toLowerCase().includes(lower) ||
-    q.topic.includes(lower) ||
-    q.religion.includes(lower)
-  ).map(q => ({
-    id: q.id,
-    question: lang === "bn" ? q.question_bn : q.question_en,
-    answer: lang === "bn" ? q.answer_bn : q.answer_en,
-    topic: q.topic,
-    religion: q.religion,
-    source: `${q.source_act}, ${q.source_section}`,
-    is_free: q.is_free,
-  }))
+  return familyLaw
+    .filter(q =>
+      q.keywords.some(k => lower.includes(k.toLowerCase())) ||
+      q.question_en.toLowerCase().includes(lower) ||
+      q.question_bn.includes(query) ||
+      q.topic.includes(lower) ||
+      q.religion.includes(lower)
+    )
+    .map(q => ({
+      id: q.id,
+      question: lang === "bn" ? q.question_bn : q.question_en,
+      answer: lang === "bn" ? q.answer_bn : q.answer_en,
+      topic: q.topic,
+      religion: q.religion,
+      source: `${q.source_act}, ${q.source_section}`,
+      is_free: q.is_free,
+    }))
 }
 
 export const FAMILY_TOPICS = [
-  { key: "divorce",         label_en: "Divorce",          label_bn: "তালাক/বিচ্ছেদ" },
-  { key: "denmahr",         label_en: "Denmahr (Mahr)",   label_bn: "দেনমোহর" },
-  { key: "maintenance",     label_en: "Maintenance",       label_bn: "ভরণপোষণ" },
-  { key: "custody",         label_en: "Child Custody",     label_bn: "শিশু হেফাজত" },
-  { key: "inheritance",     label_en: "Inheritance",       label_bn: "উত্তরাধিকার" },
-  { key: "marriage",        label_en: "Marriage Law",      label_bn: "বিবাহ আইন" },
-  { key: "domestic_violence",label_en:"Domestic Violence", label_bn: "গৃহ নির্যাতন" },
-  { key: "child_marriage",  label_en: "Child Marriage",    label_bn: "বাল্যবিবাহ" },
+  { key: "divorce",          label_en: "Divorce",           label_bn: "তালাক/বিচ্ছেদ" },
+  { key: "denmahr",          label_en: "Denmahr (Mahr)",    label_bn: "দেনমোহর" },
+  { key: "maintenance",      label_en: "Maintenance",        label_bn: "ভরণপোষণ" },
+  { key: "custody",          label_en: "Child Custody",      label_bn: "শিশু হেফাজত" },
+  { key: "inheritance",      label_en: "Inheritance",        label_bn: "উত্তরাধিকার" },
+  { key: "marriage",         label_en: "Marriage Law",       label_bn: "বিবাহ আইন" },
+  { key: "domestic_violence",label_en: "Domestic Violence",  label_bn: "গৃহ নির্যাতন" },
+  { key: "child_marriage",   label_en: "Child Marriage",     label_bn: "বাল্যবিবাহ" },
+  { key: "general",          label_en: "Family Court",       label_bn: "পারিবারিক আদালত" },
 ]
 
 export const FAMILY_RELIGIONS = [
-  { key: "muslim",   label: "Muslim (মুসলিম)" },
-  { key: "hindu",    label: "Hindu (হিন্দু)" },
-  { key: "christian",label: "Christian (খ্রিস্টান)" },
-  { key: "adibashi", label: "Adibashi/Upojati (আদিবাসী)" },
-  { key: "general",  label: "General (সাধারণ)" },
+  { key: "muslim",    label: "Muslim (মুসলিম)" },
+  { key: "hindu",     label: "Hindu (হিন্দু)" },
+  { key: "christian", label: "Christian (খ্রিস্টান)" },
+  { key: "adibashi",  label: "Adibashi/Upojati (আদিবাসী)" },
+  { key: "general",   label: "General (সাধারণ)" },
 ]
