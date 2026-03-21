@@ -13,7 +13,7 @@ import familyModule from "./family";
 // import contractModule from "./contract";
 import constitutionalModule from "./constitutional";
 
-const MODULES = [taxModule, companyModule, familyModule, constitutionalModule,
+const MODULES = [taxModule, companyModule, familyModule, constitutionalModule,taxModule, companyModule, familyModule, constitutionalModule,
   nrbModule,
   propertyModule,
   criminalModule,
