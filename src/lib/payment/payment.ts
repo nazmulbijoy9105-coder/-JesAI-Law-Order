@@ -6,10 +6,12 @@
 
 import { createClient } from "@supabase/supabase-js"
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://placeholder.supabase.co",
+    process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "placeholder-key"
+  );
+}
 
 // ── TYPES ─────────────────────────────────────────────────────────────────────
 export type PaymentTier = "basic" | "pro" | "professional"
@@ -127,6 +129,7 @@ export async function submitPayment(data: {
     return { success: false, message: "Invalid transaction ID" }
   }
 
+  const supabase = getSupabase();
   // Check for duplicate transaction
   const { data: existing } = await supabase
     .from("payment_records")
@@ -171,6 +174,7 @@ export async function verifyPayment(
   approved: boolean
 ): Promise<{ success: boolean }> {
 
+  const supabase = getSupabase();
   const status = approved ? "verified" : "rejected"
 
   const { data: record, error } = await supabase
@@ -207,6 +211,7 @@ export async function getUserTier(user_id: string): Promise<{
   queries_remaining: number
   expires_at: string | null
 }> {
+  const supabase = getSupabase();
   const { data: user } = await supabase
     .from("users")
     .select("is_paid, tier, tier_expires_at, queries_today")
