@@ -1,11 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/lib/auth/supabase-auth";
+import Link from "next/link";
 
 type MessageRole = "user" | "ai";
 type Language = "en" | "bn";
 type LawArea =
-  | "property" | "criminal" | "family" | "labour"
+  | "property" | "criminal" | "family" | "labour" | "contract"
   | "company" | "tax" | "nrb" | "constitutional"
   | "consumer" | "cyber" | null;
 
@@ -31,8 +34,7 @@ interface Conversation {
   lawArea?: string;
 }
 
-// ── Single source of truth for free question limit ──
-const MAX_QUESTIONS = 20;
+const FREE_GUEST_LIMIT = 20;
 
 const UI_TEXT = {
   en: {
@@ -40,11 +42,12 @@ const UI_TEXT = {
     freeLeft: (n: number) => `${n} free`,
     quickTopics: "Where would you like to start?",
     limitTitle: "You've reached your free limit",
-    limitSub: "Subscribe for unlimited access with human legal assistance",
+    limitSub: "Sign in to continue with more free questions, or subscribe for unlimited access",
     subscribeBtn: "Subscribe Now",
-    placeholder: "Describe your situation...",
-    placeholderLimit: "Subscribe to continue...",
-    footer: "Legal information only — not legal advice. Enter to send.",
+    signinBtn: "Sign In / Create Account",
+    placeholder: "Describe your legal situation...",
+    placeholderLimit: "Sign in or subscribe to continue...",
+    footer: "Legal information only — not legal advice. Press Enter to send.",
     listenBtn: "Voice",
     stopListenBtn: "Stop",
     speakBtn: "Listen",
@@ -54,17 +57,22 @@ const UI_TEXT = {
     history: "Recent",
     today: "Today",
     yesterday: "Yesterday",
-    greeting: `Hello. I'm **JesAI** — your Bangladesh legal literacy companion.\n\nDescribe your situation in plain language. I'll identify the relevant laws, explain your rights, and walk you through your options.\n\n_What's your legal question today?_`,
+    greeting: `Hello. I'm **JesAI** — your Bangladesh legal literacy companion, created by Neum Lex Counsel (NLC).\n\nDescribe your situation in plain language. I'll identify the legal issues, explain what Bangladesh law says, assess your position, and guide you through your options.\n\n_What's your legal question today?_`,
+    commonQsTitle: "Common Questions",
+    voiceError: "Voice input not supported on this browser. Try Chrome or Edge.",
+    voiceListening: "Listening... speak now",
+    voiceReady: "Voice ready — tap to speak",
   },
   bn: {
     active: "সক্রিয়",
     freeLeft: (n: number) => `${n} বাকি`,
     quickTopics: "কোথায় শুরু করতে চান?",
     limitTitle: "বিনামূল্যে সীমা শেষ",
-    limitSub: "সীমাহীন অ্যাক্সেসের জন্য সাবস্ক্রাইব করুন",
+    limitSub: "আরও বিনামূল্যে প্রশ্নের জন্য সাইন ইন করুন, বা সীমাহীন অ্যাক্সেসের জন্য সাবস্ক্রাইব করুন",
     subscribeBtn: "সাবস্ক্রাইব করুন",
-    placeholder: "আপনার পরিস্থিতি বলুন...",
-    placeholderLimit: "চালিয়ে যেতে সাবস্ক্রাইব করুন...",
+    signinBtn: "সাইন ইন / অ্যাকাউন্ট তৈরি করুন",
+    placeholder: "আপনার আইনি পরিস্থিতি বলুন...",
+    placeholderLimit: "চালিয়ে যেতে সাইন ইন বা সাবস্ক্রাইব করুন...",
     footer: "শুধুমাত্র আইনি তথ্য — পরামর্শ নয়। পাঠাতে Enter চাপুন।",
     listenBtn: "ভয়েস",
     stopListenBtn: "বন্ধ",
@@ -75,11 +83,14 @@ const UI_TEXT = {
     history: "সাম্প্রতিক",
     today: "আজ",
     yesterday: "গতকাল",
-    greeting: `আসসালামুয়ালাইকুম। আমি **JesAI** — আপনার বাংলাদেশ আইনি সাক্ষরতার সহায়ক।\n\nআপনার পরিস্থিতি সহজ ভাষায় বলুন। আমি প্রাসঙ্গিক আইন চিহ্নিত করব এবং আপনার অধিকার ও পদক্ষেপ ব্যাখ্যা করব।\n\n_আজ আপনার আইনি প্রশ্ন কী?_`,
+    greeting: `আসসালামুয়ালাইকুম। আমি **JesAI** — আপনার বাংলাদেশ আইনি সাক্ষরতার সহায়ক, নিউম লেক্স কাউন্সেল (NLC) কর্তৃক তৈরি।\n\nআপনার পরিস্থিতি সহজ ভাষায় বলুন। আমি আইনি সমস্যাগুলি চিহ্নিত করব, বাংলাদেশ আইন কী বলে তা ব্যাখ্যা করব, এবং আপনার পদক্ষেপ গাইড করব।\n\n_আজ আপনার আইনি প্রশ্ন কী?_`,
+    commonQsTitle: "সাধারণ প্রশ্ন",
+    voiceError: "এই ব্রাউজারে ভয়েস ইনপুট সমর্থিত নয়। Chrome বা Edge ব্যবহার করুন।",
+    voiceListening: "শুনছি... এখন বলুন",
+    voiceReady: "ভয়েস প্রস্তুত — বলতে ট্যাপ করুন",
   },
 };
 
-// Each topic has a display label AND an area key sent to the API
 const QUICK_TOPICS: Record<Language, { icon: string; label: string; area: LawArea }[]> = {
   en: [
     { icon: "🏠", label: "Land & Property",   area: "property"       },
@@ -89,6 +100,7 @@ const QUICK_TOPICS: Record<Language, { icon: string; label: string; area: LawAre
     { icon: "⚖️", label: "Constitutional",     area: "constitutional" },
     { icon: "💰", label: "Tax & VAT",          area: "tax"            },
     { icon: "🏢", label: "Company & RJSC",     area: "company"        },
+    { icon: "📝", label: "Contracts",          area: "contract"       },
     { icon: "✈️", label: "NRB Investment",     area: "nrb"            },
   ],
   bn: [
@@ -99,16 +111,84 @@ const QUICK_TOPICS: Record<Language, { icon: string; label: string; area: LawAre
     { icon: "⚖️", label: "সাংবিধানিক অধিকার",  area: "constitutional" },
     { icon: "💰", label: "কর ও ভ্যাট",          area: "tax"            },
     { icon: "🏢", label: "কোম্পানি ও RJSC",     area: "company"        },
+    { icon: "📝", label: "চুক্তি আইন",           area: "contract"       },
     { icon: "✈️", label: "প্রবাসী বিনিয়োগ",    area: "nrb"            },
   ],
 };
 
-// Area display names shown in chat header when locked
+// Common questions by law area for the FAQ panel
+const COMMON_QUESTIONS: Record<string, { en: string; bn: string }[]> = {
+  property: [
+    { en: "How do I do namajaari (mutation) for inherited land?", bn: "উত্তরাধিকারসূত্রে পাওয়া জমির নামজারি কিভাবে করব?" },
+    { en: "What happens if someone sells land with a forged deed?", bn: "জাল দলিলে জমি বিক্রি হলে কী করব?" },
+    { en: "Can a landlord evict a tenant without notice?", bn: "নোটিশ ছাড়া বাড়িওয়ালা ভাড়াটে উচ্ছেদ করতে পারে?" },
+    { en: "What is Artha Rin court and when can a bank file there?", bn: "অর্থ ঋণ আদালত কী এবং ব্যাংক কখন মামলা করতে পারে?" },
+    { en: "How do I challenge an illegal land boundary encroachment?", bn: "অবৈধ জমি দখলের বিরুদ্ধে কীভাবে আইনি ব্যবস্থা নেব?" },
+  ],
+  criminal: [
+    { en: "What are my rights when police arrest me?", bn: "পুলিশ গ্রেফতার করলে আমার কী অধিকার আছে?" },
+    { en: "How do I get bail after arrest?", bn: "গ্রেফতারের পর জামিন কিভাবে পাব?" },
+    { en: "What is the difference between a cognizable and non-cognizable offence?", bn: "আমলযোগ্য ও অ-আমলযোগ্য অপরাধের পার্থক্য কী?" },
+    { en: "Can police keep me in custody without producing me before a magistrate?", bn: "ম্যাজিস্ট্রেটের সামনে না এনে পুলিশ আমাকে কতদিন রাখতে পারে?" },
+    { en: "What is remand and how many days can it last?", bn: "রিমান্ড কী এবং এটা কত দিনের হতে পারে?" },
+  ],
+  family: [
+    { en: "How does a Muslim wife get divorce in Bangladesh?", bn: "বাংলাদেশে মুসলিম স্ত্রী কিভাবে তালাক নিতে পারেন?" },
+    { en: "Who gets custody of children after divorce?", bn: "তালাকের পর সন্তানের হেফাজত কার কাছে থাকে?" },
+    { en: "What is the legal amount of maintenance a wife can claim?", bn: "স্ত্রী ভরণপোষণ কত টাকা দাবি করতে পারেন?" },
+    { en: "Can a husband refuse to pay mehr (dower)?", bn: "স্বামী কি দেনমোহর দিতে অস্বীকার করতে পারে?" },
+    { en: "How is property divided after a Muslim person dies?", bn: "মুসলিম ব্যক্তির মৃত্যুর পর সম্পত্তি কিভাবে ভাগ হয়?" },
+  ],
+  labour: [
+    { en: "What notice and gratuity am I owed if terminated?", bn: "চাকরিচ্যুত হলে আমি কত নোটিশ ও গ্র্যাচুইটি পাব?" },
+    { en: "My employer is not paying my salary for 3 months — what can I do?", bn: "৩ মাস বেতন না দিলে কী করব?" },
+    { en: "How many days maternity leave is a woman entitled to?", bn: "মাতৃত্বকালীন ছুটি কত দিন পাওয়া যায়?" },
+    { en: "Can an employer dismiss me without a domestic enquiry?", bn: "তদন্ত ছাড়া চাকরি থেকে বরখাস্ত করা যায় কি?" },
+    { en: "Is overtime at double rate mandatory?", bn: "ওভারটাইম ডাবল রেটে বাধ্যতামূলক কি?" },
+  ],
+  contract: [
+    { en: "Is a verbal (oral) contract legally binding in Bangladesh?", bn: "মুখের কথায় (মৌখিক) চুক্তি কি বাংলাদেশে আইনগতভাবে বৈধ?" },
+    { en: "What can I do if someone breaches a written contract with me?", bn: "লিখিত চুক্তি ভঙ্গ হলে আমি কী করতে পারি?" },
+    { en: "I paid an advance but the other party is not performing — can I get it back?", bn: "অগ্রিম দিলাম কিন্তু কাজ হচ্ছে না — ফেরত পাব কি?" },
+    { en: "I signed as a personal guarantor for a loan — how liable am I?", bn: "ঋণের জামিনদার হিসেবে সই করেছি — আমার কতটা দায় আছে?" },
+    { en: "Does a contract need a stamp to be valid?", bn: "চুক্তির জন্য স্ট্যাম্প না লাগালে কি তা বাতিল হয়ে যায়?" },
+  ],
+  company: [
+    { en: "How do I register a private limited company in Bangladesh?", bn: "বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি কিভাবে নিবন্ধন করব?" },
+    { en: "What are the annual compliance requirements for a company?", bn: "কোম্পানির বার্ষিক আইনি দায়িত্বগুলো কী?" },
+    { en: "Can a director be removed without their consent?", bn: "পরিচালক কি তার সম্মতি ছাড়া অপসারণ করা যায়?" },
+    { en: "What is the minimum share capital to register a company?", bn: "কোম্পানি নিবন্ধনের জন্য ন্যূনতম মূলধন কত?" },
+    { en: "How can a minority shareholder protect their rights?", bn: "সংখ্যালঘু শেয়ারহোল্ডার তার অধিকার কিভাবে রক্ষা করবেন?" },
+  ],
+  tax: [
+    { en: "What is the income tax-free threshold in Bangladesh 2024-25?", bn: "২০২৪-২৫ সালে বাংলাদেশে করমুক্ত আয়ের সীমা কত?" },
+    { en: "When is the last date to file income tax return?", bn: "আয়কর রিটার্ন দেওয়ার শেষ তারিখ কবে?" },
+    { en: "What is TIN and how do I get one?", bn: "TIN কী এবং কিভাবে পাব?" },
+    { en: "What are the VAT rates and when must a business register for VAT?", bn: "ভ্যাটের হার কত এবং কখন ভ্যাট নিবন্ধন করতে হবে?" },
+    { en: "What is advance income tax (AIT) and when is it deducted?", bn: "অগ্রিম আয়কর (AIT) কী এবং কখন কাটা হয়?" },
+  ],
+  nrb: [
+    { en: "How do I repatriate profits from Bangladesh to abroad?", bn: "বাংলাদেশ থেকে মুনাফা বিদেশে নিতে কী করব?" },
+    { en: "What is BIDA registration and is it mandatory for foreign investment?", bn: "BIDA নিবন্ধন কী এবং বিদেশি বিনিয়োগের জন্য কি বাধ্যতামূলক?" },
+    { en: "What withholding tax applies to payments to foreign partners?", bn: "বিদেশি অংশীদারকে পেমেন্টে কত উৎসে কর দিতে হয়?" },
+    { en: "Can a non-resident Bangladeshi (NRB) invest in land or property?", bn: "প্রবাসী বাংলাদেশি কি দেশে জমি বা সম্পত্তি কিনতে পারেন?" },
+    { en: "What are the FBAR reporting requirements for Bangladeshis with US bank accounts?", bn: "যুক্তরাষ্ট্রে ব্যাংক অ্যাকাউন্ট থাকলে FBAR জানাতে হয় কি?" },
+  ],
+  constitutional: [
+    { en: "What are the fundamental rights guaranteed by the Bangladesh Constitution?", bn: "বাংলাদেশ সংবিধানে কী কী মৌলিক অধিকার গ্যারান্টি দেওয়া আছে?" },
+    { en: "What is a writ petition and when can I file one?", bn: "রিট পিটিশন কী এবং কখন দায়ের করা যায়?" },
+    { en: "Can police detain me under Section 54 without a warrant?", bn: "পুলিশ কি ৫৪ ধারায় ওয়ারেন্ট ছাড়া আটক করতে পারে?" },
+    { en: "What are the rights of an arrested person under Article 33?", bn: "সংবিধানের ৩৩ অনুচ্ছেদে গ্রেফতারকৃত ব্যক্তির কী অধিকার আছে?" },
+    { en: "What is a habeas corpus petition?", bn: "হেবিয়াস কর্পাস পিটিশন কী?" },
+  ],
+};
+
 const AREA_LABELS: Record<string, string> = {
   property:       "Land & Property",
   criminal:       "Criminal Law",
   family:         "Family Law",
   labour:         "Labour Law",
+  contract:       "Contract Law",
   company:        "Company Law",
   tax:            "Tax Law",
   nrb:            "NRB Investment",
@@ -149,6 +229,8 @@ function getConvTitle(messages: Message[]): string {
 }
 
 export default function ChatInterface() {
+  const { user, isPaid: authIsPaid, queriesRemaining: authQueriesRemaining } = useAuth();
+
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConvId, setActiveConvId] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
@@ -159,9 +241,11 @@ export default function ChatInterface() {
   const [isListening, setIsListening] = useState(false);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [showCommonQs, setShowCommonQs] = useState(false);
   const [apiError, setApiError] = useState<string | null>(null);
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+  const [voiceStatus, setVoiceStatus] = useState<"idle" | "listening" | "processing">("idle");
 
-  // ── Subject lock: set when user taps a quick topic chip ──
   const [selectedArea, setSelectedArea] = useState<LawArea>(null);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -170,7 +254,16 @@ export default function ChatInterface() {
   const recognitionRef = useRef<any>(null);
 
   const t = UI_TEXT[lang];
-  const freeRemaining = Math.max(0, MAX_QUESTIONS - questionCount);
+
+  // For authenticated users: use server-side limits; for guests: use local count
+  const effectiveIsPaid = user ? authIsPaid : false;
+  const guestLimit = FREE_GUEST_LIMIT;
+  const isAtLimit = user
+    ? (authIsPaid ? false : authQueriesRemaining <= 0)
+    : questionCount >= guestLimit;
+  const freeRemaining = user
+    ? (authIsPaid ? Infinity : authQueriesRemaining)
+    : Math.max(0, guestLimit - questionCount);
 
   useEffect(() => {
     const link = document.createElement("link");
@@ -201,8 +294,10 @@ export default function ChatInterface() {
     setQuestionCount(0);
     setInput("");
     setApiError(null);
+    setVoiceError(null);
     setSidebarOpen(false);
-    setSelectedArea(null); // reset subject lock on new chat
+    setSelectedArea(null);
+    setShowCommonQs(false);
   }
 
   function saveCurrentConversation(msgs: Message[]) {
@@ -222,6 +317,7 @@ export default function ChatInterface() {
     setQuestionCount(conv.messages.filter(m => m.role === "user").length);
     setSidebarOpen(false);
     setSelectedArea(null);
+    setShowCommonQs(false);
   }
 
   const callJesAI = useCallback(async (
@@ -234,22 +330,26 @@ export default function ChatInterface() {
 
     const history = currentMessages
       .filter(m => m.id !== "greeting-" + activeConvId)
-      .slice(-6)
+      .slice(-8)
       .map(m => ({ role: m.role === "ai" ? "assistant" : "user", content: m.content }));
 
-    // Use areaOverride (from chip click) or current selectedArea state
     const areaToSend = areaOverride !== undefined ? areaOverride : selectedArea;
 
     try {
+      // Get auth token for server-side paid verification
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token ?? null;
+
       const res = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
           message: userMessage,
           history,
-          language: lang,
-          selectedArea: areaToSend,   // ← subject lock sent to API
-          isPaid: false,               // ← false until payment integration
+          selectedArea: areaToSend,
         }),
       });
       if (!res.ok) throw new Error(`${res.status}`);
@@ -270,6 +370,14 @@ export default function ChatInterface() {
         return updated;
       });
       setQuestionCount(c => c + 1);
+
+      // Increment server-side query counter for authenticated users
+      if (token) {
+        fetch("/api/user/tier", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${token}` },
+        }).catch(() => {});
+      }
     } catch {
       setApiError("Unable to connect. Please try again.");
       const fallback: Message = {
@@ -283,64 +391,129 @@ export default function ChatInterface() {
       setIsTyping(false);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang, activeConvId, selectedArea]);
+  }, [lang, activeConvId, selectedArea, effectiveIsPaid]);
 
   const sendMessage = useCallback(async (text?: string, area?: LawArea) => {
     const messageText = text || input.trim();
-    if (!messageText || isTyping || questionCount >= MAX_QUESTIONS) return;
+    if (!messageText || isTyping || isAtLimit) return;
 
-    // If a subject chip was clicked, lock the area before sending
     if (area !== undefined) {
       setSelectedArea(area);
     }
+    setShowCommonQs(false);
 
     const userMsg: Message = { id: genId(), role: "user", content: messageText, timestamp: new Date() };
     const updated = [...messages, userMsg];
     setMessages(updated);
     setInput("");
     await callJesAI(messageText, updated, area);
-  }, [input, isTyping, questionCount, messages, callJesAI]);
+  }, [input, isTyping, isAtLimit, messages, callJesAI]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
   }, [sendMessage]);
 
+  // ── Voice Input ───────────────────────────────────────────────
   const startListening = useCallback(() => {
-    if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) return;
+    setVoiceError(null);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SR = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+    if (!SR) {
+      setVoiceError(t.voiceError);
+      return;
+    }
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+      setVoiceStatus("idle");
+      return;
+    }
     const r = new SR();
-    r.lang = lang === "bn" ? "bn-BD" : "en-BD";
+    r.lang = lang === "bn" ? "bn-BD" : "en-US";
     r.continuous = false;
-    r.interimResults = false;
+    r.interimResults = true;
+    r.maxAlternatives = 1;
+
+    let finalTranscript = "";
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    r.onresult = (e: any) => { setInput(p => p + e.results[0][0].transcript); setIsListening(false); };
-    r.onerror = () => setIsListening(false);
-    r.onend = () => setIsListening(false);
+    r.onresult = (e: any) => {
+      let interimTranscript = "";
+      for (let i = e.resultIndex; i < e.results.length; i++) {
+        if (e.results[i].isFinal) {
+          finalTranscript += e.results[i][0].transcript;
+        } else {
+          interimTranscript += e.results[i][0].transcript;
+        }
+      }
+      if (interimTranscript) {
+        setInput(finalTranscript + interimTranscript);
+      }
+    };
+    r.onspeechend = () => {
+      setVoiceStatus("processing");
+      r.stop();
+    };
+    r.onerror = (e: { error: string }) => {
+      if (e.error === "no-speech") {
+        setVoiceError("No speech detected. Please try again.");
+      } else if (e.error === "audio-capture") {
+        setVoiceError("Microphone access denied. Please allow microphone access.");
+      } else if (e.error !== "aborted") {
+        setVoiceError("Voice error: " + e.error);
+      }
+      setIsListening(false);
+      setVoiceStatus("idle");
+    };
+    r.onend = () => {
+      setIsListening(false);
+      setVoiceStatus("idle");
+      if (finalTranscript.trim()) {
+        setInput(finalTranscript.trim());
+        // Auto-submit after voice input with a short delay
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
+      }
+    };
     recognitionRef.current = r;
     r.start();
     setIsListening(true);
-  }, [lang]);
+    setVoiceStatus("listening");
+  }, [lang, isListening, t.voiceError]);
 
-  const stopListening = useCallback(() => { recognitionRef.current?.stop(); setIsListening(false); }, []);
-
+  // ── Text-to-Speech ────────────────────────────────────────────
   const speakMessage = useCallback((id: string, content: string) => {
     if (speakingId === id) { window.speechSynthesis.cancel(); setSpeakingId(null); return; }
     window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(content.replace(/\*\*/g, "").replace(/\*/g, "").replace(/---/g, "").replace(/🔒/g, "").replace(/⚠️/g, ""));
+    const cleaned = content
+      .replace(/\*\*/g, "").replace(/\*/g, "")
+      .replace(/---/g, "").replace(/🔒/g, "lock")
+      .replace(/⚠️/g, "Warning:").replace(/_/g, "")
+      .replace(/[▸•]/g, "");
+    const u = new SpeechSynthesisUtterance(cleaned);
     u.lang = lang === "bn" ? "bn-BD" : "en-US";
     u.rate = 0.9;
+    u.pitch = 1.0;
+    // Prefer a natural voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v =>
+      lang === "bn"
+        ? v.lang.startsWith("bn")
+        : v.lang.startsWith("en") && v.name.includes("Natural") || v.name.includes("Google")
+    );
+    if (preferred) u.voice = preferred;
     u.onend = () => setSpeakingId(null);
+    u.onerror = () => setSpeakingId(null);
     setSpeakingId(id);
     window.speechSynthesis.speak(u);
   }, [speakingId, lang]);
 
   const toggleLang = useCallback(() => { setLang(l => l === "en" ? "bn" : "en"); }, []);
-
   const isToday = (d: Date) => new Date().toDateString() === d.toDateString();
   const isYesterday = (d: Date) => { const y = new Date(); y.setDate(y.getDate() - 1); return y.toDateString() === d.toDateString(); };
-
   const hasUserMessages = messages.filter(m => m.role === "user").length > 0;
+
+  const commonQsForArea = selectedArea ? (COMMON_QUESTIONS[selectedArea] ?? []) : [];
 
   return (
     <div style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }} className="flex h-full bg-[#080f1e] overflow-hidden">
@@ -360,6 +533,21 @@ export default function ChatInterface() {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
             </button>
           </div>
+
+          {/* Auth state in sidebar */}
+          {user ? (
+            <div className="mb-3 px-2 py-2 rounded-xl bg-[#006a4e]/10 border border-[#006a4e]/20">
+              <p className="text-[10px] text-[#4ade80] font-medium truncate">{user.email}</p>
+              <p className="text-[10px] text-slate-500 mt-0.5">
+                {effectiveIsPaid ? `Plan: ${user.tier}` : `${freeRemaining === Infinity ? "∞" : freeRemaining} questions left today`}
+              </p>
+            </div>
+          ) : (
+            <Link href="/auth/signin" className="block w-full mb-3 text-center text-[11px] px-3 py-2 rounded-xl border border-white/10 text-slate-400 hover:text-white hover:border-[#006a4e]/40 transition-all">
+              Sign In for more questions
+            </Link>
+          )}
+
           <button onClick={startNewChat} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#006a4e] hover:bg-[#005a40] text-white text-xs font-medium transition-all duration-200 shadow-lg shadow-[#006a4e]/20">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
             {t.newChat}
@@ -423,7 +611,6 @@ export default function ChatInterface() {
               <div>
                 <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-white font-semibold text-sm leading-none tracking-tight">
                   Jes<span className="text-[#c8a84b]">AI</span>
-                  {/* Show locked subject in header */}
                   {selectedArea && (
                     <span className="ml-2 text-[10px] font-normal text-[#4ade80] border border-[#006a4e]/40 bg-[#006a4e]/10 px-1.5 py-0.5 rounded-full">
                       {AREA_LABELS[selectedArea]}
@@ -436,14 +623,21 @@ export default function ChatInterface() {
           </div>
 
           <div className="flex items-center gap-2">
-            {/* NLC Verified badge */}
             {messages.some(m => m.metadata?.knowledgeMatched) && (
               <span className="hidden sm:flex text-[10px] px-2 py-1 rounded-full bg-[#c8a84b]/10 text-[#c8a84b] border border-[#c8a84b]/20 items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#c8a84b] inline-block" />
                 NLC Verified
               </span>
             )}
-            {/* Change subject button — shown when area is locked */}
+            {selectedArea && commonQsForArea.length > 0 && (
+              <button
+                onClick={() => setShowCommonQs(v => !v)}
+                className={`text-[11px] px-2.5 py-1.5 rounded-lg border transition-all duration-200 ${showCommonQs ? "border-[#c8a84b]/40 text-[#c8a84b] bg-[#c8a84b]/10" : "border-white/10 text-slate-500 hover:text-white hover:border-[#006a4e]/40"}`}
+                title={t.commonQsTitle}
+              >
+                FAQ
+              </button>
+            )}
             {selectedArea && hasUserMessages && (
               <button
                 onClick={startNewChat}
@@ -456,9 +650,16 @@ export default function ChatInterface() {
             <button onClick={toggleLang} className="text-[11px] px-2.5 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-[#006a4e]/40 transition-all duration-200 font-medium">
               {t.langToggle}
             </button>
-            <div className={`text-[11px] px-2.5 py-1.5 rounded-lg font-medium tabular-nums ${freeRemaining <= 5 ? "bg-[#f42a41]/15 text-[#f42a41]" : "bg-[#006a4e]/15 text-[#4ade80]"}`}>
-              {t.freeLeft(freeRemaining)}
-            </div>
+            {!isAtLimit && freeRemaining !== Infinity && (
+              <div className={`text-[11px] px-2.5 py-1.5 rounded-lg font-medium tabular-nums ${freeRemaining <= 5 ? "bg-[#f42a41]/15 text-[#f42a41]" : "bg-[#006a4e]/15 text-[#4ade80]"}`}>
+                {t.freeLeft(freeRemaining)}
+              </div>
+            )}
+            {effectiveIsPaid && (
+              <div className="text-[11px] px-2.5 py-1.5 rounded-lg font-medium bg-[#c8a84b]/15 text-[#c8a84b]">
+                ✦ {user?.tier ?? "paid"}
+              </div>
+            )}
           </div>
         </header>
 
@@ -466,6 +667,33 @@ export default function ChatInterface() {
         {apiError && (
           <div className="mx-4 mt-2 px-3 py-2 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/20 text-[11px] text-[#f42a41] flex items-center gap-2 flex-shrink-0">
             <span>⚠</span>{apiError}
+          </div>
+        )}
+
+        {/* Voice error */}
+        {voiceError && (
+          <div className="mx-4 mt-2 px-3 py-2 rounded-xl bg-[#c8a84b]/10 border border-[#c8a84b]/20 text-[11px] text-[#c8a84b] flex items-center justify-between gap-2 flex-shrink-0">
+            <span>🎤 {voiceError}</span>
+            <button onClick={() => setVoiceError(null)} className="text-slate-500 hover:text-white">✕</button>
+          </div>
+        )}
+
+        {/* Common Questions panel */}
+        {showCommonQs && commonQsForArea.length > 0 && (
+          <div className="mx-4 mt-2 p-3 rounded-xl bg-[#0d1e35] border border-white/[0.07] flex-shrink-0">
+            <p className="text-[10px] text-[#c8a84b] uppercase tracking-widest font-medium mb-2">{t.commonQsTitle} — {AREA_LABELS[selectedArea ?? ""]}</p>
+            <div className="space-y-1">
+              {commonQsForArea.map((q, i) => (
+                <button
+                  key={i}
+                  onClick={() => { sendMessage(lang === "bn" ? q.bn : q.en); setShowCommonQs(false); }}
+                  className="w-full text-left text-[12px] text-slate-400 hover:text-white px-2 py-1.5 rounded-lg hover:bg-white/[0.05] transition-all duration-150 leading-relaxed"
+                >
+                  <span className="text-[#4ade80] mr-1.5 text-[10px]">▸</span>
+                  {lang === "bn" ? q.bn : q.en}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 
@@ -541,7 +769,7 @@ export default function ChatInterface() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Quick topic chips — show on first load OR when no area selected yet */}
+        {/* Quick topic chips — show on first load or when no area selected */}
         {(!hasUserMessages || (!selectedArea && !hasUserMessages)) && (
           <div className="px-3 sm:px-4 pb-3 flex-shrink-0">
             <p className="text-[11px] text-slate-600 mb-2.5 font-medium">{t.quickTopics}</p>
@@ -561,18 +789,39 @@ export default function ChatInterface() {
         )}
 
         {/* Limit reached */}
-        {questionCount >= MAX_QUESTIONS && (
+        {isAtLimit && (
           <div className="mx-4 mb-3 p-4 rounded-2xl bg-[#c8a84b]/10 border border-[#c8a84b]/25 text-center flex-shrink-0">
             <p className="text-sm text-[#c8a84b] font-semibold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>{t.limitTitle}</p>
             <p className="text-[12px] text-slate-400 mt-1">{t.limitSub}</p>
-            <button className="mt-3 px-5 py-2 rounded-xl bg-[#c8a84b] text-[#0a1628] text-xs font-bold hover:bg-[#b8943b] transition-colors shadow-lg shadow-[#c8a84b]/20">
-              {t.subscribeBtn}
-            </button>
+            <div className="mt-3 flex flex-col sm:flex-row gap-2 justify-center">
+              {!user && (
+                <Link href="/auth/signin" className="px-5 py-2 rounded-xl border border-white/10 text-slate-300 text-xs font-medium hover:text-white hover:border-white/20 transition-colors">
+                  {t.signinBtn}
+                </Link>
+              )}
+              <Link href="/payment" className="px-5 py-2 rounded-xl bg-[#c8a84b] text-[#0a1628] text-xs font-bold hover:bg-[#b8943b] transition-colors shadow-lg shadow-[#c8a84b]/20">
+                {t.subscribeBtn}
+              </Link>
+            </div>
           </div>
         )}
 
         {/* Input area */}
         <div className="border-t border-white/[0.06] p-3 sm:p-4 bg-[#080f1e] flex-shrink-0">
+          {/* Voice status indicator */}
+          {voiceStatus === "listening" && (
+            <div className="flex items-center gap-2 mb-2 px-1">
+              <span className="h-2 w-2 rounded-full bg-[#f42a41] animate-pulse" />
+              <span className="text-[11px] text-[#f42a41]">{t.voiceListening}</span>
+            </div>
+          )}
+          {voiceStatus === "processing" && (
+            <div className="flex items-center gap-2 mb-2 px-1">
+              <span className="h-2 w-2 rounded-full bg-[#c8a84b] animate-pulse" />
+              <span className="text-[11px] text-[#c8a84b]">Processing voice...</span>
+            </div>
+          )}
+
           <div className="flex gap-2 sm:gap-2.5 items-end max-w-4xl mx-auto">
             <div className="flex-1 relative">
               <textarea
@@ -580,20 +829,26 @@ export default function ChatInterface() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                disabled={isTyping || questionCount >= MAX_QUESTIONS}
-                placeholder={questionCount >= MAX_QUESTIONS ? t.placeholderLimit : t.placeholder}
+                disabled={isTyping || isAtLimit}
+                placeholder={isAtLimit ? t.placeholderLimit : t.placeholder}
                 rows={2}
                 style={{ fontFamily: "'DM Sans', sans-serif" }}
                 className="w-full resize-none rounded-2xl border border-white/[0.08] bg-[#0d1e35] px-3 sm:px-4 py-3 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#006a4e]/50 focus:ring-1 focus:ring-[#006a4e]/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 leading-relaxed shadow-inner"
               />
             </div>
 
-            {/* Voice */}
+            {/* Voice button */}
             <button
-              onClick={isListening ? stopListening : startListening}
-              disabled={isTyping || questionCount >= MAX_QUESTIONS}
+              onClick={startListening}
+              disabled={isTyping || isAtLimit}
               title={isListening ? t.stopListenBtn : t.listenBtn}
-              className={`flex-shrink-0 h-11 w-11 rounded-2xl flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed ${isListening ? "bg-[#f42a41] shadow-lg shadow-[#f42a41]/30 animate-pulse" : "bg-[#0d1e35] border border-white/[0.08] text-slate-500 hover:text-white hover:border-[#006a4e]/40"}`}
+              className={`flex-shrink-0 h-11 w-11 rounded-2xl flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed ${
+                isListening
+                  ? "bg-[#f42a41] shadow-lg shadow-[#f42a41]/30 animate-pulse"
+                  : voiceStatus === "processing"
+                  ? "bg-[#c8a84b] shadow-lg shadow-[#c8a84b]/30"
+                  : "bg-[#0d1e35] border border-white/[0.08] text-slate-500 hover:text-white hover:border-[#006a4e]/40"
+              }`}
             >
               {isListening ? (
                 <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
@@ -602,10 +857,10 @@ export default function ChatInterface() {
               )}
             </button>
 
-            {/* Send */}
+            {/* Send button */}
             <button
               onClick={() => sendMessage()}
-              disabled={!input.trim() || isTyping || questionCount >= MAX_QUESTIONS}
+              disabled={!input.trim() || isTyping || isAtLimit}
               className="flex-shrink-0 h-11 w-11 rounded-2xl bg-[#006a4e] flex items-center justify-center text-white hover:bg-[#005a40] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg shadow-[#006a4e]/30 hover:shadow-[#006a4e]/50"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>

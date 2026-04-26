@@ -5,9 +5,10 @@
 
 import { createClient } from "@supabase/supabase-js"
 
+// Uses empty string fallbacks at build time; env vars must be set at runtime.
 export const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://placeholder.supabase.co",
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "placeholder-anon-key"
 )
 
 export type UserRole = "guest" | "user" | "admin"

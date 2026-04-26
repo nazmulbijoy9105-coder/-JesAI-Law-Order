@@ -5,18 +5,23 @@ import type { KnowledgeResult, LawArea, QAEntry } from "./types";
 import nrbModule from "./nrb";
 import propertyModule from "./property";
 import criminalModule from "./criminal";
-// Future modules — uncomment as built:
 import taxModule from "./tax";
 import companyModule from "./company";
 import familyModule from "./family";
-// import labourModule from "./labour";
-// import contractModule from "./contract";
+import labourModule from "./labour";
+import contractModule from "./contract";
 import constitutionalModule from "./constitutional";
 
-const MODULES = [taxModule, companyModule, familyModule, constitutionalModule,taxModule, companyModule, familyModule, constitutionalModule,
-  nrbModule,
-  propertyModule,
+const MODULES = [
+  constitutionalModule,
   criminalModule,
+  propertyModule,
+  familyModule,
+  labourModule,
+  contractModule,
+  companyModule,
+  taxModule,
+  nrbModule,
 ];
 
 export function detectArea(message: string): LawArea | null {

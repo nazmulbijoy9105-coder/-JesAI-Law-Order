@@ -18,6 +18,7 @@
 // ─────────────────────────────────────────────────────────────
 
 import { NextRequest, NextResponse } from "next/server";
+import { createClient } from "@supabase/supabase-js";
 import type { LawArea, KnowledgeResult } from "@/lib/knowledge/types";
 import {
   queryKnowledge,
@@ -32,6 +33,33 @@ import {
   isPrevStepCommand,
   type ScenarioSession,
 } from "@/lib/knowledge/scenario-manager";
+
+// Server-side Supabase for token verification (lazy init — no module-level createClient)
+function getSupabaseServer() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
+
+async function verifyUserIsPaid(token: string | null): Promise<boolean> {
+  if (!token) return false;
+  try {
+    const supabaseServer = getSupabaseServer();
+    const { data: { user } } = await supabaseServer.auth.getUser(token);
+    if (!user) return false;
+    const { data: profile } = await supabaseServer
+      .from("users")
+      .select("is_paid, tier, tier_expires_at")
+      .eq("id", user.id)
+      .single();
+    if (!profile?.is_paid) return false;
+    if (profile.tier_expires_at && new Date(profile.tier_expires_at) < new Date()) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 // ─── Config ───────────────────────────────────────────────────
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY ?? "";
@@ -83,6 +111,8 @@ function outOfScopeResponse(
 
 // ─── LLM System Prompt Builder ────────────────────────────────
 // Injects NLC-validated law context into the LLM's memory
+// Framework: Facts → Issues → Applicable Law → Legal Assessment →
+//            Party Arguments → Resolution/Judgment + Human Touch
 function buildSystemPrompt(
   result: KnowledgeResult,
   selectedArea: LawArea | null,
@@ -98,9 +128,9 @@ function buildSystemPrompt(
 
   if (result.qaEntry) {
     const { irac } = result.qaEntry;
-    lawContext.push(`VALIDATED Q&A:\nIssue: ${irac.issue}\nLaw: ${irac.rule}`);
+    lawContext.push(`VALIDATED LEGAL CONTEXT:\nFactual Issue: ${irac.issue}\nApplicable Law: ${irac.rule}`);
     if (isPaid) {
-      lawContext.push(`Application: ${irac.application}\nConclusion: ${irac.conclusion}`);
+      lawContext.push(`Legal Assessment: ${irac.application}\nResolution Guidance: ${irac.conclusion}`);
     }
     if (result.qaEntry.escalate && result.qaEntry.escalateReason) {
       lawContext.push(`URGENT: ${result.qaEntry.escalateReason}`);
@@ -109,45 +139,67 @@ function buildSystemPrompt(
 
   if (result.rules.length > 0) {
     const rulesSummary = result.rules
-      .slice(0, 4)
-      .map((r) => `• ${r.title} [${r.source}]: ${r.rule.slice(0, 200)}`)
+      .slice(0, 5)
+      .map((r) => `• ${r.title} [${r.source}]: ${r.rule.slice(0, 250)}`)
       .join("\n");
     lawContext.push(`APPLICABLE LAWS:\n${rulesSummary}`);
   }
 
   const langInstruction =
     lang === "bn"
-      ? "LANGUAGE: Respond in Bengali (বাংলা). Use simple, clear Bengali. Legal terms may be in English where standard (FIR, RJSC, etc)."
-      : "LANGUAGE: Respond in English.";
+      ? "LANGUAGE: Respond in Bengali (বাংলা). Use simple, clear, warm Bengali. Legal terms may be in English where standard (FIR, RJSC, Section, etc). Write as if explaining to a friend who needs help."
+      : "LANGUAGE: Respond in English. Use plain language, be warm and empathetic, not robotic or clinical.";
+
+  const frameworkInstruction = `
+RESPONSE FRAMEWORK — follow this structure naturally (do NOT use these as rigid headers, weave them into a flowing response):
+
+1. **THE FACTS** — Acknowledge and restate the key facts from the user's situation. Show you understood their problem. Be empathetic: "I can see this is a difficult situation..."
+
+2. **THE LEGAL ISSUES** — Identify each distinct legal issue raised by the facts. Present each issue clearly: "Looking at your situation, there are [X] key legal issues..."
+
+3. **THE LAW** — For each issue, explain what Bangladesh law says. Quote specific sections and Acts. Be precise but accessible.
+
+4. **LEGAL ASSESSMENT** — Apply the law to the specific facts. Assess the strength of each side's position. Be honest about strengths and weaknesses: "Based on the facts and the law, here is how this looks..."
+
+5. **PARTY ARGUMENTS** — For contested matters, present both sides: what arguments the user's side can make, and what the opposing side might argue. This shows balanced, honest analysis.
+
+6. **RESOLUTION & RELIEF** — What outcome is likely? What remedies are available (damages, injunction, reinstatement, etc.)? What should the person do next — practical steps, documents needed, courts to approach.
+
+7. **HUMAN TOUCH** — End with a genuine, caring note. Acknowledge the emotional difficulty. Remind them they are not alone and that the law is there to protect them.`;
 
   const tierInstruction = isPaid
-    ? "TIER: PAID — Give the complete, detailed answer including all steps and what to do."
-    : `TIER: FREE — Give a helpful answer covering: (1) what the law says, (2) the user's situation briefly. 
-Then end with: "🔒 **Unlock full answer — ৳[price]** to get: step-by-step action plan, document checklist, and detailed legal strategy."
-Do NOT reveal the conclusion or specific action steps — those are behind the paywall.`;
+    ? "TIER: PAID — Give the complete, detailed answer following all 7 steps of the framework. Include document checklists, specific court names, filing fees, and timelines."
+    : `TIER: FREE — Cover steps 1-4 (Facts, Issues, Law, brief Assessment). Give genuinely useful information.
+Then end with: "🔒 **Unlock full analysis — ৳[price]** to get: full party arguments, resolution strategy, step-by-step action plan, and document checklist."
+Do NOT reveal the complete resolution steps or party arguments — those are behind the paywall.`;
 
   return `You are JesAI — a para-legal AI assistant for Bangladesh law, created by Neum Lex Counsel (NLC).
-You are an expert in ${areaLabel}.
+You are an expert in ${areaLabel}, combining deep legal knowledge with genuine human empathy.
 
-CORE RULES:
+CORE PRINCIPLES:
 1. Only answer questions about Bangladesh law in the subject: ${areaLabel}
 2. Always base your answer on the validated law context provided below
-3. Never make up laws, cases, or penalties — only use what is in the context
-4. If context doesn't cover the question, say so honestly and suggest consulting an advocate
-5. Never use the word "IRAC" — instead say "What the law says", "How it applies", "What you should do"
+3. Never invent laws, cases, penalties, or judgments — use only verified context
+4. If context does not cover the question, say so honestly and suggest consulting an advocate
+5. Never use the word "IRAC" in your response — use natural language headings
 6. Always end with the NLC disclaimer: "⚠️ This is legal information, not legal advice. For representation, consult a Bar Council advocate."
-7. If the situation involves urgency (arrest, illegal detention, violence) — always flag this prominently
+7. If the situation is urgent (arrest, illegal detention, domestic violence, eviction) — flag this prominently at the top
+8. Write with a human touch — people coming to you are often stressed, scared, or confused. Be their knowledgeable, caring guide.
+9. Use concrete examples to explain abstract legal concepts
+10. When there is genuine uncertainty in the law, say so — do not pretend certainty that does not exist
 
 ${langInstruction}
+
+${frameworkInstruction}
 
 ${tierInstruction}
 
 NLC-VALIDATED LAW CONTEXT (use this as your primary source):
-${lawContext.length > 0 ? lawContext.join("\n\n") : `Subject area: ${areaLabel}. Use your knowledge of Bangladesh law for this subject.`}
+${lawContext.length > 0 ? lawContext.join("\n\n") : `Subject area: ${areaLabel}. Use your verified knowledge of Bangladesh law for this subject.`}
 
 ABOUT NLC:
 - Neum Lex Counsel — founded by Md Nazmul Islam, Advocate, Supreme Court of Bangladesh
-- WhatsApp for paid consultations and document services
+- WhatsApp consultations and document drafting services available
 - Platform: JesAI (jes-ai-law-order.vercel.app)`;
 }
 
@@ -179,10 +231,10 @@ async function callGemini(
   const body = {
     contents,
     generationConfig: {
-      temperature: 0.3,        // low = factual, deterministic
+      temperature: 0.4,        // slightly higher for human-touch responses
       topK: 40,
       topP: 0.95,
-      maxOutputTokens: 1024,
+      maxOutputTokens: 2048,   // increased for full 7-step analysis
       stopSequences: [],
     },
     safetySettings: [
@@ -197,7 +249,7 @@ async function callGemini(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
-    signal: AbortSignal.timeout(15000), // 15s timeout
+    signal: AbortSignal.timeout(25000), // 25s timeout for detailed analysis
   });
 
   if (!response.ok) {
@@ -242,17 +294,18 @@ function applyPaywallToLLMResponse(
 
 // ─── Static Fallback Responses ────────────────────────────────
 const AREA_FALLBACK: Record<string, string> = {
-  property:       "**Land & Property Law — Bangladesh**\n\nPlease describe your land or property situation — what happened, which documents you have, and what outcome you need. I'll analyse the applicable laws for you.",
-  criminal:       "**Criminal Law — Bangladesh**\n\nPlease describe the criminal matter — are you a victim or accused, what happened, and at what stage is the case? I'll guide you on your rights and options.",
-  family:         "**Family Law — Bangladesh**\n\nPlease describe your family law situation — divorce, custody, maintenance, or another matter. I'll walk you through your rights under Bangladesh law.",
-  labour:         "**Labour Law — Bangladesh**\n\nDescribe your employment situation — termination, unpaid wages, gratuity, or another issue. I'll explain your rights under the Labour Act 2006.",
-  company:        "**Company Law — Bangladesh**\n\nDescribe your company matter — registration, compliance, dispute, or another issue. I'll explain the legal position under Bangladesh Companies Act 1994.",
-  tax:            "**Tax Law — Bangladesh**\n\nDescribe your tax situation — income tax, VAT, TIN, or filing issue. I'll explain the position under Income Tax Act 2023.",
-  nrb:            "**NRB Investment — Bangladesh**\n\nDescribe your cross-border investment situation. I'll explain WHT, BIDA registration, repatriation rules, and tax treaty position.",
-  constitutional: "**Constitutional Law — Bangladesh**\n\nDescribe your constitutional rights issue — detention, rights violation, writ petition, or amendment question. I'll analyse under the 1972 Constitution.",
-  consumer:       "**Consumer Rights — Bangladesh**\n\nDescribe your consumer complaint — defective product, unfair practice, or refund issue. I'll guide you under the Consumer Rights Protection Act 2009.",
-  cyber:          "**Cyber Law — Bangladesh**\n\nDescribe your cyber law issue — hacking, online fraud, defamation, or digital crime. I'll explain under the Cyber Security Act 2023.",
-  general:        "Please describe your legal situation in detail — what happened, who is involved, and what outcome you need. I'll identify the applicable Bangladesh law and guide you.",
+  property:       "**Land & Property Law — Bangladesh**\n\nI'm here to help with your property matter. Please describe what happened — include the type of property (land/flat/commercial), the parties involved, what documents you have, and what outcome you are seeking. The more detail you share, the better I can identify the applicable laws and your options.\n\n_I understand property disputes can be stressful. Let me help you understand your rights._",
+  criminal:       "**Criminal Law — Bangladesh**\n\nI can help you understand the criminal law aspects of your situation. Please describe what happened — are you a victim, an accused, or a concerned family member? What stage is the matter at (FIR filed, arrest, trial, bail hearing)? I'll explain your rights and options under the Penal Code and CrPC.\n\n_Criminal matters can be frightening. You deserve to understand your rights._",
+  family:         "**Family Law — Bangladesh**\n\nI'm here to help with your family law matter. Please describe your situation — divorce, talaq, custody of children, maintenance, dower (mehr), inheritance, or another family issue. Also let me know your religion, as Muslim, Hindu, and Christian family laws differ significantly in Bangladesh.\n\n_Family matters are deeply personal. I will explain the law with care._",
+  labour:         "**Labour Law — Bangladesh**\n\nI can help with your employment situation. Please describe what happened — wrongful termination, unpaid wages, gratuity dispute, overtime, maternity benefit, or another issue. Also share how long you worked and your employment type (permanent, temporary, casual).\n\n_Your rights as a worker matter. Let me explain what the Labour Act 2006 says about your situation._",
+  company:        "**Company Law — Bangladesh**\n\nI can assist with your company or business matter. Please describe the issue — RJSC registration, director disputes, shareholder rights, annual filings, winding up, or another corporate matter. I'll explain the position under the Companies Act 1994.\n\n_Navigating company law can be complex. Let me simplify it for you._",
+  tax:            "**Tax Law — Bangladesh**\n\nI can help with your tax situation. Please describe the matter — income tax filing, TIN registration, VAT compliance, tax assessment, appeal, or another NBR-related issue. I'll explain the position under the Income Tax Act 2023.\n\n_Tax issues are time-sensitive. Let me help you understand your position._",
+  nrb:            "**NRB Investment — Bangladesh**\n\nI can assist with your cross-border investment or NRB matter. Please describe your situation — repatriation, BIDA registration, withholding tax, foreign income, FBAR, or tax treaty benefits. I'll explain the applicable Bangladesh and international rules.\n\n_Cross-border investment has complex rules. Let me guide you through them._",
+  constitutional: "**Constitutional Law — Bangladesh**\n\nI can help with your constitutional rights matter. Please describe the situation — unlawful detention, fundamental rights violation, writ petition, public interest matter, or constitutional amendment question. I'll analyse under the 1972 Constitution and court precedents.\n\n_Your constitutional rights are fundamental. Let me explain how to protect them._",
+  consumer:       "**Consumer Rights — Bangladesh**\n\nI can help with your consumer rights complaint. Please describe what happened — defective product, false advertising, price gouging, refund refusal, or service failure. I'll guide you under the Consumer Rights Protection Act 2009.\n\n_As a consumer, you have legal protections. Let me explain them._",
+  cyber:          "**Cyber Law — Bangladesh**\n\nI can assist with your cyber or digital law matter. Please describe the issue — online fraud, hacking, cyberbullying, digital defamation, data privacy, or digital transaction dispute. I'll explain under the Cyber Security Act 2023.\n\n_Digital crime is a serious matter. Let me explain your rights and options._",
+  contract:       "**Contract Law — Bangladesh**\n\nI can help with your contract matter. Please describe the situation — breach of agreement, advance not returned, verbal contract dispute, personal guarantee, or another contract issue. Include what was agreed, what went wrong, and what documents you have.\n\n_Contract disputes are about enforcing promises. Let me explain your legal position._",
+  general:        "I'm JesAI, your Bangladesh legal literacy companion. Please describe your legal situation — what happened, who is involved, what documents you have, and what outcome you need. I'll identify the relevant Bangladesh laws and guide you through your options.\n\n_Whatever your legal challenge, you deserve to understand the law that applies to you._",
 };
 
 const FALLBACK_TEXT: Record<string, string> = {
@@ -275,15 +328,18 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const {
       message,
-      isPaid        = false,
       selectedArea  = null,
       history       = [],   // [{role:"user"|"assistant", content:"..."}]
     } = body as {
       message: string;
-      isPaid?: boolean;
       selectedArea?: LawArea | null;
       history?: { role: "user" | "assistant"; content: string }[];
     };
+
+    // Verify paid status server-side via Bearer token
+    const authHeader = req.headers.get("authorization");
+    const token = authHeader?.replace("Bearer ", "").trim() ?? null;
+    const isPaid = await verifyUserIsPaid(token);
 
     if (!message || typeof message !== "string") {
       return NextResponse.json({ error: "Message required" }, { status: 400 });

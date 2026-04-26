@@ -1,10 +1,11 @@
 "use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { signIn, resetPassword } from "@/lib/auth/supabase-auth"
 
-export default function SignInPage() {
+function SignInForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
@@ -12,6 +13,12 @@ export default function SignInPage() {
   const [resetMode, setResetMode] = useState(false)
   const [resetSent, setResetSent] = useState(false)
   const [lang, setLang] = useState<"en"|"bn">("en")
+  const [redirectTo, setRedirectTo] = useState("/")
+
+  useEffect(() => {
+    const redirect = searchParams?.get("redirect")
+    if (redirect) setRedirectTo(redirect)
+  }, [searchParams])
 
   const T = {
     title:    lang === "en" ? "Sign In" : "সাইন ইন",
@@ -30,17 +37,16 @@ export default function SignInPage() {
     setLoading(true)
     try {
       const { user } = await signIn(email, password)
-      // Admin → admin dashboard, others → main chat
       const { data: profile } = await import("@/lib/auth/supabase-auth").then(m =>
         m.supabase.from("users").select("role").eq("id", user!.id).single()
       )
       if (profile?.role === "admin") {
         router.push("/admin")
       } else {
-        router.push("/")
+        router.push(redirectTo || "/")
       }
-    } catch (err: any) {
-      setError(err.message || "Sign in failed")
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Sign in failed")
     } finally {
       setLoading(false)
     }
@@ -53,8 +59,8 @@ export default function SignInPage() {
     try {
       await resetPassword(email)
       setResetSent(true)
-    } catch (err: any) {
-      setError(err.message || "Reset failed")
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Reset failed")
     } finally {
       setLoading(false)
     }
@@ -65,7 +71,7 @@ export default function SignInPage() {
 
       <div style={{ position:"absolute", top:"16px", right:"16px", display:"flex", gap:"8px" }}>
         {["en","bn"].map(l => (
-          <button key={l} onClick={() => setLang(l as any)}
+          <button key={l} onClick={() => setLang(l as "en"|"bn")}
             style={{ padding:"4px 12px", border:`1px solid ${lang===l?"#C9A84C":"#333"}`, color:lang===l?"#C9A84C":"#555", background:"none", cursor:"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"11px", letterSpacing:"2px" }}>
             {l === "en" ? "EN" : "বাং"}
           </button>
@@ -141,5 +147,13 @@ export default function SignInPage() {
         </form>
       )}
     </div>
+  )
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight:"100vh", background:"#0A0A0A" }} />}>
+      <SignInForm />
+    </Suspense>
   )
 }
