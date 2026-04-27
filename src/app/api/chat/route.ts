@@ -62,9 +62,10 @@ async function verifyUserIsPaid(token: string | null): Promise<boolean> {
 }
 
 // ─── Config ───────────────────────────────────────────────────
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY ?? "";
-const GEMINI_MODEL   = "gemini-2.0-flash"; // free tier, fast
-const LLM_ENABLED    = GEMINI_API_KEY.length > 0;
+const GEMINI_API_KEY  = process.env.GEMINI_API_KEY ?? "";
+const GEMINI_MODEL    = "gemini-2.0-flash"; // free tier, fast
+const LLM_ENABLED     = GEMINI_API_KEY.length > 0;
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "01XXXXXXXXX";
 
 // ─── Language Detection ───────────────────────────────────────
 function detectLanguage(text: string): "bn" | "en" {
@@ -286,8 +287,8 @@ function applyPaywallToLLMResponse(
   const pricing = TIER_PRICING[area] ?? { price: 999, label: "Full Legal Guide" };
 
   const paywallAppend = lang === "bn"
-    ? `\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n✅ আনলক করলে পাবেন: পদক্ষেপ-বাই-পদক্ষেপ করণীয়, ডকুমেন্ট চেকলিস্ট, বিস্তারিত আইনি কৌশল\n\n📱 WhatsApp: **01XXXXXXXXX**`
-    : `\n\n🔒 **Unlock full answer — ৳${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n✅ Get: step-by-step action plan, document checklist, full legal strategy\n\n📱 WhatsApp: **01XXXXXXXXX**`;
+    ? `\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n✅ আনলক করলে পাবেন: পদক্ষেপ-বাই-পদক্ষেপ করণীয়, ডকুমেন্ট চেকলিস্ট, বিস্তারিত আইনি কৌশল\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`
+    : `\n\n🔒 **Unlock full answer — ৳${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n✅ Get: step-by-step action plan, document checklist, full legal strategy\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`;
 
   return freeSection + paywallAppend;
 }
@@ -455,8 +456,8 @@ export async function POST(req: NextRequest) {
         const price = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.price ?? 99;
         const label = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.label ?? "Full Legal Guide";
         const paywall = lang === "bn"
-          ? `\n\nUnlock the full legal strategy and step-by-step action plan.\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **01XXXXXXXXX**`
-          : `\n\nUnlock the full legal strategy and step-by-step action plan.\n\n🔒 **Unlock full answer — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **01XXXXXXXXX**`;
+          ? `\n\nUnlock the full legal strategy and step-by-step action plan.\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`
+          : `\n\nUnlock the full legal strategy and step-by-step action plan.\n\n🔒 **Unlock full answer — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`;
         responseText += paywall;
       }
       return NextResponse.json({

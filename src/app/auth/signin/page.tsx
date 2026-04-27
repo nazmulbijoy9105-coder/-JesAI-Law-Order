@@ -13,12 +13,7 @@ function SignInForm() {
   const [resetMode, setResetMode] = useState(false)
   const [resetSent, setResetSent] = useState(false)
   const [lang, setLang] = useState<"en"|"bn">("en")
-  const [redirectTo, setRedirectTo] = useState("/")
-
-  useEffect(() => {
-    const redirect = searchParams?.get("redirect")
-    if (redirect) setRedirectTo(redirect)
-  }, [searchParams])
+  const redirectTo = searchParams?.get("redirect") ?? "/"
 
   const T = {
     title:    lang === "en" ? "Sign In" : "সাইন ইন",
