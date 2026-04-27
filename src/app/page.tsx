@@ -122,16 +122,16 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <Link
                 href="/consult"
-                className="flex items-center gap-2 rounded-xl bg-[#006a4e] px-8 py-4 text-base font-semibold text-white hover:bg-[#005a40] transition-all shadow-lg hover:shadow-[#006a4e]/30 hover:shadow-xl"
+                className="flex items-center gap-2 rounded-xl bg-[#006a4e] px-8 py-4 text-base font-semibold text-white hover:bg-[#005a40] transition-all shadow-lg shadow-[#006a4e]/30 hover:shadow-xl hover:shadow-[#006a4e]/40 hover:scale-[1.02]"
               >
-                <span>Ask JesAI Now</span>
+                <span>Ask JesAI Now — Free</span>
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </Link>
               <Link
                 href="/laws"
-                className="flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white hover:bg-white/10 transition-all"
+                className="flex items-center gap-2 rounded-xl border border-white/25 bg-white/[0.06] px-8 py-4 text-base font-semibold text-white hover:bg-white/[0.12] hover:border-white/40 transition-all hover:scale-[1.02]"
               >
                 Explore Law Areas
               </Link>

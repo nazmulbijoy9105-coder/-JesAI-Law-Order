@@ -197,9 +197,46 @@ const AREA_LABELS: Record<string, string> = {
   cyber:          "Cyber Law",
 };
 
+// Verdict badge renderer
+function VerdictBadge({ line }: { line: string }) {
+  if (line.includes("🟢")) return (
+    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#4ade80]/10 border border-[#4ade80]/30">
+      <span className="text-base">🟢</span>
+      <span className="text-[12px] font-semibold text-[#4ade80]">{line.replace(/\*\*/g, "").replace("🟢", "").trim()}</span>
+    </div>
+  );
+  if (line.includes("🟡")) return (
+    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#c8a84b]/10 border border-[#c8a84b]/30">
+      <span className="text-base">🟡</span>
+      <span className="text-[12px] font-semibold text-[#c8a84b]">{line.replace(/\*\*/g, "").replace("🟡", "").trim()}</span>
+    </div>
+  );
+  if (line.includes("🔴")) return (
+    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/30">
+      <span className="text-base">🔴</span>
+      <span className="text-[12px] font-semibold text-[#f42a41]">{line.replace(/\*\*/g, "").replace("🔴", "").trim()}</span>
+    </div>
+  );
+  if (line.includes("⬛")) return (
+    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/20">
+      <span className="text-base">⬛</span>
+      <span className="text-[12px] font-semibold text-slate-300">{line.replace(/\*\*/g, "").replace("⬛", "").trim()}</span>
+    </div>
+  );
+  return null;
+}
+
 function formatMessage(content: string) {
   const lines = content.split("\n");
   return lines.map((line, i) => {
+    // Verdict line — special styled badge
+    if ((line.includes("🟢") || line.includes("🟡") || line.includes("🔴") || line.includes("⬛")) &&
+        (line.toLowerCase().includes("verdict") || line.toLowerCase().includes("result:") || line.toLowerCase().includes("green") || line.toLowerCase().includes("yellow") || line.toLowerCase().includes("red") || line.toLowerCase().includes("black") || /tier [12]/i.test(line))) {
+      return <VerdictBadge key={i} line={line} />;
+    }
+    // Section divider ═══
+    if (line.startsWith("═") || line.startsWith("───")) return <hr key={i} className="border-white/[0.08] my-3" />;
+    // Bold heading line
     if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
       return <p key={i} className="font-semibold text-white mt-3 mb-1 text-[13px] tracking-wide">{line.replace(/\*\*/g, "")}</p>;
     }
