@@ -1,14 +1,8 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { isAdmin } from "@/lib/auth/supabase-auth"
+import { isAdmin, supabase } from "@/lib/auth/supabase-auth"
 import { verifyPayment } from "@/lib/payment/payment"
-import { createClient } from "@supabase/supabase-js"
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://placeholder.supabase.co",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "placeholder-anon-key"
-)
 
 interface PaymentRecord {
   id: string
