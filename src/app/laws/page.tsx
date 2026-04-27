@@ -404,133 +404,96 @@ const LAW_SUBJECTS: LawSubject[] = [
 
 export const metadata = {
   title: "Law Areas — Bangladesh Legal Guide | JesAI",
-  description: "Comprehensive guide to all areas of Bangladesh law — common questions, key legislation, and plain-language explanations for every legal topic.",
+  description: "Plain-language answers to common legal questions in Bangladesh. NLC-validated, grounded in actual legislation.",
 };
 
 export default function LawsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0a1628]">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-16">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#006a4e]/10 blur-3xl" />
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#006a4e] via-[#f42a41] to-[#006a4e]" />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#006a4e]/40 bg-[#006a4e]/10 px-4 py-1.5 text-sm text-[#4ade80] mb-6">
-            <span className="h-2 w-2 rounded-full bg-[#4ade80] animate-pulse" />
-            NLC-Validated Legal Knowledge
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">
-            All Areas of Bangladesh Law
-          </h1>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
-            Plain-language answers to the most common legal questions in Bangladesh.
-            Each answer is grounded in the actual legislation — Acts, sections, and procedures.
+      <section className="border-b border-gray-100 py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-[12px] font-bold text-[#006A4E] uppercase tracking-widest mb-3">NLC-Validated Legal Knowledge</p>
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">All Areas of Bangladesh Law</h1>
+          <p className="text-gray-500 max-w-xl mx-auto mb-8 text-[14px] leading-relaxed">
+            Plain-language answers to the most common legal questions in Bangladesh — grounded in actual Acts, sections, and procedures.
           </p>
-          <Link
-            href="/consult"
-            className="inline-flex items-center gap-2 rounded-xl bg-[#006a4e] px-8 py-3.5 text-base font-semibold text-white hover:bg-[#005a40] transition-all shadow-lg"
-          >
-            Ask JesAI Your Question
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
+          <Link href="/consult"
+            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[#006A4E] text-white font-semibold text-[14px] hover:bg-[#005a40] transition-all shadow-sm">
+            Ask JesAI Your Question →
           </Link>
         </div>
       </section>
 
       {/* Quick nav */}
-      <section className="py-4 border-y border-white/[0.05] bg-[#080f1e]/50">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-2 justify-center">
-            {LAW_SUBJECTS.map(s => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className="flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] text-slate-400 hover:text-white hover:border-[#006a4e]/40 hover:bg-[#006a4e]/10 transition-all duration-200"
-              >
-                <span>{s.icon}</span>
-                <span className="hidden sm:inline">{s.title.split(" ").slice(0, 2).join(" ")}</span>
-              </a>
-            ))}
-          </div>
+      <div className="sticky top-14 z-30 bg-white border-b border-gray-100 py-3">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-wrap gap-2 justify-center">
+          {LAW_SUBJECTS.map(s => (
+            <a key={s.id} href={`#${s.id}`}
+              className="flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-[#006A4E] hover:text-[#006A4E] hover:bg-[#006A4E]/5 transition-all font-medium">
+              <span>{s.icon}</span>
+              <span className="hidden sm:inline">{s.title.split(" ").slice(0, 2).join(" ")}</span>
+            </a>
+          ))}
         </div>
-      </section>
+      </div>
 
-      {/* Law subjects */}
-      <main className="flex-1 py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-20">
+      {/* Subjects */}
+      <main className="flex-1 py-14">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-16">
           {LAW_SUBJECTS.map(subject => (
-            <section key={subject.id} id={subject.id} className="scroll-mt-20">
-              {/* Subject header */}
-              <div className={`rounded-2xl border ${subject.border} bg-gradient-to-br ${subject.color} p-6 mb-8`}>
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl">{subject.icon}</div>
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
-                      <h2 className="text-xl font-bold text-white">{subject.title}</h2>
-                      <span className="text-[13px] text-slate-400">{subject.titleBn}</span>
-                    </div>
-                    <p className="text-sm text-slate-400 mt-1">{subject.subtitle}</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {subject.keyLaws.map(law => (
-                        <span key={law} className="text-[10px] px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.08] text-slate-400">
-                          {law}
-                        </span>
-                      ))}
-                    </div>
+            <section key={subject.id} id={subject.id} className="scroll-mt-24">
+
+              {/* Header */}
+              <div className="flex items-start gap-4 mb-6 pb-5 border-b border-gray-100">
+                <div className="text-3xl">{subject.icon}</div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <h2 className="text-xl font-bold text-gray-900">{subject.title}</h2>
+                    <span className="text-[12px] text-gray-400">{subject.titleBn}</span>
                   </div>
-                  <Link
-                    href={`/consult?area=${subject.id}`}
-                    className="hidden sm:flex flex-shrink-0 items-center gap-1.5 text-[12px] px-4 py-2 rounded-xl bg-[#006a4e]/20 border border-[#006a4e]/30 text-[#4ade80] hover:bg-[#006a4e]/30 transition-all"
-                  >
-                    Ask about this →
-                  </Link>
+                  <p className="text-[13px] text-gray-500 mb-2">{subject.subtitle}</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {subject.keyLaws.map(law => (
+                      <span key={law} className="text-[10px] px-2.5 py-1 rounded-full bg-gray-100 text-gray-500 font-medium">{law}</span>
+                    ))}
+                  </div>
                 </div>
+                <Link href="/consult"
+                  className="hidden sm:flex flex-shrink-0 items-center gap-1.5 text-[12px] px-4 py-2 rounded-xl border border-[#006A4E]/20 text-[#006A4E] hover:bg-[#006A4E]/5 transition-all font-medium">
+                  Ask JesAI →
+                </Link>
               </div>
 
-              {/* Q&A */}
-              <div className="space-y-4">
+              {/* Q&A accordion */}
+              <div className="space-y-2">
                 {subject.commonQuestions.map((qa, i) => (
-                  <details
-                    key={i}
-                    className="group rounded-xl border border-white/[0.07] bg-[#0d1e35] overflow-hidden"
-                  >
-                    <summary className="flex items-start justify-between gap-3 px-5 py-4 cursor-pointer list-none hover:bg-white/[0.03] transition-colors">
+                  <details key={i} className="group border border-gray-200 rounded-xl overflow-hidden hover:border-gray-300 transition-all">
+                    <summary className="flex items-start justify-between gap-3 px-5 py-4 cursor-pointer list-none hover:bg-gray-50 transition-colors">
                       <div className="flex items-start gap-3">
-                        <span className="text-[11px] font-bold text-[#c8a84b] mt-0.5 flex-shrink-0 tabular-nums">Q{i + 1}</span>
-                        <span className="text-[14px] text-slate-200 font-medium leading-relaxed">{qa.q}</span>
+                        <span className="text-[10px] font-bold text-[#C8A84B] mt-0.5 flex-shrink-0 tabular-nums w-5">Q{i + 1}</span>
+                        <span className="text-[13px] text-gray-800 font-medium leading-relaxed">{qa.q}</span>
                       </div>
-                      <svg className="flex-shrink-0 h-5 w-5 text-slate-600 group-open:rotate-180 transition-transform duration-200 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="flex-shrink-0 h-4 w-4 text-gray-400 group-open:rotate-180 transition-transform mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </summary>
-                    <div className="px-5 pb-5 pt-0">
-                      <div className="border-t border-white/[0.05] pt-4">
-                        <p className="text-[13px] text-slate-300 leading-relaxed">{qa.a}</p>
-                        <div className="mt-4 flex items-center gap-3">
-                          <Link
-                            href="/consult"
-                            className="text-[11px] px-3 py-1.5 rounded-lg bg-[#006a4e]/20 text-[#4ade80] border border-[#006a4e]/30 hover:bg-[#006a4e]/30 transition-all"
-                          >
-                            Ask JesAI about my specific situation →
-                          </Link>
-                        </div>
-                      </div>
+                    <div className="px-5 pb-4 border-t border-gray-100">
+                      <p className="text-[13px] text-gray-600 leading-relaxed pt-4 mb-3">{qa.a}</p>
+                      <Link href="/consult"
+                        className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#006A4E] hover:underline">
+                        Ask JesAI about my specific situation →
+                      </Link>
                     </div>
                   </details>
                 ))}
               </div>
 
-              {/* Mobile CTA */}
-              <div className="mt-6 sm:hidden">
-                <Link
-                  href="/consult"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#006a4e]/20 border border-[#006a4e]/30 text-[#4ade80] text-sm font-medium hover:bg-[#006a4e]/30 transition-all"
-                >
+              <div className="mt-4 sm:hidden">
+                <Link href="/consult"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-[#006A4E]/20 text-[#006A4E] text-[13px] font-semibold hover:bg-[#006A4E]/5 transition-all">
                   Ask JesAI about {subject.title} →
                 </Link>
               </div>
@@ -539,31 +502,21 @@ export default function LawsPage() {
         </div>
       </main>
 
-      {/* Bottom CTA */}
-      <section className="py-16 border-t border-white/[0.06]">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="rounded-2xl border border-[#006a4e]/30 bg-gradient-to-br from-[#006a4e]/20 to-[#0d2240] p-10">
-            <p className="text-[#4ade80] text-sm font-medium mb-3">Still have questions?</p>
-            <h2 className="text-2xl font-bold text-white mb-3">
-              Get a personalised legal analysis
-            </h2>
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-              These answers cover common scenarios. Your situation may have specific facts that change the legal outcome.
-              Ask JesAI and get an analysis tailored to your exact circumstances.
-            </p>
-            <Link
-              href="/consult"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#006a4e] px-8 py-3.5 text-base font-semibold text-white hover:bg-[#005a40] transition-all shadow-lg"
-            >
-              Start Free Consultation
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
-            <p className="mt-4 text-[11px] text-slate-600">
-              ⚠️ Legal information only — not legal advice. Consult a Bar Council advocate for representation.
-            </p>
-          </div>
+      {/* CTA */}
+      <section className="py-16 border-t border-gray-100 bg-gray-50">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Get a personalised legal analysis</h2>
+          <p className="text-gray-500 text-[14px] mb-6 leading-relaxed">
+            These answers cover common scenarios. Your specific facts may change the legal outcome.
+            Ask JesAI for an analysis tailored to your exact situation.
+          </p>
+          <Link href="/consult"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#006A4E] text-white font-semibold text-[14px] hover:bg-[#005a40] transition-all shadow-sm">
+            Start Free Consultation →
+          </Link>
+          <p className="mt-4 text-[11px] text-gray-400">
+            ⚠️ Legal information only — not legal advice. Consult a Bar Council advocate for representation.
+          </p>
         </div>
       </section>
 

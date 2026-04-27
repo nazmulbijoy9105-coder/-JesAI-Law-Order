@@ -26,250 +26,97 @@ interface Message {
   };
 }
 
-interface Conversation {
-  id: string;
-  title: string;
-  messages: Message[];
-  createdAt: Date;
-  lawArea?: string;
-}
-
 const FREE_GUEST_LIMIT = 20;
 
-const UI_TEXT = {
-  en: {
-    active: "Online",
-    freeLeft: (n: number) => `${n} free`,
-    quickTopics: "Where would you like to start?",
-    limitTitle: "You've reached your free limit",
-    limitSub: "Sign in to continue with more free questions, or subscribe for unlimited access",
-    subscribeBtn: "Subscribe Now",
-    signinBtn: "Sign In / Create Account",
-    placeholder: "Describe your legal situation...",
-    placeholderLimit: "Sign in or subscribe to continue...",
-    footer: "Legal information only — not legal advice. Press Enter to send.",
-    listenBtn: "Voice",
-    stopListenBtn: "Stop",
-    speakBtn: "Listen",
-    stopSpeakBtn: "Stop",
-    langToggle: "বাংলা",
-    newChat: "New Chat",
-    history: "Recent",
-    today: "Today",
-    yesterday: "Yesterday",
-    greeting: `Hello. I'm **JesAI** — your Bangladesh legal literacy companion, created by Neum Lex Counsel (NLC).\n\nDescribe your situation in plain language. I'll identify the legal issues, explain what Bangladesh law says, assess your position, and guide you through your options.\n\n_What's your legal question today?_`,
-    commonQsTitle: "Common Questions",
-    voiceError: "Voice input not supported on this browser. Try Chrome or Edge.",
-    voiceListening: "Listening... speak now",
-    voiceReady: "Voice ready — tap to speak",
-  },
-  bn: {
-    active: "সক্রিয়",
-    freeLeft: (n: number) => `${n} বাকি`,
-    quickTopics: "কোথায় শুরু করতে চান?",
-    limitTitle: "বিনামূল্যে সীমা শেষ",
-    limitSub: "আরও বিনামূল্যে প্রশ্নের জন্য সাইন ইন করুন, বা সীমাহীন অ্যাক্সেসের জন্য সাবস্ক্রাইব করুন",
-    subscribeBtn: "সাবস্ক্রাইব করুন",
-    signinBtn: "সাইন ইন / অ্যাকাউন্ট তৈরি করুন",
-    placeholder: "আপনার আইনি পরিস্থিতি বলুন...",
-    placeholderLimit: "চালিয়ে যেতে সাইন ইন বা সাবস্ক্রাইব করুন...",
-    footer: "শুধুমাত্র আইনি তথ্য — পরামর্শ নয়। পাঠাতে Enter চাপুন।",
-    listenBtn: "ভয়েস",
-    stopListenBtn: "বন্ধ",
-    speakBtn: "শুনুন",
-    stopSpeakBtn: "বন্ধ",
-    langToggle: "English",
-    newChat: "নতুন চ্যাট",
-    history: "সাম্প্রতিক",
-    today: "আজ",
-    yesterday: "গতকাল",
-    greeting: `আসসালামুয়ালাইকুম। আমি **JesAI** — আপনার বাংলাদেশ আইনি সাক্ষরতার সহায়ক, নিউম লেক্স কাউন্সেল (NLC) কর্তৃক তৈরি।\n\nআপনার পরিস্থিতি সহজ ভাষায় বলুন। আমি আইনি সমস্যাগুলি চিহ্নিত করব, বাংলাদেশ আইন কী বলে তা ব্যাখ্যা করব, এবং আপনার পদক্ষেপ গাইড করব।\n\n_আজ আপনার আইনি প্রশ্ন কী?_`,
-    commonQsTitle: "সাধারণ প্রশ্ন",
-    voiceError: "এই ব্রাউজারে ভয়েস ইনপুট সমর্থিত নয়। Chrome বা Edge ব্যবহার করুন।",
-    voiceListening: "শুনছি... এখন বলুন",
-    voiceReady: "ভয়েস প্রস্তুত — বলতে ট্যাপ করুন",
-  },
-};
-
-const QUICK_TOPICS: Record<Language, { icon: string; label: string; area: LawArea }[]> = {
-  en: [
-    { icon: "🏠", label: "Land & Property",   area: "property"       },
-    { icon: "👨‍👩‍👧", label: "Family & Marriage", area: "family"         },
-    { icon: "🚔", label: "Police & Criminal",  area: "criminal"       },
-    { icon: "💼", label: "Employment",         area: "labour"         },
-    { icon: "⚖️", label: "Constitutional",     area: "constitutional" },
-    { icon: "💰", label: "Tax & VAT",          area: "tax"            },
-    { icon: "🏢", label: "Company & RJSC",     area: "company"        },
-    { icon: "📝", label: "Contracts",          area: "contract"       },
-    { icon: "✈️", label: "NRB Investment",     area: "nrb"            },
-  ],
-  bn: [
-    { icon: "🏠", label: "জমি ও সম্পত্তি",      area: "property"       },
-    { icon: "👨‍👩‍👧", label: "পরিবার ও বিবাহ",   area: "family"         },
-    { icon: "🚔", label: "পুলিশ ও ফৌজদারি",     area: "criminal"       },
-    { icon: "💼", label: "চাকরি",               area: "labour"         },
-    { icon: "⚖️", label: "সাংবিধানিক অধিকার",  area: "constitutional" },
-    { icon: "💰", label: "কর ও ভ্যাট",          area: "tax"            },
-    { icon: "🏢", label: "কোম্পানি ও RJSC",     area: "company"        },
-    { icon: "📝", label: "চুক্তি আইন",           area: "contract"       },
-    { icon: "✈️", label: "প্রবাসী বিনিয়োগ",    area: "nrb"            },
-  ],
-};
-
-// Common questions by law area for the FAQ panel
-const COMMON_QUESTIONS: Record<string, { en: string; bn: string }[]> = {
-  property: [
-    { en: "How do I do namajaari (mutation) for inherited land?", bn: "উত্তরাধিকারসূত্রে পাওয়া জমির নামজারি কিভাবে করব?" },
-    { en: "What happens if someone sells land with a forged deed?", bn: "জাল দলিলে জমি বিক্রি হলে কী করব?" },
-    { en: "Can a landlord evict a tenant without notice?", bn: "নোটিশ ছাড়া বাড়িওয়ালা ভাড়াটে উচ্ছেদ করতে পারে?" },
-    { en: "What is Artha Rin court and when can a bank file there?", bn: "অর্থ ঋণ আদালত কী এবং ব্যাংক কখন মামলা করতে পারে?" },
-    { en: "How do I challenge an illegal land boundary encroachment?", bn: "অবৈধ জমি দখলের বিরুদ্ধে কীভাবে আইনি ব্যবস্থা নেব?" },
-  ],
-  criminal: [
-    { en: "What are my rights when police arrest me?", bn: "পুলিশ গ্রেফতার করলে আমার কী অধিকার আছে?" },
-    { en: "How do I get bail after arrest?", bn: "গ্রেফতারের পর জামিন কিভাবে পাব?" },
-    { en: "What is the difference between a cognizable and non-cognizable offence?", bn: "আমলযোগ্য ও অ-আমলযোগ্য অপরাধের পার্থক্য কী?" },
-    { en: "Can police keep me in custody without producing me before a magistrate?", bn: "ম্যাজিস্ট্রেটের সামনে না এনে পুলিশ আমাকে কতদিন রাখতে পারে?" },
-    { en: "What is remand and how many days can it last?", bn: "রিমান্ড কী এবং এটা কত দিনের হতে পারে?" },
-  ],
-  family: [
-    { en: "How does a Muslim wife get divorce in Bangladesh?", bn: "বাংলাদেশে মুসলিম স্ত্রী কিভাবে তালাক নিতে পারেন?" },
-    { en: "Who gets custody of children after divorce?", bn: "তালাকের পর সন্তানের হেফাজত কার কাছে থাকে?" },
-    { en: "What is the legal amount of maintenance a wife can claim?", bn: "স্ত্রী ভরণপোষণ কত টাকা দাবি করতে পারেন?" },
-    { en: "Can a husband refuse to pay mehr (dower)?", bn: "স্বামী কি দেনমোহর দিতে অস্বীকার করতে পারে?" },
-    { en: "How is property divided after a Muslim person dies?", bn: "মুসলিম ব্যক্তির মৃত্যুর পর সম্পত্তি কিভাবে ভাগ হয়?" },
-  ],
-  labour: [
-    { en: "What notice and gratuity am I owed if terminated?", bn: "চাকরিচ্যুত হলে আমি কত নোটিশ ও গ্র্যাচুইটি পাব?" },
-    { en: "My employer is not paying my salary for 3 months — what can I do?", bn: "৩ মাস বেতন না দিলে কী করব?" },
-    { en: "How many days maternity leave is a woman entitled to?", bn: "মাতৃত্বকালীন ছুটি কত দিন পাওয়া যায়?" },
-    { en: "Can an employer dismiss me without a domestic enquiry?", bn: "তদন্ত ছাড়া চাকরি থেকে বরখাস্ত করা যায় কি?" },
-    { en: "Is overtime at double rate mandatory?", bn: "ওভারটাইম ডাবল রেটে বাধ্যতামূলক কি?" },
-  ],
-  contract: [
-    { en: "Is a verbal (oral) contract legally binding in Bangladesh?", bn: "মুখের কথায় (মৌখিক) চুক্তি কি বাংলাদেশে আইনগতভাবে বৈধ?" },
-    { en: "What can I do if someone breaches a written contract with me?", bn: "লিখিত চুক্তি ভঙ্গ হলে আমি কী করতে পারি?" },
-    { en: "I paid an advance but the other party is not performing — can I get it back?", bn: "অগ্রিম দিলাম কিন্তু কাজ হচ্ছে না — ফেরত পাব কি?" },
-    { en: "I signed as a personal guarantor for a loan — how liable am I?", bn: "ঋণের জামিনদার হিসেবে সই করেছি — আমার কতটা দায় আছে?" },
-    { en: "Does a contract need a stamp to be valid?", bn: "চুক্তির জন্য স্ট্যাম্প না লাগালে কি তা বাতিল হয়ে যায়?" },
-  ],
-  company: [
-    { en: "How do I register a private limited company in Bangladesh?", bn: "বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি কিভাবে নিবন্ধন করব?" },
-    { en: "What are the annual compliance requirements for a company?", bn: "কোম্পানির বার্ষিক আইনি দায়িত্বগুলো কী?" },
-    { en: "Can a director be removed without their consent?", bn: "পরিচালক কি তার সম্মতি ছাড়া অপসারণ করা যায়?" },
-    { en: "What is the minimum share capital to register a company?", bn: "কোম্পানি নিবন্ধনের জন্য ন্যূনতম মূলধন কত?" },
-    { en: "How can a minority shareholder protect their rights?", bn: "সংখ্যালঘু শেয়ারহোল্ডার তার অধিকার কিভাবে রক্ষা করবেন?" },
-  ],
-  tax: [
-    { en: "What is the income tax-free threshold in Bangladesh 2024-25?", bn: "২০২৪-২৫ সালে বাংলাদেশে করমুক্ত আয়ের সীমা কত?" },
-    { en: "When is the last date to file income tax return?", bn: "আয়কর রিটার্ন দেওয়ার শেষ তারিখ কবে?" },
-    { en: "What is TIN and how do I get one?", bn: "TIN কী এবং কিভাবে পাব?" },
-    { en: "What are the VAT rates and when must a business register for VAT?", bn: "ভ্যাটের হার কত এবং কখন ভ্যাট নিবন্ধন করতে হবে?" },
-    { en: "What is advance income tax (AIT) and when is it deducted?", bn: "অগ্রিম আয়কর (AIT) কী এবং কখন কাটা হয়?" },
-  ],
-  nrb: [
-    { en: "How do I repatriate profits from Bangladesh to abroad?", bn: "বাংলাদেশ থেকে মুনাফা বিদেশে নিতে কী করব?" },
-    { en: "What is BIDA registration and is it mandatory for foreign investment?", bn: "BIDA নিবন্ধন কী এবং বিদেশি বিনিয়োগের জন্য কি বাধ্যতামূলক?" },
-    { en: "What withholding tax applies to payments to foreign partners?", bn: "বিদেশি অংশীদারকে পেমেন্টে কত উৎসে কর দিতে হয়?" },
-    { en: "Can a non-resident Bangladeshi (NRB) invest in land or property?", bn: "প্রবাসী বাংলাদেশি কি দেশে জমি বা সম্পত্তি কিনতে পারেন?" },
-    { en: "What are the FBAR reporting requirements for Bangladeshis with US bank accounts?", bn: "যুক্তরাষ্ট্রে ব্যাংক অ্যাকাউন্ট থাকলে FBAR জানাতে হয় কি?" },
-  ],
-  constitutional: [
-    { en: "What are the fundamental rights guaranteed by the Bangladesh Constitution?", bn: "বাংলাদেশ সংবিধানে কী কী মৌলিক অধিকার গ্যারান্টি দেওয়া আছে?" },
-    { en: "What is a writ petition and when can I file one?", bn: "রিট পিটিশন কী এবং কখন দায়ের করা যায়?" },
-    { en: "Can police detain me under Section 54 without a warrant?", bn: "পুলিশ কি ৫৪ ধারায় ওয়ারেন্ট ছাড়া আটক করতে পারে?" },
-    { en: "What are the rights of an arrested person under Article 33?", bn: "সংবিধানের ৩৩ অনুচ্ছেদে গ্রেফতারকৃত ব্যক্তির কী অধিকার আছে?" },
-    { en: "What is a habeas corpus petition?", bn: "হেবিয়াস কর্পাস পিটিশন কী?" },
-  ],
-};
-
 const AREA_LABELS: Record<string, string> = {
-  property:       "Land & Property",
-  criminal:       "Criminal Law",
-  family:         "Family Law",
-  labour:         "Labour Law",
-  contract:       "Contract Law",
-  company:        "Company Law",
-  tax:            "Tax Law",
-  nrb:            "NRB Investment",
-  constitutional: "Constitutional Law",
-  consumer:       "Consumer Rights",
-  cyber:          "Cyber Law",
+  property: "Land & Property", criminal: "Criminal Law", family: "Family Law",
+  labour: "Labour Law", contract: "Contract Law", company: "Company Law",
+  tax: "Tax Law", nrb: "NRB Investment", constitutional: "Constitutional Law",
+  consumer: "Consumer Rights", cyber: "Cyber Law",
 };
 
-// Verdict badge renderer
-function VerdictBadge({ line }: { line: string }) {
-  if (line.includes("🟢")) return (
-    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#4ade80]/10 border border-[#4ade80]/30">
-      <span className="text-base">🟢</span>
-      <span className="text-[12px] font-semibold text-[#4ade80]">{line.replace(/\*\*/g, "").replace("🟢", "").trim()}</span>
+const QUICK_TOPICS: { icon: string; label: string; area: LawArea }[] = [
+  { icon: "🏠", label: "Land & Property",   area: "property"       },
+  { icon: "👨‍👩‍👧", label: "Family & Marriage", area: "family"         },
+  { icon: "🚔", label: "Criminal Law",       area: "criminal"       },
+  { icon: "💼", label: "Employment",         area: "labour"         },
+  { icon: "⚖️", label: "Constitutional",     area: "constitutional" },
+  { icon: "💰", label: "Tax & VAT",          area: "tax"            },
+  { icon: "🏢", label: "Company / RJSC",     area: "company"        },
+  { icon: "📝", label: "Contracts",          area: "contract"       },
+  { icon: "✈️", label: "NRB Investment",     area: "nrb"            },
+];
+
+const QUICK_TOPICS_BN: { icon: string; label: string; area: LawArea }[] = [
+  { icon: "🏠", label: "জমি ও সম্পত্তি",      area: "property"       },
+  { icon: "👨‍👩‍👧", label: "পরিবার ও বিবাহ",   area: "family"         },
+  { icon: "🚔", label: "ফৌজদারি আইন",          area: "criminal"       },
+  { icon: "💼", label: "চাকরি ও শ্রম",          area: "labour"         },
+  { icon: "⚖️", label: "সাংবিধানিক অধিকার",   area: "constitutional" },
+  { icon: "💰", label: "কর ও ভ্যাট",            area: "tax"            },
+  { icon: "🏢", label: "কোম্পানি",              area: "company"        },
+  { icon: "📝", label: "চুক্তি",                area: "contract"       },
+  { icon: "✈️", label: "প্রবাসী বিনিয়োগ",     area: "nrb"            },
+];
+
+function genId() { return `${Date.now()}-${Math.random().toString(36).slice(2)}`; }
+
+// Render verdict badges inline
+function VerdictLine({ text }: { text: string }) {
+  if (text.includes("🟢")) return (
+    <div className="verdict-green my-2 flex items-center gap-2 px-3 py-2 rounded-xl text-[12px] font-semibold">
+      🟢 {text.replace(/\*\*/g, "").replace("🟢", "").trim()}
     </div>
   );
-  if (line.includes("🟡")) return (
-    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#c8a84b]/10 border border-[#c8a84b]/30">
-      <span className="text-base">🟡</span>
-      <span className="text-[12px] font-semibold text-[#c8a84b]">{line.replace(/\*\*/g, "").replace("🟡", "").trim()}</span>
+  if (text.includes("🟡")) return (
+    <div className="verdict-yellow my-2 flex items-center gap-2 px-3 py-2 rounded-xl text-[12px] font-semibold">
+      🟡 {text.replace(/\*\*/g, "").replace("🟡", "").trim()}
     </div>
   );
-  if (line.includes("🔴")) return (
-    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/30">
-      <span className="text-base">🔴</span>
-      <span className="text-[12px] font-semibold text-[#f42a41]">{line.replace(/\*\*/g, "").replace("🔴", "").trim()}</span>
+  if (text.includes("🔴")) return (
+    <div className="verdict-red my-2 flex items-center gap-2 px-3 py-2 rounded-xl text-[12px] font-semibold">
+      🔴 {text.replace(/\*\*/g, "").replace("🔴", "").trim()}
     </div>
   );
-  if (line.includes("⬛")) return (
-    <div className="my-2 flex items-center gap-2 px-3 py-2 rounded-xl bg-white/5 border border-white/20">
-      <span className="text-base">⬛</span>
-      <span className="text-[12px] font-semibold text-slate-300">{line.replace(/\*\*/g, "").replace("⬛", "").trim()}</span>
+  if (text.includes("⬛")) return (
+    <div className="verdict-black my-2 flex items-center gap-2 px-3 py-2 rounded-xl text-[12px] font-semibold">
+      ⬛ {text.replace(/\*\*/g, "").replace("⬛", "").trim()}
     </div>
   );
   return null;
 }
 
-function formatMessage(content: string) {
-  const lines = content.split("\n");
-  return lines.map((line, i) => {
-    // Verdict line — special styled badge
-    if ((line.includes("🟢") || line.includes("🟡") || line.includes("🔴") || line.includes("⬛")) &&
-        (line.toLowerCase().includes("verdict") || line.toLowerCase().includes("result:") || line.toLowerCase().includes("green") || line.toLowerCase().includes("yellow") || line.toLowerCase().includes("red") || line.toLowerCase().includes("black") || /tier [12]/i.test(line))) {
-      return <VerdictBadge key={i} line={line} />;
-    }
-    // Section divider ═══
-    if (line.startsWith("═") || line.startsWith("───")) return <hr key={i} className="border-white/[0.08] my-3" />;
-    // Bold heading line
-    if (line.startsWith("**") && line.endsWith("**") && line.length > 4) {
-      return <p key={i} className="font-semibold text-white mt-3 mb-1 text-[13px] tracking-wide">{line.replace(/\*\*/g, "")}</p>;
-    }
+function isVerdictLine(line: string) {
+  return (line.includes("🟢") || line.includes("🟡") || line.includes("🔴") || line.includes("⬛"));
+}
+
+function formatAI(content: string) {
+  return content.split("\n").map((line, i) => {
+    if (isVerdictLine(line)) return <VerdictLine key={i} text={line} />;
+    if (line.match(/^═+/) || line.match(/^─+/)) return <hr key={i} className="border-gray-200 my-3" />;
+    if (line.startsWith("**") && line.endsWith("**") && line.length > 4)
+      return <p key={i} className="font-semibold text-gray-900 text-[13px] mt-3 mb-1">{line.replace(/\*\*/g, "")}</p>;
     if (line.includes("**")) {
       const parts = line.split(/\*\*(.*?)\*\*/g);
-      return <p key={i} className="my-0.5 text-[13px] leading-relaxed">{parts.map((p, j) => j % 2 === 1 ? <strong key={j} className="text-white font-semibold">{p}</strong> : p)}</p>;
+      return <p key={i} className="text-[13px] text-gray-700 leading-relaxed my-0.5">{parts.map((p, j) => j % 2 === 1 ? <strong key={j} className="font-semibold text-gray-900">{p}</strong> : p)}</p>;
     }
-    if (line.startsWith("• ") || line.startsWith("- ")) {
-      return <p key={i} className="pl-3 my-0.5 flex gap-2 text-[13px] leading-relaxed"><span className="text-[#4ade80] mt-1 flex-shrink-0 text-[10px]">▸</span><span>{line.slice(2)}</span></p>;
-    }
-    if (/^\d+\./.test(line)) return <p key={i} className="pl-3 my-0.5 text-[13px] leading-relaxed">{line}</p>;
-    if (line.startsWith("---")) return <hr key={i} className="border-white/10 my-3" />;
-    if (line.startsWith("_") && line.endsWith("_")) return <p key={i} className="italic text-slate-400 my-0.5 text-[13px]">{line.replace(/_/g, "")}</p>;
-    if (line.startsWith("🔒")) return <p key={i} className="my-1 text-[13px] leading-relaxed text-[#c8a84b]">{line}</p>;
-    if (line.startsWith("⚠️") || line.startsWith("⚠")) return <p key={i} className="my-1 text-[13px] leading-relaxed text-[#f42a41]">{line}</p>;
+    if (line.startsWith("• ") || line.startsWith("- ")) return (
+      <div key={i} className="flex gap-2 my-0.5 pl-2 text-[13px] text-gray-700 leading-relaxed">
+        <span className="text-[#006A4E] mt-1 flex-shrink-0 text-[10px]">▸</span>
+        <span>{line.slice(2)}</span>
+      </div>
+    );
+    if (/^\d+\.\s/.test(line)) return <p key={i} className="text-[13px] text-gray-700 leading-relaxed pl-2 my-0.5">{line}</p>;
+    if (line.startsWith("🔒")) return <p key={i} className="text-[13px] text-[#B45309] font-medium my-1.5 bg-amber-50 px-3 py-1.5 rounded-lg border border-amber-200">{line}</p>;
+    if (line.startsWith("⚠️") || line.startsWith("⚠")) return <p key={i} className="text-[13px] text-[#B91C1C] font-medium my-1.5 bg-red-50 px-3 py-1.5 rounded-lg border border-red-200">{line}</p>;
     if (line.trim() === "") return <div key={i} className="h-2" />;
-    return <p key={i} className="my-0.5 text-[13px] leading-relaxed">{line}</p>;
+    return <p key={i} className="text-[13px] text-gray-700 leading-relaxed my-0.5">{line}</p>;
   });
 }
 
-function genId() { return `${Date.now()}-${Math.random().toString(36).slice(2)}`; }
-
-function getConvTitle(messages: Message[]): string {
-  const first = messages.find(m => m.role === "user");
-  if (!first) return "New conversation";
-  return first.content.slice(0, 36) + (first.content.length > 36 ? "…" : "");
-}
-
 export default function ChatInterface() {
-  const { user, isPaid: authIsPaid, queriesRemaining: authQueriesRemaining } = useAuth();
+  const { user, isPaid: authIsPaid, queriesRemaining: authQR } = useAuth();
 
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [activeConvId, setActiveConvId] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -277,634 +124,386 @@ export default function ChatInterface() {
   const [lang, setLang] = useState<Language>("en");
   const [isListening, setIsListening] = useState(false);
   const [speakingId, setSpeakingId] = useState<string | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [showCommonQs, setShowCommonQs] = useState(false);
+  const [selectedArea, setSelectedArea] = useState<LawArea>(null);
   const [apiError, setApiError] = useState<string | null>(null);
   const [voiceError, setVoiceError] = useState<string | null>(null);
   const [voiceStatus, setVoiceStatus] = useState<"idle" | "listening" | "processing">("idle");
 
-  const [selectedArea, setSelectedArea] = useState<LawArea>(null);
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognitionRef = useRef<any>(null);
+  const recogRef = useRef<any>(null);
 
-  const t = UI_TEXT[lang];
+  const isPaid = user ? authIsPaid : false;
+  const freeRemaining = user ? (authIsPaid ? Infinity : authQR) : Math.max(0, FREE_GUEST_LIMIT - questionCount);
+  const isAtLimit = user ? (!authIsPaid && authQR <= 0) : questionCount >= FREE_GUEST_LIMIT;
+  const hasMessages = messages.some(m => m.role === "user");
+  const topics = lang === "bn" ? QUICK_TOPICS_BN : QUICK_TOPICS;
 
-  // For authenticated users: use server-side limits; for guests: use local count
-  const effectiveIsPaid = user ? authIsPaid : false;
-  const guestLimit = FREE_GUEST_LIMIT;
-  const isAtLimit = user
-    ? (authIsPaid ? false : authQueriesRemaining <= 0)
-    : questionCount >= guestLimit;
-  const freeRemaining = user
-    ? (authIsPaid ? Infinity : authQueriesRemaining)
-    : Math.max(0, guestLimit - questionCount);
+  const greeting = lang === "bn"
+    ? `আসসালামুয়ালাইকুম। আমি **JesAI** — আপনার বাংলাদেশ আইনি সহায়ক।\n\nআপনার পরিস্থিতি সহজ ভাষায় বলুন — আমি আইনি সমস্যা চিহ্নিত করব, আইন ব্যাখ্যা করব, এবং উভয় পক্ষের যুক্তি বিশ্লেষণ করে সম্ভাব্য রায় জানাব।\n\n_আজ আপনার আইনি প্রশ্ন কী?_`
+    : `Hello. I'm **JesAI** — your Bangladesh legal reasoning assistant by NLC.\n\nDescribe your situation in plain language. I'll extract the key facts, identify every legal issue, run deterministic checks, map both sides' arguments, and give you a clear verdict.\n\n_What's your legal question today?_`;
 
   useEffect(() => {
-    const link = document.createElement("link");
-    link.href = "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
-  }, []);
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isTyping]);
-
-  useEffect(() => {
-    startNewChat();
+    const id = genId();
+    setMessages([{ id: "greeting-" + id, role: "ai", content: greeting, timestamp: new Date() }]);
+    setQuestionCount(0);
+    setSelectedArea(null);
+    setApiError(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
 
-  function startNewChat() {
-    const id = genId();
-    const greeting: Message = {
-      id: "greeting-" + id,
-      role: "ai",
-      content: t.greeting,
-      timestamp: new Date(),
-    };
-    setMessages([greeting]);
-    setActiveConvId(id);
-    setQuestionCount(0);
-    setInput("");
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isTyping]);
+
+  const sendMessage = useCallback(async (text?: string, area?: LawArea) => {
+    const msg = (text ?? input).trim();
+    if (!msg || isTyping || isAtLimit) return;
+    if (area !== undefined) setSelectedArea(area);
     setApiError(null);
     setVoiceError(null);
-    setSidebarOpen(false);
-    setSelectedArea(null);
-    setShowCommonQs(false);
-  }
 
-  function saveCurrentConversation(msgs: Message[]) {
-    if (msgs.filter(m => m.role === "user").length === 0) return;
-    setConversations(prev => {
-      const existing = prev.find(c => c.id === activeConvId);
-      if (existing) {
-        return prev.map(c => c.id === activeConvId ? { ...c, messages: msgs, title: getConvTitle(msgs) } : c);
-      }
-      return [{ id: activeConvId, title: getConvTitle(msgs), messages: msgs, createdAt: new Date() }, ...prev];
-    });
-  }
-
-  function loadConversation(conv: Conversation) {
-    setMessages(conv.messages);
-    setActiveConvId(conv.id);
-    setQuestionCount(conv.messages.filter(m => m.role === "user").length);
-    setSidebarOpen(false);
-    setSelectedArea(null);
-    setShowCommonQs(false);
-  }
-
-  const callJesAI = useCallback(async (
-    userMessage: string,
-    currentMessages: Message[],
-    areaOverride?: LawArea
-  ) => {
-    setApiError(null);
+    const userMsg: Message = { id: genId(), role: "user", content: msg, timestamp: new Date() };
+    const updated = [...messages, userMsg];
+    setMessages(updated);
+    setInput("");
     setIsTyping(true);
 
-    const history = currentMessages
-      .filter(m => m.id !== "greeting-" + activeConvId)
-      .slice(-8)
-      .map(m => ({ role: m.role === "ai" ? "assistant" : "user", content: m.content }));
-
-    const areaToSend = areaOverride !== undefined ? areaOverride : selectedArea;
-
     try {
-      // Get auth token for server-side paid verification
       const { data: { session } } = await supabase.auth.getSession();
       const token = session?.access_token ?? null;
+      const areaToSend = area !== undefined ? area : selectedArea;
 
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...(token ? { "Authorization": `Bearer ${token}` } : {}),
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({
-          message: userMessage,
-          history,
+          message: msg,
           selectedArea: areaToSend,
+          history: updated.filter(m => !m.id.startsWith("greeting-")).slice(-8).map(m => ({
+            role: m.role === "ai" ? "assistant" : "user",
+            content: m.content,
+          })),
         }),
       });
+
       if (!res.ok) throw new Error(`${res.status}`);
       const data = await res.json();
+
       const aiMsg: Message = {
-        id: genId(),
-        role: "ai",
-        content: data.response,
-        timestamp: new Date(),
-        metadata: {
-          ...data.metadata,
-          knowledgeMatched: data.source === "knowledge" || data.source === "llm",
-        },
+        id: genId(), role: "ai", content: data.response, timestamp: new Date(),
+        metadata: { ...data.metadata, knowledgeMatched: data.source === "knowledge" || data.source === "llm" },
       };
-      setMessages(prev => {
-        const updated = [...prev, aiMsg];
-        saveCurrentConversation(updated);
-        return updated;
-      });
+      setMessages(prev => [...prev, aiMsg]);
       setQuestionCount(c => c + 1);
 
-      // Increment server-side query counter for authenticated users
-      if (token) {
-        fetch("/api/user/tier", {
-          method: "POST",
-          headers: { "Authorization": `Bearer ${token}` },
-        }).catch(() => {});
-      }
+      if (token) fetch("/api/user/tier", { method: "POST", headers: { Authorization: `Bearer ${token}` } }).catch(() => {});
     } catch {
-      setApiError("Unable to connect. Please try again.");
-      const fallback: Message = {
-        id: genId(),
-        role: "ai",
-        content: "I'm temporarily unavailable. For urgent legal matters, please consult a certified Bangladesh Bar Council advocate directly.",
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, fallback]);
+      setApiError("Connection failed. Please try again.");
+      setMessages(prev => [...prev, {
+        id: genId(), role: "ai", timestamp: new Date(),
+        content: "Temporarily unavailable. For urgent matters, please contact a Bangladesh Bar Council advocate directly.",
+      }]);
     } finally {
       setIsTyping(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang, activeConvId, selectedArea, effectiveIsPaid]);
+  }, [input, isTyping, isAtLimit, messages, selectedArea]);
 
-  const sendMessage = useCallback(async (text?: string, area?: LawArea) => {
-    const messageText = text || input.trim();
-    if (!messageText || isTyping || isAtLimit) return;
-
-    if (area !== undefined) {
-      setSelectedArea(area);
-    }
-    setShowCommonQs(false);
-
-    const userMsg: Message = { id: genId(), role: "user", content: messageText, timestamp: new Date() };
-    const updated = [...messages, userMsg];
-    setMessages(updated);
-    setInput("");
-    await callJesAI(messageText, updated, area);
-  }, [input, isTyping, isAtLimit, messages, callJesAI]);
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKey = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
   }, [sendMessage]);
 
-  // ── Voice Input ───────────────────────────────────────────────
-  const startListening = useCallback(() => {
+  const toggleVoice = useCallback(() => {
     setVoiceError(null);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SR = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
-    if (!SR) {
-      setVoiceError(t.voiceError);
-      return;
-    }
-    if (isListening) {
-      recognitionRef.current?.stop();
-      setIsListening(false);
-      setVoiceStatus("idle");
-      return;
-    }
+    if (!SR) { setVoiceError("Voice input not supported. Try Chrome or Edge."); return; }
+
+    if (isListening) { recogRef.current?.stop(); setIsListening(false); setVoiceStatus("idle"); return; }
+
     const r = new SR();
     r.lang = lang === "bn" ? "bn-BD" : "en-US";
     r.continuous = false;
     r.interimResults = true;
-    r.maxAlternatives = 1;
+    let final = "";
 
-    let finalTranscript = "";
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     r.onresult = (e: any) => {
-      let interimTranscript = "";
+      let interim = "";
       for (let i = e.resultIndex; i < e.results.length; i++) {
-        if (e.results[i].isFinal) {
-          finalTranscript += e.results[i][0].transcript;
-        } else {
-          interimTranscript += e.results[i][0].transcript;
-        }
+        if (e.results[i].isFinal) final += e.results[i][0].transcript;
+        else interim += e.results[i][0].transcript;
       }
-      if (interimTranscript) {
-        setInput(finalTranscript + interimTranscript);
-      }
+      setInput(final + interim);
     };
-    r.onspeechend = () => {
-      setVoiceStatus("processing");
-      r.stop();
-    };
+    r.onspeechend = () => { setVoiceStatus("processing"); r.stop(); };
     r.onerror = (e: { error: string }) => {
-      if (e.error === "no-speech") {
-        setVoiceError("No speech detected. Please try again.");
-      } else if (e.error === "audio-capture") {
-        setVoiceError("Microphone access denied. Please allow microphone access.");
-      } else if (e.error !== "aborted") {
-        setVoiceError("Voice error: " + e.error);
-      }
-      setIsListening(false);
-      setVoiceStatus("idle");
+      if (e.error === "no-speech") setVoiceError("No speech detected. Try again.");
+      else if (e.error === "audio-capture") setVoiceError("Microphone access denied.");
+      setIsListening(false); setVoiceStatus("idle");
     };
-    r.onend = () => {
-      setIsListening(false);
-      setVoiceStatus("idle");
-      if (finalTranscript.trim()) {
-        setInput(finalTranscript.trim());
-        // Auto-submit after voice input with a short delay
-        setTimeout(() => {
-          inputRef.current?.focus();
-        }, 100);
-      }
-    };
-    recognitionRef.current = r;
+    r.onend = () => { setIsListening(false); setVoiceStatus("idle"); if (final.trim()) { setInput(final.trim()); setTimeout(() => inputRef.current?.focus(), 100); } };
+    recogRef.current = r;
     r.start();
     setIsListening(true);
     setVoiceStatus("listening");
-  }, [lang, isListening, t.voiceError]);
+  }, [lang, isListening]);
 
-  // ── Text-to-Speech ────────────────────────────────────────────
   const speakMessage = useCallback((id: string, content: string) => {
     if (speakingId === id) { window.speechSynthesis.cancel(); setSpeakingId(null); return; }
     window.speechSynthesis.cancel();
-    const cleaned = content
-      .replace(/\*\*/g, "").replace(/\*/g, "")
-      .replace(/---/g, "").replace(/🔒/g, "lock")
-      .replace(/⚠️/g, "Warning:").replace(/_/g, "")
-      .replace(/[▸•]/g, "");
-    const u = new SpeechSynthesisUtterance(cleaned);
-    u.lang = lang === "bn" ? "bn-BD" : "en-US";
-    u.rate = 0.9;
-    u.pitch = 1.0;
-    // Prefer a natural voice
-    const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v =>
-      lang === "bn"
-        ? v.lang.startsWith("bn")
-        : v.lang.startsWith("en") && v.name.includes("Natural") || v.name.includes("Google")
+    const u = new SpeechSynthesisUtterance(
+      content.replace(/\*\*/g, "").replace(/\*/g, "").replace(/─+|═+/g, "").replace(/[🟢🟡🔴⬛🔒⚠️▸]/g, "").replace(/_/g, "")
     );
-    if (preferred) u.voice = preferred;
+    u.lang = lang === "bn" ? "bn-BD" : "en-US";
+    u.rate = 0.92;
+    const voices = window.speechSynthesis.getVoices();
+    const pref = voices.find(v => lang === "bn" ? v.lang.startsWith("bn") : v.lang.startsWith("en-US") && v.name.includes("Google"));
+    if (pref) u.voice = pref;
     u.onend = () => setSpeakingId(null);
-    u.onerror = () => setSpeakingId(null);
     setSpeakingId(id);
     window.speechSynthesis.speak(u);
   }, [speakingId, lang]);
 
-  const toggleLang = useCallback(() => { setLang(l => l === "en" ? "bn" : "en"); }, []);
-  const isToday = (d: Date) => new Date().toDateString() === d.toDateString();
-  const isYesterday = (d: Date) => { const y = new Date(); y.setDate(y.getDate() - 1); return y.toDateString() === d.toDateString(); };
-  const hasUserMessages = messages.filter(m => m.role === "user").length > 0;
-
-  const commonQsForArea = selectedArea ? (COMMON_QUESTIONS[selectedArea] ?? []) : [];
-
   return (
-    <div style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }} className="flex h-full bg-[#080f1e] overflow-hidden">
+    <div className="flex flex-col h-full bg-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
 
-      {/* ── Sidebar ───────────────────────────────────────── */}
-      <aside className={`${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 fixed lg:relative z-40 w-64 h-full flex flex-col border-r border-white/[0.06] bg-[#0a1220] transition-transform duration-300 ease-out`}>
-
-        <div className="p-4 border-b border-white/[0.06]">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-7 w-7 rounded-lg bg-[#006a4e] flex items-center justify-center">
-              <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-white font-bold text-sm">J</span>
+      {/* ── Header ─────────────────────────────────── */}
+      <div className="flex items-center justify-between px-4 py-2.5 border-b border-gray-100 flex-shrink-0">
+        <div className="flex items-center gap-3">
+          {selectedArea && (
+            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#006A4E]/8 border border-[#006A4E]/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#006A4E]" />
+              <span className="text-[11px] font-medium text-[#006A4E]">{AREA_LABELS[selectedArea]}</span>
+              <button onClick={() => setSelectedArea(null)} className="text-[#006A4E]/60 hover:text-[#006A4E] ml-0.5 text-[10px]">✕</button>
             </div>
-            <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-white font-semibold text-sm tracking-tight">
-              Jes<span className="text-[#c8a84b]">AI</span>
-            </span>
-            <button onClick={() => setSidebarOpen(false)} className="ml-auto lg:hidden text-slate-500 hover:text-white p-1">
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-            </button>
-          </div>
-
-          {/* Auth state in sidebar */}
-          {user ? (
-            <div className="mb-3 px-2 py-2 rounded-xl bg-[#006a4e]/10 border border-[#006a4e]/20">
-              <p className="text-[10px] text-[#4ade80] font-medium truncate">{user.email}</p>
-              <p className="text-[10px] text-slate-500 mt-0.5">
-                {effectiveIsPaid ? `Plan: ${user.tier}` : `${freeRemaining === Infinity ? "∞" : freeRemaining} questions left today`}
-              </p>
-            </div>
-          ) : (
-            <Link href="/auth/signin" className="block w-full mb-3 text-center text-[11px] px-3 py-2 rounded-xl border border-white/10 text-slate-400 hover:text-white hover:border-[#006a4e]/40 transition-all">
-              Sign In for more questions
-            </Link>
           )}
-
-          <button onClick={startNewChat} className="w-full flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#006a4e] hover:bg-[#005a40] text-white text-xs font-medium transition-all duration-200 shadow-lg shadow-[#006a4e]/20">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
-            {t.newChat}
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setLang(l => l === "en" ? "bn" : "en")}
+            className="text-[11px] px-2.5 py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-300 transition-all font-medium"
+          >
+            {lang === "en" ? "বাংলা" : "English"}
           </button>
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-3">
-          {conversations.length === 0 ? (
-            <div className="text-center py-8">
-              <p className="text-[11px] text-slate-600">No conversations yet</p>
+          {!isPaid && freeRemaining !== Infinity && (
+            <div className={`text-[11px] px-2.5 py-1.5 rounded-lg font-medium tabular-nums ${freeRemaining <= 5 ? "bg-red-50 text-red-600 border border-red-200" : "bg-gray-50 text-gray-600 border border-gray-200"}`}>
+              {freeRemaining} left
             </div>
-          ) : (
-            <>
-              <p className="text-[10px] text-slate-600 uppercase tracking-widest font-medium px-2 mb-2">{t.history}</p>
-              <div className="space-y-0.5">
-                {conversations.map(conv => (
-                  <button
-                    key={conv.id}
-                    onClick={() => loadConversation(conv)}
-                    className={`w-full text-left px-3 py-2.5 rounded-xl transition-all duration-150 group ${conv.id === activeConvId ? "bg-white/[0.08] text-white" : "text-slate-400 hover:bg-white/[0.05] hover:text-slate-200"}`}
-                  >
-                    <div className="text-[12px] font-medium truncate leading-tight">{conv.title}</div>
-                    <div className="text-[10px] text-slate-600 mt-0.5">
-                      {isToday(conv.createdAt) ? t.today : isYesterday(conv.createdAt) ? t.yesterday : conv.createdAt.toLocaleDateString()}
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </>
+          )}
+          {isPaid && (
+            <div className="text-[11px] px-2.5 py-1.5 rounded-lg font-semibold bg-amber-50 text-amber-700 border border-amber-200">
+              ✦ Full Access
+            </div>
           )}
         </div>
+      </div>
 
-        <div className="p-3 border-t border-white/[0.06]">
-          <div className="px-2 py-1.5 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/20">
-            <p className="text-[10px] text-[#f42a41] font-semibold">⚠ Legal information only</p>
-            <p className="text-[10px] text-slate-500 mt-0.5 leading-relaxed">Not legal advice. Consult a Bar Council advocate for representation.</p>
-          </div>
+      {/* ── Error / Voice banners ───────────────────── */}
+      {(apiError || voiceError) && (
+        <div className="mx-4 mt-2 flex-shrink-0">
+          {apiError && (
+            <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-red-50 border border-red-200 text-[12px] text-red-700">
+              <span>{apiError}</span>
+              <button onClick={() => setApiError(null)} className="text-red-400 hover:text-red-600">✕</button>
+            </div>
+          )}
+          {voiceError && (
+            <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-amber-50 border border-amber-200 text-[12px] text-amber-700 mt-1.5">
+              <span>🎤 {voiceError}</span>
+              <button onClick={() => setVoiceError(null)} className="text-amber-400 hover:text-amber-600">✕</button>
+            </div>
+          )}
         </div>
-      </aside>
-
-      {sidebarOpen && (
-        <button onClick={() => setSidebarOpen(false)} className="fixed inset-0 bg-black/60 z-30 lg:hidden backdrop-blur-sm" />
       )}
 
-      {/* ── Main Chat ─────────────────────────────────────── */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
+      {/* ── Messages ───────────────────────────────── */}
+      <div className="flex-1 overflow-y-auto px-4 py-5 space-y-4">
+        {messages.map(msg => (
+          <div key={msg.id} className={`chat-bubble flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
 
-        {/* Header */}
-        <header className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06] bg-[#080f1e]/80 backdrop-blur-md flex-shrink-0">
-          <div className="flex items-center gap-3">
-            <button onClick={() => setSidebarOpen(true)} className="lg:hidden p-1.5 text-slate-500 hover:text-white transition-colors rounded-lg hover:bg-white/[0.06]">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-            </button>
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <div className="h-8 w-8 rounded-xl bg-[#006a4e] flex items-center justify-center shadow-lg shadow-[#006a4e]/30">
-                  <span style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-white font-bold text-base leading-none">J</span>
-                </div>
-                <div className="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-[#4ade80] border-2 border-[#080f1e]" />
-              </div>
-              <div>
-                <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-white font-semibold text-sm leading-none tracking-tight">
-                  Jes<span className="text-[#c8a84b]">AI</span>
-                  {selectedArea && (
-                    <span className="ml-2 text-[10px] font-normal text-[#4ade80] border border-[#006a4e]/40 bg-[#006a4e]/10 px-1.5 py-0.5 rounded-full">
-                      {AREA_LABELS[selectedArea]}
-                    </span>
-                  )}
-                </h1>
-                <p className="text-[10px] text-slate-500 mt-0.5 leading-none">{t.active} · Bangladesh Law</p>
-              </div>
+            {/* Avatar */}
+            <div className={`flex-shrink-0 h-8 w-8 rounded-xl flex items-center justify-center text-[12px] font-bold shadow-sm ${
+              msg.role === "ai"
+                ? "bg-[#006A4E] text-white"
+                : "bg-[#C8A84B] text-white"
+            }`}>
+              {msg.role === "ai" ? "J" : (user?.email?.[0]?.toUpperCase() ?? "U")}
             </div>
-          </div>
 
-          <div className="flex items-center gap-2">
-            {messages.some(m => m.metadata?.knowledgeMatched) && (
-              <span className="hidden sm:flex text-[10px] px-2 py-1 rounded-full bg-[#c8a84b]/10 text-[#c8a84b] border border-[#c8a84b]/20 items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#c8a84b] inline-block" />
-                NLC Verified
-              </span>
-            )}
-            {selectedArea && commonQsForArea.length > 0 && (
-              <button
-                onClick={() => setShowCommonQs(v => !v)}
-                className={`text-[11px] px-2.5 py-1.5 rounded-lg border transition-all duration-200 ${showCommonQs ? "border-[#c8a84b]/40 text-[#c8a84b] bg-[#c8a84b]/10" : "border-white/10 text-slate-500 hover:text-white hover:border-[#006a4e]/40"}`}
-                title={t.commonQsTitle}
-              >
-                FAQ
-              </button>
-            )}
-            {selectedArea && hasUserMessages && (
-              <button
-                onClick={startNewChat}
-                className="text-[11px] px-2.5 py-1.5 rounded-lg border border-white/10 text-slate-500 hover:text-white hover:border-[#006a4e]/40 transition-all duration-200"
-                title="Change subject"
-              >
-                Change
-              </button>
-            )}
-            <button onClick={toggleLang} className="text-[11px] px-2.5 py-1.5 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-[#006a4e]/40 transition-all duration-200 font-medium">
-              {t.langToggle}
-            </button>
-            {!isAtLimit && freeRemaining !== Infinity && (
-              <div className={`text-[11px] px-2.5 py-1.5 rounded-lg font-medium tabular-nums ${freeRemaining <= 5 ? "bg-[#f42a41]/15 text-[#f42a41]" : "bg-[#006a4e]/15 text-[#4ade80]"}`}>
-                {t.freeLeft(freeRemaining)}
-              </div>
-            )}
-            {effectiveIsPaid && (
-              <div className="text-[11px] px-2.5 py-1.5 rounded-lg font-medium bg-[#c8a84b]/15 text-[#c8a84b]">
-                ✦ {user?.tier ?? "paid"}
-              </div>
-            )}
-          </div>
-        </header>
-
-        {/* Error banner */}
-        {apiError && (
-          <div className="mx-4 mt-2 px-3 py-2 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/20 text-[11px] text-[#f42a41] flex items-center gap-2 flex-shrink-0">
-            <span>⚠</span>{apiError}
-          </div>
-        )}
-
-        {/* Voice error */}
-        {voiceError && (
-          <div className="mx-4 mt-2 px-3 py-2 rounded-xl bg-[#c8a84b]/10 border border-[#c8a84b]/20 text-[11px] text-[#c8a84b] flex items-center justify-between gap-2 flex-shrink-0">
-            <span>🎤 {voiceError}</span>
-            <button onClick={() => setVoiceError(null)} className="text-slate-500 hover:text-white">✕</button>
-          </div>
-        )}
-
-        {/* Common Questions panel */}
-        {showCommonQs && commonQsForArea.length > 0 && (
-          <div className="mx-4 mt-2 p-3 rounded-xl bg-[#0d1e35] border border-white/[0.07] flex-shrink-0">
-            <p className="text-[10px] text-[#c8a84b] uppercase tracking-widest font-medium mb-2">{t.commonQsTitle} — {AREA_LABELS[selectedArea ?? ""]}</p>
-            <div className="space-y-1">
-              {commonQsForArea.map((q, i) => (
-                <button
-                  key={i}
-                  onClick={() => { sendMessage(lang === "bn" ? q.bn : q.en); setShowCommonQs(false); }}
-                  className="w-full text-left text-[12px] text-slate-400 hover:text-white px-2 py-1.5 rounded-lg hover:bg-white/[0.05] transition-all duration-150 leading-relaxed"
-                >
-                  <span className="text-[#4ade80] mr-1.5 text-[10px]">▸</span>
-                  {lang === "bn" ? q.bn : q.en}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-5 space-y-5">
-          {messages.map((msg) => (
-            <div key={msg.id} className={`chat-bubble flex gap-2 sm:gap-3 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
-
-              <div className={`flex-shrink-0 h-7 w-7 rounded-xl flex items-center justify-center text-xs font-bold shadow-md ${msg.role === "ai" ? "bg-[#006a4e] text-white shadow-[#006a4e]/30" : "bg-[#c8a84b] text-[#0a1628] shadow-[#c8a84b]/20"}`}>
-                {msg.role === "ai" ? "J" : "U"}
-              </div>
-
-              <div className={`max-w-[85%] sm:max-w-[82%] space-y-1.5 ${msg.role === "user" ? "items-end" : "items-start"} flex flex-col`}>
-                <div className={`rounded-2xl px-3 sm:px-4 py-3 text-slate-300 ${
-                  msg.role === "ai"
-                    ? "bg-[#0d1e35] border border-white/[0.07] rounded-tl-md shadow-xl shadow-black/20 w-full"
-                    : "bg-[#006a4e] text-white rounded-tr-md shadow-lg shadow-[#006a4e]/25"
-                }`}>
-                  {msg.role === "ai" ? (
-                    <div className="space-y-0">{formatMessage(msg.content)}</div>
-                  ) : (
-                    <p className="text-[13px] leading-relaxed">{msg.content}</p>
-                  )}
-
-                  <div className="flex items-center justify-between mt-2.5 gap-3">
-                    <span suppressHydrationWarning className={`text-[10px] tabular-nums ${msg.role === "ai" ? "text-slate-700" : "text-green-200/50"}`}>
-                      {msg.timestamp.toLocaleTimeString("en-BD", { hour: "2-digit", minute: "2-digit" })}
-                    </span>
-                    {msg.role === "ai" && (
-                      <button onClick={() => speakMessage(msg.id, msg.content)} className={`flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full transition-all duration-200 ${speakingId === msg.id ? "bg-[#f42a41]/20 text-[#f42a41]" : "bg-white/[0.05] text-slate-600 hover:text-[#4ade80] hover:bg-[#006a4e]/15"}`}>
-                        {speakingId === msg.id ? "■ " + t.stopSpeakBtn : "▶ " + t.speakBtn}
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                {/* Metadata tags */}
-                {msg.metadata && (
-                  <div className="flex flex-wrap gap-1.5 px-1">
-                    {msg.metadata.area && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#006a4e]/10 text-[#4ade80] border border-[#006a4e]/20">
-                        {AREA_LABELS[msg.metadata.area] ?? msg.metadata.area}
-                      </span>
-                    )}
-                    {msg.metadata.knowledgeMatched && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#c8a84b]/10 text-[#c8a84b] border border-[#c8a84b]/20">NLC Verified</span>
-                    )}
-                    {msg.metadata.escalate && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f42a41]/10 text-[#f42a41] border border-[#f42a41]/20">Consult Lawyer</span>
-                    )}
-                    {msg.metadata.paywallActive && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#c8a84b]/10 text-[#c8a84b] border border-[#c8a84b]/20">🔒 Paid content available</span>
-                    )}
-                  </div>
+            <div className={`max-w-[86%] flex flex-col gap-1 ${msg.role === "user" ? "items-end" : "items-start"}`}>
+              <div className={`rounded-2xl px-4 py-3 ${
+                msg.role === "ai"
+                  ? "bg-gray-50 border border-gray-100 rounded-tl-md w-full"
+                  : "bg-[#006A4E] text-white rounded-tr-md"
+              }`}>
+                {msg.role === "ai" ? (
+                  <div>{formatAI(msg.content)}</div>
+                ) : (
+                  <p className="text-[13px] leading-relaxed">{msg.content}</p>
                 )}
-              </div>
-            </div>
-          ))}
 
-          {/* Typing indicator */}
-          {isTyping && (
-            <div className="chat-bubble flex gap-3">
-              <div className="h-7 w-7 rounded-xl bg-[#006a4e] flex items-center justify-center text-xs font-bold text-white shadow-md shadow-[#006a4e]/30 flex-shrink-0">J</div>
-              <div className="bg-[#0d1e35] border border-white/[0.07] rounded-2xl rounded-tl-md px-4 py-3 shadow-xl shadow-black/20">
-                <div className="flex gap-1.5 items-center h-4">
-                  <div className="typing-dot h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
-                  <div className="typing-dot h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
-                  <div className="typing-dot h-1.5 w-1.5 rounded-full bg-[#4ade80]" />
+                <div className="flex items-center justify-between mt-2 gap-2">
+                  <span suppressHydrationWarning className="text-[10px] text-gray-400 tabular-nums">
+                    {msg.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  </span>
+                  {msg.role === "ai" && (
+                    <button
+                      onClick={() => speakMessage(msg.id, msg.content)}
+                      className={`text-[10px] px-2 py-0.5 rounded-full transition-all ${
+                        speakingId === msg.id
+                          ? "bg-red-100 text-red-600"
+                          : "text-gray-400 hover:text-[#006A4E] hover:bg-[#006A4E]/5"
+                      }`}
+                    >
+                      {speakingId === msg.id ? "■ Stop" : "▶ Listen"}
+                    </button>
+                  )}
                 </div>
               </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
 
-        {/* Quick topic chips — show on first load or when no area selected */}
-        {(!hasUserMessages || (!selectedArea && !hasUserMessages)) && (
-          <div className="px-3 sm:px-4 pb-3 flex-shrink-0">
-            <p className="text-[11px] text-slate-600 mb-2.5 font-medium">{t.quickTopics}</p>
-            <div className="flex flex-wrap gap-2">
-              {QUICK_TOPICS[lang].map((topic) => (
-                <button
-                  key={topic.label}
-                  onClick={() => sendMessage(topic.label, topic.area)}
-                  className="flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] text-slate-400 hover:text-white hover:border-[#006a4e]/40 hover:bg-[#006a4e]/10 transition-all duration-200"
-                >
-                  <span>{topic.icon}</span>
-                  <span>{topic.label}</span>
-                </button>
-              ))}
+              {/* Tags */}
+              {msg.metadata && (
+                <div className="flex flex-wrap gap-1.5 px-1">
+                  {msg.metadata.area && (
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#006A4E]/8 text-[#006A4E] border border-[#006A4E]/15 font-medium">
+                      {AREA_LABELS[msg.metadata.area] ?? msg.metadata.area}
+                    </span>
+                  )}
+                  {msg.metadata.knowledgeMatched && (
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-medium">
+                      ✦ NLC Verified
+                    </span>
+                  )}
+                  {msg.metadata.escalate && (
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-200 font-medium">
+                      ⚠ Consult Advocate
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+
+        {/* Typing indicator */}
+        {isTyping && (
+          <div className="chat-bubble flex gap-3">
+            <div className="flex-shrink-0 h-8 w-8 rounded-xl bg-[#006A4E] flex items-center justify-center text-[12px] font-bold text-white shadow-sm">J</div>
+            <div className="bg-gray-50 border border-gray-100 rounded-2xl rounded-tl-md px-4 py-3">
+              <div className="flex gap-1.5 items-center h-4">
+                <div className="typing-dot h-1.5 w-1.5 rounded-full bg-[#006A4E]" />
+                <div className="typing-dot h-1.5 w-1.5 rounded-full bg-[#006A4E]" />
+                <div className="typing-dot h-1.5 w-1.5 rounded-full bg-[#006A4E]" />
+              </div>
             </div>
           </div>
         )}
+        <div ref={endRef} />
+      </div>
 
-        {/* Limit reached */}
-        {isAtLimit && (
-          <div className="mx-4 mb-3 p-4 rounded-2xl bg-[#c8a84b]/10 border border-[#c8a84b]/25 text-center flex-shrink-0">
-            <p className="text-sm text-[#c8a84b] font-semibold" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>{t.limitTitle}</p>
-            <p className="text-[12px] text-slate-400 mt-1">{t.limitSub}</p>
-            <div className="mt-3 flex flex-col sm:flex-row gap-2 justify-center">
-              {!user && (
-                <Link href="/auth/signin" className="px-5 py-2 rounded-xl border border-white/10 text-slate-300 text-xs font-medium hover:text-white hover:border-white/20 transition-colors">
-                  {t.signinBtn}
-                </Link>
-              )}
-              <Link href="/payment" className="px-5 py-2 rounded-xl bg-[#c8a84b] text-[#0a1628] text-xs font-bold hover:bg-[#b8943b] transition-colors shadow-lg shadow-[#c8a84b]/20">
-                {t.subscribeBtn}
+      {/* ── Topic chips — only before first message ─ */}
+      {!hasMessages && (
+        <div className="px-4 pb-3 flex-shrink-0">
+          <p className="text-[11px] font-medium text-gray-400 mb-2">
+            {lang === "bn" ? "কোথায় শুরু করবেন?" : "Where would you like to start?"}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {topics.map(t => (
+              <button
+                key={t.area}
+                onClick={() => sendMessage(t.label, t.area)}
+                className="flex items-center gap-1.5 text-[12px] px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-[#006A4E] hover:text-[#006A4E] hover:bg-[#006A4E]/5 transition-all font-medium"
+              >
+                <span>{t.icon}</span><span>{t.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Limit reached ───────────────────────────── */}
+      {isAtLimit && (
+        <div className="mx-4 mb-3 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-center flex-shrink-0">
+          <p className="text-[13px] font-semibold text-amber-900">
+            {lang === "bn" ? "বিনামূল্যে সীমা শেষ" : "Free questions used"}
+          </p>
+          <p className="text-[12px] text-amber-700 mt-1">
+            {lang === "bn" ? "আরও প্রশ্নের জন্য সাইন ইন করুন বা সাবস্ক্রাইব করুন" : "Sign in for more free questions or subscribe for unlimited"}
+          </p>
+          <div className="mt-3 flex justify-center gap-2">
+            {!user && (
+              <Link href="/auth/signin" className="px-4 py-2 rounded-xl border border-gray-300 text-[12px] font-medium text-gray-700 hover:border-gray-400 transition-all">
+                Sign In
               </Link>
-            </div>
+            )}
+            <Link href="/payment" className="px-4 py-2 rounded-xl bg-[#C8A84B] text-white text-[12px] font-bold hover:bg-[#b8943b] transition-all shadow-sm">
+              ✦ Upgrade
+            </Link>
           </div>
-        )}
-
-        {/* Input area */}
-        <div className="border-t border-white/[0.06] p-3 sm:p-4 bg-[#080f1e] flex-shrink-0">
-          {/* Voice status indicator */}
-          {voiceStatus === "listening" && (
-            <div className="flex items-center gap-2 mb-2 px-1">
-              <span className="h-2 w-2 rounded-full bg-[#f42a41] animate-pulse" />
-              <span className="text-[11px] text-[#f42a41]">{t.voiceListening}</span>
-            </div>
-          )}
-          {voiceStatus === "processing" && (
-            <div className="flex items-center gap-2 mb-2 px-1">
-              <span className="h-2 w-2 rounded-full bg-[#c8a84b] animate-pulse" />
-              <span className="text-[11px] text-[#c8a84b]">Processing voice...</span>
-            </div>
-          )}
-
-          <div className="flex gap-2 sm:gap-2.5 items-end max-w-4xl mx-auto">
-            <div className="flex-1 relative">
-              <textarea
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                disabled={isTyping || isAtLimit}
-                placeholder={isAtLimit ? t.placeholderLimit : t.placeholder}
-                rows={2}
-                style={{ fontFamily: "'DM Sans', sans-serif" }}
-                className="w-full resize-none rounded-2xl border border-white/[0.08] bg-[#0d1e35] px-3 sm:px-4 py-3 text-[13px] text-white placeholder-slate-600 focus:outline-none focus:border-[#006a4e]/50 focus:ring-1 focus:ring-[#006a4e]/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 leading-relaxed shadow-inner"
-              />
-            </div>
-
-            {/* Voice button */}
-            <button
-              onClick={startListening}
-              disabled={isTyping || isAtLimit}
-              title={isListening ? t.stopListenBtn : t.listenBtn}
-              className={`flex-shrink-0 h-11 w-11 rounded-2xl flex items-center justify-center transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed ${
-                isListening
-                  ? "bg-[#f42a41] shadow-lg shadow-[#f42a41]/30 animate-pulse"
-                  : voiceStatus === "processing"
-                  ? "bg-[#c8a84b] shadow-lg shadow-[#c8a84b]/30"
-                  : "bg-[#0d1e35] border border-white/[0.08] text-slate-500 hover:text-white hover:border-[#006a4e]/40"
-              }`}
-            >
-              {isListening ? (
-                <svg className="h-4 w-4 text-white" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
-              ) : (
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
-              )}
-            </button>
-
-            {/* Send button */}
-            <button
-              onClick={() => sendMessage()}
-              disabled={!input.trim() || isTyping || isAtLimit}
-              className="flex-shrink-0 h-11 w-11 rounded-2xl bg-[#006a4e] flex items-center justify-center text-white hover:bg-[#005a40] transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed shadow-lg shadow-[#006a4e]/30 hover:shadow-[#006a4e]/50"
-            >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
-            </button>
-          </div>
-          <p className="text-[10px] text-slate-700 mt-2 text-center max-w-4xl mx-auto">{t.footer}</p>
         </div>
+      )}
+
+      {/* ── Voice status ────────────────────────────── */}
+      {voiceStatus === "listening" && (
+        <div className="mx-4 mb-1.5 flex items-center gap-2 flex-shrink-0">
+          <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+          <span className="text-[11px] text-red-600">{lang === "bn" ? "শুনছি..." : "Listening..."}</span>
+        </div>
+      )}
+
+      {/* ── Input ───────────────────────────────────── */}
+      <div className="border-t border-gray-100 px-4 py-3 bg-white flex-shrink-0">
+        <div className="flex gap-2 items-end max-w-4xl mx-auto">
+          <div className="flex-1 relative">
+            <textarea
+              ref={inputRef}
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={handleKey}
+              disabled={isTyping || isAtLimit}
+              rows={2}
+              placeholder={
+                isAtLimit
+                  ? (lang === "bn" ? "সাবস্ক্রাইব করুন..." : "Subscribe to continue...")
+                  : (lang === "bn" ? "আপনার পরিস্থিতি বলুন..." : "Describe your legal situation...")
+              }
+              className="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-[13px] text-gray-900 placeholder-gray-400 focus:outline-none focus:border-[#006A4E] focus:ring-2 focus:ring-[#006A4E]/10 disabled:opacity-40 disabled:cursor-not-allowed transition-all leading-relaxed"
+            />
+          </div>
+
+          {/* Voice */}
+          <button
+            onClick={toggleVoice}
+            disabled={isTyping || isAtLimit}
+            title={lang === "bn" ? "ভয়েস" : "Voice"}
+            className={`flex-shrink-0 h-11 w-11 rounded-2xl flex items-center justify-center transition-all disabled:opacity-30 ${
+              isListening ? "bg-red-500 text-white animate-pulse shadow-lg shadow-red-200" : "border border-gray-200 text-gray-400 hover:text-[#006A4E] hover:border-[#006A4E] bg-gray-50"
+            }`}
+          >
+            {isListening ? (
+              <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg>
+            ) : (
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+            )}
+          </button>
+
+          {/* Send */}
+          <button
+            onClick={() => sendMessage()}
+            disabled={!input.trim() || isTyping || isAtLimit}
+            className="flex-shrink-0 h-11 w-11 rounded-2xl bg-[#006A4E] flex items-center justify-center text-white hover:bg-[#005a40] transition-all disabled:opacity-30 shadow-sm hover:shadow-md hover:shadow-[#006A4E]/20"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>
+          </button>
+        </div>
+        <p className="text-[10px] text-gray-400 mt-1.5 text-center">
+          {lang === "bn" ? "আইনি তথ্য মাত্র — পরামর্শ নয়" : "Legal information only — not legal advice · Enter to send"}
+        </p>
       </div>
     </div>
   );

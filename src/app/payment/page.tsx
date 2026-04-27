@@ -1,206 +1,211 @@
-"use client"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { PAYMENT_PLANS, submitPayment, PaymentTier, PaymentMethod } from "@/lib/payment/payment"
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Navbar from "@/components/layout/Navbar";
+import { PAYMENT_PLANS, submitPayment, PaymentTier, PaymentMethod } from "@/lib/payment/payment";
+import { supabase } from "@/lib/auth/supabase-auth";
+import Link from "next/link";
+
+const FEATURES: Record<PaymentTier, { label: string; highlight?: boolean }[]> = {
+  basic: [
+    { label: "50 queries per day" },
+    { label: "All 9 law modules" },
+    { label: "Both English & Bengali" },
+    { label: "NLC-verified answers" },
+    { label: "Email support" },
+  ],
+  pro: [
+    { label: "Unlimited queries", highlight: true },
+    { label: "All 9 law modules" },
+    { label: "Full ILRMF analysis", highlight: true },
+    { label: "Priority support" },
+    { label: "WhatsApp access", highlight: true },
+  ],
+  professional: [
+    { label: "Unlimited queries", highlight: true },
+    { label: "Direct advocate consultation", highlight: true },
+    { label: "Case strategy review", highlight: true },
+    { label: "Document drafting", highlight: true },
+    { label: "WhatsApp + Phone access", highlight: true },
+  ],
+};
 
 export default function PaymentPage() {
-  const router = useRouter()
-  const [selectedTier, setSelectedTier] = useState<PaymentTier>("basic")
-  const [method, setMethod] = useState<PaymentMethod>("bkash")
-  const [txnId, setTxnId] = useState("")
-  const [phone, setPhone] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [success, setSuccess] = useState(false)
-  const [lang, setLang] = useState<"en"|"bn">("en")
-  const [step, setStep] = useState<1|2>(1)
+  const router = useRouter();
+  const [selectedTier, setSelectedTier] = useState<PaymentTier>("pro");
+  const [method, setMethod] = useState<PaymentMethod>("bkash");
+  const [txnId, setTxnId] = useState("");
+  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [step, setStep] = useState<1 | 2>(1);
 
-  const plan = PAYMENT_PLANS.find(p => p.tier === selectedTier)!
-  const payNumber = method === "bkash" ? plan.bkash_number : plan.nagad_number
+  const plan = PAYMENT_PLANS.find(p => p.tier === selectedTier)!;
+  const payNumber = method === "bkash" ? plan.bkash_number : plan.nagad_number;
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
-    if (!txnId.trim()) { setError("Enter transaction ID"); return }
-    if (!phone.trim()) { setError("Enter your phone number"); return }
-    setLoading(true)
+    e.preventDefault();
+    setError("");
+    if (!txnId.trim()) { setError("Enter transaction ID"); return; }
+    if (!phone.trim()) { setError("Enter your phone number"); return; }
+    setLoading(true);
     try {
-      // Get current user
-      const { supabase } = await import("@/lib/auth/supabase-auth")
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { router.push("/auth/signin"); return }
-
-      const result = await submitPayment({
-        user_id: user.id,
-        tier: selectedTier,
-        method,
-        transaction_id: txnId,
-        phone_number: phone,
-        amount: plan.price_bdt,
-      })
-
-      if (!result.success) { setError(result.message); return }
-      setSuccess(true)
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) { router.push("/auth/signin?redirect=/payment"); return; }
+      const result = await submitPayment({ user_id: user.id, tier: selectedTier, method, transaction_id: txnId, phone_number: phone, amount: plan.price_bdt });
+      if (!result.success) { setError(result.message); return; }
+      setSuccess(true);
     } catch {
-      setError("Submission failed. Please try again.")
+      setError("Submission failed. Please try again.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const features = lang === "bn" ? plan.features_bn : plan.features_en
+  const tierConfig = {
+    basic:        { label: "Basic",        badge: "",           accent: "border-gray-200",      btn: "border-gray-200 text-gray-700 hover:border-gray-300" },
+    pro:          { label: "Pro",          badge: "Popular",    accent: "border-[#006A4E]",     btn: "bg-[#006A4E] text-white hover:bg-[#005a40]"          },
+    professional: { label: "Professional", badge: "Best Value", accent: "border-[#C8A84B]",     btn: "bg-[#C8A84B] text-white hover:bg-[#b8943b]"          },
+  };
+
+  if (success) return (
+    <div className="min-h-screen bg-white flex flex-col">
+      <Navbar />
+      <div className="flex-1 flex items-center justify-center px-4">
+        <div className="max-w-md w-full text-center p-10 rounded-2xl border border-green-200 bg-green-50">
+          <div className="text-5xl mb-4">✅</div>
+          <h2 className="text-xl font-bold text-gray-900 mb-2">Payment Submitted!</h2>
+          <p className="text-gray-500 text-[14px] mb-6 leading-relaxed">
+            Your payment will be verified within 1–2 hours. You will receive full access after verification.
+          </p>
+          <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#006A4E] text-white font-semibold hover:bg-[#005a40] transition-all">
+            Go to JesAI →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
-    <div style={{ minHeight:"100vh", background:"#0A0A0A", padding:"24px", display:"flex", flexDirection:"column", alignItems:"center" }}>
+    <div className="min-h-screen bg-white flex flex-col">
+      <Navbar />
 
-      {/* Lang */}
-      <div style={{ alignSelf:"flex-end", display:"flex", gap:"8px", marginBottom:"24px" }}>
-        {["en","bn"].map(l => (
-          <button key={l} onClick={() => setLang(l as any)}
-            style={{ padding:"4px 12px", border:`1px solid ${lang===l?"#C9A84C":"#333"}`, color:lang===l?"#C9A84C":"#555", background:"none", cursor:"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"11px", letterSpacing:"2px" }}>
-            {l==="en"?"EN":"বাং"}
-          </button>
-        ))}
-      </div>
+      <main className="flex-1 py-14">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
 
-      {/* Logo */}
-      <div style={{ fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"24px", letterSpacing:"5px", color:"#C9A84C", marginBottom:"4px" }}>JESAI</div>
-      <div style={{ fontSize:"13px", color:"#555", marginBottom:"32px" }}>
-        {lang==="en"?"Upgrade Your Access":"আপনার অ্যাক্সেস আপগ্রেড করুন"}
-      </div>
+          {/* Header */}
+          <div className="text-center mb-12">
+            <p className="text-[12px] font-bold text-[#006A4E] uppercase tracking-widest mb-3">Upgrade</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-3">Unlock Full Legal Analysis</h1>
+            <p className="text-gray-500 text-[14px] max-w-lg mx-auto">
+              Free gives you 20 queries. Upgrade for unlimited access, full ILRMF pipeline, and direct NLC advocate support.
+            </p>
+          </div>
 
-      {success ? (
-        <div style={{ background:"#091410", border:"1px solid rgba(26,184,158,0.3)", padding:"32px", textAlign:"center", maxWidth:"440px", width:"100%" }}>
-          <div style={{ fontSize:"40px", marginBottom:"12px" }}>✅</div>
-          <div style={{ color:"#1AB89E", fontWeight:700, fontSize:"18px", letterSpacing:"1px", marginBottom:"8px" }}>
-            {lang==="en"?"Payment Submitted!":"পেমেন্ট জমা হয়েছে!"}
-          </div>
-          <div style={{ fontSize:"13px", color:"#666", lineHeight:1.6 }}>
-            {lang==="en"
-              ? "Your payment will be verified within 1-2 hours. You will get full access after verification."
-              : "আপনার পেমেন্ট ১-২ ঘণ্টার মধ্যে যাচাই করা হবে।"}
-          </div>
-          <button onClick={() => router.push("/")}
-            style={{ marginTop:"20px", padding:"10px 24px", background:"#C9A84C", color:"#000", border:"none", cursor:"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, letterSpacing:"2px" }}>
-            {lang==="en"?"GO TO JESAI →":"যান →"}
-          </button>
-        </div>
-      ) : step === 1 ? (
-        // STEP 1: Plan selection
-        <div style={{ width:"100%", maxWidth:"680px" }}>
-          <div style={{ fontSize:"11px", fontWeight:700, letterSpacing:"3px", color:"#444", textAlign:"center", marginBottom:"16px" }}>
-            {lang==="en"?"SELECT PLAN":"প্ল্যান বেছে নিন"}
-          </div>
-          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))", gap:"12px", marginBottom:"24px" }}>
-            {PAYMENT_PLANS.map(p => (
-              <button key={p.tier} onClick={() => setSelectedTier(p.tier)}
-                style={{ background: selectedTier===p.tier?"#100e08":"#111", border:`1px solid ${selectedTier===p.tier?"#C9A84C":"#1a1a1a"}`, borderTop:`3px solid ${selectedTier===p.tier?"#C9A84C":"#333"}`, padding:"20px 16px", textAlign:"left", cursor:"pointer", transition:"all 0.15s" }}>
-                <div style={{ fontWeight:700, fontSize:"16px", letterSpacing:"1px", color:selectedTier===p.tier?"#C9A84C":"#888", marginBottom:"4px" }}>
-                  {lang==="bn"?p.label_bn:p.label_en}
+          {step === 1 ? (
+            <>
+              {/* Plans */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {PAYMENT_PLANS.map(p => {
+                  const cfg = tierConfig[p.tier];
+                  const selected = selectedTier === p.tier;
+                  return (
+                    <button key={p.tier} onClick={() => setSelectedTier(p.tier)}
+                      className={`relative text-left rounded-2xl border-2 p-6 transition-all hover:-translate-y-0.5 hover:shadow-md ${selected ? cfg.accent + " shadow-md" : "border-gray-200"}`}>
+                      {cfg.badge && (
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#006A4E] text-white text-[10px] font-bold whitespace-nowrap">
+                          {cfg.badge}
+                        </div>
+                      )}
+                      <div className="text-[13px] font-bold text-gray-500 mb-1">{cfg.label}</div>
+                      <div className="text-3xl font-bold text-gray-900 mb-1">৳{p.price_bdt.toLocaleString()}</div>
+                      <div className="text-[11px] text-gray-400 mb-4">/month</div>
+                      <div className="space-y-2">
+                        {FEATURES[p.tier].map((f, i) => (
+                          <div key={i} className="flex items-center gap-2">
+                            <span className={`text-[11px] ${f.highlight ? "text-[#006A4E]" : "text-gray-400"}`}>
+                              {f.highlight ? "✦" : "✓"}
+                            </span>
+                            <span className={`text-[12px] ${f.highlight ? "font-semibold text-gray-900" : "text-gray-500"}`}>{f.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {selected && <div className="mt-4 text-[11px] font-bold text-[#006A4E]">✓ Selected</div>}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="text-center">
+                <button onClick={() => setStep(2)}
+                  className="px-10 py-3.5 rounded-xl bg-[#006A4E] text-white font-bold text-[15px] hover:bg-[#005a40] transition-all shadow-sm hover:shadow-md">
+                  Continue with {tierConfig[selectedTier].label} — ৳{plan.price_bdt.toLocaleString()} →
+                </button>
+                <p className="mt-3 text-[11px] text-gray-400">Pay via bKash or Nagad · Verified within 1–2 hours</p>
+              </div>
+            </>
+          ) : (
+            <div className="max-w-md mx-auto">
+              <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 p-8">
+                <div className="flex items-center gap-2 mb-6">
+                  <button onClick={() => setStep(1)} className="text-gray-400 hover:text-gray-700 text-lg">←</button>
+                  <div>
+                    <h2 className="font-bold text-gray-900">Complete Payment</h2>
+                    <p className="text-[12px] text-gray-500">{tierConfig[selectedTier].label} — ৳{plan.price_bdt.toLocaleString()}/month</p>
+                  </div>
                 </div>
-                <div style={{ fontSize:"24px", fontWeight:700, color:selectedTier===p.tier?"#F5F0E8":"#555", marginBottom:"12px" }}>
-                  ৳{p.price_bdt}<span style={{ fontSize:"12px", color:"#444" }}>/month</span>
+
+                {/* Method */}
+                <div className="mb-5">
+                  <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block mb-2">Payment Method</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    {(["bkash", "nagad"] as PaymentMethod[]).map(m => (
+                      <button key={m} type="button" onClick={() => setMethod(m)}
+                        className={`py-3 rounded-xl border-2 font-semibold text-[13px] transition-all ${method === m ? "border-[#006A4E] bg-[#006A4E]/5 text-[#006A4E]" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
+                        {m === "bkash" ? "🟣 bKash" : "🟠 Nagad"}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                {(lang==="bn"?p.features_bn:p.features_en).map((f,i) => (
-                  <div key={i} style={{ fontSize:"12px", color:"#666", marginBottom:"4px" }}>
-                    <span style={{ color:selectedTier===p.tier?"#1AB89E":"#333", marginRight:"6px" }}>✓</span>{f}
+
+                {/* Send to */}
+                <div className="mb-5 p-4 rounded-xl bg-[#006A4E]/5 border border-[#006A4E]/15">
+                  <p className="text-[10px] font-bold text-[#006A4E] uppercase tracking-wider mb-1">Send ৳{plan.price_bdt.toLocaleString()} to</p>
+                  <p className="text-2xl font-bold text-gray-900 tracking-widest">{payNumber}</p>
+                  <p className="text-[11px] text-gray-500 mt-0.5">{method === "bkash" ? "bKash" : "Nagad"} — Send Money</p>
+                </div>
+
+                {error && (
+                  <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-[13px] text-red-700">{error}</div>
+                )}
+
+                {[
+                  { label: "Transaction ID", value: txnId, set: setTxnId, ph: "e.g. ABC123XYZ", type: "text" },
+                  { label: "Your Phone Number", value: phone, set: setPhone, ph: "01XXXXXXXXX", type: "tel" },
+                ].map(f => (
+                  <div key={f.label} className="mb-4">
+                    <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block mb-1.5">{f.label}</label>
+                    <input
+                      type={f.type} value={f.value} onChange={e => f.set(e.target.value)}
+                      placeholder={f.ph} required
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[13px] text-gray-900 focus:outline-none focus:border-[#006A4E] focus:ring-2 focus:ring-[#006A4E]/10 transition-all placeholder-gray-400"
+                    />
                   </div>
                 ))}
-              </button>
-            ))}
-          </div>
-          <button onClick={() => setStep(2)}
-            style={{ width:"100%", padding:"14px", background:"#C9A84C", color:"#000", border:"none", cursor:"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"15px", letterSpacing:"3px" }}>
-            {lang==="en"?`CONTINUE WITH ৳${plan.price_bdt} PLAN →`:`চালিয়ে যান ৳${plan.price_bdt} →`}
-          </button>
-        </div>
-      ) : (
-        // STEP 2: Payment
-        <form onSubmit={handleSubmit} style={{ width:"100%", maxWidth:"440px", background:"#111", border:"1px solid #1a1a1a", padding:"28px", display:"flex", flexDirection:"column", gap:"16px" }}>
 
-          <div style={{ display:"flex", alignItems:"center", gap:"12px" }}>
-            <button onClick={() => setStep(1)} style={{ color:"#555", background:"none", border:"none", cursor:"pointer", fontSize:"18px" }}>←</button>
-            <div>
-              <div style={{ fontWeight:700, fontSize:"16px", color:"#F5F0E8" }}>
-                {lang==="en"?"Complete Payment":"পেমেন্ট সম্পন্ন করুন"}
-              </div>
-              <div style={{ fontSize:"12px", color:"#666" }}>
-                {lang==="bn"?plan.label_bn:plan.label_en} — ৳{plan.price_bdt}/month
-              </div>
-            </div>
-          </div>
-
-          {/* Method select */}
-          <div>
-            <div style={{ fontSize:"11px", fontWeight:700, letterSpacing:"2px", color:"#666", marginBottom:"8px" }}>
-              {lang==="en"?"PAYMENT METHOD":"পেমেন্ট পদ্ধতি"}
-            </div>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px" }}>
-              {(["bkash","nagad"] as PaymentMethod[]).map(m => (
-                <button key={m} type="button" onClick={() => setMethod(m)}
-                  style={{ padding:"12px 8px", background:method===m?"#100e08":"#0d0d0d", border:`1px solid ${method===m?"#C9A84C":"#2a2a2a"}`, color:method===m?"#C9A84C":"#666", cursor:"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"13px", letterSpacing:"1px", textTransform:"uppercase" }}>
-                  {m === "bkash" ? "🟣 bKash" : "🟠 Nagad"}
+                <button type="submit" disabled={loading}
+                  className="w-full py-3.5 rounded-xl bg-[#006A4E] text-white font-bold text-[14px] hover:bg-[#005a40] transition-all disabled:opacity-40 shadow-sm">
+                  {loading ? "Submitting..." : "Submit Payment →"}
                 </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Send to */}
-          <div style={{ background:"#0d120f", border:"1px solid rgba(26,184,158,0.2)", padding:"16px" }}>
-            <div style={{ fontSize:"11px", fontWeight:700, letterSpacing:"2px", color:"#1AB89E", marginBottom:"8px" }}>
-              {lang==="en"?"SEND PAYMENT TO":"এই নম্বরে পাঠান"}
-            </div>
-            <div style={{ fontFamily:"Source Code Pro,monospace", fontSize:"22px", fontWeight:700, color:"#F5F0E8", letterSpacing:"2px" }}>
-              {payNumber}
-            </div>
-            <div style={{ fontSize:"12px", color:"#555", marginTop:"4px" }}>
-              {method==="bkash"?"bKash":"Nagad"} — Send Money — Amount: ৳{plan.price_bdt}
-            </div>
-          </div>
-
-          {error && (
-            <div style={{ background:"#130a09", border:"1px solid rgba(192,57,43,0.3)", padding:"10px", fontSize:"13px", color:"#E74C3C" }}>
-              {error}
+                <p className="mt-3 text-[11px] text-gray-400 text-center">
+                  Verified by NLC within 1–2 hours of submission.
+                </p>
+              </form>
             </div>
           )}
-
-          {/* Transaction ID */}
-          <div>
-            <label style={{ fontSize:"11px", fontWeight:700, letterSpacing:"2px", color:"#666", display:"block", marginBottom:"6px" }}>
-              {lang==="en"?"TRANSACTION ID (TxnID)":"ট্র্যানজেকশন আইডি"}
-            </label>
-            <input value={txnId} onChange={e => setTxnId(e.target.value)}
-              placeholder="e.g. ABC123XYZ" required
-              style={{ width:"100%", background:"#0d0d0d", border:"1px solid #2a2a2a", color:"#ddd", padding:"10px 12px", fontSize:"14px", fontFamily:"Rajdhani,sans-serif", outline:"none", letterSpacing:"1px" }}
-            />
-            <div style={{ fontSize:"10px", color:"#333", marginTop:"4px" }}>
-              {lang==="en"?"Copy TxnID from your bKash/Nagad message":"bKash/Nagad মেসেজ থেকে TxnID কপি করুন"}
-            </div>
-          </div>
-
-          {/* Phone */}
-          <div>
-            <label style={{ fontSize:"11px", fontWeight:700, letterSpacing:"2px", color:"#666", display:"block", marginBottom:"6px" }}>
-              {lang==="en"?"YOUR PHONE NUMBER (used for payment)":"আপনার ফোন নম্বর (পেমেন্টে ব্যবহৃত)"}
-            </label>
-            <input value={phone} onChange={e => setPhone(e.target.value)}
-              placeholder="01XXXXXXXXX" required type="tel"
-              style={{ width:"100%", background:"#0d0d0d", border:"1px solid #2a2a2a", color:"#ddd", padding:"10px 12px", fontSize:"14px", fontFamily:"Rajdhani,sans-serif", outline:"none" }}
-            />
-          </div>
-
-          <button type="submit" disabled={loading}
-            style={{ padding:"13px", background:loading?"#1a1a1a":"#C9A84C", color:loading?"#333":"#000", border:"none", cursor:loading?"default":"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"15px", letterSpacing:"2px" }}>
-            {loading ? "..." : (lang==="en"?"SUBMIT PAYMENT →":"পেমেন্ট জমা দিন →")}
-          </button>
-
-          <div style={{ fontSize:"10px", color:"#333", textAlign:"center", lineHeight:1.5 }}>
-            {lang==="en"
-              ? "Payment verified manually within 1-2 hours. Pay only after delivery confirmed."
-              : "পেমেন্ট ১-২ ঘণ্টায় যাচাই হবে। ডেলিভারি নিশ্চিত হলে তবেই পরিশোধ করুন।"}
-          </div>
-        </form>
-      )}
+        </div>
+      </main>
     </div>
-  )
+  );
 }
