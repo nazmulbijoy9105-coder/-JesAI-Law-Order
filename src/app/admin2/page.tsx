@@ -1,14 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { isAdmin } from "@/lib/auth/supabase-auth"
-import { verifyPayment } from "@/lib/payment/payment"
-import { createClient } from "@supabase/supabase-js"
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL ?? "https://placeholder.supabase.co",
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "placeholder-anon-key"
-)
+import { isAdmin, supabase } from "@/lib/auth/supabase-auth"
 
 interface PaymentRecord {
   id: string
@@ -30,16 +23,6 @@ export default function AdminPage() {
   const [filter, setFilter] = useState("pending")
   const [stats, setStats] = useState({ total: 0, pending: 0, verified: 0, revenue: 0 })
 
-  useEffect(() => {
-    checkAdmin()
-  }, [])
-
-  async function checkAdmin() {
-    const admin = await isAdmin()
-    if (!admin) { router.push("/"); return }
-    loadPayments()
-  }
-
   async function loadPayments() {
     setLoading(true)
     const { data } = await supabase
@@ -48,7 +31,7 @@ export default function AdminPage() {
       .order("created_at", { ascending: false })
 
     if (data) {
-      setPayments(data)
+      setPayments(data as PaymentRecord[])
       setStats({
         total: data.length,
         pending: data.filter(p => p.status === "pending").length,
@@ -60,9 +43,29 @@ export default function AdminPage() {
   }
 
   async function handleVerify(id: string, approved: boolean) {
-    await verifyPayment(id, approved)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return
+
+    await fetch("/api/admin/verify-payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({ record_id: id, approved }),
+    })
     loadPayments()
   }
+
+  useEffect(() => {
+    async function checkAdmin() {
+      const admin = await isAdmin()
+      if (!admin) { router.push("/"); return }
+      loadPayments()
+    }
+    checkAdmin()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const filtered = payments.filter(p => filter === "all" ? true : p.status === filter)
 
@@ -75,7 +78,6 @@ export default function AdminPage() {
   return (
     <div style={{ minHeight:"100vh", background:"#0A0A0A", padding:"24px" }}>
 
-      {/* Header */}
       <div style={{ display:"flex", alignItems:"center", gap:"16px", marginBottom:"24px", borderBottom:"1px solid #1a1a1a", paddingBottom:"16px" }}>
         <div style={{ fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"20px", letterSpacing:"4px", color:"#C9A84C" }}>JESAI ADMIN</div>
         <div style={{ flex:1 }} />
@@ -85,7 +87,6 @@ export default function AdminPage() {
         </button>
       </div>
 
-      {/* Stats */}
       <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"12px", marginBottom:"24px" }}>
         {[
           { label:"Total", value:stats.total, color:"#888" },
@@ -100,7 +101,6 @@ export default function AdminPage() {
         ))}
       </div>
 
-      {/* Filter */}
       <div style={{ display:"flex", gap:"8px", marginBottom:"16px" }}>
         {["pending","verified","rejected","all"].map(f => (
           <button key={f} onClick={() => setFilter(f)}
@@ -110,7 +110,6 @@ export default function AdminPage() {
         ))}
       </div>
 
-      {/* Table */}
       {loading ? (
         <div style={{ textAlign:"center", padding:"40px", color:"#444" }}>Loading...</div>
       ) : (
