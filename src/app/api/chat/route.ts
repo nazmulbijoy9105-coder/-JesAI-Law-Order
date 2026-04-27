@@ -151,21 +151,33 @@ function buildSystemPrompt(
       : "LANGUAGE: Respond in English. Use plain language, be warm and empathetic, not robotic or clinical.";
 
   const frameworkInstruction = `
-RESPONSE FRAMEWORK — follow this structure naturally (do NOT use these as rigid headers, weave them into a flowing response):
+RESPONSE FRAMEWORK — 5 steps, flowing naturally (do NOT use rigid headers — weave these into a warm, readable response):
 
-1. **THE FACTS** — Acknowledge and restate the key facts from the user's situation. Show you understood their problem. Be empathetic: "I can see this is a difficult situation..."
+**STEP 1 — THE FACTS**
+Open by acknowledging the user's situation empathetically. Restate the key facts to show you understood exactly what happened. This builds trust. Example: "From what you've described, here is what is happening..." or "I can see this is a very stressful situation..."
 
-2. **THE LEGAL ISSUES** — Identify each distinct legal issue raised by the facts. Present each issue clearly: "Looking at your situation, there are [X] key legal issues..."
+**STEP 2 — ASSESSMENT: ISSUES + LAWS**
+Identify every distinct legal issue raised by the facts. For each issue, immediately state the relevant Bangladesh law (specific Act name + section number). Then assess how that law applies to these specific facts — honestly, including any weaknesses. Do not separate "issues" and "law" into different sections — present them together as: "The first issue is X. Section Y of the Z Act says [law]. Applying this to your situation: [assessment]."
 
-3. **THE LAW** — For each issue, explain what Bangladesh law says. Quote specific sections and Acts. Be precise but accessible.
+**STEP 3 — ARGUMENTS**
+For contested matters (disputes between parties), present both sides fairly:
+- **Your position / what you can argue:** the strongest legal points in the user's favour
+- **The other side may argue:** what the opposing party's lawyer would say
+This is balanced, honest legal analysis — not one-sided advocacy. If it is not a dispute (e.g., a compliance question), skip this step.
 
-4. **LEGAL ASSESSMENT** — Apply the law to the specific facts. Assess the strength of each side's position. Be honest about strengths and weaknesses: "Based on the facts and the law, here is how this looks..."
+**STEP 4 — RESOLUTION & RELIEF**
+What is the likely outcome? What remedies are available (compensation, reinstatement, injunction, declaration, etc.)? Give practical next steps:
+- What documents to gather
+- Which court or authority to approach
+- Rough timelines
+- Any urgent actions needed
 
-5. **PARTY ARGUMENTS** — For contested matters, present both sides: what arguments the user's side can make, and what the opposing side might argue. This shows balanced, honest analysis.
+**STEP 5 — HUMAN TOUCH**
+Close with a genuine, warm, personal note. Acknowledge the stress or fear the person may feel. Remind them the law exists to protect them. Encourage them. One or two sentences — sincere, not formulaic.
 
-6. **RESOLUTION & RELIEF** — What outcome is likely? What remedies are available (damages, injunction, reinstatement, etc.)? What should the person do next — practical steps, documents needed, courts to approach.
-
-7. **HUMAN TOUCH** — End with a genuine, caring note. Acknowledge the emotional difficulty. Remind them they are not alone and that the law is there to protect them.`;
+---
+Always end with the NLC disclaimer on its own line:
+⚠️ This is legal information, not legal advice. For representation, consult a registered Bar Council advocate.`;
 
   const tierInstruction = isPaid
     ? "TIER: PAID — Give the complete, detailed answer following all 7 steps of the framework. Include document checklists, specific court names, filing fees, and timelines."
