@@ -229,7 +229,7 @@ function getConvTitle(messages: Message[]): string {
 }
 
 export default function ChatInterface() {
-  const { user, isPaid: authIsPaid, queriesRemaining: authQueriesRemaining } = useAuth();
+  const { user, isPaid: authIsPaid, queriesRemaining: authQueriesRemaining, refreshUser } = useAuth();
 
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeConvId, setActiveConvId] = useState<string>("");
@@ -250,8 +250,7 @@ export default function ChatInterface() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recognitionRef = useRef<any>(null);
+  const recognitionRef = useRef<{ stop: () => void } | null>(null);
 
   const t = UI_TEXT[lang];
 
@@ -366,17 +365,28 @@ export default function ChatInterface() {
       };
       setMessages(prev => {
         const updated = [...prev, aiMsg];
-        saveCurrentConversation(updated);
+        if (updated.filter(m => m.role === "user").length > 0) {
+          setConversations(cs => {
+            const existing = cs.find(c => c.id === activeConvId);
+            if (existing) {
+              return cs.map(c => c.id === activeConvId ? { ...c, messages: updated, title: getConvTitle(updated) } : c);
+            }
+            return [{ id: activeConvId, title: getConvTitle(updated), messages: updated, createdAt: new Date() }, ...cs];
+          });
+        }
         return updated;
       });
       setQuestionCount(c => c + 1);
 
-      // Increment server-side query counter for authenticated users
+      // Increment server-side query counter for authenticated users,
+      // then refresh the auth context so navbar / limit UI stays in sync.
       if (token) {
         fetch("/api/user/tier", {
           method: "POST",
           headers: { "Authorization": `Bearer ${token}` },
-        }).catch(() => {});
+        })
+          .then(() => refreshUser())
+          .catch(() => {});
       }
     } catch {
       setApiError("Unable to connect. Please try again.");
@@ -390,8 +400,7 @@ export default function ChatInterface() {
     } finally {
       setIsTyping(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang, activeConvId, selectedArea, effectiveIsPaid]);
+  }, [activeConvId, selectedArea, refreshUser]);
 
   const sendMessage = useCallback(async (text?: string, area?: LawArea) => {
     const messageText = text || input.trim();
@@ -416,7 +425,6 @@ export default function ChatInterface() {
   // ── Voice Input ───────────────────────────────────────────────
   const startListening = useCallback(() => {
     setVoiceError(null);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SR = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
     if (!SR) {
       setVoiceError(t.voiceError);
@@ -435,7 +443,6 @@ export default function ChatInterface() {
     r.maxAlternatives = 1;
 
     let finalTranscript = "";
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     r.onresult = (e: any) => {
       let interimTranscript = "";
       for (let i = e.resultIndex; i < e.results.length; i++) {
