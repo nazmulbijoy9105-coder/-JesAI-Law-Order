@@ -166,7 +166,6 @@ export default function ChatInterface() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
 
   const t = UI_TEXT[lang];
@@ -307,13 +306,11 @@ export default function ChatInterface() {
 
   const startListening = useCallback(() => {
     if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) return;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const SR = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
     const r = new SR();
     r.lang = lang === "bn" ? "bn-BD" : "en-BD";
     r.continuous = false;
     r.interimResults = false;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     r.onresult = (e: any) => { setInput(p => p + e.results[0][0].transcript); setIsListening(false); };
     r.onerror = () => setIsListening(false);
     r.onend = () => setIsListening(false);
