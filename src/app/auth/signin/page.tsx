@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { signIn, resetPassword } from "@/lib/auth/supabase-auth";
@@ -13,12 +13,7 @@ function SignInForm() {
   const [error, setError] = useState("");
   const [resetMode, setResetMode] = useState(false);
   const [resetSent, setResetSent] = useState(false);
-  const [redirectTo, setRedirectTo] = useState("/");
-
-  useEffect(() => {
-    const r = searchParams?.get("redirect");
-    if (r) setRedirectTo(r);
-  }, [searchParams]);
+  const redirectTo = searchParams?.get("redirect") || "/";
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();

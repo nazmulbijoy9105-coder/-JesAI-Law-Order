@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { isAdmin, supabase } from "@/lib/auth/supabase-auth"
 import { verifyPayment } from "@/lib/payment/payment"
@@ -24,18 +24,7 @@ export default function AdminPage() {
   const [filter, setFilter] = useState("pending")
   const [stats, setStats] = useState({ total: 0, pending: 0, verified: 0, revenue: 0 })
 
-  useEffect(() => {
-    checkAdmin()
-  }, [])
-
-  async function checkAdmin() {
-    const admin = await isAdmin()
-    if (!admin) { router.push("/"); return }
-    loadPayments()
-  }
-
-  async function loadPayments() {
-    setLoading(true)
+  const loadPayments = useCallback(async () => {
     const { data } = await supabase
       .from("payment_records")
       .select("*, users(email)")
@@ -51,9 +40,36 @@ export default function AdminPage() {
       })
     }
     setLoading(false)
-  }
+  }, [])
+
+  useEffect(() => {
+    let ignore = false
+    async function initAdmin() {
+      const admin = await isAdmin()
+      if (!admin) { router.push("/"); return }
+      const { data } = await supabase
+        .from("payment_records")
+        .select("*, users(email)")
+        .order("created_at", { ascending: false })
+
+      if (ignore) return
+      if (data) {
+        setPayments(data)
+        setStats({
+          total: data.length,
+          pending: data.filter(p => p.status === "pending").length,
+          verified: data.filter(p => p.status === "verified").length,
+          revenue: data.filter(p => p.status === "verified").reduce((sum, p) => sum + p.amount, 0),
+        })
+      }
+      setLoading(false)
+    }
+    initAdmin()
+    return () => { ignore = true }
+  }, [router])
 
   async function handleVerify(id: string, approved: boolean) {
+    setLoading(true)
     await verifyPayment(id, approved)
     loadPayments()
   }
