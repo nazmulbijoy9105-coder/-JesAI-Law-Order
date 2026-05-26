@@ -480,7 +480,7 @@ function buildBlackResponse(
       ? `⬛ **BLACK — কোনো প্রযোজ্য নিয়ম পাওয়া যায়নি**\n\nআপনার প্রশ্নটি বর্তমান আইনি ডেটাবেজে নেই। অনুগ্রহ করে একজন যোগ্য আইনজীবীর সাথে পরামর্শ করুন।\n\n_Trace ID: ${traceId}_`
       : `⬛ **BLACK — No operable rule match**\n\nYour query is outside the current rule corpus scope. Please consult a qualified advocate.\n\n_Trace ID: ${traceId}_`;
 
-    return {
+      return {
     verdict: "BLACK",
     confidenceScore: 0,
     verdictEmoji: "⬛",
