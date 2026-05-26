@@ -82,3 +82,4 @@ export interface ILRMFResult {
   language: string;
   trace: ILRMFTrace;
 }
+export type ReasoningTrace = ILRMFTrace;
