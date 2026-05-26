@@ -12,9 +12,9 @@ export type TierOneCheckType =
   | "ESCALATION";
 
 export interface TierOneCheck {
-  type: TierOneCheckType;
-  status: "PASS" | "FAIL" | "N/A";
-  detail: string;
+  checkType: string;
+  result: string;
+  basis: string;
 }
 
 export interface Stage1Trace {
