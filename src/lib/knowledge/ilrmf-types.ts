@@ -12,38 +12,45 @@ export type TierOneCheckType =
   | "ESCALATION";
 
 export interface TierOneCheck {
-  checkType: string;
-  result: string;
+  checkType: TierOneCheckType;
+  result: VerdictBand;
   basis: string;
+  penalty: number;  // <-- ADDED: used by ilrmf-engine.ts
 }
 
 export interface Stage1Trace {
-  inputLength: number;
-  normalizedInput: string;
-  triggerMatchCount: number;
-  matchedTriggers: string[];
+  jurisdiction: string;
+  area: string;
+  keywordsMatched: string[];
+  matchDensity: number;
+  completenessScore: number;
+  escalateFlag: boolean;
 }
 
 export interface Stage2Trace {
-  areaMatched: boolean;
-  areaSource: string;
-  pathwayStrength: number;
-  ruleCount: number;
-  matchedRules: string[];
+  entryId: string;
+  question: string;
+  issue: string;
+  ruleText: string;
+  relatedRuleIds: string[];
+  certaintLevels: string[];
+  conflictsDetected: boolean;
 }
 
 export interface Stage3Trace {
-  tierOneChecks: TierOneCheck[];
+  application: string;
   pathwayStrength: number;
-  hardBlocks: string[];
-  softWarnings: string[];
+  tierOneChecks: TierOneCheck[];
 }
 
 export interface ScoringBreakdown {
   baseScore: number;
-  tierOneBonus: number;
-  pathwayBonus: number;
+  ruleMatchFactor: number;
+  missingFactPenalty: number;
+  ambiguityPenalty: number;
+  conflictPenalty: number;
   escalationPenalty: number;
+  rawScore: number;
   finalScore: number;
 }
 
@@ -55,14 +62,19 @@ export interface ReliefOption {
 }
 
 export interface Stage4Trace {
+  conclusion: string;
   scoringBreakdown: ScoringBreakdown;
-  reliefOptions: ReliefOption[];
-  verdictReasoning: string;
+  confidenceScore: number;
+  verdict: VerdictBand;
+  verdictExplanation: string;
+  reliefOptions: string[];
 }
 
 export interface ILRMFTrace {
   traceId: string;
   timestamp: string;
+  pipelineVersion: string;
+  corpusVersion: string;
   stage1: Stage1Trace;
   stage2: Stage2Trace;
   stage3: Stage3Trace;
@@ -82,7 +94,10 @@ export interface ILRMFResult {
   language: string;
   trace: ILRMFTrace;
 }
+
 export type ReasoningTrace = ILRMFTrace;
+
+// Kept for backward compatibility if referenced elsewhere
 export interface TierOneResult {
   checks: TierOneCheck[];
   passed: boolean;
