@@ -482,6 +482,10 @@ export default function ChatInterface() {
         }, 100);
       }
     };
+    r.interimResults = false;
+    r.onresult = (e: any) => { setInput(p => p + e.results[0][0].transcript); setIsListening(false); };
+    r.onerror = () => setIsListening(false);
+    r.onend = () => setIsListening(false);
     recognitionRef.current = r;
     r.start();
     setIsListening(true);

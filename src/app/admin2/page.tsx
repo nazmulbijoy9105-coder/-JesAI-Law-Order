@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { isAdmin, supabase } from "@/lib/auth/supabase-auth"
 
@@ -40,7 +40,22 @@ export default function AdminPage() {
       })
     }
     setLoading(false)
-  }
+  }, [])
+
+  const checkAdmin = useCallback(async () => {
+    const admin = await isAdmin()
+    if (!admin) { router.push("/"); return }
+    loadPayments()
+  }, [loadPayments, router])
+
+  useEffect(() => {
+    const initAdmin = async () => {
+      const admin = await isAdmin()
+      if (!admin) { router.push("/"); return }
+      await loadPayments()
+    }
+    initAdmin()
+  }, [loadPayments, router])
 
   async function handleVerify(id: string, approved: boolean) {
     const { data: { session } } = await supabase.auth.getSession()
