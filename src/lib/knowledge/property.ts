@@ -126,7 +126,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-title-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["title dispute", "ownership dispute", "who owns", "my land taken", "ownership challenge", "land ownership"],
+    triggerKeywords: ["title dispute", "land dispute", "property dispute", "land problem", "ownership dispute", "who owns", "my land taken", "ownership challenge", "land ownership"],
     question: "Someone is challenging my ownership of land — what can I do?",
     irac: {
       issue: "Whether a landowner whose title is being challenged can obtain legal recognition of their ownership.",
