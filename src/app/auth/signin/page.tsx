@@ -1,3 +1,35 @@
+"use client"
+import { useState, useEffect, Suspense } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
+import { signIn, resetPassword } from "@/lib/auth/supabase-auth"
+
+function SignInForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [resetMode, setResetMode] = useState(false)
+  const [resetSent, setResetSent] = useState(false)
+  const [lang, setLang] = useState<"en"|"bn">("en")
+  const [redirectTo, setRedirectTo] = useState("/")
+
+  useEffect(() => {
+    const redirect = searchParams?.get("redirect")
+    if (redirect) setRedirectTo(redirect)
+  }, [searchParams])
+
+  const T = {
+    title:    lang === "en" ? "Sign In" : "সাইন ইন",
+    email:    lang === "en" ? "Email Address" : "ইমেইল ঠিকানা",
+    pass:     lang === "en" ? "Password" : "পাসওয়ার্ড",
+    btn:      lang === "en" ? "Sign In →" : "সাইন ইন করুন →",
+    forgot:   lang === "en" ? "Forgot password?" : "পাসওয়ার্ড ভুলে গেছেন?",
+    signup:   lang === "en" ? "New here? Create Account" : "নতুন? অ্যাকাউন্ট তৈরি করুন",
+    reset:    lang === "en" ? "Send Reset Link" : "রিসেট লিংক পাঠান",
+    resetOk:  lang === "en" ? "Reset link sent! Check your email." : "রিসেট লিংক পাঠানো হয়েছে!",
+  }
 "use client";
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -19,6 +51,55 @@ function SignInForm() {
     e.preventDefault();
     setError(""); setLoading(true);
     try {
+      const { user } = await signIn(email, password)
+      const { data: profile } = await import("@/lib/auth/supabase-auth").then(m =>
+        m.supabase.from("users").select("role").eq("id", user!.id).single()
+      )
+      if (profile?.role === "admin") {
+        router.push("/admin")
+      } else {
+        router.push(redirectTo || "/")
+      }
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Sign in failed")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleReset = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError("")
+    setLoading(true)
+    try {
+      await resetPassword(email)
+      setResetSent(true)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Reset failed")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div style={{ minHeight:"100vh", background:"#0A0A0A", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"24px" }}>
+
+      <div style={{ position:"absolute", top:"16px", right:"16px", display:"flex", gap:"8px" }}>
+        {["en","bn"].map(l => (
+          <button key={l} onClick={() => setLang(l as "en"|"bn")}
+            style={{ padding:"4px 12px", border:`1px solid ${lang===l?"#C9A84C":"#333"}`, color:lang===l?"#C9A84C":"#555", background:"none", cursor:"pointer", fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"11px", letterSpacing:"2px" }}>
+            {l === "en" ? "EN" : "বাং"}
+          </button>
+        ))}
+      </div>
+
+      <div onClick={() => router.push("/")}
+        style={{ fontFamily:"Rajdhani,sans-serif", fontWeight:700, fontSize:"28px", letterSpacing:"6px", color:"#C9A84C", marginBottom:"8px", cursor:"pointer" }}>
+        JESAI
+      </div>
+      <div style={{ fontFamily:"Crimson Pro,serif", fontStyle:"italic", fontSize:"14px", color:"#555", marginBottom:"32px" }}>
+        Bangladesh Legal Literacy AI
+      </div>
       const { user } = await signIn(email, password);
       const { data: profile } = await import("@/lib/auth/supabase-auth").then(m =>
         m.supabase.from("users").select("role").eq("id", user!.id).single()
@@ -105,4 +186,12 @@ function SignInForm() {
 
 export default function SignInPage() {
   return <Suspense fallback={<div className="min-h-screen bg-gray-50" />}><SignInForm /></Suspense>;
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div style={{ minHeight:"100vh", background:"#0A0A0A" }} />}>
+      <SignInForm />
+    </Suspense>
+  )
 }
