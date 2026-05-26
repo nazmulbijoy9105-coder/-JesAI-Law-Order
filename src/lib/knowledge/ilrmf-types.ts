@@ -83,3 +83,8 @@ export interface ILRMFResult {
   trace: ILRMFTrace;
 }
 export type ReasoningTrace = ILRMFTrace;
+export interface TierOneResult {
+  checks: TierOneCheck[];
+  passed: boolean;
+  blockingIssues: string[];
+}
