@@ -586,7 +586,7 @@ export function runILRMF(
     trace,
     source: "ilrmf_deterministic",
     escalate: entry.escalate,
-    escalateReason: entry.escalateReason,
+        escalateReason: entry.escalateReason ?? null,,
     area: result.area ?? "general",
     language: lang,
   };
