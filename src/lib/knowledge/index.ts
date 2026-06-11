@@ -114,10 +114,10 @@ function matchQA(message: string, area: LawArea | null): QAEntry | null {
   let bestMatch: QAEntry | null = null;
   let bestScore = 0;
 
-  for (const knowledgeModule of MODULES) {
+  for (const mod of MODULES) {
     const entries = area
-      ? knowledgeModule.qaBank.filter((e) => e.area === area || e.area === "general")
-      : knowledgeModule.qaBank;
+      ? mod.qaBank.filter((e) => e.area === area || e.area === "general")
+      : mod.qaBank;
 
     for (const entry of entries) {
       const score = entry.triggerKeywords.filter((kw) =>
