@@ -102,7 +102,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -313,7 +313,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -330,7 +330,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -364,7 +364,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -381,7 +381,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-004"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -398,7 +398,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -415,7 +415,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-005"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -449,7 +449,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-005"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -466,7 +466,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ STRUCTURE OF GOVERNMENT ════════
@@ -484,7 +484,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -501,7 +501,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -518,7 +518,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -535,7 +535,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-003"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ EMERGENCY & SPECIAL PROVISIONS ════════
@@ -553,7 +553,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-002"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -570,7 +570,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-005"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ DIRECTIVE PRINCIPLES ════════
@@ -623,7 +623,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-005"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ CONSTITUTIONAL RIGHTS IN PRACTICE ════════
@@ -693,7 +693,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ CITIZENSHIP & NATIONALITY ════════
@@ -711,7 +711,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ ANTI-DISCRIMINATION & SPECIAL GROUPS ════════
@@ -764,7 +764,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -817,7 +817,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
@@ -834,7 +834,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   // ════════ CONSTITUTIONAL HISTORY MILESTONES ════════
@@ -922,7 +922,7 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-001"],
-    lastVerified: "2025-03-09`,
+    lastVerified: "2025-03-09",
   },
 
   {
