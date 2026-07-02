@@ -885,12 +885,376 @@ const qaBank: QAEntry[] = [
     relatedRules: [],
     lastVerified: "2025-03-09",
   },
+  {
+    id: "tax-qa-051",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["vat enforcement", "vat audit", "vat inspection", "nbr vat visit", "vat officer visit", "mushak audit"],
+    question: "What happens during a VAT audit by NBR?",
+    irac: {
+      issue: "What is the VAT audit process and what powers do VAT officers have under the VAT Act 2012?",
+      rule: "VAT Act 2012, Section 75-82: VAT officers can conduct audit, inspection, and investigation of registered businesses. They can visit premises, examine books, seize records, and summon persons. VAT audit may be: desk audit (document review), field audit (premises visit), or special audit (for suspected evasion).",
+      application: "VAT officer visits your shop: Must show ID and authorisation. You must provide: all MUSHAK 6.3 invoices, purchase records, bank statements, stock records. Officer examines whether output VAT = input VAT + net payable. Discrepancies lead to demand notice with penalty.",
+      conclusion: "**VAT audit process:**
+
+**Types:**
+• Desk audit — document review at NBR office
+• Field audit — premises visit
+• Special audit — suspected evasion
+
+**Officer powers:**
+• Enter business premises
+• Examine books, records, computers
+• Seize documents (with receipt)
+• Summon persons for questioning
+
+**Your obligations:**
+• Cooperate fully
+• Provide all requested records
+• MUSHAK 6.3 invoices for 5 years
+• Bank statements
+
+**If demand raised:**
+• 30 days to respond
+• Appeal to Commissioner (Appeals)
+• Penalty: up to 2× evaded VAT
+
+📄 VAT audit response guide — ৳2,999",
+    },
+    escalate: true,
+    escalateReason: "VAT audit requires professional response. WhatsApp NLC for CA referral.",
+    relatedRules: ["tax-vat-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-052",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["vat deregistration", "close vat", "vat cancellation", "bin cancel", "stop vat registration"],
+    question: "How do I cancel or deregister my VAT registration?",
+    irac: {
+      issue: "What is the process for VAT deregistration when a business closes or turnover falls below threshold?",
+      rule: "VAT Act 2012, Section 11: A registered person can apply for deregistration if: business is closed, turnover falls below BDT 30 lakh for 2 consecutive years, or business is transferred. Must file final return, pay all dues, and surrender BIN certificate. NBR may also cancel registration for non-compliance.",
+      application: "Shop owner closes business: Apply for deregistration at vat.gov.bd or local VAT office. File final MUSHAK 9.1 up to closure date. Pay all outstanding VAT. Surrender BIN certificate. NBR issues deregistration certificate.",
+      conclusion: "**VAT deregistration process:**
+
+**Apply when:**
+• Business permanently closed
+• Turnover < BDT 30 lakh for 2 years
+• Business transferred/sold
+
+**Steps:**
+1. File final MUSHAK 9.1
+2. Pay all outstanding VAT + penalties
+3. Submit deregistration application
+4. Surrender BIN certificate
+5. NBR issues cancellation certificate
+
+**NBR may cancel for:**
+• Non-filing for 6+ months
+• Non-payment of VAT
+• Fraudulent registration
+
+📄 VAT deregistration guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-vat-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-053",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["agricultural income tax", "krishi aay kor", "কৃষি আয় কর", "farm income tax", "agriculture tax bangladesh"],
+    question: "Is agricultural income taxable in Bangladesh?",
+    irac: {
+      issue: "What is the tax treatment of income from agriculture under ITA 2023?",
+      rule: "ITA 2023, Section 76: Income from agriculture is exempt from income tax if it is from traditional farming activities. However, commercial agricultural processing, agro-business, and value-added activities are taxable. Land revenue/rent from agricultural land is also exempt if below threshold.",
+      application: "Farmer growing rice and selling at local market: income exempt. Same farmer setting up a rice mill and processing others' rice: milling income is taxable business income. Large commercial poultry farm: taxable.",
+      conclusion: "**Agricultural income tax:**
+
+✅ **Exempt:**
+• Traditional crop farming
+• Small-scale livestock rearing
+• Fish farming (small scale)
+• Sale of own agricultural produce
+
+⚠️ **Taxable:**
+• Commercial processing (rice mill, cold storage)
+• Large-scale commercial farming
+• Agro-export business
+• Contract farming with corporations
+
+**Land revenue:** Exempt if below BDT 25,000/year
+
+📄 Agricultural income guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-slab-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-054",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["tax amnesty", "black money white", "undisclosed asset", "voluntary disclosure scheme", "tax pardon"],
+    question: "Is there a current tax amnesty or voluntary disclosure scheme in Bangladesh?",
+    irac: {
+      issue: "What voluntary disclosure or amnesty provisions exist under ITA 2023 for undeclared income or assets?",
+      rule: "ITA 2023, Section 245: Permanent voluntary disclosure provision exists — pay normal tax + 10% surcharge on undisclosed income. Immunity from prosecution for disclosed amount. Finance Act may announce special amnesty windows with reduced rates periodically. No special amnesty window is currently active as of early 2025 — but Section 245 remains available year-round.",
+      application: "Person with BDT 50 lakh undeclared cash: Can voluntarily disclose, pay tax at applicable rate + 10% surcharge. No further penalty or prosecution for that amount. Must file amended return. Disclosed amount becomes 'white' for future.",
+      conclusion: "**Voluntary disclosure (Section 245):**
+
+**Available year-round:**
+• Pay normal tax + 10% surcharge
+• Immunity from prosecution
+• No further investigation for disclosed amount
+
+**vs Special Amnesty Window:**
+• Finance Act may announce periodically
+• Lower rates (e.g., 10% flat in past windows)
+• Time-limited
+• No current active window (as of early 2025)
+
+**Strategy:**
+• Section 245 always available
+• Wait for special window if announced
+• Consult tax professional before disclosing
+
+⚠️ NBR discovery = 50-100% penalty + prosecution risk
+
+📄 Voluntary disclosure strategy — ৳2,999",
+    },
+    escalate: true,
+    escalateReason: "Voluntary disclosure strategy requires professional tax planning. WhatsApp NLC for CA referral.",
+    relatedRules: ["tax-ita-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-055",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["turnover tax", "4 percent tax", "small business tax", "turnover tax bangladesh", "vat turnover"],
+    question: "What is turnover tax and who pays it?",
+    irac: {
+      issue: "What is the turnover tax regime for small businesses under VAT Act 2012?",
+      rule: "VAT Act 2012: Businesses with annual turnover between BDT 30 lakh and BDT 50 lakh pay 4% turnover tax instead of 15% VAT. No input credit available. No monthly MUSHAK 9.1 — simpler quarterly or annual return. Cannot issue MUSHAK 6.3 (VAT invoice).",
+      application: "Small retailer with BDT 40 lakh annual sales: Pays 4% on turnover = BDT 1.6 lakh per year. Cannot claim input VAT on purchases. Simpler compliance than full VAT regime.",
+      conclusion: "**Turnover tax (4%):**
+
+**Applies to:**
+• Annual turnover BDT 30-50 lakh
+• Cannot opt for full VAT voluntarily
+
+**Features:**
+• 4% of gross turnover
+• No input VAT credit
+• Simpler return (not monthly MUSHAK 9.1)
+• Cannot issue VAT invoices
+• Cannot claim input VAT from suppliers
+
+**Below BDT 30 lakh:** Fully exempt
+**Above BDT 50 lakh:** Must register for 15% VAT
+
+📄 Turnover tax guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-vat-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-056",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["tax assessment", "self assessment", "best judgment", "dcit assessment", "tax officer assessment"],
+    question: "What are the different types of tax assessment under ITA 2023?",
+    irac: {
+      issue: "What types of income tax assessment exist under the Income Tax Act 2023?",
+      rule: "ITA 2023, Sections 170-185: Three main assessment types: (1) Self-assessment — taxpayer files return, tax is assessed based on declared income. (2) Best judgment assessment — DCT estimates income when taxpayer fails to file or cooperate. (3) Re-assessment — DCT reopens assessment within 3 years (5 for fraud) if new information emerges.",
+      application: "Taxpayer files return on time with all documents: self-assessment, tax as declared. Taxpayer ignores notices and doesn't file: DCT conducts best judgment assessment — estimates higher income, imposes maximum tax + penalty. NBR later discovers hidden bank account: re-assessment opened, additional tax + 50-100% penalty.",
+      conclusion: "**Types of tax assessment:**
+
+**1. Self-Assessment (default):**
+• Taxpayer files return
+• Tax based on declared income
+• Most common for compliant taxpayers
+
+**2. Best Judgment Assessment:**
+• DCT estimates income
+• When taxpayer fails to file or cooperate
+• Usually higher tax than self-assessment
+• + penalties
+
+**3. Re-assessment:**
+• Reopened within 3 years (5 for fraud)
+• New information discovered
+• Additional tax + 50-100% penalty
+
+**Goal:** File honest self-assessment — avoid other types.
+
+📄 Assessment types guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-ita-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-057",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["tax deduction certificate", "wht certificate", "source tax certificate", "form 108a", "tax credit certificate"],
+    question: "How do I claim tax credit for tax already deducted at source?",
+    irac: {
+      issue: "How does a taxpayer claim credit for WHT already deducted by employers, banks, and tenants?",
+      rule: "ITA 2023, Section 237: Taxpayer can claim credit for all WHT deducted at source against final tax liability. Must obtain certificates from deductors: Form 108A (salary WHT from employer), bank WHT certificates, tenant WHT receipts. Attach all certificates with annual return. DCT verifies and allows credit.",
+      application: "Employee had BDT 48,000 WHT deducted by employer (Form 108A). Bank deducted BDT 8,000 on FD interest. Tenant deducted BDT 12,000 on rent. Total WHT credit = BDT 68,000. If final tax liability is BDT 70,000 — only BDT 2,000 additional tax due. If WHT exceeds liability — claim refund.",
+      conclusion: "**Claiming WHT credit:**
+
+**Obtain certificates from:**
+• Employer: Form 108A (annual)
+• Bank: WHT certificate (annual)
+• Tenant: WHT receipt (per payment)
+• Dividend payer: WHT certificate
+
+**Attach all with annual return.**
+
+**If WHT > final tax:**
+• Claim refund in return
+• Or carry forward to next year
+
+**Keep all certificates for 5 years** — NBR may ask for verification.
+
+📄 WHT credit guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-wht-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-058",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["vat composition", "composition scheme", "small trader vat", "composition vat", "simplified vat"],
+    question: "Is there a simplified VAT scheme for small traders?",
+    irac: {
+      issue: "What simplified VAT compliance options exist for small traders and retailers?",
+      rule: "VAT Act 2012 + NBR SROs: Small traders with turnover BDT 30-50 lakh can opt for 4% turnover tax (simpler than full VAT). Some categories of small retailers may have special composition schemes announced by NBR from time to time. Full VAT registration mandatory above BDT 50 lakh with no simplified option.",
+      application: "Small grocery shop with BDT 35 lakh turnover: Can pay 4% turnover tax instead of 15% VAT. No need to issue MUSHAK 6.3 invoices. No monthly return — simpler compliance. But cannot claim input VAT on purchases from VAT-registered suppliers.",
+      conclusion: "**Simplified VAT for small traders:**
+
+**Turnover tax (4%):**
+• Turnover BDT 30-50 lakh
+• No input credit
+• No monthly MUSHAK 9.1
+• Cannot issue VAT invoices
+
+**Full VAT (15%):**
+• Turnover > BDT 50 lakh (mandatory)
+• Input credit available
+• Monthly MUSHAK 9.1
+• Must issue MUSHAK 6.3 invoices
+
+**Special schemes:**
+• NBR announces periodically for specific sectors
+• Check current SROs
+
+📄 Small trader VAT guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-vat-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-059",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["tax return revision", "amend return", "correct tax return", "return mistake", "revise return"],
+    question: "Can I revise my tax return if I made a mistake?",
+    irac: {
+      issue: "Is it possible to correct or revise an already filed income tax return?",
+      rule: "ITA 2023, Section 174: Taxpayer can file a revised return within 180 days of original filing if the original return was filed within the due date (30 November). Revised return replaces original. If filed after deadline — treated as late return with surcharge. If DCT has already completed assessment — revision not allowed.",
+      application: "Filed return on 15 November, then discovered unclaimed investment rebate: File revised return before 15 May (180 days). Include correct investment amount. DCT processes revised return. If DCT already issued assessment order on 20 December — too late to revise.",
+      conclusion: "**Revising tax return:**
+
+**Allowed if:**
+• Within 180 days of original filing
+• Original filed by due date (30 Nov)
+• DCT has not completed assessment
+
+**Process:**
+• File revised return at etaxnbr.gov.bd
+• Clearly mark as 'Revised'
+• Include explanation for changes
+• Revised return replaces original
+
+**Not allowed if:**
+• DCT assessment already completed
+• Original filed after deadline
+• Beyond 180 days
+
+**Alternative:** File objection/appeal if assessment is wrong
+
+📄 Return revision guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["tax-ita-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "tax-qa-060",
+    area: "tax",
+    jurisdiction: "BD",
+    triggerKeywords: ["nbr online services", "etax portal", "online tax", "digital tax bangladesh", "nbr app", "etaxnbr"],
+    question: "What online services does NBR offer for taxpayers?",
+    irac: {
+      issue: "What digital services are available from NBR for tax compliance and filing?",
+      rule: "NBR operates multiple online portals: etaxnbr.gov.bd (income tax filing), vat.gov.bd (VAT registration and filing), customs.gov.bd (customs declarations), incometax.gov.bd (TIN registration). All major tax compliance can now be done online. NBR also provides SMS alerts, mobile apps, and e-payment integration with banks.",
+      application: "Taxpayer can: Register TIN online → File income tax return → Pay tax online → Check refund status → Download certificates → File VAT returns → Register for BIN — all without visiting NBR office. Some services still require physical submission for complex cases.",
+      conclusion: "**NBR Online Services:**
+
+**Income Tax:**
+• incometax.gov.bd — TIN registration
+• etaxnbr.gov.bd — Return filing, payment, refund
+
+**VAT:**
+• vat.gov.bd — BIN registration, MUSHAK 9.1 filing
+
+**Customs:**
+• customs.gov.bd — Import declarations, duty payment
+
+**Features:**
+• Online payment via bank integration
+• SMS alerts for deadlines
+• Digital certificates download
+• Refund tracking
+• Assessment status check
+
+**Still offline:**
+• Complex appeals
+• Physical document submission for some cases
+• Tax clearance certificate (TCC)
+
+📄 NBR digital services guide — ৳499",
+    },
+    escalate: false,
+    relatedRules: ["tax-ita-001", "tax-vat-001"],
+    lastVerified: "2025-03-09",
+  },
 ];
 
 const taxModule: KnowledgeModule = {
   area: "tax",
   label: "Tax Law — Income Tax Act 2023, VAT & NBR",
-  description: "50 Q&A covering Income Tax Act 2023, VAT Act 2012, TIN, returns, WHT, corporate tax, penalties, appeals, and NBR procedures. All laws current as of FY 2024-25. IT Ordinance 1984 is repealed and NOT referenced.",
+  description: "60 Q&A covering Income Tax Act 2023, VAT Act 2012, TIN, returns, WHT, corporate tax, penalties, appeals, NBR procedures, VAT enforcement, turnover tax, agricultural income, voluntary disclosure, tax assessment types, WHT credit, return revision, and NBR digital services. All laws current as of FY 2024-25. IT Ordinance 1984 is repealed and NOT referenced."
   rules,
   qaBank,
 };

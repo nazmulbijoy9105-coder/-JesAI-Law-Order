@@ -258,12 +258,446 @@ const qaBank: QAEntry[] = [
     relatedRules: ["nrb-bida-001"],
     lastVerified: "2025-03-09",
   },
+  {
+    id: "nrb-qa-011",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["fera compliance", "foreign exchange regulation", "fx violation", "bangladesh bank fx circular", "fera penalty", "unauthorized forex"],
+    question: "What are the foreign exchange compliance requirements for foreign investors in Bangladesh?",
+    irac: {
+      issue: "What foreign exchange regulations must foreign investors comply with under the Foreign Exchange Regulation Act 1947 and Bangladesh Bank circulars?",
+      rule: "Foreign Exchange Regulation Act 1947: All foreign exchange transactions must go through authorized dealer (AD) banks. Bangladesh Bank issues FE Circulars governing inward/outward remittances, FDI reporting, loan documentation, and capital account transactions. Violations attract penalties including fines and imprisonment.",
+      application: "Foreign investor brings USD 100,000 as equity investment: must remit through AD bank, obtain encashment certificate, report to Bangladesh Bank within 30 days via BIDA OSS. Cannot bring cash physically — must be SWIFT transfer. Cannot use hundi/hawala for any transaction. All loan agreements with foreign lenders require Bangladesh Bank approval.",
+      conclusion: "**FX Compliance Requirements:**
+
+**Inward Investment:**
+• All FDI must come through AD banks (SWIFT)
+• Obtain encashment certificate from bank
+• Report to Bangladesh Bank within 30 days
+• BIDA OSS registration mandatory
+
+**Outward Remittances:**
+• Profit/dividend: Through AD bank with tax clearance
+• Royalty/technical fees: Bangladesh Bank approval above thresholds
+• Loan repayment: AD bank + Bangladesh Bank NOC
+
+**Prohibited:**
+❌ Physical cash import of forex
+❌ Hundi/hawala transactions
+❌ Unauthorized forex trading
+❌ Unapproved foreign loans
+
+**Penalties for Violation:**
+• Fine up to 3x transaction value
+• Imprisonment up to 2 years
+• Both for company and responsible officers
+
+📄 FX compliance audit — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-bida-001", "nrb-repatriate-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-012",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["arbitration bangladesh", "international arbitration", "dispute resolution foreign investor", "icc arbitration", "bilateral investment treaty", "bit bangladesh"],
+    question: "How are disputes between foreign investors and Bangladesh resolved?",
+    irac: {
+      issue: "What dispute resolution mechanisms are available to foreign investors in Bangladesh, including arbitration and investment treaty protections?",
+      rule: "Bangladesh is party to ICSID Convention, New York Convention 1958 (arbitration enforcement), and multiple Bilateral Investment Treaties (BITs). Arbitration Act 2001 governs domestic arbitration. Foreign arbitral awards are enforceable in Bangladesh under New York Convention. BITs provide protections: fair and equitable treatment, expropriation compensation, free transfer of funds, ISDS (Investor-State Dispute Settlement).",
+      application: "A Japanese investor disputes termination of power purchase agreement by Bangladesh government: Can invoke Bangladesh-Japan BIT → ICSID arbitration in Washington DC → Award enforceable in Bangladesh courts under New York Convention. Or can use ICC arbitration seated in Singapore with Bangladesh courts enforcing award. Commercial disputes with local partners: Can use Bangladesh International Arbitration Centre (BIAC) or ICC arbitration.",
+      conclusion: "**Dispute Resolution for Foreign Investors:**
+
+**1. Commercial Arbitration:**
+• ICC, LCIA, SIAC, or BIAC arbitration
+• Seat: Dhaka, Singapore, London, or other
+• Bangladesh courts enforce foreign awards (New York Convention)
+
+**2. Investment Treaty Arbitration (ISDS):**
+• Bangladesh has BITs with 30+ countries
+• ICSID or UNCITRAL arbitration
+• Claims: expropriation, unfair treatment, breach of BIT
+
+**3. Bangladesh Courts:**
+• Commercial courts for contract disputes
+• High Court Division for constitutional/fundamental rights
+• Can be slow — arbitration preferred
+
+**Key BIT Protections:**
+• Fair and equitable treatment
+• Full protection and security
+• No expropriation without compensation
+• Free transfer of capital and profits
+
+📄 Arbitration clause drafting — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-bida-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-013",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["intellectual property bangladesh", "ip registration", "trademark bangladesh", "patent bangladesh", "copyright bangladesh", "ip foreign investor"],
+    question: "How does a foreign company protect intellectual property in Bangladesh?",
+    irac: {
+      issue: "What intellectual property protections exist in Bangladesh for foreign investors and how are patents, trademarks, and copyrights registered?",
+      rule: "Bangladesh IP laws: Patents and Designs Act 1911 (patents), Trademarks Act 2009 (trademarks), Copyright Act 2000 (copyright). Bangladesh is member of Paris Convention, Berne Convention, TRIPS Agreement. Foreign nationals can register IP same as Bangladeshis. No local presence required — can appoint local agent. Patent term: 16 years. Trademark: 7 years renewable. Copyright: Life + 50 years.",
+      application: "A German pharmaceutical company wants to patent a new drug in Bangladesh: File patent application with Department of Patents, Designs and Trademarks (DPDT) through local patent agent. Must claim priority within 12 months of first filing (Paris Convention). Trademark for brand name: File with DPDT, publication for opposition, registration if no opposition. Copyright for software: Automatic on creation but registration recommended with Copyright Office.",
+      conclusion: "**IP Protection in Bangladesh:**
+
+**Patents (Patents and Designs Act 1911):**
+• Term: 16 years from filing
+• Must be novel, non-obvious, industrially applicable
+• Priority claim within 12 months (Paris Convention)
+• Annual renewal fees required
+
+**Trademarks (Trademarks Act 2009):**
+• Initial term: 7 years
+• Renewable indefinitely
+• Multi-class application possible
+• Opposition period: 2 months from publication
+
+**Copyright (Copyright Act 2000):**
+• Life + 50 years
+• Automatic protection — registration optional but recommended
+• Software protected as literary work
+
+**Enforcement:**
+• Civil suit for injunction + damages
+• Criminal complaint for counterfeit goods
+• Customs recordal for border enforcement
+
+📄 IP registration package — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-bida-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-014",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["epz rules", "sez rules", "export processing zone", "special economic zone", "epz worker", "epz labour law", "sez labour"],
+    question: "What are the special rules for operating in EPZ or SEZ in Bangladesh?",
+    irac: {
+      issue: "What are the operational, labour, and regulatory differences between EPZ/SEZ and regular zones in Bangladesh?",
+      rule: "EPZ Authority Act 1980 + SEZ Act 2010: EPZ and SEZ offer special regulatory regimes. EPZ governed by Bangladesh Export Processing Zones Authority (BEPZA). SEZ governed by Bangladesh Economic Zones Authority (BEZA). Labour relations in EPZ governed by EPZ Labour Act 2019 (separate from general labour law). Workers' rights, unionisation, and dispute resolution have different rules in EPZ/SEZ.",
+      application: "A foreign RMG factory in Chattogram EPZ: Subject to BEPZA rules, not general labour law. Workers cannot form traditional trade unions — instead Workers' Welfare Associations (WWA) are permitted. Factory must comply with EPZ-specific building codes, environmental standards, and security requirements. SEZ investors get additional benefits: duty-free import for construction materials, one-stop service for permits, and dedicated utility connections.",
+      conclusion: "**EPZ/SEZ Special Rules:**
+
+**EPZ (Export Processing Zone):**
+• Governed by: BEPZA
+• Labour: EPZ Labour Act 2019
+• Unions: Workers' Welfare Associations (not traditional unions)
+• Tax: 10-year holiday
+• Import: Duty-free for capital goods, raw materials
+• Export: Mandatory (at least 80% production)
+
+**SEZ (Special Economic Zone):**
+• Governed by: BEZA
+• Labour: General labour law applies
+• Tax: 10-year holiday
+• Import: Duty-free for construction + capital goods
+• Domestic sale: Up to 20% permitted
+• One-stop service for all permits
+
+**Key Differences from Regular Zones:**
+• Dedicated utility supply
+• Simplified customs procedures
+• On-site labour inspection
+• Restricted domestic market access (EPZ)
+• Special dispute resolution mechanisms
+
+📄 EPZ/SEZ compliance guide — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-tax-holiday-001", "nrb-bida-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-015",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["power of attorney bangladesh", "poa nrb", "foreign poa", "attorney abroad", "nrb representative"],
+    question: "How can an NRB or foreign investor give Power of Attorney to someone in Bangladesh?",
+    irac: {
+      issue: "What are the requirements for executing a valid Power of Attorney (POA) from abroad for use in Bangladesh?",
+      rule: "Power of Attorney Act 2012: A POA can be executed abroad but must be properly authenticated for use in Bangladesh. For countries party to Hague Apostille Convention: Apostille from competent authority is sufficient. For non-Apostille countries: Notarization + attestation by Bangladesh Embassy/High Commission + Ministry of Foreign Affairs attestation in Bangladesh. POA must be registered at Sub-Registrar office in Bangladesh for immovable property transactions.",
+      application: "An NRB in USA wants to sell land in Bangladesh through brother: Execute POA before US notary public → Get Apostille from US Secretary of State (USA is Hague Convention member) → Send to Bangladesh → Brother registers POA at Sub-Registrar → Can execute sale deed. If NRB is in Saudi Arabia (non-Apostille): Notary → Saudi Ministry of Foreign Affairs → Bangladesh Embassy attestation → Bangladesh MFA attestation → Sub-Registrar registration.",
+      conclusion: "**Power of Attorney from Abroad:**
+
+**Hague Apostille Countries (USA, UK, Japan, Germany, etc.):**
+1. Notarize POA in home country
+2. Apostille from competent authority
+3. Send to Bangladesh agent
+4. Register at Sub-Registrar (for property)
+
+**Non-Apostille Countries (Saudi Arabia, UAE, etc.):**
+1. Notarize in home country
+2. Home country MFA attestation
+3. Bangladesh Embassy attestation
+4. Bangladesh MFA attestation
+5. Register at Sub-Registrar
+
+**POA Contents (Must Specify):**
+• Specific powers granted (general or special)
+• Property details (if for property)
+• Duration/validity period
+• Revocation clause
+• Witness signatures
+
+**Registration:**
+• Mandatory for immovable property transactions
+• Optional but recommended for other matters
+• Fee: BDT 1,000–5,000 depending on value
+
+📄 POA drafting and registration — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-property-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-016",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["nrb citizenship", "dual citizenship bangladesh", "nrb card", "citizenship amendment 2008", "overseas bangladeshi citizenship"],
+    question: "Can an NRB hold dual citizenship with Bangladesh?",
+    irac: {
+      issue: "What are the citizenship rules for Non-Resident Bangladeshis who have acquired foreign nationality?",
+      rule: "Bangladesh Citizenship (Amendment) Act 2008 + NRB Act: Bangladesh allows dual citizenship for Bangladeshis who acquire foreign nationality in select countries. Eligible countries: UK, USA, Canada, Australia, and other countries as notified by government. NRB must apply for dual citizenship within 5 years of acquiring foreign nationality. Citizens of India, Pakistan, and SAARC countries (except those specifically notified) generally NOT eligible for dual citizenship.",
+      application: "A Bangladeshi who naturalized as US citizen in 2020: Can apply for Bangladesh dual citizenship within 5 years (by 2025). Must surrender original Bangladesh passport and obtain dual citizenship certificate. Can then hold both passports. Can own property, vote (some restrictions), and invest freely. Cannot hold certain public offices. Must use Bangladesh passport when entering/exiting Bangladesh.",
+      conclusion: "**Dual Citizenship for NRBs:**
+
+**Eligible Countries:**
+✅ USA, UK, Canada, Australia
+✅ Other countries as government-notified
+❌ India, Pakistan (generally not eligible)
+
+**Application Process:**
+1. Apply within 5 years of acquiring foreign nationality
+2. Submit to Bangladesh Embassy/Ministry of Home Affairs
+3. Documents: Foreign passport, Bangladesh birth certificate, NID, proof of Bangladesh origin
+4. Fee: BDT 10,000–50,000
+5. Processing: 3–6 months
+
+**Rights with Dual Citizenship:**
+✅ Own property
+✅ Invest freely
+✅ Open bank accounts
+✅ Inherit property
+⚠️ Vote in national elections (some restrictions)
+❌ Hold public office (President, PM, MP, Judge)
+
+**Obligations:**
+• Use Bangladesh passport for Bangladesh entry/exit
+• Register with local police station if staying >90 days
+• Report change of address
+
+📄 Dual citizenship application — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-property-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-017",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["bangladesh bank fe circular", "foreign loan bangladesh", "external commercial borrowing", "ecb bangladesh", "foreign currency loan"],
+    question: "Can a Bangladesh company borrow from foreign lenders? What are the rules?",
+    irac: {
+      issue: "What are Bangladesh Bank's regulations on foreign currency borrowing by Bangladesh companies from international lenders?",
+      rule: "Bangladesh Bank FE Circulars: External Commercial Borrowing (ECB) is permitted subject to Bangladesh Bank approval. All foreign loans must be reported and registered with Bangladesh Bank. Interest rates, tenure, and end-use restrictions apply. Foreign loans for working capital generally not permitted — primarily for capital expenditure. Bangladesh Bank issues NOC (No Objection Certificate) for each foreign loan.",
+      application: "A Bangladesh power company wants USD 50 million loan from ADB: Must apply to Bangladesh Bank for ECB approval. Submit: project feasibility, loan terms, security details, repayment plan. Bangladesh Bank examines debt-equity ratio, foreign exchange exposure, and sector priority. If approved: execute loan agreement → Bangladesh Bank registration → funds remitted through AD bank. Interest payments and principal repayment require Bangladesh Bank NOC for outward remittance.",
+      conclusion: "**Foreign Borrowing (ECB) Rules:**
+
+**Permitted:**
+✅ Long-term loans for capital projects
+✅ Buyer/supplier credit for imports
+✅ Multilateral development bank loans (ADB, World Bank, IFC)
+✅ Foreign parent company loans to subsidiary
+
+**Restrictions:**
+❌ Working capital loans generally not allowed
+❌ Short-term borrowing (<1 year) restricted
+❌ Consumer loans prohibited
+❌ Real estate speculation loans prohibited
+
+**Approval Process:**
+1. Apply to Bangladesh Bank with project details
+2. Bangladesh Bank examines feasibility and forex impact
+3. NOC issued if approved
+4. Execute loan agreement
+5. Register with Bangladesh Bank
+6. Funds through AD bank only
+
+**Repayment:**
+• Interest: Bangladesh Bank NOC + tax clearance
+• Principal: Bangladesh Bank NOC required
+• All through AD banking channels
+
+📄 ECB application — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-bida-001", "nrb-repatriate-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-018",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["nrb tax return", "nrb tax filing", "overseas bangladeshi tax", "income tax nrb", "tax obligation bangladesh"],
+    question: "What are the tax obligations of an NRB who has income in Bangladesh?",
+    irac: {
+      issue: "What income tax liabilities do Non-Resident Bangladeshis have for Bangladesh-sourced income and how is tax residency determined?",
+      rule: "Income Tax Act 2023: Tax residency determined by physical presence — resident if in Bangladesh 182+ days in tax year or 365+ days in preceding 4 years + 90+ days in current year. NRBs (non-residents) taxed only on Bangladesh-sourced income. Residents taxed on worldwide income. Bangladesh-sourced income for NRBs: rental income, dividends, interest, capital gains on Bangladesh property, business income from Bangladesh operations. DTAA may reduce or eliminate tax on certain income types.",
+      application: "An NRB in UK owns a Dhaka apartment rented for BDT 30,000/month: Must file tax return in Bangladesh (online via e-TIN). Taxable rental income = gross rent minus 25% standard deduction (or actual expenses). Tax rate: progressive 0-30%. Can claim DTAA benefit if UK-Bangladesh treaty applies. Must obtain TIN (Taxpayer Identification Number) from NBR. If no other Bangladesh income — can file simplified return.",
+      conclusion: "**NRB Tax Obligations:**
+
+**Tax Residency Test:**
+• Resident: 182+ days in Bangladesh/year
+• OR: 365+ days in 4 preceding years + 90+ current year
+• Non-resident: Taxed only on Bangladesh income
+
+**Bangladesh-Sourced Income for NRBs:**
+• Rental income from Bangladesh property
+• Dividends from Bangladesh companies
+• Interest from Bangladesh banks
+• Capital gains on Bangladesh asset sales
+• Business income from Bangladesh operations
+
+**Tax Rates (Non-Resident):**
+• Same progressive rates as residents: 0-30%
+• WHT on dividends/interest: 20% (final tax)
+• Capital gains: 15% (property held >5 years) or 30% (<5 years)
+
+**Filing:**
+• Must obtain TIN from NBR
+• File annual tax return (online)
+• DTAA benefit: Submit tax residency certificate from home country
+
+**Exemptions:**
+• NFCD interest: Tax-free
+• Inward remittance: Not taxable
+• Gifts from abroad: Not taxable
+
+📄 NRB tax filing guide — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-dtaa-001", "nrb-account-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-019",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["nrb investment bond", "wage earners development bond", "us dollar premium bond", "nrb bond", "nrb savings bond"],
+    question: "What government bonds and savings schemes are available for NRBs?",
+    irac: {
+      issue: "What government-backed investment instruments are specifically available for Non-Resident Bangladeshis?",
+      rule: "Bangladesh Bank and National Savings Directorate offer NRB-specific investment instruments: Wage Earners Development Bond (WEDB) — BDT denominated, 5-year term, 12% interest (taxable). US Dollar Premium Bond (USDPB) — USD denominated, 3-year term, 7.5% interest (tax-free in Bangladesh). US Dollar Investment Bond (USDIB) — USD denominated, 3-year term, 6.5% interest (tax-free). Euro Premium Bond and Pound Sterling Premium Bond also available. All bonds purchasable through AD banks using remitted foreign currency.",
+      application: "An NRB in UAE wants to invest USD 10,000 in Bangladesh with guaranteed returns: Purchase US Dollar Premium Bond through AD bank in Bangladesh. Interest 7.5% per annum, tax-free in Bangladesh, paid semi-annually. Maturity: 3 years. Can encash early with reduced interest. Principal and interest freely repatriable in USD. Or invest in Wage Earners Development Bond for higher return (12%) but in BDT with currency risk.",
+      conclusion: "**NRB Government Bonds:**
+
+**US Dollar Premium Bond (USDPB):**
+• Currency: USD
+• Term: 3 years
+• Interest: 7.5% p.a. (tax-free in BD)
+• Minimum: USD 500
+• Repatriable: Yes, in USD
+
+**US Dollar Investment Bond (USDIB):**
+• Currency: USD
+• Term: 3 years
+• Interest: 6.5% p.a. (tax-free)
+• Minimum: USD 500
+• Repatriable: Yes
+
+**Wage Earners Development Bond (WEDB):**
+• Currency: BDT
+• Term: 5 years
+• Interest: 12% p.a. (taxable)
+• Minimum: BDT 5,000
+• Currency risk: Yes (BDT depreciation)
+
+**How to Purchase:**
+• Through any AD bank in Bangladesh
+• Using remitted foreign currency
+• Or from NFCD account
+• Application with passport copy, visa, remittance proof
+
+📄 NRB bond investment guide — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-account-001", "nrb-remittance-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "nrb-qa-020",
+    area: "nrb",
+    jurisdiction: "BD",
+    triggerKeywords: ["nrb inheritance", "nrb property inheritance", "inheritance bangladesh from abroad", "foreign heir bangladesh", "probate nrb"],
+    question: "How does an NRB claim inheritance of property in Bangladesh?",
+    irac: {
+      issue: "What is the legal process for an NRB to claim inherited property in Bangladesh from abroad?",
+      rule: "Inheritance law for NRBs is same as resident Bangladeshis — governed by Muslim Personal Law, Hindu Succession (customary), or Indian Succession Act 1865 (for Christians and Special Marriage Act couples). NRB heirs have equal rights. Process: Obtain legal heir certificate from Union Parishad/Ward Commissioner → Apply for mutation at Upazila Land Office → If dispute — file succession certificate suit in District Judge Court → Obtain probate if will exists → Register inherited property in own name. NRB can appoint Power of Attorney to handle process in Bangladesh.",
+      application: "NRB in Canada inherits father's land in Bangladesh: Must obtain legal heir certificate from local Union Parishad (or court order if dispute). Apply for mutation at Upazila Land Office — land records updated to NRB's name. If father left a will — must obtain probate from District Judge Court (mandatory for immovable property). If dispute among heirs — file partition suit in civil court. Can appoint brother as attorney via POA to handle all steps in Bangladesh.",
+      conclusion: "**NRB Inheritance Process:**
+
+**Step 1 — Legal Heir Certificate:**
+• From Union Parishad/Ward Commissioner
+• Lists all legal heirs
+• Or court declaration if dispute
+
+**Step 2 — Succession Certificate (if needed):**
+• For bank accounts, shares, movable property
+• District Judge Court
+• Required documents: death certificate, heir certificate, relationship proof
+
+**Step 3 — Probate (if will exists):**
+• Mandatory for immovable property under will
+• District Judge Court
+• Proves authenticity of will
+
+**Step 4 — Mutation:**
+• Upazila Land Office
+• Updates land records to heir's name
+• Fee: BDT 500–2,000
+
+**Step 5 — Registration:**
+• Inherited property should be registered in heir's name
+• Sub-Registrar office
+
+**POA Option:**
+• NRB can appoint local attorney for all steps
+• Apostille/embassy attestation required
+
+📄 NRB inheritance guide — NLC can assist.",
+    },
+    escalate: false,
+    relatedRules: ["nrb-property-001"],
+    lastVerified: "2025-03-09",
+  },
 ];
 
 const nrbModule: KnowledgeModule = {
   area: "nrb",
   label: "NRB Investment & Foreign Investment Law",
-  description: "10 Q&A covering BIDA registration, profit repatriation, WHT, DTAA, NRB remittance incentives, property rights, NFCD accounts, tax holidays, and foreign company structures in Bangladesh.",
+  description: "20 Q&A covering BIDA registration, profit repatriation, WHT, DTAA, NRB remittance incentives, property rights, NFCD accounts, tax holidays, foreign company structures, FX compliance, arbitration, IP protection, EPZ/SEZ rules, Power of Attorney, dual citizenship, foreign borrowing, NRB tax obligations, government bonds, and inheritance in Bangladesh."
   rules,
   qaBank,
 };

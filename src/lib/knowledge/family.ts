@@ -3,7 +3,7 @@
  * Bangladesh Family Law — Muslim, Hindu, Christian, Adibashi/Upojati
  * Validated by: Md Nazmul Islam (Bijoy), Advocate, Supreme Court of Bangladesh
  * Last updated: March 2026
- * Q&As: 18 (FAM-001 to FAM-018)
+ * Q&As: 30 (FAM-001 to FAM-030)
  */
 
 export interface FamilyQA {
@@ -878,6 +878,731 @@ PRACTICAL NOTE: RCR suits are used as a step before divorce proceedings. A Musli
 
 ব্যবহারিক: এই মামলা সাধারণত তালাকের আগের পদক্ষেপ। আদালত শারীরিকভাবে ফিরতে বাধ্য করতে পারে না।`
   },
+  {
+    id: "FAM-019",
+    topic: "general",
+    religion: "general",
+    is_free: true,
+    source_act: "Dowry Prohibition Act 1980 / Dowry Prohibition (Amendment) Act 2018",
+    source_section: "Section 2, 3, 4",
+    keywords: ["dowry", "dower", "joutuk", "dowry demand", "dowry death", "dowry harassment"],
+    question_en: "What is dowry and what are the legal consequences of demanding or giving dowry in Bangladesh?",
+    question_bn: "যৌতুক কী এবং বাংলাদেশে যৌতুক দাবি বা দেওয়ার আইনি পরিণতি কী?",
+    answer_en: `DOWRY (Joutuk) is any property or valuable security given or agreed to be given directly or indirectly by one party to a marriage to the other party, or by parents of either party, in connection with the marriage.
+
+DOWRY PROHIBITION ACT 1980 (as amended 2018):
+
+OFFENCES:
+1. DEMANDING DOWRY: Punishable with imprisonment up to 5 years OR fine up to BDT 50,000 OR both
+2. GIVING DOWRY: Punishable with imprisonment up to 1 year OR fine OR both
+3. ADVERTISING for dowry: Punishable with imprisonment up to 6 months OR fine
+4. DOWRY DEATH: If a woman dies within 7 years of marriage due to dowry-related cruelty — husband and in-laws can be charged with dowry death (up to life imprisonment)
+
+DOWRY DEATH (Section 11B):
+• Woman dies within 7 years of marriage
+• Death caused by burns, bodily injury, or unnatural circumstances
+• Soon before death, she was subjected to cruelty or harassment for dowry
+• PRESUMPTION: Court shall presume husband/relatives caused death
+
+COGNIZABLE & NON-BAILABLE:
+• Police can arrest without warrant
+• Bail is difficult — usually denied
+• Trial in Sessions Court
+
+PROTECTION FOR WOMEN:
+• Any person can report dowry demand to police
+• Court can issue protection order
+• Victim can seek shelter at One Stop Crisis Centre (OCC)
+• Legal aid available through NLASO (16430)
+
+PRACTICAL ADVICE:
+• Document all dowry demands (messages, recordings, witnesses)
+• Report to police immediately — delay weakens case
+• File case under Dowry Prohibition Act + Domestic Violence Act 2010 simultaneously
+• Seek interim maintenance and protection order from court`,
+    answer_bn: `যৌতুক হলো বিবাহের সাথে সম্পর্কিত কোনো সম্পত্তি বা মূল্যবান জিনিস দেওয়া বা দেওয়ার প্রতিশ্রুতি।
+
+যৌতুক নিরোধ আইন ১৯৮০ (সংশোধিত ২০১৮):
+
+অপরাধ: যৌতুক দাবি (৫ বছর কারাদণ্ড), যৌতুক দেওয়া (১ বছর কারাদণ্ড), যৌতুক মৃত্যু (যাবজ্জীবন)।
+
+যৌতুক মৃত্যু: বিবাহের ৭ বছরের মধ্যে নিষ্ঠুরতায় মৃত্যু — স্বামী ও শ্বশুরবাড়ির লোকদের বিরুদ্ধে মামলা।
+
+প্রতিরক্ষা: পুলিশে রিপোর্ট করুন, আদালতে সুরক্ষা আদেশ চান, ওয়ান স্টপ ক্রাইসিস সেন্টারে আশ্রয় নিন।`
+  },
+
+  {
+    id: "FAM-020",
+    topic: "general",
+    religion: "general",
+    is_free: true,
+    source_act: "Guardians and Wards Act 1890",
+    source_section: "Section 7, 12, 17",
+    keywords: ["guardianship", "legal guardian", "minor", "child guardian", "property guardian", "natural guardian"],
+    question_en: "Who is the legal guardian of a child in Bangladesh and how is guardianship appointed?",
+    question_bn: "বাংলাদেশে শিশুর আইনি অভিভাবক কে এবং অভিভাবকত্ব কীভাবে নিয়োগ করা হয়?",
+    answer_en: `GUARDIANSHIP in Bangladesh is governed by the Guardians and Wards Act 1890.
+
+TYPES OF GUARDIANSHIP:
+
+1. NATURAL GUARDIAN:
+• Father is the natural guardian of minor children
+• Mother becomes natural guardian if father is dead, unfit, or absent
+• Natural guardian has authority over person AND property of minor
+
+2. TESTAMENTARY GUARDIAN:
+• Appointed by will of natural guardian (father or mother)
+• Takes effect after death of appointing parent
+• Can be appointed for person, property, or both
+
+3. COURT-APPOINTED GUARDIAN:
+• District Judge appoints when no natural guardian exists or natural guardian is unfit
+• Application filed under Guardians and Wards Act Section 7
+• Court considers: welfare of child, character of applicant, wishes of deceased parent, age/sex/religion of child
+
+WHO CAN APPLY FOR GUARDIANSHIP:
+• Any person desiring to be appointed guardian
+• Relative of the minor
+• Collector of the district
+• Friend of the minor
+
+COURT CONSIDERATIONS (Section 17):
+• Welfare of the minor is PARAMOUNT
+• Age, sex, and religion of minor
+• Character and capacity of proposed guardian
+• Wishes of deceased parents (if any)
+• Existing relationships and affections
+• Any existing custody orders
+
+POWERS OF GUARDIAN:
+• Custody and upbringing of child
+• Education and religious instruction
+• Management of minor's property (subject to court supervision for significant transactions)
+• Cannot transfer minor's immovable property without court permission
+
+REMOVAL OF GUARDIAN:
+• Court can remove guardian for: abuse of trust, failure in duty, incapacity, ill-treatment, or if removal is in minor's interest`,
+    answer_bn: `অভিভাবকত্ব: Guardians and Wards Act ১৮৯০।
+
+প্রকার: প্রাকৃতিক অভিভাবক (বাবা), উইলের মাধ্যমে নিযুক্ত, আদালত কর্তৃক নিযুক্ত।
+
+আদালত বিবেচনা করে: শিশুর কল্যাণ, আবেদনকারীর চরিত্র, মৃত পিতামাতার ইচ্ছা।
+
+অভিভাবকের ক্ষমতা: লালনপালন, শিক্ষা, সম্পত্তি ব্যবস্থাপনা (আদালতের অনুমতি ছাড়া জমি বিক্রি করা যাবে না)।`
+  },
+
+  {
+    id: "FAM-021",
+    topic: "general",
+    religion: "general",
+    is_free: false,
+    source_act: "Adoption Regulation Act 2022 / Guardians and Wards Act 1890",
+    source_section: "Adoption Regulation Act 2022",
+    keywords: ["adoption", "adopt", "foster", "dattak", "child adoption", "adopt child bangladesh"],
+    question_en: "What is the law on child adoption in Bangladesh?",
+    question_bn: "বাংলাদেশে শিশু দত্তক গ্রহণের আইন কী?",
+    answer_en: `ADOPTION LAW IN BANGLADESH:
+
+Bangladesh does NOT have a comprehensive adoption law that creates full parent-child legal relationship. However, there are limited mechanisms:
+
+1. ADOPTION REGULATION ACT 2022:
+• Governs inter-country adoption (foreigners adopting Bangladeshi children)
+• Regulated by Ministry of Social Welfare
+• Only for abandoned, orphaned, or surrendered children
+• Requires court approval and home study
+• Very restrictive — few adoptions granted annually
+
+2. DE FACTO ADOPTION (Guardianship under GWA 1890):
+• Most common form in Bangladesh
+• Person applies to District Judge for guardianship of child
+• Court appoints as guardian under Guardians and Wards Act 1890
+• Does NOT create full parent-child relationship
+• Child does NOT inherit as natural child
+• Guardian can raise child but legal status remains different
+
+3. MUSLIM LAW — NO ADOPTION:
+• Classical Muslim law does not recognise adoption (kafala only — foster care)
+• Adopted child has NO inheritance rights from adoptive parents under Muslim law
+• Can make will (wasiyyat) for adopted child up to 1/3 of estate
+
+4. HINDU LAW:
+• Some Hindu communities recognise traditional adoption (dattak)
+• Requires religious ceremony and community acceptance
+• Adopted child gets inheritance rights in some communities
+
+PRACTICAL ADVICE:
+• For inheritance: Make will in favour of adopted child (Muslim: max 1/3)
+• For custody: Apply for guardianship under GWA 1890
+• Foreign adoption: Contact Ministry of Social Welfare — process takes 2+ years`,
+    answer_bn: `বাংলাদেশে পূর্ণাঙ্গ দত্তক আইন নেই।
+
+আন্তর্জাতিক দত্তক: Adoption Regulation Act ২০২২ — সীমিত ও জটিল।
+
+বাস্তব দত্তক: Guardians and Wards Act ১৮৯০ — অভিভাবকত্ব নিয়োগ। কিন্তু দত্তক সন্তানের উত্তরাধিকারের অধিকার নেই (মুসলিম আইনে)।
+
+মুসলিম আইন: দত্তক স্বীকৃত নয়। ওয়াসিয়াতের মাধ্যমে সর্বোচ্চ ১/৩ সম্পত্তি দেওয়া যায়।`
+  },
+
+  {
+    id: "FAM-022",
+    topic: "maintenance",
+    religion: "general",
+    is_free: true,
+    source_act: "Family Courts Ordinance 1985 / Code of Civil Procedure 1908",
+    source_section: "Section 9 FCO / Order 21 CPC",
+    keywords: ["maintenance enforcement", "maintenance not paid", "execute maintenance order", "attachment salary", "contempt maintenance"],
+    question_en: "What can I do if my ex-husband refuses to pay court-ordered maintenance?",
+    question_bn: "আদালতের ভরণপোষণ আদেশ অমান্য করলে কী করব?",
+    answer_en: `ENFORCEMENT OF MAINTENANCE ORDERS IN BANGLADESH:
+
+If a husband refuses to pay court-ordered maintenance, the wife has several enforcement mechanisms:
+
+1. EXECUTION APPLICATION (Order 21 CPC):
+• File execution petition in same Family Court
+• Court can attach husband's:
+  - Bank accounts
+  - Salary/wages (up to 50% can be attached from government salary)
+  - Movable property (vehicles, jewellery, livestock)
+  - Immovable property (land, house — can be sold after attachment)
+
+2. ATTACHMENT OF SALARY:
+• For government employees: Court sends garnishee notice to employer
+• Employer must deduct maintenance from salary and pay to court
+• Up to 50% of salary can be attached for maintenance
+
+3. CONTEMPT OF COURT:
+• Willful disobedience of court order = contempt
+• Punishment: Imprisonment up to 6 months OR fine OR both
+• Husband can be sent to jail until he purges contempt (pays)
+
+4. PROCLAMATION AND ATTACHMENT:
+• If husband absconds to avoid payment
+• Court issues proclamation requiring appearance
+• Property can be attached even in his absence
+
+5. INTERIM MAINTENANCE:
+• Even during appeal, wife can claim interim maintenance
+• Court can order immediate payment pending final disposal
+
+PRACTICAL STEPS:
+1. File execution petition immediately after default
+2. Provide husband's employment details, bank accounts, property information
+3. Request specific attachment (salary, bank account)
+4. If husband hides assets — request court commission for discovery
+5. For persistent non-payment — file contempt petition
+
+TIME LIMIT: Execution application should be filed within 3 years of decree, but maintenance is recurring — each missed payment is a fresh cause of action`,
+    answer_bn: `ভরণপোষণ আদেশ বাস্তবায়ন:
+
+১. কার্যকরণ আবেদন (CPC Order ২১): ব্যাংক অ্যাকাউন্ট, বেতন, সম্পত্তি জব্দ।
+২. বেতন জব্দ: সরকারি চাকরিজীবীর বেতন থেকে ৫০% কাটা যায়।
+৩. আদালত অবমাননা: ৬ মাস কারাদণ্ড বা জরিমানা।
+৪. অন্তর্বর্তী ভরণপোষণ: আপিল চলাকালীনও পাওয়া যায়।
+
+পদক্ষেপ: কার্যকরণ আবেদন দ্রুত দাখিল করুন, স্বামীর সম্পদের তথ্য দিন।`
+  },
+
+  {
+    id: "FAM-023",
+    topic: "marriage",
+    religion: "general",
+    is_free: true,
+    source_act: "Special Marriage Act 1872",
+    source_section: "Section 4, 5, 6",
+    keywords: ["interfaith marriage", "inter religion marriage", "hindu muslim marriage", "christian muslim marriage", "civil marriage", "special marriage"],
+    question_en: "Can people of different religions marry in Bangladesh? What is the Special Marriage Act?",
+    question_bn: "বাংলাদেশে ভিন্ন ধর্মের মানুষ বিবাহ করতে পারেন? স্পেশাল ম্যারেজ অ্যাক্ট কী?",
+    answer_en: `INTERFAITH MARRIAGE IN BANGLADESH:
+
+Bangladesh law recognises interfaith marriage through the SPECIAL MARRIAGE ACT 1872.
+
+WHO CAN MARRY UNDER SPECIAL MARRIAGE ACT:
+• Persons of different religions
+• Persons who do not wish to marry under personal religious law
+• Persons who renounce their religion for marriage purposes
+
+REQUIREMENTS:
+1. One party must give NOTICE to Marriage Registrar (21 days before marriage)
+2. Both parties must sign DECLARATION stating:
+   - They do not profess Hindu, Muslim, Christian, Parsi, Jewish, or Buddhist religion
+   - OR they intend to marry under this Act despite religious difference
+3. Minimum age: 21 (male), 18 (female)
+4. Neither party has living spouse
+5. Parties not within prohibited degrees (consanguinity)
+
+PROCEDURE:
+1. Notice to Marriage Registrar of district where one party has resided 30+ days
+2. 21-day waiting period (for objections)
+3. Marriage solemnized before Registrar and 3 witnesses
+4. Certificate of marriage issued
+5. Marriage registered
+
+EFFECT OF SPECIAL MARRIAGE:
+• Marriage is CIVIL — not governed by personal religious law
+• Parties can opt to continue under personal law for some matters (by declaration)
+• Succession: Governed by Indian Succession Act 1865 (as applied to Bangladesh)
+• Divorce: Governed by Divorce Act 1869
+
+PRACTICAL CHALLENGES:
+• Social and family opposition is common
+• Some Registrars refuse to perform interfaith marriages
+• Conversion to Islam is sometimes used as alternative (but has legal complications)
+• No specific law protecting interfaith couples from family violence
+
+IMPORTANT: Marriage under Special Marriage Act does NOT require conversion. Both parties retain their original religion.`,
+    answer_bn: `বাংলাদেশে Special Marriage Act ১৮৭২ অনুযায়ী ভিন্ন ধর্মের বিবাহ সম্ভব।
+
+প্রয়োজন: ২১ দিনের নোটিশ, নিবন্ধকের সামনে বিবাহ, ৩ সাক্ষী।
+
+বৈবাহিক অবস্থা: নাগরিক বিবাহ — ব্যক্তিগত ধর্মীয় আইন প্রযোজ্য নয়। উত্তরাধিকার: Indian Succession Act ১৮৬৫। তালাক: Divorce Act ১৮৬৯।
+
+বাস্তব চ্যালেঞ্জ: সামাজিক বিরোধিতা, কিছু নিবন্ধক অস্বীকার করেন, পারিবারিক সহিংসতার বিশেষ সুরক্ষা আইন নেই।`
+  },
+
+  {
+    id: "FAM-024",
+    topic: "general",
+    religion: "general",
+    is_free: false,
+    source_act: "Succession Act 1925 / Muslim Personal Law",
+    source_section: "Succession Act 1925",
+    keywords: ["will", "testament", "wasiyyat", "property will", "write will", "inheritance will"],
+    question_en: "Can I write a will in Bangladesh? What are the rules for different religions?",
+    question_bn: "বাংলাদেশে আমি ওয়াসিয়াত/উইল লিখতে পারব? বিভিন্ন ধর্মের নিয়ম কী?",
+    answer_en: `WILL (Wasiyyat) LAW IN BANGLADESH — varies by religion:
+
+MUSLIM WILL:
+• Governed by Muslim Personal Law
+• ANY Muslim of sound mind and adult (18+) can make will
+• Must be in writing (recommended) — oral will valid only in very limited circumstances
+• Must be signed by testator and 2 witnesses
+• LIMITATION: Can bequeath MAXIMUM 1/3 of estate to non-heirs
+• CANNOT disinherit legal heirs (Quranic sharers) — will for heirs only valid with their consent
+• Can give to charity, friends, adopted children, institutions
+• Registration: Optional but recommended at Sub-Registry
+
+HINDU WILL:
+• Governed by Succession Act 1925 (for wills) + Hindu customary law
+• Any Hindu of sound mind and adult can make will
+• Must be in writing, signed by testator, attested by 2 witnesses
+• Can dispose of ENTIRE property (no 1/3 limit like Muslim law)
+• Can disinherit legal heirs
+• Registration recommended
+
+CHRISTIAN WILL:
+• Governed by Succession Act 1925
+• Any Christian of sound mind and adult
+• Must be in writing, signed by testator, attested by 2 witnesses
+• Can dispose of entire property
+• Can disinherit heirs
+
+GENERAL FORMALITIES (Succession Act 1925):
+• Written document
+• Signed by testator (or someone at testator's direction in testator's presence)
+• Attested by 2 witnesses who see testator sign
+• Witnesses should not be beneficiaries (recommended)
+
+REVOCATION:
+• Will can be revoked anytime during lifetime by new will or destruction
+• Marriage of Muslim testator does NOT revoke will (unlike some jurisdictions)
+
+PROBATE:
+• After death, will must be proved in court (District Judge Court) for immovable property
+• Executor applies for probate — court verifies authenticity
+• Without probate, immovable property cannot be transferred based on will
+
+PRACTICAL ADVICE:
+• Use lawyer-drafted will to avoid ambiguity
+• Register at Sub-Registry for added security
+• Keep original safe, give copy to trusted person
+• Review periodically and update`,
+    answer_bn: `ওয়াসিয়াত/উইল — ধর্ম অনুযায়ী ভিন্ন নিয়ম:
+
+মুসলিম: সর্বোচ্চ ১/৩ সম্পত্তি অ-উত্তরাধিকারকে দেওয়া যায়। আইনি উত্তরাধিকারকে বাদ দেওয়া যাবে না। লিখিত, ২ সাক্ষী।
+
+হিন্দু: সম্পূর্ণ সম্পত্তি দান করা যায়। উত্তরাধিকারকে বাদ দেওয়া যায়।
+
+খ্রিস্টান: Succession Act ১৯২৫ অনুযায়ী — সম্পূর্ণ সম্পত্তি।
+
+সাধারণ: লিখিত, স্বাক্ষর, ২ সাক্ষী। নিবন্ধন সুপারিশযোগ্য। মৃত্যুর পর probate প্রয়োজন (অচল সম্পত্তির জন্য)।`
+  },
+
+  {
+    id: "FAM-025",
+    topic: "custody",
+    religion: "general",
+    is_free: true,
+    source_act: "Guardians and Wards Act 1890 / Family Courts Ordinance 1985",
+    source_section: "Section 17 GWA / Section 5 FCO",
+    keywords: ["visitation rights", "access", "father see child", "mother see child", "child access", "parental access"],
+    question_en: "What are the visitation/access rights of a non-custodial parent in Bangladesh?",
+    question_bn: "বাংলাদেশে অ-হেফাজতকারী পিতামাতার সন্তান দেখার অধিকার কী?",
+    answer_en: `VISITATION/ACCESS RIGHTS OF NON-CUSTODIAL PARENT:
+
+Bangladesh law recognises that children benefit from contact with BOTH parents. Even if one parent has physical custody, the non-custodial parent has RIGHTS and OBLIGATIONS.
+
+FATHER'S ACCESS RIGHTS (when mother has custody):
+• Regular visitation — typically weekends, holidays, school vacations
+• Right to information about child's education, health, welfare
+• Right to be consulted on major decisions (education, religion, medical)
+• Cannot be denied access without court order
+
+MOTHER'S ACCESS RIGHTS (when father has custody):
+• Same rights as father above
+• Particularly important for young children — courts encourage frequent contact
+
+COURT CAN ORDER:
+• Specific visitation schedule (e.g., every Saturday 10am–6pm)
+• Holiday and vacation access
+• Telephone/video call rights
+• Right to attend school events and medical appointments
+• Prohibition on taking child outside jurisdiction without consent
+
+DENIAL OF ACCESS:
+• Custodial parent CANNOT unilaterally deny access
+• If access is denied — non-custodial parent can:
+  1. File execution petition in Family Court
+  2. Seek contempt of court if access was court-ordered
+  3. Apply for variation of custody if denial is persistent and harmful
+
+CHILD'S WISHES:
+• Courts increasingly consider child's views, especially for children 12+
+• Child's welfare is paramount — if access causes distress, court may limit or supervise
+
+SUPERVISED ACCESS:
+• In cases of domestic violence, substance abuse, or risk to child
+• Access occurs at designated centre or in presence of third party
+• Graduated approach — may become unsupervised over time
+
+MODIFICATION:
+• Either parent can apply to Family Court to vary access arrangements
+• Change in circumstances (relocation, remarriage, child's needs) justifies review`,
+    answer_bn: `অ-হেফাজতকারী পিতামাতার সন্তান দেখার অধিকার স্বীকৃত।
+
+অধিকার: নিয়মিত দেখা, শিক্ষা-স্বাস্থ্য তথ্য, বড় সিদ্ধান্তে পরামর্শ।
+
+আদালত আদেশ দিতে পারে: নির্দিষ্ট সময়সূচি, ছুটিতে দেখা, ফোন/ভিডিও কল।
+
+অ্যাক্সেস অস্বীকার: একতরফাভাবে অস্বীকার করা যাবে না। আদালতে কার্যকরণ বা আদালত অবমাননার আবেদন করতে পারেন।
+
+পরিবর্তন: পরিস্থিতি পরিবর্তন হলে পারিবারিক আদালতে আবেদন করুন।`
+  },
+
+  {
+    id: "FAM-026",
+    topic: "general",
+    religion: "general",
+    is_free: true,
+    source_act: "Family Courts Ordinance 1985 / Code of Civil Procedure 1908",
+    source_section: "Section 10 FCO / Order 32A CPC",
+    keywords: ["family court procedure", "how to file family case", "family case steps", "family court process", "family litigation"],
+    question_en: "What is the step-by-step procedure for filing a case in Family Court in Bangladesh?",
+    question_bn: "বাংলাদেশে পারিবারিক আদালতে মামলা দায়েরের ধাপগুলো কী?",
+    answer_en: `STEP-BY-STEP FAMILY COURT PROCEDURE:
+
+STEP 1: PRE-FILING CONSULTATION
+• Consult with family law advocate
+• Gather documents (marriage certificate, kabinanama, birth certificates, evidence)
+• Determine correct court jurisdiction (where wife resides OR where marriage took place)
+
+STEP 2: DRAFT PLAINT
+• Advocate drafts plaint (written statement of case)
+• Includes: parties, facts, cause of action, relief sought
+• Court fee: BDT 100–500 depending on relief
+
+STEP 3: FILE IN FAMILY COURT
+• Submit plaint to Assistant Judge Court (Family Court)
+• Court assigns case number
+• Date fixed for first hearing
+
+STEP 4: SERVICE OF NOTICE
+• Court sends notice to defendant (spouse)
+• If defendant avoids service — substituted service by publication
+• If defendant absent — ex parte proceedings possible
+
+STEP 5: MANDATORY MEDIATION (Section 10 FCO)
+• Court refers parties to mediation
+• Trained mediator attempts settlement
+• If settlement reached — recorded as court decree
+• If mediation fails — case proceeds to trial
+
+STEP 6: WRITTEN STATEMENT & REPLICATION
+• Defendant files written statement (defence)
+• Plaintiff files replication (reply to defence)
+• Issues framed by court
+
+STEP 7: EVIDENCE & TRIAL
+• Plaintiff evidence (affidavit + oral examination)
+• Defendant evidence
+• Cross-examination of both sides
+• Documentary evidence
+
+STEP 8: ARGUMENTS & JUDGMENT
+• Both sides present oral arguments
+• Court delivers judgment
+• Decree issued
+
+STEP 9: APPEAL (if dissatisfied)
+• Appeal to District Judge within 30 days
+• Then to High Court Division
+
+TIME FRAME:
+• Simple cases: 6–12 months
+• Contested cases: 2–5 years
+• Expedited in domestic violence and child custody matters`,
+    answer_bn: `পারিবারিক আদালতে মামলার ধাপ:
+
+১. আইনজীবীর পরামর্শ ও নথি সংগ্রহ
+২. প্ল্যান্ট খসড়া — আদালতে দাখিল
+৩. বিবাদীকে নোটিশ পাঠানো
+৪. বাধ্যতামূলক সালিশি — সমঝোতা হলে রেকর্ড, না হলে বিচার
+৫. লিখিত বিবৃতি ও পাল্টা জবাব
+৬. প্রমাণ ও বিচারকাজ — সাক্ষ্য, জেরা
+৭. যুক্তি উপস্থাপন ও রায়
+৮. আপিল: জেলা জজ → হাইকোর্ট
+
+সময়: সহজ মামলা ৬–১২ মাস, জটিল ২–৫ বছর।`
+  },
+
+  {
+    id: "FAM-027",
+    topic: "general",
+    religion: "general",
+    is_free: false,
+    source_act: "Code of Criminal Procedure 1898 / Family Courts Ordinance 1985",
+    source_section: "Section 125 CrPC / Section 5 FCO",
+    keywords: ["crpc 125", "maintenance crpc", "wife maintenance criminal", "poor wife maintenance", "quick maintenance"],
+    question_en: "What is the difference between maintenance under CrPC Section 125 and Family Court?",
+    question_bn: "CrPC ধারা ১২৫ ও পারিবারিক আদালতে ভরণপোষণের পার্থক্য কী?",
+    answer_en: `MAINTENANCE UNDER CrPC SECTION 125 vs FAMILY COURT:
+
+CRPC SECTION 125 (Magistrate Court):
+• PURPOSE: Quick relief for destitute wives, children, parents
+• WHO CAN CLAIM: Wife (including divorced wife during iddat), minor children, aged parents
+• STANDARD: Person must be unable to maintain themselves
+• HUSBAND'S DEFENCE: Can prove wife is living in adultery, or has sufficient means
+• AMOUNT: Up to BDT 500 per month (fixed by law — very low, outdated)
+• SPEED: Faster — Magistrate can order within weeks
+• NO COURT FEE: Free to file
+• ENFORCEMENT: Non-payment = imprisonment up to 1 month per default
+• LIMITATION: Only for persons who cannot maintain themselves — not for affluent claimants
+
+FAMILY COURT (Family Courts Ordinance 1985):
+• PURPOSE: Comprehensive family dispute resolution
+• WHO CAN CLAIM: Wife, children, parents — regardless of financial status
+• STANDARD: Based on husband's income, social status, wife's needs
+• AMOUNT: No fixed limit — court has discretion (can be BDT 5,000–50,000+ per month)
+• SPEED: Slower — 6 months to 2 years
+• COURT FEE: BDT 100–500
+• ENFORCEMENT: Execution petition, attachment, contempt
+• ALSO COVERS: Denmahr, custody, divorce, restitution of conjugal rights
+
+WHICH TO CHOOSE:
+• Need quick, emergency relief AND have no means → CrPC 125
+• Need substantial maintenance AND can wait → Family Court
+• Need denmahr, custody, or divorce → Family Court only
+• Can file BOTH simultaneously — CrPC 125 for interim, Family Court for final
+
+IMPORTANT: CrPC 125 maintenance ceases if wife remarries or if divorced wife's iddat period ends (for Muslims).`,
+    answer_bn: `CrPC ১২৫ বনাম পারিবারিক আদালত:
+
+CrPC ১২৫: দ্রুত, বিনামূল্যে, সর্বোচ্চ ৫০০ টাকা/মাস, দরিদ্রদের জন্য।
+
+পারিবারিক আদালত: ব্যাপক, ধীর, সীমাহীন পরিমাণ, সবার জন্য।
+
+কী করবেন: জরুরি ও দরিদ্র হলে CrPC ১২৫; পূর্ণাঙ্গ সমাধান চাইলে পারিবারিক আদালত। উভয় একসাথে করা যায়।`
+  },
+
+  {
+    id: "FAM-028",
+    topic: "general",
+    religion: "general",
+    is_free: true,
+    source_act: "Muslim Family Laws Ordinance 1961 / Hindu Married Women's Right to Separate Residence Act 1946",
+    source_section: "Section 6 MFLO / Section 2 HMWRA",
+    keywords: ["separation", "live separately", "wife leave husband", "husband leave wife", "separate residence", "desertion"],
+    question_en: "Can a wife live separately from her husband without divorce in Bangladesh?",
+    question_bn: "বাংলাদেশে স্ত্রী তালাক ছাড়া স্বামীর থেকে আলাদা থাকতে পারেন?",
+    answer_en: `SEPARATE RESIDENCE WITHOUT DIVORCE:
+
+A wife CAN live separately from her husband without obtaining divorce, but the legal consequences vary by religion and circumstances.
+
+MUSLIM WIFE:
+• Right to separate residence if:
+  1. Husband fails to pay prompt denmahr (can refuse cohabitation until paid — habs-e-nafs)
+  2. Husband is cruel or abusive
+  3. Husband fails to provide maintenance
+  4. Husband marries another wife without permission
+  5. Husband is impotent
+• Can file for maintenance while living separately
+• Can file for divorce on these grounds
+• Living separately without valid reason may affect maintenance claim
+
+HINDU WIFE:
+• Under Hindu Married Women's Right to Separate Residence and Maintenance Act 1946:
+  - Can live separately and claim maintenance if:
+    1. Husband has another wife living
+    2. Husband has deserted her
+    3. Husband is guilty of cruelty
+    4. Husband has leprosy
+    5. Husband converted to another religion
+    6. Husband has treated her with such cruelty as to cause reasonable apprehension of injury
+
+CHRISTIAN WIFE:
+• Can seek judicial separation (not full divorce) under Divorce Act 1869
+• Judicial separation allows living apart while marriage remains valid
+• Can claim maintenance during separation
+
+PRACTICAL CONSIDERATIONS:
+• Separate residence without court order does NOT automatically entitle to maintenance
+• Must prove valid grounds
+• Property rights in matrimonial home: wife has right to residence even if she leaves (in some circumstances)
+• For safety: Obtain protection order under Domestic Violence Act 2010
+• Document reasons for separation — needed for future legal proceedings
+
+CHILDREN:
+• Wife can take children with her when separating
+• Father still has guardianship rights
+• Custody dispute may arise — file in Family Court`,
+    answer_bn: `তালাক ছাড়া আলাদা থাকা সম্ভব, তবে আইনি পরিণতি ধর্ম অনুযায়ী ভিন্ন।
+
+মুসলিম স্ত্রী: তাৎক্ষণিক মোহর না পেলে, নিষ্ঠুরতা, ভরণপোষণ না দিলে আলাদা থাকতে পারেন।
+
+হিন্দু স্ত্রী: Hindu Married Women's Right Act ১৯৪৬ অনুযায়ে নিষ্ঠুরতা, পরিত্যাগ, অন্য স্ত্রী থাকলে আলাদা থাকতে ও ভরণপোষণ দাবি করতে পারেন।
+
+খ্রিস্টান: Divorce Act ১৮৬৯ অনুযায়ে বিচারিক পৃথকীকরণ (judicial separation) সম্ভব।
+
+প্রয়োজনীয়: সুরক্ষা আদেশ, কারণ নথিভুক্ত করা, পারিবারিক আদালতে মামলা।`
+  },
+
+  {
+    id: "FAM-029",
+    topic: "marriage",
+    religion: "muslim",
+    is_free: true,
+    source_act: "Muslim Family Laws Ordinance 1961",
+    source_section: "Section 5",
+    keywords: ["kabinanama", "marriage contract", "nikah", "nikahnama", "marriage registration", "muslim marriage requirements"],
+    question_en: "What is a Kabinanama and what are the legal requirements for a valid Muslim marriage in Bangladesh?",
+    question_bn: "কাবিননামা কী এবং বাংলাদেশে বৈধ মুসলিম বিবাহের আইনি প্রয়োজনীয়তা কী?",
+    answer_en: `VALID MUSLIM MARRIAGE REQUIREMENTS IN BANGLADESH:
+
+ESSENTIAL ELEMENTS:
+1. OFFER (Ijab): Bride's guardian (wali) or bride herself proposes marriage
+2. ACCEPTANCE (Qabul): Groom accepts
+3. CONSIDERATION (Mahr): Denmahr fixed and agreed
+4. WITNESSES: Two adult Muslim witnesses
+5. CAPACITY: Both parties must be adult (18+), of sound mind, not within prohibited degrees
+
+KABINANAMA (Marriage Contract):
+• LEGAL DOCUMENT recording all terms of marriage
+• Registered with Union Parishad/Kazi Office
+• Contains: names, ages, denmahr amount (prompt and deferred), conditions, signatures of parties and witnesses
+• Must be signed by bride, groom, wali, kazi, and 2 witnesses
+
+REGISTRATION (Mandatory under MFLO 1961):
+• Marriage must be registered with Kazi/Union Parishad
+• Unregistered marriage is NOT void but creates legal complications
+• Registration required for: passport, visa, inheritance, divorce proceedings, maintenance claims
+• Late registration possible with penalty and additional procedure
+
+DENMAHR IN KABINANAMA:
+• Must specify prompt mahr (payable on demand) and deferred mahr (payable on divorce/death)
+• Minimum denmahr: No fixed minimum — but should be reasonable
+• Can include property, gold, cash, or any valuable
+
+CONDITIONS IN KABINANAMA:
+• Parties can add conditions (e.g., husband will not take second wife, will live in specific city)
+• Conditions must be: lawful, reasonable, and not against Islamic principles
+• Breach of condition may give wife right to divorce
+
+CONSEQUENCES OF UNREGISTERED MARRIAGE:
+• Difficult to prove marriage in court
+• Cannot claim maintenance or denmahr easily
+• Children may face legitimacy issues
+• Cannot obtain legal documents based on marriage
+
+PRACTICAL ADVICE:
+• Always register marriage immediately
+• Keep original kabinanama safe
+• Ensure denmahr is realistic and specified clearly
+• Consider adding protective conditions`,
+    answer_bn: `বৈধ মুসলিম বিবাহের প্রয়োজনীয়তা:
+
+ইজাব, কবুল, মোহর, ২ সাক্ষী, প্রাপ্তবয়স্ক ও সুস্থ মন।
+
+কাবিননামা: আইনি নথি — ইউনিয়ন পরিষদ/কাজী অফিসে নিবন্ধন বাধ্যতামূলক।
+
+নিবন্ধন না করলে: আদালতে বিবাহ প্রমাণ কঠিন, ভরণপোষণ-দেনমোহর দাবি জটিল, সন্তানের বৈধতা সমস্যা।
+
+কাবিননামায়: তাৎক্ষণিক ও বিলম্বিত মোহর স্পষ্ট উল্লেখ করুন, সুরক্ষামূলক শর্ত যোগ করতে পারেন।`
+  },
+
+  {
+    id: "FAM-030",
+    topic: "general",
+    religion: "general",
+    is_free: false,
+    source_act: "Family Courts Ordinance 1985 / Limitation Act 1908",
+    source_section: "Section 5 FCO / Article 104 Limitation Act",
+    keywords: ["time limit", "limitation", "when to file", "deadline family case", "how long to file", "prescription"],
+    question_en: "What is the time limit for filing family law cases in Bangladesh?",
+    question_bn: "বাংলাদেশে পারিবারিক মামলা দায়েরের সময়সীমা কত?",
+    answer_en: `TIME LIMITS (LIMITATION) FOR FAMILY CASES:
+
+LIMITATION ACT 1908 applies to family cases filed in civil courts:
+
+DIVORCE / DISSOLUTION OF MARRIAGE:
+• No fixed limitation period
+• Should be filed within REASONABLE TIME after cause arises
+• Delay may be excused if justified (e.g., attempts at reconciliation)
+
+MAINTENANCE:
+• No fixed limitation for future maintenance
+• Arrears (past due maintenance): 3 years from date each payment fell due
+• Each missed payment is a separate cause of action
+
+DENMAHR (MAHR):
+• Prompt mahr: No limitation while marriage subsists
+• Deferred mahr: 3 years from date it becomes due (divorce or death)
+• If marriage still subsisting — can claim anytime
+
+RESTORATION OF CONJUGAL RIGHTS:
+• No fixed limitation — but should file promptly after separation
+• Delay weakens case (implies acceptance of separation)
+
+CHILD CUSTODY:
+• No fixed limitation
+• Should file promptly — delay may be seen as acquiescence
+• Child's welfare is paramount — courts act even with delay if child at risk
+
+GUARDIANSHIP:
+• No fixed limitation for appointment of guardian
+• But delay may affect court's view of applicant's commitment
+
+GENERAL RULE:
+• Family Court can condone (excuse) delay if sufficient cause shown
+• Must explain delay in application
+• Courts are generally lenient in family matters
+
+ENFORCEMENT OF DECREES:
+• Execution petition: 3 years from date of decree
+• Each installment of maintenance: 3 years from due date
+• Contempt application: No fixed limitation but should be filed promptly
+
+PRACTICAL ADVICE:
+• Do NOT delay — file as soon as cause arises
+• Document reasons for any delay
+• Consult advocate immediately — delay harms your case`,
+    answer_bn: `পারিবারিক মামলার সময়সীমা:
+
+তালাক: নির্দিষ্ট সময়সীমা নেই, তবু দ্রুত করুন।
+ভরণপোষণ: ভবিষ্যতের জন্য সীমাহীন, বকেয়ার জন্য ৩ বছর।
+দেনমোহর: তাৎক্ষণিক — বিবাহ চলাকালীন সীমাহীন; বিলম্বিত — ৩ বছর।
+হেফাজত: নির্দিষ্ট সীমা নেই, কিন্তু দেরি ক্ষতিকর।
+
+সাধারণ: আদালত যুক্তিসংগত কারণে দেরি ক্ষমা করতে পারে। তবু দ্রুত মামলা করুন।`
+  },
 ]
 
 // ── HELPERS ──────────────────────────────────────────────────────────────────
@@ -926,6 +1651,8 @@ export const FAMILY_TOPICS = [
   { key: "domestic_violence",label_en: "Domestic Violence",  label_bn: "গৃহ নির্যাতন" },
   { key: "child_marriage",   label_en: "Child Marriage",     label_bn: "বাল্যবিবাহ" },
   { key: "general",          label_en: "Family Court",       label_bn: "পারিবারিক আদালত" },
+  { key: "child_marriage",   label_en: "Child Marriage",     label_bn: "বাল্যবিবাহ" },
+  { key: "domestic_violence",label_en: "Domestic Violence",  label_bn: "গৃহ নির্যাতন" },
 ]
 
 export const FAMILY_RELIGIONS = [
@@ -941,7 +1668,7 @@ import type { KnowledgeModule } from './types';
 const familyModule: KnowledgeModule = {
   area: "family",
   label: "Family Law — Muslim, Hindu, Christian, Adibashi",
-  description: "Bangladesh family law covering all religions and communities.",
+  description: "30 Q&As covering Bangladesh family law for all religions: Muslim, Hindu, Christian, and Adibashi/Upojati. Includes marriage, divorce, maintenance, custody, inheritance, dowry, adoption, guardianship, interfaith marriage, wills, and enforcement.",
   rules: [],
   qaBank: familyLaw.map(q => ({
     id: q.id,

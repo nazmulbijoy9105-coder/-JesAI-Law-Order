@@ -959,12 +959,795 @@ const qaBank: QAEntry[] = [
     relatedRules: ["con-003"],
     lastVerified: "2025-03-09",
   },
+
+  // ════════ CONSTITUTIONAL INTERPRETATION & JUDICIAL REVIEW ════════
+  {
+    id: "con-qa-051",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["constitutional interpretation", "judicial review bangladesh", "court interpret constitution", "বিচারিক পর্যালোচনা", "supreme court interpret"],
+    question: "How do Bangladesh courts interpret the Constitution?",
+    irac: {
+      issue: "What methods and principles do Bangladesh courts use when interpreting constitutional provisions?",
+      rule: "Bangladesh courts follow common-law interpretive principles adapted to constitutional text: (1) Literal/Plain Meaning Rule — words given ordinary meaning unless technical term. (2) Golden Rule — avoid absurd results. (3) Mischief Rule — identify the problem the provision was designed to solve. (4) Purposive Interpretation — read provisions in light of constitutional objectives (fundamental principles, preamble). (5) Harmonious Construction — reconcile apparently conflicting provisions. (6) Basic Structure Doctrine — certain features cannot be interpreted away.",
+      application: "When interpreting Article 32 (right to life), the Supreme Court rejected narrow 'mere animal existence' reading and expanded to include dignity, livelihood, and environment — using purposive interpretation aligned with Article 8 fundamental principles. In Article 70 cases, courts use literal rule since text is unambiguous.",
+      conclusion: "**Constitutional interpretation methods:**
+
+**1. Literal/Plain Meaning**
+• Ordinary dictionary meaning of words
+• Used when text is clear (Art 70 anti-defection)
+
+**2. Purposive**
+• Read in light of constitutional objectives
+• Used for fundamental rights expansion (Art 32 → livelihood, environment)
+
+**3. Harmonious Construction**
+• Reconcile Art 2A (state religion) with Art 8 (secularism)
+• Both coexist per Supreme Court
+
+**4. Basic Structure Limit**
+• Cannot interpret away judicial independence, fundamental rights, democracy
+• Any interpretation undermining basic structure = invalid
+
+**5. International Law Reference**
+• Courts refer to ICCPR, UDHR as persuasive (not binding)
+• Used to interpret fundamental rights broadly
+
+📄 Constitutional interpretation guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-001", "con-005"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-052",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["doctrine of eclipse", "eclipse doctrine", "pre-constitutional law", "1972 laws valid", "constitution eclipse"],
+    question: "What happens to laws made before the 1972 Constitution?",
+    irac: {
+      issue: "Are pre-1972 laws still valid after the Constitution came into force?",
+      rule: "Article 149 + Fourth Schedule: Laws existing before 16 December 1972 continue in force but are subject to the Constitution. The Doctrine of Eclipse applies — pre-constitutional laws inconsistent with fundamental rights are not void ab initio (from the beginning) but become 'eclipsed' (unenforceable) to the extent of inconsistency. They can be revived if the inconsistency is removed by constitutional amendment.",
+      application: "The Special Powers Act 1974 was enacted after the Constitution but its preventive detention provisions were challenged as inconsistent with Article 32 and 33. Courts held that while the Act survives, specific detention orders must comply with constitutional safeguards. Pre-1972 Penal Code 1860 provisions continue but must be read consistently with fundamental rights.",
+      conclusion: "**Pre-constitutional laws — Doctrine of Eclipse:**
+
+**Rule:**
+• Pre-1972 laws continue unless repealed
+• Inconsistent with fundamental rights = eclipsed (unenforceable)
+• Not void from beginning — can be revived if Constitution amended
+
+**Post-1972 laws:**
+• Inconsistent with Constitution = VOID (Art 26)
+• Struck down by courts
+
+**Key distinction:**
+• Pre-1972: Eclipse (dormant, revivable)
+• Post-1972: Void (dead, unrevivable)
+
+**Practical impact:**
+• Most colonial-era laws still operate
+• Must be read consistently with fundamental rights
+• Courts can sever unconstitutional parts
+
+📄 Pre-constitutional law guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-001", "con-002"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-053",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["severability doctrine", "striking down law", "law partially void", "আংশিক বাতিল", "sever unconstitutional part"],
+    question: "Can a court strike down only part of a law, or must the whole law go?",
+    irac: {
+      issue: "What is the doctrine of severability and how do Bangladesh courts apply it?",
+      rule: "The Doctrine of Severability: When only part of a law is unconstitutional, courts can sever (remove) the unconstitutional portion and preserve the rest — IF the remaining law is still coherent, workable, and expresses the legislature's original intent. If the unconstitutional part is so integral that the law cannot function without it, the entire law is struck down. Article 26: 'to the extent of the inconsistency' supports severability.",
+      application: "In striking down Section 57 of the ICT Act 2006 (later replaced by DSA 2018), courts considered whether the entire Act should fall or only the offending section. Since the Act had legitimate purposes (cyber security), courts severed only the overbroad speech restrictions. Similarly, specific provisions of the Special Powers Act have been read down while the Act itself survives.",
+      conclusion: "**Doctrine of Severability:**
+
+**When courts sever (partial strike-down):**
+• Unconstitutional part is separable
+• Remaining law is workable and coherent
+• Legislature's intent still achievable
+• Supported by Art 26 ('to the extent of inconsistency')
+
+**When entire law struck down:**
+• Unconstitutional part is the heart of the law
+• Remaining parts cannot function meaningfully
+• Legislature's intent completely frustrated
+
+**Examples:**
+• Section 57 ICT Act — severed, Act survived
+• 16th Amendment — struck down entirely (core purpose unconstitutional)
+
+📄 Severability doctrine guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-002", "con-005"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-054",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["prospective overruling", "retrospective judgment", "court judgment effect", "অতীত প্রভাব", "judgment apply past"],
+    question: "Do court judgments apply retroactively or only for the future?",
+    irac: {
+      issue: "When the Supreme Court declares a law unconstitutional, does the judgment apply only prospectively or also retrospectively?",
+      rule: "Bangladesh courts generally apply constitutional judgments retrospectively — the law is declared void from its inception (void ab initio). However, in exceptional circumstances, courts may use 'prospective overruling' — declaring a law unconstitutional but limiting the effect to future cases only. This is rare and used to avoid chaos from overturning long-settled arrangements.",
+      application: "When the Appellate Division declared the 5th and 7th Amendments unconstitutional (2010), the judgment was applied prospectively in some respects — past actions taken under those amendments were not automatically invalidated to prevent destabilising decades of governance. But fundamental rights violations under those amendments could still be challenged.",
+      conclusion: "**Judgment effect — retrospective vs prospective:**
+
+**General rule:** Retrospective
+• Unconstitutional law = void from birth
+• All actions under it potentially challengeable
+• Art 26: 'void to the extent of inconsistency'
+
+**Exception — Prospective Overruling:**
+• Used rarely, for stability
+• Past actions preserved
+• Future actions governed by new ruling
+• Applied to 5th/7th Amendment declarations
+
+**Practical:**
+• If your conviction was under a law later struck down → may challenge
+• If government action was under struck-down law → may be voidable
+• Time limits apply — consult advocate immediately
+
+📄 Judgment effect guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-001", "con-005"],
+    lastVerified: "2025-03-09",
+  },
+
+  // ════════ FUNDAMENTAL RIGHTS — DEEPER ANALYSIS ════════
+  {
+    id: "con-qa-055",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["reasonable restrictions", "fundamental rights limits", "rights not absolute", "যৌক্তিক বিধিনিষেধ", "article 39 restrictions"],
+    question: "Are fundamental rights absolute or can the government limit them?",
+    irac: {
+      issue: "To what extent can the state impose restrictions on fundamental rights?",
+      rule: "No fundamental right in the Bangladesh Constitution is absolute. Most rights in Part III are subject to 'reasonable restrictions' imposed by law for specific purposes: state security, public order, decency, morality, contempt of court, defamation, incitement. The restriction must be: (1) by LAW (not executive order), (2) REASONABLE (proportionate, necessary, least restrictive means), (3) for SPECIFIED GROUNDS only. Article 32 (right to life) and Article 28 (non-discrimination) have fewer exceptions.",
+      application: "The Cyber Security Act 2023 restricts online speech — courts examine whether the restriction is 'reasonable' by testing: is the law clear and specific? Is the restriction proportionate to the harm? Is there a less restrictive alternative? Overbroad restrictions that chill legitimate speech have been struck down or read down.",
+      conclusion: "**Fundamental rights — limits and restrictions:**
+
+**General rule:** Rights are NOT absolute
+
+**Valid restriction must be:**
+1. **By LAW** — Parliament Act, not executive order
+2. **REASONABLE** — proportionate, necessary, least restrictive
+3. **For SPECIFIED GROUNDS** — listed in each article
+
+**Rights with FEW exceptions:**
+• Art 32: Right to life (only 'save in accordance with law')
+• Art 28: Non-discrimination (very limited exceptions)
+
+**Rights with MORE exceptions:**
+• Art 39: Speech (state security, public order, decency, defamation, contempt)
+• Art 37: Assembly (public order, health, morality)
+• Art 38: Association (public order, morality, sovereignty)
+
+**Test for reasonableness:**
+• Is the law clear and not vague?
+• Is the restriction proportionate?
+• Does it achieve legitimate aim with minimal intrusion?
+
+📄 Reasonable restrictions guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-002"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-056",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["horizontal application", "fundamental rights private", "private company rights", "ব্যক্তি অধিকার", "rights against private"],
+    question: "Do fundamental rights apply against private individuals and companies?",
+    irac: {
+      issue: "Can fundamental rights be enforced against private actors, or only against the government?",
+      rule: "Traditionally, fundamental rights in Part III apply only against STATE ACTION — government, public authorities, and bodies exercising public functions. However, courts have expanded this through: (1) 'State' definition in Article 152 — includes government, Parliament, local authorities, and statutory bodies. (2) Public Function Test — private bodies performing public functions (universities, regulatory bodies) may be subject to fundamental rights. (3) PIL expansion — courts have intervened in private matters affecting public interest. (4) Statutory duties — private persons must comply with laws that embody constitutional values.",
+      application: "A private university receiving government funding and performing educational functions: students can challenge discriminatory policies using fundamental rights arguments. A purely private company refusing service: not directly bound by fundamental rights, but may violate specific statutes (labour laws, consumer protection) that reflect constitutional values.",
+      conclusion: "**Fundamental rights — horizontal application:**
+
+**General rule:** Against STATE only
+• Government departments
+• Public universities
+• Local authorities
+• Statutory bodies
+
+**Expanded application:**
+• Private bodies performing PUBLIC FUNCTIONS
+• Bodies exercising statutory powers
+• Entities substantially funded/controlled by government
+
+**NOT directly applicable to:**
+• Purely private companies
+• Individual private disputes
+• Private family matters
+
+**Alternative remedies against private actors:**
+• Labour laws (reflecting Art 28, 29)
+• Consumer protection laws
+• Tort law
+• Specific statutes
+
+📄 Horizontal application guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-002"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-057",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["compensation constitutional violation", "damages fundamental rights", "ক্ষতিপূরণ সাংবিধানিক", "money remedy rights", "constitutional tort"],
+    question: "Can I get compensation if the government violates my fundamental rights?",
+    irac: {
+      issue: "Is monetary compensation available for violations of fundamental rights by the state?",
+      rule: "Bangladesh courts have increasingly awarded compensation (constitutional tort) for fundamental rights violations by state actors. The remedy derives from: (1) Article 102 — High Court Division's broad remedial power. (2) Article 44 — right to enforce rights. (3) Article 32 — right to life includes right to compensation for unlawful deprivation. (4) Public Trust Doctrine — state has fiduciary duty to citizens. Compensation is discretionary — courts consider: gravity of violation, duration, mental suffering, loss of earnings, and state's conduct.",
+      application: "Person illegally detained by police for 30 days: High Court can award compensation for unlawful detention under Articles 32 and 33. Person whose property was demolished without due process: compensation for violation of Article 42. Environmental destruction by government project: compensation for violation of expanded Article 32 right to clean environment.",
+      conclusion: "**Compensation for constitutional violations:**
+
+**Available for:**
+• Illegal detention (Art 32, 33)
+• Unlawful property acquisition (Art 42)
+• Environmental harm (expanded Art 32)
+• Torture/custodial violence (Art 35)
+• Discriminatory state action (Art 27, 28)
+
+**Factors courts consider:**
+• Gravity and duration of violation
+• Mental anguish and suffering
+• Loss of income/reputation
+• State's conduct (malice vs negligence)
+
+**How to claim:**
+• Include compensation prayer in writ petition
+• Provide evidence of loss (medical bills, income loss, valuation)
+• Court may appoint commission to assess damages
+
+**Typical awards:** BDT 50,000 – 5,000,000 (varies widely)
+
+📄 Constitutional compensation guide — ৳2,999",
+    },
+    escalate: true,
+    escalateReason: "Compensation claims require documented evidence and High Court advocate. WhatsApp NLC.",
+    relatedRules: ["con-002", "con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  // ════════ WRIT JURISDICTION — ADVANCED ════════
+  {
+    id: "con-qa-058",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["certiorari writ", "quash order", "সার্টিওরারি", "illegal order court", "quash government decision"],
+    question: "What is a Certiorari writ and when is it used?",
+    irac: {
+      issue: "When can the High Court quash a government or lower court decision using Certiorari?",
+      rule: "Certiorari (Latin: 'to be certified') is a writ issued by the High Court Division to quash (nullify) an order, decision, or proceeding of a lower court, tribunal, or public authority that: (1) exceeds jurisdiction, (2) violates principles of natural justice, (3) is based on no evidence, (4) is affected by bias, (5) is illegal/ultra vires. The order is quashed — sent back to the authority for fresh decision if appropriate.",
+      application: "Government cancels your business licence without giving you a hearing: Certiorari to quash the cancellation order for violation of natural justice (audi alteram partem). Lower court convicts you based on evidence not legally admissible: Certiorari to quash the conviction. University expels a student without inquiry: Certiorari quashes expulsion.",
+      conclusion: "**Certiorari — when to use:**
+
+✅ **Grounds for Certiorari:**
+1. **Excess of jurisdiction** — authority acted beyond power
+2. **Violation of natural justice** — no hearing, bias
+3. **Error of law apparent on face of record**
+4. **No evidence** — decision lacks any supporting evidence
+5. **Ultra vires** — action beyond legal authority
+
+**Effect:**
+• Order/decision QUASHED (cancelled)
+• May be sent back (remitted) for fresh decision
+• Authority must follow lawful procedure
+
+**Examples:**
+• Quash illegal licence cancellation
+• Quash arbitrary deportation order
+• Quash biased tribunal decision
+• Quash university expulsion without inquiry
+
+📄 Certiorari guide — ৳2,999",
+    },
+    escalate: true,
+    escalateReason: "Certiorari petitions require High Court advocate. WhatsApp NLC for referral.",
+    relatedRules: ["con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-059",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["prohibition writ", "stop proceeding", "প্রোহিবিশন", "prevent illegal action", "stop lower court"],
+    question: "What is a Prohibition writ and when is it used?",
+    irac: {
+      issue: "When can the High Court stop a lower court or tribunal from proceeding with a matter?",
+      rule: "Prohibition is a writ issued by the High Court Division to a lower court, tribunal, or public authority to STOP it from proceeding with a matter where it lacks jurisdiction or is about to violate principles of natural justice. Unlike Certiorari (which quashes completed actions), Prohibition prevents future/ongoing illegal actions. It is preventive, not corrective.",
+      application: "A Magistrate is about to try a case that by law must be tried by Sessions Court: Prohibition to stop the Magistrate. A tribunal is about to hear a matter where one member is biased: Prohibition to stop the hearing. A government officer is about to demolish your house without notice: Prohibition to stop the demolition.",
+      conclusion: "**Prohibition — preventive writ:**
+
+**Difference from Certiorari:**
+• Prohibition: STOPS ongoing/future illegal action
+• Certiorari: QUASHES completed illegal action
+
+✅ **Use Prohibition when:**
+• Lower court/tribunal lacks jurisdiction
+• Proceedings violate natural justice
+• Authority is about to act beyond power
+• Bias or conflict of interest exists
+
+**Examples:**
+• Stop Magistrate from trying Sessions-case
+• Stop biased tribunal hearing
+• Stop demolition without notice
+• Stop illegal deportation proceedings
+
+📄 Prohibition guide — ৳2,999",
+    },
+    escalate: true,
+    escalateReason: "Prohibition petitions require High Court advocate. WhatsApp NLC for referral.",
+    relatedRules: ["con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-060",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["quo warranto", "challenge public office", "কোয়ো ওয়ারেন্টো", "illegal appointment", "who holds office"],
+    question: "What is a Quo Warranto writ and when is it used?",
+    irac: {
+      issue: "How can a person challenge another person's right to hold public office?",
+      rule: "Quo Warranto (Latin: 'by what authority?') is a writ issued by the High Court Division to challenge a person's right to hold a public office. It asks the office-holder to show by what authority they occupy the position. Available when: (1) the office is public and substantive (not honorary), (2) the office was created by law or Constitution, (3) the respondent has usurped the office or is ineligible. If the claim fails, the person is removed from office.",
+      application: "A person appointed as Vice-Chancellor of a public university lacks the required academic qualification: any citizen can file Quo Warranto. An MP was underage at election: Quo Warranto to challenge their seat. A government secretary appointed despite disqualifying criminal conviction: Quo Warranto to challenge appointment.",
+      conclusion: "**Quo Warranto — challenge to public office:**
+
+**Requirements:**
+• Office must be PUBLIC and SUBSTANTIVE
+• Created by law or Constitution
+• Respondent usurped or ineligible
+
+**Who can file:** Any citizen (not necessarily personally aggrieved)
+
+**Effect if successful:**
+• Person REMOVED from office
+• Office declared vacant
+
+**Examples:**
+• VC without required PhD
+• Underage MP
+• Disqualified person as judge
+• Illegal appointment to constitutional body
+
+**Cannot use for:**
+• Private company positions
+• Honorary titles
+• Political party posts
+
+📄 Quo Warranto guide — ৳2,999",
+    },
+    escalate: true,
+    escalateReason: "Quo Warranto requires High Court advocate. WhatsApp NLC for referral.",
+    relatedRules: ["con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-061",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["locus standi", "who can file writ", "writ standing", "রিট দায়েরের অধিকার", "aggrieved person writ"],
+    question: "Who has standing to file a writ petition in Bangladesh?",
+    irac: {
+      issue: "What is the requirement of 'locus standi' (standing) for filing writ petitions?",
+      rule: "Article 102 requires the petitioner to be an 'aggrieved person' for some writs (Habeas Corpus, Mandamus, Certiorari, Prohibition). However, Bangladesh courts have significantly relaxed this for: (1) Public Interest Litigation (PIL) — any citizen can file on behalf of disadvantaged groups. (2) Quo Warranto — any citizen can challenge public office. (3) Environmental and human rights cases — NGOs and concerned individuals have standing. (4) Suo motu — High Court can act on its own motion. The trend is toward liberal standing to ensure access to justice.",
+      application: "A lawyer files PIL on behalf of prisoners tortured in custody — no personal injury to the lawyer, but standing granted as public interest. An NGO files writ challenging environmental destruction affecting a village — standing granted as representative of affected community. A journalist files writ after reading newspaper report of illegal detention — court may take suo motu cognizance.",
+      conclusion: "**Standing (Locus Standi) for writs:**
+
+**Traditional rule:** 'Aggrieved person' only
+
+**Expanded standing:**
+• **PIL:** Any citizen for public interest
+• **Quo Warranto:** Any citizen
+• **Environmental cases:** Affected persons, NGOs, concerned citizens
+• **Suo motu:** Court acts on its own
+
+**For personal rights (Habeas Corpus, Mandamus):**
+• Person directly affected
+• OR any person on their behalf (for Habeas Corpus)
+
+**Documents needed:**
+• Affidavit showing interest/concern
+• For PIL: explain why affected persons cannot file themselves
+
+**Trend:** Increasingly liberal — access to justice priority
+
+📄 Standing requirements guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  // ════════ ADMINISTRATIVE LAW & CONSTITUTION ════════
+  {
+    id: "con-qa-062",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["natural justice", "audi alteram partem", "fair hearing", "ন্যায় বিচার", "principles natural justice"],
+    question: "What are the principles of natural justice in Bangladesh?",
+    irac: {
+      issue: "What procedural fairness requirements apply when government authorities make decisions affecting individuals?",
+      rule: "The Principles of Natural Justice (derived from Article 31 — protection of law, and Article 27 — equality) require: (1) Audi Alteram Partem — hear the other side. No person should be condemned unheard. Includes: right to notice, right to present case, right to legal representation, right to cross-examine. (2) Nemo Judex in Causa Sua — no one should be a judge in their own cause. Decision-maker must be unbiased and free from conflict of interest. (3) Reasoned Decision — authority must give reasons for its decision. These apply to all quasi-judicial and administrative actions affecting rights.",
+      application: "University disciplinary committee expels student without telling them the charges or giving hearing: violates audi alteram partem. Government officer who is also complainant decides punishment: violates nemo judex. Tax authority assesses huge penalty without explaining calculation: violates reasoned decision requirement.",
+      conclusion: "**Principles of Natural Justice:**
+
+**1. Audi Alteram Partem (Hear the other side)**
+• Right to NOTICE of charges/allegations
+• Right to PRESENT evidence and arguments
+• Right to LEGAL REPRESENTATION
+• Right to CROSS-EXAMINE witnesses
+
+**2. Nemo Judex in Causa Sua (No bias)**
+• Decision-maker must be IMPARTIAL
+• No personal interest in outcome
+• No pre-judgment
+
+**3. Reasoned Decision**
+• Must give REASONS for decision
+• Reasons must be INTELLIGIBLE
+• Must address material arguments
+
+**Remedy if violated:**
+• Writ of Certiorari to quash decision
+• Writ of Prohibition to stop proceedings
+• Mandamus to compel fair hearing
+
+📄 Natural justice guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-002", "con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-063",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["ultra vires", "beyond power", "অতিরিক্ত ক্ষমতা", "authority exceeded power", "void administrative action"],
+    question: "What does 'ultra vires' mean and when is government action invalid?",
+    irac: {
+      issue: "When is a government decision or action beyond legal authority and therefore invalid?",
+      rule: "Ultra Vires (Latin: 'beyond the powers') means an authority has acted outside the scope of power granted by law. Types: (1) Simple Ultra Vires — action not authorised by the enabling statute at all. (2) Extended Ultra Vires — action within general power but exercised for improper purpose, with improper considerations, or unreasonably. (3) Procedural Ultra Vires — failure to follow mandatory procedure. (4) Subordinate Legislation Ultra Vires — rules/regulations exceeding parent Act. Ultra vires actions are VOID and can be quashed by Certiorari.",
+      application: "A local government authority demolishes a building under 'public safety' power when the real motive is political revenge: ultra vires (improper purpose). A licensing authority rejects an application based on personal dislike rather than statutory criteria: ultra vires (irrelevant considerations). A university changes admission criteria without publishing them: ultra vires (procedural failure).",
+      conclusion: "**Ultra Vires — government action beyond power:**
+
+**Types:**
+1. **Simple** — No power at all for this action
+2. **Extended** — Power exists but exercised wrongly:
+   • Improper purpose
+   • Irrelevant considerations
+   • Unreasonableness (Wednesbury unreasonableness)
+3. **Procedural** — Failed to follow required steps
+4. **Subordinate legislation** — Rules exceed parent Act
+
+**Effect:**
+• Action is VOID (not merely voidable)
+• Can be quashed by Certiorari
+• No legal effect from beginning
+
+**Examples:**
+• Demolition for political motive
+• Licence rejection based on personal bias
+• Tax assessment without required notice
+• University rule contradicting University Act
+
+📄 Ultra vires guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-003"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-064",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["delegated legislation", "subordinate legislation", "rule making power", "প্রবিধান ক্ষমতা", "administrative rule making"],
+    question: "Can government departments make laws, or only Parliament?",
+    irac: {
+      issue: "What is delegated legislation and what are its constitutional limits?",
+      rule: "Article 65 vests legislative power in Parliament. However, Parliament can delegate rule-making power to the executive (government departments, ministries) through 'delegated legislation' or 'subordinate legislation.' Constitutional limits: (1) Parliament cannot delegate ESSENTIAL legislative functions (policy decisions must remain with Parliament). (2) Delegated legislation must be within the SCOPE of the parent Act. (3) Must not conflict with the Constitution or parent Act. (4) May be subject to Parliamentary oversight (laying before Parliament). (5) Can be challenged as ultra vires.",
+      application: "Parliament passes the Environment Conservation Act and authorises the Department of Environment to make rules on pollution standards. The Department sets standards stricter than the Act allows: ultra vires. Parliament passes a tax law and authorises the NBR to make procedural rules. NBR rules that create new tax liabilities not in the Act: ultra vires (essential legislative function).",
+      conclusion: "**Delegated (Subordinate) Legislation:**
+
+**What it is:**
+• Parliament makes parent Act
+• Executive makes rules/regulations under it
+• Common for technical/procedural matters
+
+**Constitutional limits:**
+• Cannot delegate ESSENTIAL legislative functions
+• Must stay within parent Act scope
+• Must not conflict with Constitution
+• Subject to judicial review (ultra vires challenge)
+
+**Parliamentary control:**
+• Rules 'laid before' Parliament
+• Parliament can annul/amend
+
+**Judicial review:**
+• Challenge as ultra vires
+• Certiorari to quash invalid rules
+• Must show rule exceeds parent Act or Constitution
+
+📄 Delegated legislation guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  // ════════ CONSTITUTIONAL BODIES — EXPANDED ════════
+  {
+    id: "con-qa-065",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["public service commission", "psc bangladesh", "পিএসসি", "bpsc", "public service commission constitution"],
+    question: "What is the constitutional role of the Public Service Commission?",
+    irac: {
+      issue: "What powers does the Bangladesh Public Service Commission (BPSC) have under the Constitution?",
+      rule: "Articles 137–141: The Bangladesh Public Service Commission (BPSC) is an independent constitutional body responsible for recruitment and examination for government service. The Commission conducts competitive examinations, advises the President on disciplinary matters, and ensures merit-based selection. Members are appointed by the President and have security of tenure similar to Supreme Court judges — removable only by Supreme Judicial Council process.",
+      application: "Government department directly appoints someone without BPSC examination where the post requires BPSC recruitment: appointment is illegal and can be challenged by writ. BPSC examination results challenged for irregularity: can be reviewed by High Court under writ jurisdiction. Government ignores BPSC recommendation on disciplinary action: may violate constitutional scheme.",
+      conclusion: "**Public Service Commission (BPSC):**
+
+**Constitutional status:** Independent body (Art 137–141)
+
+**Functions:**
+• Conduct competitive exams for govt posts
+• Advise on recruitment methods
+• Advise on disciplinary matters
+• Ensure merit-based selection
+
+**Independence:**
+• Members appointed by President
+• Security of tenure (SJC removal only)
+• Cannot be directed by government
+
+**Challenge:**
+• Illegal appointment without BPSC → Writ of Quo Warranto
+• Exam irregularity → Writ of Certiorari
+• Government ignoring BPSC advice → Mandamus
+
+📄 BPSC rights guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-066",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["supreme judicial council", "judge removal", "সুপ্রিম জুডিশিয়াল কাউন্সিল", "remove judge bangladesh", "judge discipline"],
+    question: "How are Supreme Court judges removed from office?",
+    irac: {
+      issue: "What is the procedure for removing Supreme Court judges and why was the 16th Amendment struck down?",
+      rule: "Articles 96–97: Supreme Court judges hold office until age 67 (or 65 for High Court Division per 14th Amendment). Removal is through the Supreme Judicial Council (SJC): (1) Council consists of Chief Justice + two next senior-most Appellate Division judges. (2) Council investigates complaint of misconduct or incapacity. (3) If satisfied, recommends removal to President. (4) President removes judge. This process was restored after the 16th Amendment (Parliament removal) was struck down in 2017 as violating judicial independence (basic structure).",
+      application: "Allegation that a High Court judge accepted bribe: complaint filed with SJC. SJC investigates in camera (private), may call witnesses, examine evidence. If misconduct proved, recommends removal to President. Parliament cannot directly remove judges — the 16th Amendment attempt was declared unconstitutional.",
+      conclusion: "**Judge Removal — Supreme Judicial Council:**
+
+**Process:**
+1. Complaint filed with SJC
+2. SJC investigates (private proceedings)
+3. If misconduct/incapacity proved → recommends removal
+4. President removes judge
+
+**SJC composition:**
+• Chief Justice
+• Two next senior-most AD judges
+
+**Why 16th Amendment failed:**
+• Gave Parliament power to remove judges
+• SC 2017: Violates judicial independence
+• Judicial independence = basic structure (unamendable)
+
+**Security of tenure:**
+• HCD judges: until age 65
+• AD judges: until age 67
+• Cannot be removed except by SJC process
+
+📄 Judicial independence guide — ৳1,999",
+    },
+    escalate: false,
+    relatedRules: ["con-005"],
+    lastVerified: "2025-03-09",
+  },
+
+  // ════════ SPECIAL CONSTITUTIONAL TOPICS ════════
+  {
+    id: "con-qa-067",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["article 70 reform", "floor crossing reform", "anti defection reform", "সংসদ সদস্য পদত্যাগ", "mp independence vote"],
+    question: "What reforms to Article 70 are being proposed?",
+    irac: {
+      issue: "What changes to the anti-defection law are under discussion and what would they mean?",
+      rule: "Article 70 currently requires MPs to vote with their party on ALL matters or lose their seat. Reform proposals (post-2024 Constitution Review Commission) include: (1) Allowing free vote on no-confidence motions against the government. (2) Allowing abstention without automatic seat loss. (3) Limiting anti-defection to votes specifically designated as 'party line' by the Speaker. (4) Creating a 'conscience vote' category for ethical/social issues. (5) Requiring party to show cause before declaring defection. These reforms aim to restore MP independence while maintaining party discipline on core governance.",
+      application: "Under current law, an MP who believes their party's budget is harmful to their constituency cannot vote against it without losing their seat. Under proposed reforms, the MP could abstain or vote against on designated matters without penalty. An MP who genuinely switches ideology and joins another party: current law forces seat loss; proposed reforms may allow by-election instead.",
+      conclusion: "**Article 70 Reform Proposals:**
+
+**Current problem:**
+• MPs = rubber stamps for party leadership
+• No independent judgment possible
+• PM controls Parliament completely
+
+**Proposed reforms:**
+1. **Free vote on no-confidence** — MP can vote conscience
+2. **Abstention allowed** — without losing seat
+3. **Speaker-designated votes** — only specific votes bind party
+4. **Conscience vote category** — ethical/social issues
+5. **Due process** — party must show cause before defection declared
+
+**Status:** Proposals only — require constitutional amendment (2/3 majority)
+
+**Impact if passed:**
+• More meaningful parliamentary debate
+• Reduced PM dominance
+• Potential for coalition building
+
+📄 Parliamentary reform guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-068",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["constitutional review commission 2024", "yunus reform", "interim government reform", "সংবিধান পর্যালোচনা কমিশন", "reform proposals 2025"],
+    question: "What is the Constitution Review Commission and what is it doing?",
+    irac: {
+      issue: "What is the mandate and composition of the post-2024 Constitution Review Commission?",
+      rule: "The interim government under Dr. Muhammad Yunus formed the Constitution Review Commission in late 2024 to examine and recommend amendments to the Bangladesh Constitution. The Commission includes constitutional lawyers, academics, former judges, and civil society representatives. Its mandate covers: (1) Reviewing all 17 amendments for consistency with democratic principles. (2) Proposing reforms to strengthen checks and balances. (3) Examining the caretaker/interim government framework. (4) Reviewing fundamental rights protections. (5) Assessing electoral system reforms. The Commission's recommendations are advisory — formal amendments require elected Parliament.",
+      application: "The Commission is holding public consultations, receiving submissions from political parties, legal experts, and citizens. Key debates include: whether to restore caretaker government, whether to adopt proportional representation, whether to impose term limits on PM, and whether to create an upper house (Senate).",
+      conclusion: "**Constitution Review Commission (2024–2025):**
+
+**Formed by:** Interim government (Dr. Yunus)
+**Mandate:** Review Constitution, recommend reforms
+
+**Key areas:**
+• Caretaker government restoration
+• Electoral system (PR vs FPTP)
+• PM term limits
+• Bicameral legislature
+• Judicial independence
+• Article 70 reform
+• Basic structure strengthening
+
+**Process:**
+• Public consultations
+• Expert submissions
+• Draft recommendations
+• Report to interim government
+
+**Limitation:**
+• Recommendations are ADVISORY only
+• Formal amendment requires elected Parliament (2/3 majority)
+• Elections expected 2025–2026
+
+📄 Reform commission updates — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-001", "con-005"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-069",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["constitutional oath", "oath of office", "শপথ", "president oath", "pm oath constitution"],
+    question: "What oaths do constitutional office-holders take?",
+    irac: {
+      issue: "What oaths are required by the Constitution for key office-holders?",
+      rule: "Fourth Schedule of the Constitution prescribes oaths for: President, Prime Minister, Ministers, Speaker, Deputy Speaker, MPs, Judges, Election Commissioners, Comptroller and Auditor General, and other constitutional office-holders. The oaths generally require: (1) Faithful performance of duties, (2) Preservation, protection, and defence of the Constitution, (3) Impartiality and integrity, (4) Service to the people. The President's oath includes preserving the Constitution and law. Judges' oaths include administering justice without fear or favour.",
+      application: "A Minister who acts corruptly violates their oath of faithful performance and integrity — grounds for removal by PM (political) or impeachment (if applicable). A judge who shows bias violates their oath of impartiality — grounds for SJC proceedings. The oath is not merely ceremonial — it creates a constitutional duty enforceable through removal processes.",
+      conclusion: "**Constitutional Oaths (Fourth Schedule):**
+
+**President:**
+• Preserve, protect, defend Constitution
+• Faithfully perform duties
+• Serve people
+
+**Prime Minister/Ministers:**
+• Faithful performance
+• Preserve Constitution
+• Integrity and impartiality
+
+**Judges:**
+• Administer justice without fear or favour
+• Preserve Constitution
+• Integrity and impartiality
+
+**MPs:**
+• Faithful performance
+• Preserve Constitution
+
+**Significance:**
+• Not merely ceremonial
+• Creates enforceable constitutional duty
+• Violation = grounds for removal
+• Oath binds conscience and law
+
+📄 Constitutional oaths guide — ৳499",
+    },
+    escalate: false,
+    relatedRules: ["con-001"],
+    lastVerified: "2025-03-09",
+  },
+
+  {
+    id: "con-qa-070",
+    area: "constitutional",
+    jurisdiction: "BD",
+    triggerKeywords: ["constitutional supremacy vs parliamentary sovereignty", "parliament supreme", "সংসদের সার্বভৌমত্ব", "court vs parliament", "judicial supremacy"],
+    question: "Is Parliament supreme, or is the Constitution supreme?",
+    irac: {
+      issue: "What is the relationship between parliamentary sovereignty and constitutional supremacy in Bangladesh?",
+      rule: "Bangladesh follows CONSTITUTIONAL SUPREMACY, not parliamentary sovereignty. Article 7(2): The Constitution is the supreme law. Article 26: Any law inconsistent with the Constitution is void. Article 7B (15th Amendment): Certain provisions cannot be amended even by 2/3 Parliament majority. The Supreme Court can strike down laws passed by Parliament. However, Parliament has wide amendment power (Article 142 — 2/3 majority) subject to Article 7B limits. The tension between parliamentary democracy and constitutional limits was central to the 16th Amendment case.",
+      application: "Parliament passes a law restricting press freedom beyond Article 39's reasonable restrictions: Supreme Court can strike it down. Parliament amends Constitution to remove judicial independence: Article 7B prevents this; if attempted, Supreme Court can invalidate the amendment (basic structure doctrine). Parliament has wide power to make ordinary laws and amend most constitutional provisions, but cannot touch the basic structure.",
+      conclusion: "**Constitutional Supremacy vs Parliamentary Power:**
+
+**Constitution is SUPREME:**
+• Art 7: Constitution = supreme law
+• Art 26: Inconsistent laws = void
+• Art 7B: Core provisions unamendable
+• Courts can strike down laws AND amendments
+
+**Parliament is POWERFUL but LIMITED:**
+• Can make ordinary laws (majority vote)
+• Can amend Constitution (2/3 majority)
+• CANNOT amend basic structure (Art 7B)
+• CANNOT pass laws violating fundamental rights
+
+**Key cases:**
+• 5th/7th Amendment struck down (2010)
+• 16th Amendment struck down (2017)
+
+**Balance:**
+• Democracy needs strong Parliament
+• But Constitution protects minorities and rights from majority tyranny
+
+📄 Constitutional supremacy guide — ৳999",
+    },
+    escalate: false,
+    relatedRules: ["con-001", "con-005"],
+    lastVerified: "2025-03-09",
+  },
+
 ];
 
 const constitutionalModule: KnowledgeModule = {
   area: "constitutional",
   label: "Constitutional Law — Bangladesh Constitution 1972–2026",
-  description: "50 Q&A covering the full Bangladesh Constitution: all 17 amendments, fundamental rights, writ jurisdiction, government structure, basic structure doctrine, 2024 post-uprising developments, and constitutional litigation.",
+  description: "70 Q&A covering the full Bangladesh Constitution: all 17 amendments, fundamental rights, writ jurisdiction, government structure, basic structure doctrine, 2024 post-uprising developments, and constitutional litigation.",
   rules,
   qaBank,
 };
