@@ -15,7 +15,7 @@ export interface TierOneCheck {
   checkType: TierOneCheckType;
   result: VerdictBand;
   basis: string;
-  penalty: number;  // <-- ADDED: used by ilrmf-engine.ts
+  penalty: number;
 }
 
 export interface Stage1Trace {
