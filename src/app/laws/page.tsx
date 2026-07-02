@@ -404,7 +404,6 @@ const LAW_SUBJECTS: LawSubject[] = [
 
 export const metadata = {
   title: "Law Areas — Bangladesh Legal Guide | JesAI",
-  description: "Comprehensive guide to all areas of Bangladesh law — common questions, key legislation, and plain-language explanations for every legal topic.",
   description: "Plain-language answers to common legal questions in Bangladesh. NLC-validated, grounded in actual legislation.",
 };
 
@@ -565,21 +564,6 @@ export default function LawsPage() {
               ⚠️ Legal information only — not legal advice. Consult a Bar Council advocate for representation.
             </p>
           </div>
-      {/* CTA */}
-      <section className="py-16 border-t border-gray-100 bg-gray-50">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-3">Get a personalised legal analysis</h2>
-          <p className="text-gray-500 text-[14px] mb-6 leading-relaxed">
-            These answers cover common scenarios. Your specific facts may change the legal outcome.
-            Ask JesAI for an analysis tailored to your exact situation.
-          </p>
-          <Link href="/consult"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#006A4E] text-white font-semibold text-[14px] hover:bg-[#005a40] transition-all shadow-sm">
-            Start Free Consultation →
-          </Link>
-          <p className="mt-4 text-[11px] text-gray-400">
-            ⚠️ Legal information only — not legal advice. Consult a Bar Council advocate for representation.
-          </p>
         </div>
       </section>
 
