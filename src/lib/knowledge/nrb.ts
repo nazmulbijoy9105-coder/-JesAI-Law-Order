@@ -108,7 +108,7 @@ const qaBank: QAEntry[] = [
       issue: "What is the legal process for a foreign national or company to establish a business in Bangladesh?",
       rule: "Bangladesh Investment Development Authority (BIDA) Act 2016: All foreign investment requires BIDA registration. 100% foreign ownership allowed in most sectors. Minimum investment USD 50,000. Companies Act 1994 governs company formation.",
       application: "A foreign investor must: (1) Choose entity type — subsidiary (Pvt Ltd), branch office, or liaison office. (2) Register with BIDA OSS (One Stop Service). (3) Incorporate with RJSC under Companies Act 1994. (4) Register with Bangladesh Bank for FDI reporting. (5) Obtain trade licence, TIN, VAT registration.",
-      conclusion: `**How to register a foreign company in Bangladesh:**\n\n**Step 1 — Choose entity:**\n• Subsidiary (Pvt Ltd): Full commercial operations, 100% foreign ownership ✅\n• Branch Office: Extension of foreign parent, limited activities\n• Liaison/Rep Office: Marketing only, no revenue generation\n\n**Step 2 — BIDA Registration:**\n• Apply at bida.gov.bd OSS portal\n• Documents: MOA/AOA, board resolution, audited accounts, passport copies\n• Timeline: 7-15 working days\n\n**Step 3 — Bangladesh Bank FDI Registration:**\n• Report inward FDI within 30 days of fund receipt\n\n**Step 4 — RJSC Incorporation (for subsidiary):**\n• Same as local Pvt Ltd — Name clearance → MOA/AOA → File → Certificate\n\n📄 Full foreign company setup — NLC can assist.\n⚠️ Information only. Consult an advocate.",
+      conclusion: `**How to register a foreign company in Bangladesh:**\n\n**Step 1 — Choose entity:**\n• Subsidiary (Pvt Ltd): Full commercial operations, 100% foreign ownership ✅\n• Branch Office: Extension of foreign parent, limited activities\n• Liaison/Rep Office: Marketing only, no revenue generation\n\n**Step 2 — BIDA Registration:**\n• Apply at bida.gov.bd OSS portal\n• Documents: MOA/AOA, board resolution, audited accounts, passport copies\n• Timeline: 7-15 working days\n\n**Step 3 — Bangladesh Bank FDI Registration:**\n• Report inward FDI within 30 days of fund receipt\n\n**Step 4 — RJSC Incorporation (for subsidiary):**\n• Same as local Pvt Ltd — Name clearance → MOA/AOA → File → Certificate\n\n📄 Full foreign company setup — NLC can assist.\n⚠️ Information only. Consult an advocate.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
@@ -124,7 +124,7 @@ const qaBank: QAEntry[] = [
       issue: "What are the legal channels for remitting money to Bangladesh and what incentives exist?",
       rule: "Foreign Exchange Regulation Act 1947: All foreign exchange transactions must go through authorized channels. Bangladesh Bank Circular: 2.5% cash incentive on inward remittance through legal banking channels. Hundi/hawala is illegal.",
       application: "Legal channels: SWIFT bank transfer, authorized exchange houses (Western Union, MoneyGram, bKash international, Nagad), mobile financial services approved by Bangladesh Bank. The 2.5% incentive is automatic — no application needed — credited to recipient's account.",
-      conclusion: `**Legal remittance channels:**\n\n✅ Bank-to-bank SWIFT transfer\n✅ Authorized exchange houses (Western Union, MoneyGram)\n✅ bKash international (from select countries)\n✅ Bank's own remittance apps\n\n**2.5% Government Incentive:**\n• Automatic — no application needed\n• Credited by Bangladesh Bank\n• Available on all legal channel remittances\n\n❌ ILLEGAL: Hundi/hawala — criminal offence under FERA 1947\n\n📋 NRB remittance guide — ৳99",
+      conclusion: `**Legal remittance channels:**\n\n✅ Bank-to-bank SWIFT transfer\n✅ Authorized exchange houses (Western Union, MoneyGram)\n✅ bKash international (from select countries)\n✅ Bank's own remittance apps\n\n**2.5% Government Incentive:**\n• Automatic — no application needed\n• Credited by Bangladesh Bank\n• Available on all legal channel remittances\n\n❌ ILLEGAL: Hundi/hawala — criminal offence under FERA 1947\n\n📋 NRB remittance guide — ৳99`,
     },
     escalate: false,
     relatedRules: ["nrb-remittance-001"],
@@ -140,7 +140,7 @@ const qaBank: QAEntry[] = [
       issue: "What withholding tax rates apply when a Bangladesh company pays dividends, royalties, or fees to a non-resident company?",
       rule: "Income Tax Act 2023: WHT on dividends to non-residents 20%. WHT on interest 20%. WHT on royalties 20%. WHT on technical/management fees 10%. DTAA countries get reduced rates under applicable treaties.",
       application: "If a Bangladesh subsidiary pays dividend to its US parent: Standard WHT = 20%. Under Bangladesh-USA DTAA, rate may be reduced to 10-15%. The Bangladesh company deducts WHT before payment and remits to NBR. Parent company can claim credit in home country under DTAA.",
-      conclusion: `**WHT Rates — Bangladesh (non-DTAA):**\n\n| Payment Type | WHT Rate |\n|---|---|\n| Dividend | 20% |\n| Interest | 20% |\n| Royalty | 20% |\n| Technical fees | 10% |\n| Management fees | 10% |\n\n**DTAA Countries get reduced rates:**\n• USA, UK, Japan, China, India — check specific treaty\n• DTAA benefit requires tax residency certificate from home country\n\n📄 DTAA analysis for your country — NLC can advise.\n⚠️ Information only. Consult a tax advocate.",
+      conclusion: `**WHT Rates — Bangladesh (non-DTAA):**\n\n| Payment Type | WHT Rate |\n|---|---|\n| Dividend | 20% |\n| Interest | 20% |\n| Royalty | 20% |\n| Technical fees | 10% |\n| Management fees | 10% |\n\n**DTAA Countries get reduced rates:**\n• USA, UK, Japan, China, India — check specific treaty\n• DTAA benefit requires tax residency certificate from home country\n\n📄 DTAA analysis for your country — NLC can advise.\n⚠️ Information only. Consult a tax advocate.`,
     },
     escalate: false,
     relatedRules: ["nrb-wht-001", "nrb-dtaa-001"],
@@ -156,7 +156,7 @@ const qaBank: QAEntry[] = [
       issue: "What is the legal process for repatriating profits, dividends, and capital from Bangladesh?",
       rule: "Bangladesh Bank FX Guidelines: Foreign investors may repatriate post-tax profits and dividends freely through authorized dealer banks. No ceiling on repatriation amount. Capital invested (equity) repatriable on winding up after settling all liabilities.",
       application: "Process: Pay corporate income tax → Declare dividend at AGM → Deduct WHT → Apply to authorized dealer bank with audited accounts, board resolution, and tax clearance → Bank remits to foreign account via SWIFT. Bangladesh Bank approval needed above USD 500,000.",
-      conclusion: `**Profit Repatriation — Bangladesh:**\n\n✅ Fully allowed — no restrictions on amount\n✅ Through authorized dealer banks only\n✅ After payment of all Bangladesh taxes\n\n**Process:**\n1. Pay corporate income tax\n2. Declare dividend at AGM\n3. Deduct WHT at applicable rate\n4. Apply to AD bank with documents\n5. Bank remits via SWIFT\n\n**Documents needed:**\n• Audited financial statements\n• Board resolution for dividend\n• Tax clearance certificate (NBR)\n• BIDA registration certificate\n\n📄 Full repatriation guide — NLC can assist.",
+      conclusion: `**Profit Repatriation — Bangladesh:**\n\n✅ Fully allowed — no restrictions on amount\n✅ Through authorized dealer banks only\n✅ After payment of all Bangladesh taxes\n\n**Process:**\n1. Pay corporate income tax\n2. Declare dividend at AGM\n3. Deduct WHT at applicable rate\n4. Apply to AD bank with documents\n5. Bank remits via SWIFT\n\n**Documents needed:**\n• Audited financial statements\n• Board resolution for dividend\n• Tax clearance certificate (NBR)\n• BIDA registration certificate\n\n📄 Full repatriation guide — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-repatriate-001"],
@@ -172,7 +172,7 @@ const qaBank: QAEntry[] = [
       issue: "What are the rights of Non-Resident Bangladeshis to purchase and hold immovable property in Bangladesh?",
       rule: "Transfer of Property Act 1882: No restriction on NRBs purchasing property. Bangladesh Bank Guidelines: Property can be purchased using inward remittance or NFCD/RFCD account funds. No special government permission required.",
       application: "An NRB in UK can purchase land in Bangladesh by: sending money through legal remittance channel to NFCD account → using that money to pay vendor → executing sale deed at Sub-Registrar office → mutation at Upazila Land Office. The NRB may appoint a Power of Attorney to act on their behalf in Bangladesh.",
-      conclusion: `**NRB Property Rights:**\n\n✅ Can buy land and property freely\n✅ No special permission needed\n✅ Same rights as resident Bangladeshis\n✅ Can use Power of Attorney for transactions\n\n**How to buy from abroad:**\n1. Send money via legal remittance to NFCD account\n2. Appoint Power of Attorney in Bangladesh\n3. Conduct due diligence (title search, khatian check)\n4. Execute sale deed at Sub-Registrar\n5. Mutation at Upazila Land Office\n\n**Inheritance:** NRB inherits property under same rules as residents (Muslim/Hindu/Christian personal law).\n\n📄 NRB property purchase checklist — ৳399",
+      conclusion: `**NRB Property Rights:**\n\n✅ Can buy land and property freely\n✅ No special permission needed\n✅ Same rights as resident Bangladeshis\n✅ Can use Power of Attorney for transactions\n\n**How to buy from abroad:**\n1. Send money via legal remittance to NFCD account\n2. Appoint Power of Attorney in Bangladesh\n3. Conduct due diligence (title search, khatian check)\n4. Execute sale deed at Sub-Registrar\n5. Mutation at Upazila Land Office\n\n**Inheritance:** NRB inherits property under same rules as residents (Muslim/Hindu/Christian personal law).\n\n📄 NRB property purchase checklist — ৳399`,
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
@@ -188,7 +188,7 @@ const qaBank: QAEntry[] = [
       issue: "What types of bank accounts are available to Non-Resident Bangladeshis and what are the benefits?",
       rule: "Bangladesh Bank Guidelines: NRBs can open NFCD (Non-Resident Foreign Currency Deposit) in USD/GBP/EUR/JPY. Interest is tax-free. Funds freely repatriable. RFCD (Resident Foreign Currency Deposit) for returnees who brought forex.",
       application: "An NRB in USA can open NFCD account at any scheduled bank in Bangladesh. Account can be operated from USA via internet banking. Can deposit remittances from USA. Interest earned is completely tax-free. Can use funds for property purchase, investment, or family expenses in Bangladesh.",
-      conclusion: `**NRB Bank Accounts:**\n\n**NFCD (Non-Resident Foreign Currency Deposit):**\n✅ Available in USD, GBP, EUR, JPY\n✅ Interest completely TAX-FREE\n✅ Freely repatriable to any country\n✅ Can be operated from abroad\n✅ No permission needed to open\n\n**RFCD (Resident Foreign Currency Deposit):**\n• For returnees who brought forex legally\n• Up to USD 5,000 can be retained on return\n\n**How to open:**\n• Apply at any scheduled bank\n• Documents: Passport, visa, NID, proof of residence abroad\n• Can open via Power of Attorney if not in Bangladesh\n\n📋 NRB banking guide — ৳99",
+      conclusion: `**NRB Bank Accounts:**\n\n**NFCD (Non-Resident Foreign Currency Deposit):**\n✅ Available in USD, GBP, EUR, JPY\n✅ Interest completely TAX-FREE\n✅ Freely repatriable to any country\n✅ Can be operated from abroad\n✅ No permission needed to open\n\n**RFCD (Resident Foreign Currency Deposit):**\n• For returnees who brought forex legally\n• Up to USD 5,000 can be retained on return\n\n**How to open:**\n• Apply at any scheduled bank\n• Documents: Passport, visa, NID, proof of residence abroad\n• Can open via Power of Attorney if not in Bangladesh\n\n📋 NRB banking guide — ৳99`,
     },
     escalate: false,
     relatedRules: ["nrb-account-001"],
@@ -204,7 +204,7 @@ const qaBank: QAEntry[] = [
       issue: "Which industries and sectors allow foreign investment in Bangladesh and are there any restrictions?",
       rule: "BIDA Act 2016: Bangladesh maintains a negative list of restricted sectors. All other sectors are open to 100% foreign investment. Special incentives in EPZ and SEZ.",
       application: "Most sectors fully open: RMG, textiles, pharmaceuticals, ICT, agro-processing, leather, ceramics, light engineering, shipbuilding, power generation, infrastructure. Restricted: Arms/ammunition, nuclear energy, security printing, forestry in reserved/protected areas, certain media.",
-      conclusion: `**Open Sectors (100% Foreign Ownership):**\n\n✅ Ready-Made Garments (RMG)\n✅ Pharmaceuticals\n✅ IT/Software/ITES\n✅ Agro-processing\n✅ Leather & footwear\n✅ Light engineering\n✅ Ship building\n✅ Power & energy\n✅ Infrastructure\n✅ Tourism & hospitality\n✅ Healthcare\n\n**Special Incentive Zones:**\n• EPZ — 10-year tax holiday\n• SEZ — 10-year tax holiday\n• Hi-Tech Park\n\n**Restricted Sectors:**\n❌ Arms & ammunition\n❌ Nuclear energy\n❌ Security printing\n❌ Reserved forest exploitation\n\n📄 Sector-specific investment guide — NLC can advise.",
+      conclusion: `**Open Sectors (100% Foreign Ownership):**\n\n✅ Ready-Made Garments (RMG)\n✅ Pharmaceuticals\n✅ IT/Software/ITES\n✅ Agro-processing\n✅ Leather & footwear\n✅ Light engineering\n✅ Ship building\n✅ Power & energy\n✅ Infrastructure\n✅ Tourism & hospitality\n✅ Healthcare\n\n**Special Incentive Zones:**\n• EPZ — 10-year tax holiday\n• SEZ — 10-year tax holiday\n• Hi-Tech Park\n\n**Restricted Sectors:**\n❌ Arms & ammunition\n❌ Nuclear energy\n❌ Security printing\n❌ Reserved forest exploitation\n\n📄 Sector-specific investment guide — NLC can advise.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-tax-holiday-001"],
@@ -220,7 +220,7 @@ const qaBank: QAEntry[] = [
       issue: "What are the rules for having foreign nationals as shareholders or partners in a Bangladesh company?",
       rule: "Companies Act 1994 + BIDA Act 2016: Foreign nationals can be shareholders in a Bangladesh Pvt Ltd company. No minimum local shareholding requirement in most sectors. Foreign director can be appointed. Work permit required for foreign directors/employees working in Bangladesh.",
       application: "A Bangladesh-USA joint venture: Form Pvt Ltd at RJSC with both as shareholders. Register with BIDA for foreign investment. Shareholder agreement governs profit sharing, exit, decision-making. USD capital brought by US partner reported to Bangladesh Bank as FDI. US partner's income from Bangladesh taxable under Bangladesh-USA DTAA.",
-      conclusion: `**Foreign Partner in Bangladesh Company:**\n\n✅ 100% foreign ownership allowed (most sectors)\n✅ Mixed ownership — any percentage split allowed\n✅ Foreign director allowed\n✅ No mandatory local partner requirement\n\n**What you need:**\n• BIDA registration (if >25% foreign shareholding)\n• Bangladesh Bank FDI reporting\n• Work permit for foreign directors working in BD\n• DTAA benefit — tax residency certificate from partner's country\n\n**Shareholder Agreement should cover:**\n• Profit distribution\n• Decision-making rights\n• Exit/buyout provisions\n• Dispute resolution (arbitration recommended)\n\n📄 Joint venture structure — NLC can advise.",
+      conclusion: `**Foreign Partner in Bangladesh Company:**\n\n✅ 100% foreign ownership allowed (most sectors)\n✅ Mixed ownership — any percentage split allowed\n✅ Foreign director allowed\n✅ No mandatory local partner requirement\n\n**What you need:**\n• BIDA registration (if >25% foreign shareholding)\n• Bangladesh Bank FDI reporting\n• Work permit for foreign directors working in BD\n• DTAA benefit — tax residency certificate from partner's country\n\n**Shareholder Agreement should cover:**\n• Profit distribution\n• Decision-making rights\n• Exit/buyout provisions\n• Dispute resolution (arbitration recommended)\n\n📄 Joint venture structure — NLC can advise.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-dtaa-001"],
@@ -236,7 +236,7 @@ const qaBank: QAEntry[] = [
       issue: "What tax exemptions and holidays are available to foreign investors under Bangladesh law?",
       rule: "Income Tax Act 2023 + BIDA Act 2016: EPZ investors — 10-year full tax exemption. SEZ investors — 10-year full tax exemption. Priority sectors outside zones — 5-10 year exemption depending on location. Listed companies pay 20% corporate tax vs 27.5% standard.",
       application: "A foreign company investing USD 2 million in an EPZ in Bangladesh will pay ZERO corporate income tax for 10 years. After 10 years, standard tax applies. Import of capital machinery is duty-free. Dividend repatriation allowed after paying 20% WHT (reduced under DTAA).",
-      conclusion: `**Tax Holidays — Bangladesh:**\n\n| Location | Duration | Rate |\n|---|---|---|\n| EPZ | 10 years | 0% |\n| SEZ | 10 years | 0% |\n| Hi-Tech Park | 10 years | 0% |\n| Priority sector | 5 years | 0% |\n| After holiday | Ongoing | 27.5% |\n\n**Additional Incentives:**\n✅ Duty-free import of capital machinery\n✅ Tax exemption on royalties paid to foreign companies\n✅ Tax exemption on interest on foreign loans\n✅ Accelerated depreciation\n\n📄 Investment incentive analysis — NLC can advise.",
+      conclusion: `**Tax Holidays — Bangladesh:**\n\n| Location | Duration | Rate |\n|---|---|---|\n| EPZ | 10 years | 0% |\n| SEZ | 10 years | 0% |\n| Hi-Tech Park | 10 years | 0% |\n| Priority sector | 5 years | 0% |\n| After holiday | Ongoing | 27.5% |\n\n**Additional Incentives:**\n✅ Duty-free import of capital machinery\n✅ Tax exemption on royalties paid to foreign companies\n✅ Tax exemption on interest on foreign loans\n✅ Accelerated depreciation\n\n📄 Investment incentive analysis — NLC can advise.`,
     },
     escalate: false,
     relatedRules: ["nrb-tax-holiday-001"],
@@ -252,7 +252,7 @@ const qaBank: QAEntry[] = [
       issue: "What are the different types of foreign business presence in Bangladesh and which activities does each allow?",
       rule: "Companies Act 1994 + BIDA Guidelines: Three options for foreign presence. Each has different permitted activities, registration requirements, and tax implications.",
       application: "A Japanese trading company wanting to explore Bangladesh market: Liaison office is cheapest and fastest — just market research, no revenue. If they want to sign contracts and earn revenue — need branch office or subsidiary. Subsidiary (Pvt Ltd) gives most flexibility and local credibility.",
-      conclusion: `**Three Types of Foreign Presence:**\n\n**1. Liaison/Representative Office:**\n• Permitted: Market research, promotion, coordination only\n• NOT permitted: Revenue-generating activities, signing contracts\n• Tax: No Bangladesh income tax (no revenue)\n• Registration: BIDA + Bangladesh Bank\n• Funding: Must be funded from parent abroad\n\n**2. Branch Office:**\n• Permitted: Commercial operations within approved scope\n• Can sign contracts, earn revenue\n• Tax: 30% on Bangladesh profits\n• Registration: RJSC + BIDA + Bangladesh Bank\n\n**3. Subsidiary (Pvt Ltd):**\n• Permitted: Full commercial operations ✅\n• Treated as Bangladesh company\n• Tax: 27.5% corporate tax\n• Best for long-term operations\n• Registration: RJSC + BIDA\n\n📄 Entity selection guide — NLC can advise.",
+      conclusion: `**Three Types of Foreign Presence:**\n\n**1. Liaison/Representative Office:**\n• Permitted: Market research, promotion, coordination only\n• NOT permitted: Revenue-generating activities, signing contracts\n• Tax: No Bangladesh income tax (no revenue)\n• Registration: BIDA + Bangladesh Bank\n• Funding: Must be funded from parent abroad\n\n**2. Branch Office:**\n• Permitted: Commercial operations within approved scope\n• Can sign contracts, earn revenue\n• Tax: 30% on Bangladesh profits\n• Registration: RJSC + BIDA + Bangladesh Bank\n\n**3. Subsidiary (Pvt Ltd):**\n• Permitted: Full commercial operations ✅\n• Treated as Bangladesh company\n• Tax: 27.5% corporate tax\n• Best for long-term operations\n• Registration: RJSC + BIDA\n\n📄 Entity selection guide — NLC can advise.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
@@ -292,7 +292,7 @@ const qaBank: QAEntry[] = [
 • Imprisonment up to 2 years
 • Both for company and responsible officers
 
-📄 FX compliance audit — NLC can assist.",
+📄 FX compliance audit — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-repatriate-001"],
@@ -332,7 +332,7 @@ const qaBank: QAEntry[] = [
 • No expropriation without compensation
 • Free transfer of capital and profits
 
-📄 Arbitration clause drafting — NLC can assist.",
+📄 Arbitration clause drafting — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
@@ -373,7 +373,7 @@ const qaBank: QAEntry[] = [
 • Criminal complaint for counterfeit goods
 • Customs recordal for border enforcement
 
-📄 IP registration package — NLC can assist.",
+📄 IP registration package — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
@@ -415,7 +415,7 @@ const qaBank: QAEntry[] = [
 • Restricted domestic market access (EPZ)
 • Special dispute resolution mechanisms
 
-📄 EPZ/SEZ compliance guide — NLC can assist.",
+📄 EPZ/SEZ compliance guide — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-tax-holiday-001", "nrb-bida-001"],
@@ -459,7 +459,7 @@ const qaBank: QAEntry[] = [
 • Optional but recommended for other matters
 • Fee: BDT 1,000–5,000 depending on value
 
-📄 POA drafting and registration — NLC can assist.",
+📄 POA drafting and registration — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
@@ -503,7 +503,7 @@ const qaBank: QAEntry[] = [
 • Register with local police station if staying >90 days
 • Report change of address
 
-📄 Dual citizenship application — NLC can assist.",
+📄 Dual citizenship application — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
@@ -547,7 +547,7 @@ const qaBank: QAEntry[] = [
 • Principal: Bangladesh Bank NOC required
 • All through AD banking channels
 
-📄 ECB application — NLC can assist.",
+📄 ECB application — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-repatriate-001"],
@@ -593,7 +593,7 @@ const qaBank: QAEntry[] = [
 • Inward remittance: Not taxable
 • Gifts from abroad: Not taxable
 
-📄 NRB tax filing guide — NLC can assist.",
+📄 NRB tax filing guide — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-dtaa-001", "nrb-account-001"],
@@ -639,7 +639,7 @@ const qaBank: QAEntry[] = [
 • Or from NFCD account
 • Application with passport copy, visa, remittance proof
 
-📄 NRB bond investment guide — NLC can assist.",
+📄 NRB bond investment guide — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-account-001", "nrb-remittance-001"],
@@ -686,7 +686,7 @@ const qaBank: QAEntry[] = [
 • NRB can appoint local attorney for all steps
 • Apostille/embassy attestation required
 
-📄 NRB inheritance guide — NLC can assist.",
+📄 NRB inheritance guide — NLC can assist.`,
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
