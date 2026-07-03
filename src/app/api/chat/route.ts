@@ -74,17 +74,17 @@ function detectLanguage(text: string): "bn" | "en" {
 
 //  Area Labels 
 const AREA_LABELS: Record<string, { en: string; bn: string }> = {
-  property:       { en: "Land & Property Law",   bn: "   "   },
-  criminal:       { en: "Criminal Law",           bn: " "            },
-  family:         { en: "Family Law",             bn: " "          },
-  labour:         { en: "Labour Law",             bn: " "               },
-  company:        { en: "Company Law",            bn: " "           },
-  tax:            { en: "Tax Law",                bn: " "                 },
-  nrb:            { en: "NRB Investment Law",     bn: "  "   },
-  constitutional: { en: "Constitutional Law",     bn: " "         },
-  consumer:       { en: "Consumer Rights Law",    bn: "  "     },
-  cyber:          { en: "Cyber Law",              bn: " "             },
-  contract:       { en: "Contract Law",           bn: " "             },
+  property:       { en: "Land & Property Law",   bn: "জমি ও সম্পত্তি আইন" },
+  criminal:       { en: "Criminal Law",           bn: "ফৌজরাণা আইন" },
+  family:         { en: "Family Law",             bn: "পারিবারিক আইন" },
+  labour:         { en: "Labour Law",             bn: "শ্রমিক আইন" },
+  company:        { en: "Company Law",            bn: "কোম্পানী আইন" },
+  tax:            { en: "Tax Law",                bn: "কর আইন" },
+  nrb:            { en: "NRB Investment Law",     bn: "প্রবাসী বিনিয়োগ আইন" },
+  constitutional: { en: "Constitutional Law",     bn: "সংবিধান আইন" },
+  consumer:       { en: "Consumer Rights Law",    bn: "ভোক্তারী অধিকার আইন" },
+  cyber:          { en: "Cyber Law",              bn: "সাইবার আইন" },
+  contract:       { en: "Contract Law",           bn: "চুক্তি আইন" },
 };
 
 //  Out-of-scope response 
@@ -267,7 +267,7 @@ function applyPaywallToLLMResponse(
   lang: "en" | "bn"
 ): string {
   if (isPaid) return llmText;
-  if (llmText.includes("")) return llmText;
+  // paywall skip check removed (was empty string include bug)
 
   const paragraphs = llmText.split(/\n\n+/);
   const freeSection = paragraphs.slice(0, 2).join("\n\n");

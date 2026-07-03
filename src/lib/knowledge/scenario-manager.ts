@@ -68,7 +68,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "company-pvt-registration",
     area: "company",
     title: "Private Limited Company Registration",
-    titleBn: "   ",
+    titleBn: "",
     description: "Step-by-step guide to register a Pvt Ltd company with RJSC Bangladesh",
     triggerPhrases: [
       "register company step",
@@ -81,11 +81,7 @@ const SCENARIOS: Scenario[] = [
       "open a company",
       "company incorporation guide",
     ],
-    triggerPhrasesBn: [
-      "  ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 6,
     prerequisites: [
       "At least 2 shareholders and 2 directors (can be same persons)",
@@ -253,12 +249,7 @@ const SCENARIOS: Scenario[] = [
       "how to purchase land",
       "land deed registration",
     ],
-    triggerPhrasesBn: [
-      "  ",
-      "  ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 7,
     prerequisites: [
       "Sufficient funds for purchase + registration costs (typically 5-9% additional)",
@@ -446,7 +437,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "criminal-fir-process",
     area: "criminal",
     title: "Filing an FIR and Criminal Case Process",
-    titleBn: "     ",
+    titleBn: "",
     description: "Step-by-step guide for filing FIR and following through a criminal case in Bangladesh",
     triggerPhrases: [
       "how to file fir",
@@ -457,12 +448,7 @@ const SCENARIOS: Scenario[] = [
       "fir process",
       "gd number",
     ],
-    triggerPhrasesBn: [
-      "   ",
-      "  ",
-      " ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Knowledge of the crime incident (date, time, place)",
@@ -609,11 +595,7 @@ const SCENARIOS: Scenario[] = [
       "tax return procedure",
       "eit return",
     ],
-    triggerPhrasesBn: [
-      "   ",
-      "  ",
-      "   ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Valid TIN (Tax Identification Number)",
@@ -753,7 +735,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "criminal-cheque-bounce",
     area: "criminal",
     title: "Cheque Bounce (Dishonour) Case",
-    titleBn: "  ",
+    titleBn: "",
     description: "Step-by-step process for filing a criminal case for cheque dishonour under Section 138 NI Act",
     triggerPhrases: [
       "cheque bounce case steps",
@@ -763,11 +745,7 @@ const SCENARIOS: Scenario[] = [
       "section 138 case",
       "bad cheque case",
     ],
-    triggerPhrasesBn: [
-      "   ",
-      "  ",
-      "  ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 4,
     prerequisites: [
       "Original bounced cheque",
@@ -884,7 +862,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "criminal-bail",
     area: "criminal",
     title: "Bail Application Process",
-    titleBn: "  ",
+    titleBn: "",
     description: "Step-by-step process for applying for bail in Bangladesh courts",
     triggerPhrases: [
       "how to get bail",
@@ -894,12 +872,7 @@ const SCENARIOS: Scenario[] = [
       "bail court process",
       "jail bail",
     ],
-    triggerPhrasesBn: [
-      " ",
-      "  ",
-      " ",
-      "  ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 4,
     prerequisites: [
       "Accused must be in custody or facing imminent arrest",
@@ -1019,12 +992,7 @@ const SCENARIOS: Scenario[] = [
       "name transfer land",
       "khatian update",
     ],
-    triggerPhrasesBn: [
-      " ",
-      "  ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Registered sale deed / inheritance documents",
@@ -1168,11 +1136,7 @@ const SCENARIOS: Scenario[] = [
       "developer flat purchase",
       "real estate purchase",
     ],
-    triggerPhrasesBn: [
-      "  ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 6,
     prerequisites: [
       "Budget for flat + registration costs",
@@ -1332,7 +1296,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "property-inheritance",
     area: "property",
     title: "Inheritance & Succession Certificate",
-    titleBn: "    ",
+    titleBn: "",
     description: "Process for claiming inheritance and obtaining Succession Certificate for movable assets",
     triggerPhrases: [
       "inheritance process",
@@ -1342,12 +1306,7 @@ const SCENARIOS: Scenario[] = [
       "heir certificate",
       "probate process",
     ],
-    triggerPhrasesBn: [
-      " ",
-      " ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Death certificate of deceased",
@@ -1486,7 +1445,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "partnership-reconstitution",
     area: "company",
     title: "Partnership Firm Reconstitution",
-    titleBn: " ",
+    titleBn: "",
     description: "Step-by-step guide to reconstitute a partnership firm after partner exit, entry, or death",
     triggerPhrases: [
       "reconstitute partnership",
@@ -1497,10 +1456,7 @@ const SCENARIOS: Scenario[] = [
       "partner died firm",
       "add partner firm",
     ],
-    triggerPhrasesBn: [
-      " ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Existing registered partnership deed",
@@ -1642,7 +1598,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "company-opc-registration",
     area: "company",
     title: "One Person Company (OPC) Registration",
-    titleBn: "   ",
+    titleBn: "",
     description: "Step-by-step guide to register a One Person Company in Bangladesh",
     triggerPhrases: [
       "register opc",
@@ -1651,11 +1607,7 @@ const SCENARIOS: Scenario[] = [
       "single person company",
       "solo company registration",
     ],
-    triggerPhrasesBn: [
-      " ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Single Bangladeshi individual (not a company or foreign national)",
@@ -1784,7 +1736,7 @@ const SCENARIOS: Scenario[] = [
     scenarioId: "property-eviction",
     area: "property",
     title: "Tenant Eviction Suit Process",
-    titleBn: "   ",
+    titleBn: "",
     description: "Step-by-step process for legally evicting a tenant under Rent Control Act",
     triggerPhrases: [
       "evict tenant steps",
@@ -1794,11 +1746,7 @@ const SCENARIOS: Scenario[] = [
       "rent control case",
       "remove tenant legally",
     ],
-    triggerPhrasesBn: [
-      " ",
-      "  ",
-      " ",
-    ],
+    triggerPhrasesBn: [],
     totalSteps: 5,
     prerequisites: [
       "Valid tenancy agreement",
@@ -2154,7 +2102,7 @@ function formatScenarioStep(
 function buildProgressBar(current: number, total: number): string {
   const filled = Math.round((current / total) * 10);
   const empty = 10 - filled;
-  return `[${"".repeat(filled)}${"".repeat(empty)}]`;
+  return `[${"█".repeat(filled)}${"░".repeat(empty)}]`;
 }
 
 /**

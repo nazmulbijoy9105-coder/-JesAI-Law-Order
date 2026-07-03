@@ -103,7 +103,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-001",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["talaq", "divorce", "muslim", "separation", "pronouncement", "", ""],
+    triggerKeywords: ["talaq", "divorce", "muslim", "separation", "pronouncement"],
     question: "What is Talaq and how does it work under Bangladesh law?",
     irac: {
       issue: "What is the legal procedure for Talaq under Bangladesh law?",
@@ -119,7 +119,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-002",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["khul", "khula", "wife divorce", "mutual", "woman divorce", ""],
+    triggerKeywords: ["khul", "khula", "wife divorce", "mutual", "woman divorce"],
     question: "Can a wife divorce her husband in Bangladesh?",
     irac: {
       issue: "What are the legal methods for a Muslim wife to obtain divorce in Bangladesh?",
@@ -135,7 +135,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-003",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["denmahr", "mahr", "mehr", "kabin", "kabinanama", "", ""],
+    triggerKeywords: ["denmahr", "mahr", "mehr", "kabin", "kabinanama"],
     question: "What is Denmahr (Mahr) and can a wife claim it in court?",
     irac: {
       issue: "What is the legal status and enforcement mechanism for Denmahr in Bangladesh?",
@@ -151,7 +151,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-004",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["maintenance", "nafaqa", "alimony", "wife support", ""],
+    triggerKeywords: ["maintenance", "nafaqa", "alimony", "wife support"],
     question: "What maintenance is a Muslim wife entitled to?",
     irac: {
       issue: "What is the scope and legal procedure for claiming wife maintenance in Bangladesh?",
@@ -167,7 +167,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-005",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["custody", "child", "guardianship", "hizanat", "mother", "father", ""],
+    triggerKeywords: ["custody", "child", "guardianship", "hizanat", "mother", "father"],
     question: "Who gets custody of children after Muslim divorce?",
     irac: {
       issue: "What are the rules for child custody (Hizanat) after divorce in Bangladesh?",
@@ -183,7 +183,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-006",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["polygamy", "second wife", "second marriage", "multiple wives", ""],
+    triggerKeywords: ["polygamy", "second wife", "second marriage", "multiple wives"],
     question: "Can a Muslim man marry a second wife without permission?",
     irac: {
       issue: "What is the legal consequence of a second marriage without Arbitration Council permission?",
@@ -200,7 +200,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-007",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["hindu marriage", "hindu divorce", "", " "],
+    triggerKeywords: ["hindu marriage", "hindu divorce"],
     question: "Can Hindus get a divorce in Bangladesh?",
     irac: {
       issue: "Is there a legal provision for divorce for Hindus in Bangladesh?",
@@ -217,7 +217,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-008",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["dowry", "joutuk", "dowry demand", "dowry death", ""],
+    triggerKeywords: ["dowry", "joutuk", "dowry demand", "dowry death"],
     question: "What are the legal consequences of demanding or giving dowry?",
     irac: {
       issue: "What offences and punishments apply to dowry under Bangladesh law?",
@@ -234,7 +234,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-009",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["domestic violence", "abuse", "wife beating", "protection order", " "],
+    triggerKeywords: ["domestic violence", "abuse", "wife beating", "protection order"],
     question: "What protection does a woman have against domestic violence?",
     irac: {
       issue: "What remedies are available under the Domestic Violence Act 2010?",
@@ -250,7 +250,7 @@ const qaBank: QAEntry[] = [
     id: "fam-qa-010",
     area: "family",
     jurisdiction: "BD",
-    triggerKeywords: ["child marriage", "age", "minor", "underage", "bal bibah", ""],
+    triggerKeywords: ["child marriage", "age", "minor", "underage", "bal bibah"],
     question: "What is the legal age of marriage and what happens if child marriage occurs?",
     irac: {
       issue: "What are the legal age limits and penalties for child marriage in Bangladesh?",

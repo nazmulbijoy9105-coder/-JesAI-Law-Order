@@ -606,7 +606,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-gift-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["gift deed", "hiba", "", "gift property", "transfer without money", "parent gifting land"],
+    triggerKeywords: ["gift deed", "hiba", "gift property", "transfer without money", "parent gifting land"],
     question: "How do I legally gift my land to my child?",
     irac: {
       issue: "The legal procedure for transferring immovable property as a gift under Muslim law.",
@@ -624,7 +624,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-easement-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["road blocked", "no access to land", "right of way", "neighbour blocked road", "driveway dispute", " "],
+    triggerKeywords: ["road blocked", "no access to land", "right of way", "neighbour blocked road", "driveway dispute"],
     question: "My neighbour blocked the only road to my land  what can I do?",
     irac: {
       issue: "Whether a landowner can legally enforce a right of way over adjacent land when access is blocked.",
@@ -658,7 +658,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-record-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["land porcha", "get khatian copy", "land record online", " ", "survey record copy"],
+    triggerKeywords: ["land porcha", "get khatian copy", "land record online", "survey record copy"],
     question: "How do I get a copy of my land record (Porcha)?",
     irac: {
       issue: "The process for obtaining a certified copy of land records (Porcha/Khatian) from the government.",
@@ -676,7 +676,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-stamp-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["stamp duty cost", "how much stamp", "registration cost", "deed stamp price", " "],
+    triggerKeywords: ["stamp duty cost", "how much stamp", "registration cost", "deed stamp price"],
     question: "How much stamp duty do I need to pay for a land sale deed?",
     irac: {
       issue: "Calculating the government fees required to legally register a property transfer deed.",
@@ -692,7 +692,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-stamp-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["unregistered deed", "deed not registered", "can I use unregistered deed", " "],
+    triggerKeywords: ["unregistered deed", "deed not registered", "can I use unregistered deed"],
     question: "What happens if my land sale deed was not registered?",
     irac: {
       issue: "The legal consequences of transferring immovable property without registering the deed.",
@@ -711,7 +711,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-poa-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["make power of attorney", "POA process", " ", "how to make GPA", "power of attorney stamp"],
+    triggerKeywords: ["make power of attorney", "POA process", "how to make GPA", "power of attorney stamp"],
     question: "How do I make a valid Power of Attorney (POA) for land?",
     irac: {
       issue: "The legal requirements for creating a valid Power of Attorney that can be used for property transactions.",
@@ -727,7 +727,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-poa-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["GPA sell land", "can attorney sell land", "attorney sold my land", "GPA validity", "   "],
+    triggerKeywords: ["GPA sell land", "can attorney sell land", "attorney sold my land", "GPA validity"],
     question: "Can someone sell my land using a General Power of Attorney (GPA)?",
     irac: {
       issue: "Whether an attorney-in-fact can legally transfer property on behalf of the owner using a GPA.",
@@ -745,7 +745,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-nonmuslim-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["hindu property", "hindu inheritance", "christian inheritance", "non-muslim will", " "],
+    triggerKeywords: ["hindu property", "hindu inheritance", "christian inheritance", "non-muslim will"],
     question: "How is property divided if the deceased was Hindu or Christian?",
     irac: {
       issue: "The rules of inheritance for non-Muslims in Bangladesh.",
@@ -764,7 +764,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-money-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["owe me money", "money recovery", "borrowed money not returned", " ", "recover money court"],
+    triggerKeywords: ["owe me money", "money recovery", "borrowed money not returned", "recover money court"],
     question: "Someone owes me money (not a cheque)  how do I recover it?",
     irac: {
       issue: "Legal remedy for recovering a liquidated sum of money without a negotiable instrument.",
@@ -780,7 +780,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-money-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["money suit time", "how long civil case", "civil court duration", "  "],
+    triggerKeywords: ["money suit time", "how long civil case", "civil court duration"],
     question: "How long does a civil property or money suit take in Bangladesh?",
     irac: {
       issue: "The expected timeline for a civil lawsuit to reach a final judgment in Bangladesh.",
@@ -798,7 +798,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-injunction-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["stop construction", "stay order", "injunction construction", "  ", "temporary injunction"],
+    triggerKeywords: ["stop construction", "stay order", "injunction construction", "temporary injunction"],
     question: "Someone is building on my land  how do I get a stay order immediately?",
     irac: {
       issue: "How to obtain an urgent court order to stop illegal construction on disputed land.",
@@ -815,7 +815,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-injunction-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["stay order vs injunction", "difference stay injunction", "  "],
+    triggerKeywords: ["stay order vs injunction", "difference stay injunction"],
     question: "What is the difference between a stay order and an injunction?",
     irac: {
       issue: "Clarifying common legal terminology used by laymen regarding court orders.",
@@ -833,7 +833,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-courtfee-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["how much court fee", "property suit cost", "advocate fee", " ", "plaint fee"],
+    triggerKeywords: ["how much court fee", "property suit cost", "advocate fee", "plaint fee"],
     question: "How much court fee do I need to pay to file a property suit?",
     irac: {
       issue: "Understanding the cost structure for initiating civil litigation regarding property.",
@@ -851,7 +851,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-sp-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["claim compensation land", "don't want the land, want money", "damages instead of land", " "],
+    triggerKeywords: ["claim compensation land", "don't want the land, want money", "damages instead of land"],
     question: "The seller breached the land agreement  can I take compensation instead of the land?",
     irac: {
       issue: "Whether a buyer can claim monetary damages instead of forcing the seller to transfer the property.",
@@ -867,7 +867,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-sp-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["double sale", "sold to two people", " ", "seller cheated two buyers"],
+    triggerKeywords: ["double sale", "sold to two people", "seller cheated two buyers"],
     question: "The seller sold the same land to me and someone else  who gets it?",
     irac: {
       issue: "Resolving a dispute where a fraudster sells the same property to two different buyers.",
@@ -886,7 +886,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-partition-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["sell my share", "sell undivided share", " ", "co-sharer sell share without permission"],
+    triggerKeywords: ["sell my share", "sell undivided share", "co-sharer sell share without permission"],
     question: "Can I sell my undivided share of inherited land without my siblings' permission?",
     irac: {
       issue: "Whether a co-sharer can alienate their share in joint property without the consent of other co-sharers.",
@@ -904,7 +904,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-waqf-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["waqf property", "", "endowment land", "mosque land", "waqf estate sell"],
+    triggerKeywords: ["waqf property", "endowment land", "mosque land", "waqf estate sell"],
     question: "What is Waqf property and can it be sold?",
     irac: {
       issue: "The legal nature of Waqf (endowment) property and whether it can be transferred or sold.",
@@ -922,7 +922,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-lease-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["lease expired", "overstaying tenant", "lease ended but running business", " "],
+    triggerKeywords: ["lease expired", "overstaying tenant", "lease ended but running business"],
     question: "My commercial lease expired but I'm still running my shop  what happens?",
     irac: {
       issue: "The legal status of a tenant who continues to occupy premises after the lease expires without a new agreement.",
@@ -938,7 +938,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-lease-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["sublet", "sublease", "rent out my rented shop", ""],
+    triggerKeywords: ["sublet", "sublease", "rent out my rented shop"],
     question: "Can I sub-let my rented shop or flat to someone else?",
     irac: {
       issue: "Whether a tenant has the legal right to sub-let leased premises without the landlord's consent.",
@@ -956,7 +956,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-mortgage-003",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["mortgage vs pledge", "difference mortgage pledge", "  "],
+    triggerKeywords: ["mortgage vs pledge", "difference mortgage pledge"],
     question: "What is the difference between a mortgage and a pledge?",
     irac: {
       issue: "Distinguishing between two types of security interests over property.",
@@ -974,7 +974,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-acq-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["govt acquire for private company", "acquisition private project", "  "],
+    triggerKeywords: ["govt acquire for private company", "acquisition private project"],
     question: "Can the government acquire my land for a private company's project?",
     irac: {
       issue: "Whether the government can use its eminent domain power to acquire land for private entities.",
@@ -993,7 +993,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-flat-003",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["buying flat checklist", "flat documents check", "  ", "RAJUK approval flat"],
+    triggerKeywords: ["buying flat checklist", "flat documents check", "RAJUK approval flat"],
     question: "What documents should I check before buying an apartment?",
     irac: {
       issue: "The essential due diligence documents a buyer must verify before investing in a flat.",
@@ -1009,7 +1009,7 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-flat-004",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["roof ownership", "flat roof rights", " ", "who owns rooftop"],
+    triggerKeywords: ["roof ownership", "flat roof rights", "who owns rooftop"],
     question: "Who owns the roof of an apartment building?",
     irac: {
       issue: "Determining the legal ownership of the common areas, specifically the roof, in a multi-story building.",

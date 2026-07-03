@@ -92,7 +92,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-001",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["bangladesh constitution", "when constitution made", " ", "constitution 1972", "bangladesh constitution history"],
+    triggerKeywords: ["bangladesh constitution", "when constitution made", "constitution 1972", "bangladesh constitution history"],
     question: "When was the Bangladesh Constitution made and what are its key features?",
     irac: {
       issue: "When was the Bangladesh Constitution adopted and what are its foundational features?",
@@ -109,7 +109,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-002",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["supreme law bangladesh", "article 7", "law void constitution", "  ", "constitution supreme"],
+    triggerKeywords: ["supreme law bangladesh", "article 7", "law void constitution", "constitution supreme"],
     question: "Is the Constitution the supreme law of Bangladesh?",
     irac: {
       issue: "What is the legal supremacy of the Bangladesh Constitution?",
@@ -126,7 +126,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-003",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["fundamental principles state policy", "article 8", "nationalism socialism", "", "four principles constitution"],
+    triggerKeywords: ["fundamental principles state policy", "article 8", "nationalism socialism", "four principles constitution"],
     question: "What are the fundamental principles of the Bangladesh Constitution?",
     irac: {
       issue: "What are the fundamental state principles under the Bangladesh Constitution?",
@@ -144,7 +144,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-004",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["fundamental rights bangladesh", "article 26", "rights constitution", " ", "constitutional rights list"],
+    triggerKeywords: ["fundamental rights bangladesh", "article 26", "rights constitution", "constitutional rights list"],
     question: "What are the fundamental rights in the Bangladesh Constitution?",
     irac: {
       issue: "What fundamental rights does the Bangladesh Constitution guarantee?",
@@ -161,7 +161,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-005",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["right to life", "article 32", "personal liberty", " ", "right to life bangladesh"],
+    triggerKeywords: ["right to life", "article 32", "personal liberty", "right to life bangladesh"],
     question: "What does the right to life mean under Article 32?",
     irac: {
       issue: "What is the scope of the right to life and personal liberty under Article 32?",
@@ -178,7 +178,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-006",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 33", "arrest safeguards", "detained rights", " ", "arrest rights constitution"],
+    triggerKeywords: ["article 33", "arrest safeguards", "detained rights", "arrest rights constitution"],
     question: "What are my rights when arrested under the Constitution?",
     irac: {
       issue: "What constitutional safeguards apply on arrest and detention under Article 33?",
@@ -196,7 +196,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-007",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["freedom of speech", "article 39", "press freedom", " ", "speech rights bangladesh"],
+    triggerKeywords: ["freedom of speech", "article 39", "press freedom", "speech rights bangladesh"],
     question: "Is freedom of speech guaranteed in Bangladesh?",
     irac: {
       issue: "What does Article 39 guarantee about freedom of thought, conscience, and speech?",
@@ -213,7 +213,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-008",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 27", "equality before law", "non discrimination", " ", "equal treatment law"],
+    triggerKeywords: ["article 27", "equality before law", "non discrimination", "equal treatment law"],
     question: "What does equality before law mean under Article 27?",
     irac: {
       issue: "What does the constitutional guarantee of equality under Article 27 cover?",
@@ -230,7 +230,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-009",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 35", "double jeopardy", "self incrimination", " ", "trial rights constitution"],
+    triggerKeywords: ["article 35", "double jeopardy", "self incrimination", "trial rights constitution"],
     question: "What are the protections against arbitrary trial and punishment?",
     irac: {
       issue: "What does Article 35 guarantee regarding protection from trial and punishment?",
@@ -248,7 +248,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-010",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["writ petition", "article 102", "high court writ", " ", "writ jurisdiction bangladesh"],
+    triggerKeywords: ["writ petition", "article 102", "high court writ", "writ jurisdiction bangladesh"],
     question: "What is a writ petition and how do I file one?",
     irac: {
       issue: "What is the writ jurisdiction of the High Court Division under Article 102?",
@@ -266,7 +266,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-011",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["habeas corpus", "illegal detention writ", " ", "produce before court", "detained illegally"],
+    triggerKeywords: ["habeas corpus", "illegal detention writ", "produce before court", "detained illegally"],
     question: "What is a Habeas Corpus writ and when can I use it?",
     irac: {
       issue: "When and how can a person use Habeas Corpus to challenge illegal detention?",
@@ -284,7 +284,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-012",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["mandamus writ", "government duty", "", "force government duty", "public body writ"],
+    triggerKeywords: ["mandamus writ", "government duty", "force government duty", "public body writ"],
     question: "What is a Mandamus writ and when is it used?",
     irac: {
       issue: "When can a Mandamus writ be used to compel a public authority to act?",
@@ -303,7 +303,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-013",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["first amendment 1973", "war crimes amendment", " ", "first constitutional amendment", "1973 amendment"],
+    triggerKeywords: ["first amendment 1973", "war crimes amendment", "first constitutional amendment", "1973 amendment"],
     question: "What did the 1st Constitutional Amendment 1973 do?",
     irac: {
       issue: "What changes did the 1st Amendment to the Bangladesh Constitution make?",
@@ -320,7 +320,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-014",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["4th amendment", "baksal", "presidential system", " ", "fourth amendment 1975"],
+    triggerKeywords: ["4th amendment", "baksal", "presidential system", "fourth amendment 1975"],
     question: "What did the 4th Amendment 1975 do and why is it controversial?",
     irac: {
       issue: "What were the effects of the 4th Amendment 1975 on Bangladesh's political system?",
@@ -337,7 +337,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-015",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["5th amendment", "martial law ratification", "bismillah constitution", " ", "fifth amendment 1979"],
+    triggerKeywords: ["5th amendment", "martial law ratification", "bismillah constitution", "fifth amendment 1979"],
     question: "What did the 5th Amendment 1979 do?",
     irac: {
       issue: "What changes did the 5th Amendment make and is it still valid?",
@@ -354,7 +354,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-016",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["7th amendment", "ershad martial law", " ", "seventh amendment 1986", "ershad constitution"],
+    triggerKeywords: ["7th amendment", "ershad martial law", "seventh amendment 1986", "ershad constitution"],
     question: "What did the 7th Amendment 1986 do?",
     irac: {
       issue: "What was the purpose of the 7th Amendment and is it valid?",
@@ -371,7 +371,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-017",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["8th amendment", "state religion islam", " ", "eighth amendment 1988", "islam state religion amendment"],
+    triggerKeywords: ["8th amendment", "state religion islam", "eighth amendment 1988", "islam state religion amendment"],
     question: "When was Islam made the state religion and what does it mean?",
     irac: {
       issue: "How did Islam become the state religion and what are its practical implications?",
@@ -388,7 +388,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-018",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["12th amendment", "parliamentary system restored", " ", "twelfth amendment 1991", "parliamentary democracy restored"],
+    triggerKeywords: ["12th amendment", "parliamentary system restored", "twelfth amendment 1991", "parliamentary democracy restored"],
     question: "How did Bangladesh return to parliamentary democracy?",
     irac: {
       issue: "How was the parliamentary system restored through the 12th Amendment?",
@@ -405,7 +405,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-019",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["13th amendment", "caretaker government", " ", "thirteenth amendment 1996", "caretaker system"],
+    triggerKeywords: ["13th amendment", "caretaker government", "thirteenth amendment 1996", "caretaker system"],
     question: "What was the caretaker government system and why was it abolished?",
     irac: {
       issue: "What was the 13th Amendment caretaker government system and what happened to it?",
@@ -422,7 +422,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-020",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["15th amendment", "secularism restored", " ", "fifteenth amendment 2011", "basic structure doctrine"],
+    triggerKeywords: ["15th amendment", "secularism restored", "fifteenth amendment 2011", "basic structure doctrine"],
     question: "What did the 15th Amendment 2011 change?",
     irac: {
       issue: "What were the major changes made by the 15th Amendment to the Bangladesh Constitution?",
@@ -439,7 +439,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-021",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["16th amendment", "judge removal parliament", " ", "sixteenth amendment 2014", "parliament remove judge"],
+    triggerKeywords: ["16th amendment", "judge removal parliament", "sixteenth amendment 2014", "parliament remove judge"],
     question: "What was the 16th Amendment and why was it struck down?",
     irac: {
       issue: "What did the 16th Amendment do and what happened to it?",
@@ -456,7 +456,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-022",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["17th amendment", "women reserved seats", " ", "women seats extended", "reserved seats parliament"],
+    triggerKeywords: ["17th amendment", "women reserved seats", "women seats extended", "reserved seats parliament"],
     question: "What did the 17th Amendment 2018 do?",
     irac: {
       issue: "What did the 17th Amendment change about women's reserved seats?",
@@ -474,7 +474,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-023",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["president bangladesh", "president role", " ", "president powers", "bangladesh president election"],
+    triggerKeywords: ["president bangladesh", "president role", "president powers", "bangladesh president election"],
     question: "What is the role and power of the President of Bangladesh?",
     irac: {
       issue: "What powers does the President of Bangladesh have under the Constitution?",
@@ -491,7 +491,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-024",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["prime minister powers", "prime minister bangladesh", " ", "pm bangladesh constitution", "executive power bangladesh"],
+    triggerKeywords: ["prime minister powers", "prime minister bangladesh", "pm bangladesh constitution", "executive power bangladesh"],
     question: "What powers does the Prime Minister have under the Constitution?",
     irac: {
       issue: "What constitutional powers does the Prime Minister of Bangladesh hold?",
@@ -508,7 +508,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-025",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["jatiya sangsad", "parliament bangladesh", " ", "national parliament", "sangsad seats"],
+    triggerKeywords: ["jatiya sangsad", "parliament bangladesh", "national parliament", "sangsad seats"],
     question: "What is the structure of the Bangladesh Parliament (Jatiya Sangsad)?",
     irac: {
       issue: "How is the Bangladesh Parliament structured under the Constitution?",
@@ -525,7 +525,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-026",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["supreme court bangladesh", "appellate division", "high court division", " ", "judiciary constitution"],
+    triggerKeywords: ["supreme court bangladesh", "appellate division", "high court division", "judiciary constitution"],
     question: "What is the structure of the Supreme Court of Bangladesh?",
     irac: {
       issue: "How is the Bangladesh Supreme Court structured under the Constitution?",
@@ -543,7 +543,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-027",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["emergency provision", "state of emergency", "article 141", " ", "emergency bangladesh constitution"],
+    triggerKeywords: ["emergency provision", "state of emergency", "article 141", "emergency bangladesh constitution"],
     question: "What are the emergency provisions in the Bangladesh Constitution?",
     irac: {
       issue: "What does the Constitution say about states of emergency?",
@@ -560,7 +560,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-028",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 7a", "treason constitution", "extra constitutional", "  ", "unconstitutional takeover"],
+    triggerKeywords: ["article 7a", "treason constitution", "extra constitutional", "unconstitutional takeover"],
     question: "What does Article 7A say about unconstitutional seizure of power?",
     irac: {
       issue: "What protection does the Constitution provide against extra-constitutional seizure of power?",
@@ -578,7 +578,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-029",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["directive principles", "part two constitution", "fundamental principles state policy", " ", "state principles non-justiciable"],
+    triggerKeywords: ["directive principles", "part two constitution", "fundamental principles state policy", "state principles non-justiciable"],
     question: "What are the Fundamental Principles of State Policy and can courts enforce them?",
     irac: {
       issue: "Are the fundamental principles of state policy (Part II) enforceable in court?",
@@ -596,7 +596,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-030",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["election commission bangladesh", "article 118", " ", "election commission constitution", "ec bangladesh"],
+    triggerKeywords: ["election commission bangladesh", "article 118", "election commission constitution", "ec bangladesh"],
     question: "What is the constitutional status of the Election Commission?",
     irac: {
       issue: "What powers does the Election Commission have under the Constitution?",
@@ -613,7 +613,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-031",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitutional amendment procedure", "how to amend constitution", " ", "two thirds majority", "amendment process bangladesh"],
+    triggerKeywords: ["constitutional amendment procedure", "how to amend constitution", "two thirds majority", "amendment process bangladesh"],
     question: "How is the Bangladesh Constitution amended?",
     irac: {
       issue: "What is the procedure for amending the Bangladesh Constitution?",
@@ -631,7 +631,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-032",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["preventive detention", "special powers act", "  ", "detained without trial", "preventive law bangladesh"],
+    triggerKeywords: ["preventive detention", "special powers act", "detained without trial", "preventive law bangladesh"],
     question: "Can the government detain someone without trial?",
     irac: {
       issue: "Is preventive detention (detention without trial) constitutional in Bangladesh?",
@@ -649,7 +649,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-033",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["right to property article 42", "property rights constitution", " ", "article 42 property", "government acquire property"],
+    triggerKeywords: ["right to property article 42", "property rights constitution", "article 42 property", "government acquire property"],
     question: "What are the constitutional protections for property rights?",
     irac: {
       issue: "What does Article 42 guarantee about the right to property?",
@@ -666,7 +666,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-034",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["freedom of religion article 41", "religious rights", " ", "religion constitution bangladesh", "article 41"],
+    triggerKeywords: ["freedom of religion article 41", "religious rights", "religion constitution bangladesh", "article 41"],
     question: "What religious freedoms does the Constitution guarantee?",
     irac: {
       issue: "What does Article 41 guarantee about freedom of religion?",
@@ -683,7 +683,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-035",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 47", "indemnity acts", "article 47a", " ", "indemnity constitution"],
+    triggerKeywords: ["article 47", "indemnity acts", "article 47a", "indemnity constitution"],
     question: "What is Article 47 and why is it controversial?",
     irac: {
       issue: "What does Article 47 do and what is the controversy around indemnity?",
@@ -701,7 +701,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-036",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["bangladesh citizenship", "article 6", "", "citizenship constitution", "bangladeshi national"],
+    triggerKeywords: ["bangladesh citizenship", "article 6", "citizenship constitution", "bangladeshi national"],
     question: "What does the Constitution say about Bangladesh citizenship?",
     irac: {
       issue: "What are the constitutional provisions on Bangladesh citizenship?",
@@ -719,7 +719,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-037",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["women rights constitution", "article 28", "gender equality", " ", "sex discrimination constitution"],
+    triggerKeywords: ["women rights constitution", "article 28", "gender equality", "sex discrimination constitution"],
     question: "What constitutional protections exist for women?",
     irac: {
       issue: "What does the Constitution guarantee for women's rights and gender equality?",
@@ -736,7 +736,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-038",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["minority rights", "religious minority", " ", "hindu christian buddhist rights", "minority constitution"],
+    triggerKeywords: ["minority rights", "religious minority", "hindu christian buddhist rights", "minority constitution"],
     question: "What rights do religious minorities have under the Constitution?",
     irac: {
       issue: "What constitutional protections do religious minorities have in Bangladesh?",
@@ -754,7 +754,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-039",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["2024 uprising", "interim government 2024", "muhammad yunus", " ", "hasina resignation"],
+    triggerKeywords: ["2024 uprising", "interim government 2024", "muhammad yunus", "hasina resignation"],
     question: "What happened constitutionally after the 2024 mass uprising?",
     irac: {
       issue: "What is the constitutional status of Bangladesh after the August 2024 mass uprising?",
@@ -771,7 +771,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-040",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitution reform 2024", "constitutional review commission", " ", "reform commission", "18th amendment"],
+    triggerKeywords: ["constitution reform 2024", "constitutional review commission", "reform commission", "18th amendment"],
     question: "What constitutional reforms are proposed after 2024?",
     irac: {
       issue: "What constitutional changes are being proposed by the post-2024 interim government?",
@@ -789,7 +789,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-041",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 70", "floor crossing", "anti defection", " ", "mp resign party"],
+    triggerKeywords: ["article 70", "floor crossing", "anti defection", "mp resign party"],
     question: "What is Article 70 and why is it controversial?",
     irac: {
       issue: "What does Article 70 say about Members of Parliament and party discipline?",
@@ -807,7 +807,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-042",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["comptroller auditor general", "cag bangladesh", "  ", "article 127", "public audit bangladesh"],
+    triggerKeywords: ["comptroller auditor general", "cag bangladesh", "article 127", "public audit bangladesh"],
     question: "What is the role of the Comptroller and Auditor General?",
     irac: {
       issue: "What are the constitutional functions of the Comptroller and Auditor General?",
@@ -824,7 +824,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-043",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["attorney general bangladesh", "article 64", " ", "attorney general role", "state lawyer"],
+    triggerKeywords: ["attorney general bangladesh", "article 64", "attorney general role", "state lawyer"],
     question: "What is the role of the Attorney General of Bangladesh?",
     irac: {
       issue: "What is the constitutional role of the Attorney General?",
@@ -842,7 +842,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-044",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["basic structure doctrine bangladesh", "unamendable constitution", " ", "basic structure", "article 7b"],
+    triggerKeywords: ["basic structure doctrine bangladesh", "unamendable constitution", "basic structure", "article 7b"],
     question: "What is the basic structure doctrine in Bangladesh?",
     irac: {
       issue: "What is the basic structure doctrine and how does it apply in Bangladesh?",
@@ -859,7 +859,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-045",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["separation of powers bangladesh", "executive legislative judicial", " ", "three branches government", "separation powers"],
+    triggerKeywords: ["separation of powers bangladesh", "executive legislative judicial", "three branches government", "separation powers"],
     question: "How does the separation of powers work in Bangladesh?",
     irac: {
       issue: "How is the separation of powers among the three branches of government structured in Bangladesh?",
@@ -876,7 +876,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-046",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["public interest litigation", "pil", "  ", "pil bangladesh", "public interest writ"],
+    triggerKeywords: ["public interest litigation", "pil", "pil bangladesh", "public interest writ"],
     question: "Can anyone file a writ petition on behalf of the public (PIL)?",
     irac: {
       issue: "What is Public Interest Litigation (PIL) and is it available in Bangladesh?",
@@ -894,7 +894,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-047",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 44", "enforce fundamental rights", " ", "right to remedies", "constitutional remedy"],
+    triggerKeywords: ["article 44", "enforce fundamental rights", "right to remedies", "constitutional remedy"],
     question: "How do I enforce my fundamental rights?",
     irac: {
       issue: "What is the constitutional mechanism for enforcing fundamental rights?",
@@ -912,7 +912,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-048",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["local government constitution", "article 59", " ", "union parishad constitution", "local govt article"],
+    triggerKeywords: ["local government constitution", "article 59", "union parishad constitution", "local govt article"],
     question: "What does the Constitution say about local government?",
     irac: {
       issue: "What constitutional provisions govern local government in Bangladesh?",
@@ -929,7 +929,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-049",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["all amendments list", "constitutional amendments bangladesh", " ", "17 amendments", "amendment history full"],
+    triggerKeywords: ["all amendments list", "constitutional amendments bangladesh", "17 amendments", "amendment history full"],
     question: "What is the complete list of all constitutional amendments?",
     irac: {
       issue: "What are all 17 amendments to the Bangladesh Constitution and their key changes?",
@@ -946,7 +946,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-050",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitutional case high court", "file constitutional case", " ", "constitutional litigation nlc", "challenge government constitution"],
+    triggerKeywords: ["constitutional case high court", "file constitutional case", "constitutional litigation nlc", "challenge government constitution"],
     question: "How do I challenge a government action in the High Court on constitutional grounds?",
     irac: {
       issue: "What is the process for challenging government action on constitutional grounds?",
@@ -965,7 +965,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-051",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitutional interpretation", "judicial review bangladesh", "court interpret constitution", " ", "supreme court interpret"],
+    triggerKeywords: ["constitutional interpretation", "judicial review bangladesh", "court interpret constitution", "supreme court interpret"],
     question: "How do Bangladesh courts interpret the Constitution?",
     irac: {
       issue: "What methods and principles do Bangladesh courts use when interpreting constitutional provisions?",
@@ -999,7 +999,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-053",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["severability doctrine", "striking down law", "law partially void", " ", "sever unconstitutional part"],
+    triggerKeywords: ["severability doctrine", "striking down law", "law partially void", "sever unconstitutional part"],
     question: "Can a court strike down only part of a law, or must the whole law go?",
     irac: {
       issue: "What is the doctrine of severability and how do Bangladesh courts apply it?",
@@ -1016,7 +1016,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-054",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["prospective overruling", "retrospective judgment", "court judgment effect", " ", "judgment apply past"],
+    triggerKeywords: ["prospective overruling", "retrospective judgment", "court judgment effect", "judgment apply past"],
     question: "Do court judgments apply retroactively or only for the future?",
     irac: {
       issue: "When the Supreme Court declares a law unconstitutional, does the judgment apply only prospectively or also retrospectively?",
@@ -1034,7 +1034,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-055",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["reasonable restrictions", "fundamental rights limits", "rights not absolute", " ", "article 39 restrictions"],
+    triggerKeywords: ["reasonable restrictions", "fundamental rights limits", "rights not absolute", "article 39 restrictions"],
     question: "Are fundamental rights absolute or can the government limit them?",
     irac: {
       issue: "To what extent can the state impose restrictions on fundamental rights?",
@@ -1051,7 +1051,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-056",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["horizontal application", "fundamental rights private", "private company rights", " ", "rights against private"],
+    triggerKeywords: ["horizontal application", "fundamental rights private", "private company rights", "rights against private"],
     question: "Do fundamental rights apply against private individuals and companies?",
     irac: {
       issue: "Can fundamental rights be enforced against private actors, or only against the government?",
@@ -1068,7 +1068,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-057",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["compensation constitutional violation", "damages fundamental rights", " ", "money remedy rights", "constitutional tort"],
+    triggerKeywords: ["compensation constitutional violation", "damages fundamental rights", "money remedy rights", "constitutional tort"],
     question: "Can I get compensation if the government violates my fundamental rights?",
     irac: {
       issue: "Is monetary compensation available for violations of fundamental rights by the state?",
@@ -1087,7 +1087,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-058",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["certiorari writ", "quash order", "", "illegal order court", "quash government decision"],
+    triggerKeywords: ["certiorari writ", "quash order", "illegal order court", "quash government decision"],
     question: "What is a Certiorari writ and when is it used?",
     irac: {
       issue: "When can the High Court quash a government or lower court decision using Certiorari?",
@@ -1105,7 +1105,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-059",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["prohibition writ", "stop proceeding", "", "prevent illegal action", "stop lower court"],
+    triggerKeywords: ["prohibition writ", "stop proceeding", "prevent illegal action", "stop lower court"],
     question: "What is a Prohibition writ and when is it used?",
     irac: {
       issue: "When can the High Court stop a lower court or tribunal from proceeding with a matter?",
@@ -1123,7 +1123,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-060",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["quo warranto", "challenge public office", " ", "illegal appointment", "who holds office"],
+    triggerKeywords: ["quo warranto", "challenge public office", "illegal appointment", "who holds office"],
     question: "What is a Quo Warranto writ and when is it used?",
     irac: {
       issue: "How can a person challenge another person's right to hold public office?",
@@ -1141,7 +1141,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-061",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["locus standi", "who can file writ", "writ standing", "  ", "aggrieved person writ"],
+    triggerKeywords: ["locus standi", "who can file writ", "writ standing", "aggrieved person writ"],
     question: "Who has standing to file a writ petition in Bangladesh?",
     irac: {
       issue: "What is the requirement of 'locus standi' (standing) for filing writ petitions?",
@@ -1159,7 +1159,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-062",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["natural justice", "audi alteram partem", "fair hearing", " ", "principles natural justice"],
+    triggerKeywords: ["natural justice", "audi alteram partem", "fair hearing", "principles natural justice"],
     question: "What are the principles of natural justice in Bangladesh?",
     irac: {
       issue: "What procedural fairness requirements apply when government authorities make decisions affecting individuals?",
@@ -1176,7 +1176,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-063",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["ultra vires", "beyond power", " ", "authority exceeded power", "void administrative action"],
+    triggerKeywords: ["ultra vires", "beyond power", "authority exceeded power", "void administrative action"],
     question: "What does 'ultra vires' mean and when is government action invalid?",
     irac: {
       issue: "When is a government decision or action beyond legal authority and therefore invalid?",
@@ -1193,7 +1193,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-064",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["delegated legislation", "subordinate legislation", "rule making power", " ", "administrative rule making"],
+    triggerKeywords: ["delegated legislation", "subordinate legislation", "rule making power", "administrative rule making"],
     question: "Can government departments make laws, or only Parliament?",
     irac: {
       issue: "What is delegated legislation and what are its constitutional limits?",
@@ -1211,7 +1211,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-065",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["public service commission", "psc bangladesh", "", "bpsc", "public service commission constitution"],
+    triggerKeywords: ["public service commission", "psc bangladesh", "bpsc", "public service commission constitution"],
     question: "What is the constitutional role of the Public Service Commission?",
     irac: {
       issue: "What powers does the Bangladesh Public Service Commission (BPSC) have under the Constitution?",
@@ -1228,7 +1228,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-066",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["supreme judicial council", "judge removal", "  ", "remove judge bangladesh", "judge discipline"],
+    triggerKeywords: ["supreme judicial council", "judge removal", "remove judge bangladesh", "judge discipline"],
     question: "How are Supreme Court judges removed from office?",
     irac: {
       issue: "What is the procedure for removing Supreme Court judges and why was the 16th Amendment struck down?",
@@ -1246,7 +1246,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-067",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["article 70 reform", "floor crossing reform", "anti defection reform", "  ", "mp independence vote"],
+    triggerKeywords: ["article 70 reform", "floor crossing reform", "anti defection reform", "mp independence vote"],
     question: "What reforms to Article 70 are being proposed?",
     irac: {
       issue: "What changes to the anti-defection law are under discussion and what would they mean?",
@@ -1263,7 +1263,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-068",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitutional review commission 2024", "yunus reform", "interim government reform", "  ", "reform proposals 2025"],
+    triggerKeywords: ["constitutional review commission 2024", "yunus reform", "interim government reform", "reform proposals 2025"],
     question: "What is the Constitution Review Commission and what is it doing?",
     irac: {
       issue: "What is the mandate and composition of the post-2024 Constitution Review Commission?",
@@ -1280,7 +1280,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-069",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitutional oath", "oath of office", "", "president oath", "pm oath constitution"],
+    triggerKeywords: ["constitutional oath", "oath of office", "president oath", "pm oath constitution"],
     question: "What oaths do constitutional office-holders take?",
     irac: {
       issue: "What oaths are required by the Constitution for key office-holders?",
@@ -1297,7 +1297,7 @@ const qaBank: QAEntry[] = [
     id: "con-qa-070",
     area: "constitutional",
     jurisdiction: "BD",
-    triggerKeywords: ["constitutional supremacy vs parliamentary sovereignty", "parliament supreme", " ", "court vs parliament", "judicial supremacy"],
+    triggerKeywords: ["constitutional supremacy vs parliamentary sovereignty", "parliament supreme", "court vs parliament", "judicial supremacy"],
     question: "Is Parliament supreme, or is the Constitution supreme?",
     irac: {
       issue: "What is the relationship between parliamentary sovereignty and constitutional supremacy in Bangladesh?",

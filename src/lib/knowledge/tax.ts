@@ -19,7 +19,7 @@ const rules: LegalRule[] = [
     rule: "The Income Tax Act 2023 (  ) came into force on 1 July 2023, fully replacing the Income Tax Ordinance 1984. All income tax matters from FY 2023-24 onward are governed by the new Act.",
     source: "Income Tax Act 2023, Section 1",
     certainty: "confirmed",
-    tags: ["income tax act 2023", "ita 2023", "  ", "new tax law"],
+    tags: ["income tax act 2023", "ita 2023", "new tax law"],
     lastVerified: "2025-03-09",
   },
   {
@@ -52,7 +52,7 @@ const rules: LegalRule[] = [
     rule: "WHT deducted at source by payer on: salary (slab), bank interest (10-15%), rent (10-15%), contractor (3-7%), professional fees (10%), dividend (10-20%), NRB profit (20% with TIN, 30% without TIN).",
     source: "Income Tax Act 2023, Chapter XII",
     certainty: "confirmed",
-    tags: ["withholding tax", "wht", "source deduction", " "],
+    tags: ["withholding tax", "wht", "source deduction"],
     lastVerified: "2025-03-09",
   },
   {
@@ -74,7 +74,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-001",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["need tin", "get tin", "tin registration", "etin", " ", "tin "],
+    triggerKeywords: ["need tin", "get tin", "tin registration", "etin", "tin "],
     question: "How do I get a TIN in Bangladesh?",
     irac: {
       issue: "How does a person obtain a TIN from NBR?",
@@ -90,7 +90,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-002",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tin mandatory", "tin required", "when need tin", " ", "  "],
+    triggerKeywords: ["tin mandatory", "tin required", "when need tin"],
     question: "When is TIN mandatory in Bangladesh?",
     irac: {
       issue: "In what situations is TIN mandatory under Income Tax Act 2023?",
@@ -107,7 +107,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-003",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["file tax return", "how to file return", "income tax return", " ", " "],
+    triggerKeywords: ["file tax return", "how to file return", "income tax return"],
     question: "How do I file my income tax return in Bangladesh?",
     irac: {
       issue: "What is the process for filing annual income tax return?",
@@ -123,7 +123,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-004",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax slab", "income tax rate", "  ", " ", "tax rate 2024", "tax rate 2025"],
+    triggerKeywords: ["tax slab", "income tax rate", "tax rate 2024", "tax rate 2025"],
     question: "What are the income tax rates for 2024-25?",
     irac: {
       issue: "What are the current individual tax slabs for FY 2024-25?",
@@ -139,7 +139,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-005",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax rebate", "investment rebate", " ", "tax savings", "rebate calculation"],
+    triggerKeywords: ["tax rebate", "investment rebate", "tax savings", "rebate calculation"],
     question: "How do I reduce tax through investment rebate?",
     irac: {
       issue: "How does the investment tax rebate work under ITA 2023?",
@@ -155,7 +155,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-006",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["late return", "return late penalty", " ", "missed deadline", "return after november"],
+    triggerKeywords: ["late return", "return late penalty", "missed deadline", "return after november"],
     question: "What happens if I file my tax return late?",
     irac: {
       issue: "Consequences of missing the 30 November return deadline?",
@@ -171,7 +171,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-007",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["minimum tax", " ", "tin holder minimum", "zero income tax", "minimum payment"],
+    triggerKeywords: ["minimum tax", "tin holder minimum", "zero income tax", "minimum payment"],
     question: "Is there a minimum tax even below the tax-free limit?",
     irac: {
       issue: "Must a TIN holder pay minimum tax even if income is below the threshold?",
@@ -188,7 +188,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-008",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["vat registration", "mushak registration", " ", "bin registration", "vat certificate"],
+    triggerKeywords: ["vat registration", "mushak registration", "bin registration", "vat certificate"],
     question: "How do I register for VAT?",
     irac: {
       issue: "Process for VAT registration with NBR?",
@@ -204,7 +204,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-009",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["vat return", "mushak 9.1", "monthly vat", " ", "vat filing"],
+    triggerKeywords: ["vat return", "mushak 9.1", "monthly vat", "vat filing"],
     question: "How do I file a monthly VAT return?",
     irac: {
       issue: "Process for filing monthly VAT return (MUSHAK 9.1)?",
@@ -220,7 +220,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-010",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["vat exempt", "zero vat", " ", "no vat goods", "vat free items"],
+    triggerKeywords: ["vat exempt", "zero vat", "no vat goods", "vat free items"],
     question: "Which goods and services are exempt from VAT?",
     irac: {
       issue: "What goods/services are VAT-exempt or zero-rated under VAT Act 2012?",
@@ -237,7 +237,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-011",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["withholding tax", "source tax", " ", "tds bangladesh", "wht deduction"],
+    triggerKeywords: ["withholding tax", "source tax", "tds bangladesh", "wht deduction"],
     question: "What is withholding tax and who must deduct it?",
     irac: {
       issue: "What is the WHT system and who is responsible?",
@@ -253,7 +253,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-012",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["salary tax deduction", "employee tax", " ", "payroll tax", "salary withholding"],
+    triggerKeywords: ["salary tax deduction", "employee tax", "payroll tax", "salary withholding"],
     question: "How is income tax deducted from salary?",
     irac: {
       issue: "How is salary WHT calculated and deducted?",
@@ -270,7 +270,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-013",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["company tax rate", "corporate tax", " ", "corporate tax rate", "business tax"],
+    triggerKeywords: ["company tax rate", "corporate tax", "corporate tax rate", "business tax"],
     question: "What is the corporate tax rate in Bangladesh?",
     irac: {
       issue: "Current corporate income tax rates under ITA 2023?",
@@ -286,7 +286,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-014",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["advance tax", "quarterly tax", " ", "advance income tax", "quarterly payment"],
+    triggerKeywords: ["advance tax", "quarterly tax", "advance income tax", "quarterly payment"],
     question: "Do I have to pay advance income tax?",
     irac: {
       issue: "Who must pay advance tax under ITA 2023?",
@@ -302,7 +302,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-015",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax audit", "nbr audit", " ", "selected audit", "dcit audit"],
+    triggerKeywords: ["tax audit", "nbr audit", "selected audit", "dcit audit"],
     question: "What happens if NBR audits my tax return?",
     irac: {
       issue: "What is the tax audit process under ITA 2023?",
@@ -320,7 +320,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-016",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax appeal", "challenge tax demand", " ", "object tax", "tax dispute"],
+    triggerKeywords: ["tax appeal", "challenge tax demand", "object tax", "tax dispute"],
     question: "How do I challenge a tax demand I disagree with?",
     irac: {
       issue: "Process for challenging a tax assessment under ITA 2023?",
@@ -337,7 +337,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-017",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax refund", "overpaid tax", " ", "refund income tax", "excess tax paid"],
+    triggerKeywords: ["tax refund", "overpaid tax", "refund income tax", "excess tax paid"],
     question: "How do I get a refund if I overpaid tax?",
     irac: {
       issue: "Process for claiming tax refund under ITA 2023?",
@@ -354,7 +354,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-018",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["land sale tax", "property tax", "  ", "capital gain tax", "property capital gain"],
+    triggerKeywords: ["land sale tax", "property tax", "capital gain tax", "property capital gain"],
     question: "Do I pay tax when selling land or property?",
     irac: {
       issue: "What tax applies on selling immovable property?",
@@ -370,7 +370,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-019",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["house rent income", "rental income tax", " ", "landlord tax", "rent tax"],
+    triggerKeywords: ["house rent income", "rental income tax", "landlord tax", "rent tax"],
     question: "Do I pay tax on house rent income?",
     irac: {
       issue: "How is rental income taxed under ITA 2023?",
@@ -387,7 +387,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-020",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["undisclosed income", "black money", " ", "undeclared income", "voluntary disclosure"],
+    triggerKeywords: ["undisclosed income", "black money", "undeclared income", "voluntary disclosure"],
     question: "Can I disclose undeclared income and pay tax on it?",
     irac: {
       issue: "Can undisclosed income be voluntarily declared under ITA 2023?",
@@ -404,7 +404,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-021",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["freelancer tax", "remote work tax", " ", "digital income tax", "online income foreign"],
+    triggerKeywords: ["freelancer tax", "remote work tax", "digital income tax", "online income foreign"],
     question: "Do freelancers and remote workers pay tax in Bangladesh?",
     irac: {
       issue: "How is freelance/remote work income taxed under ITA 2023?",
@@ -420,7 +420,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-022",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["gift tax", " ", "gift money tax", "received gift taxable", "gift from family"],
+    triggerKeywords: ["gift tax", "gift money tax", "received gift taxable", "gift from family"],
     question: "Is a gift I received taxable?",
     irac: {
       issue: "Are gifts received subject to income tax under ITA 2023?",
@@ -436,7 +436,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-023",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["bank interest tax", "savings interest", " ", "fd tax", "fixed deposit tax"],
+    triggerKeywords: ["bank interest tax", "savings interest", "fd tax", "fixed deposit tax"],
     question: "How is bank interest taxed?",
     irac: {
       issue: "How is interest from bank deposits taxed under ITA 2023?",
@@ -452,7 +452,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-024",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax penalty", "tax evasion penalty", "  ", "tax fine", "nbr penalty"],
+    triggerKeywords: ["tax penalty", "tax evasion penalty", "tax fine", "nbr penalty"],
     question: "What are the penalties for tax evasion?",
     irac: {
       issue: "What penalties apply to tax evasion under ITA 2023?",
@@ -468,7 +468,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-025",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["sanchayapatra tax", "savings certificate tax", " ", "national savings tax", " "],
+    triggerKeywords: ["sanchayapatra tax", "savings certificate tax", "national savings tax"],
     question: "What tax applies on sanchayapatra?",
     irac: {
       issue: "How is sanchayapatra interest taxed and does it qualify for rebate?",
@@ -484,7 +484,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-026",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["surcharge wealth", "net wealth tax", "", "wealth surcharge", "assets surcharge"],
+    triggerKeywords: ["surcharge wealth", "net wealth tax", "wealth surcharge", "assets surcharge"],
     question: "What is wealth surcharge in Bangladesh tax?",
     irac: {
       issue: "What surcharge applies on net wealth under ITA 2023?",
@@ -500,7 +500,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-027",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["facebook business tax", "e-commerce tax", "  ", "online shop tax", "digital business"],
+    triggerKeywords: ["facebook business tax", "e-commerce tax", "online shop tax", "digital business"],
     question: "Do I pay tax on Facebook or e-commerce income?",
     irac: {
       issue: "Is income from Facebook commerce or e-commerce taxable?",
@@ -516,7 +516,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-028",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["remittance tax", "  ", "foreign remittance", "nrb remittance", "overseas income"],
+    triggerKeywords: ["remittance tax", "foreign remittance", "nrb remittance", "overseas income"],
     question: "Is foreign remittance taxable in Bangladesh?",
     irac: {
       issue: "Is remittance from abroad taxable under ITA 2023?",
@@ -532,7 +532,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-029",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["stamp duty", "registration fee land", " ", "deed registration cost", "land registration tax"],
+    triggerKeywords: ["stamp duty", "registration fee land", "deed registration cost", "land registration tax"],
     question: "What are stamp duty and registration fees for land?",
     irac: {
       issue: "What stamp duty and registration fees apply when registering a land deed?",
@@ -548,7 +548,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-030",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax clearance", "tax proof", "  ", "tcc certificate", "tax compliance proof"],
+    triggerKeywords: ["tax clearance", "tax proof", "tcc certificate", "tax compliance proof"],
     question: "How do I get proof that I have paid my taxes?",
     irac: {
       issue: "How to get proof of tax compliance or tax clearance certificate?",
@@ -565,7 +565,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-031",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["business income tax", "sole trader tax", "proprietorship tax", "  ", "business profit tax"],
+    triggerKeywords: ["business income tax", "sole trader tax", "proprietorship tax", "business profit tax"],
     question: "How is sole proprietorship business income taxed?",
     irac: {
       issue: "How is income from a sole proprietorship ( ) taxed under ITA 2023?",
@@ -581,7 +581,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-032",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["partnership tax", "firm tax", " ", "partnership income tax", "firm income"],
+    triggerKeywords: ["partnership tax", "firm tax", "partnership income tax", "firm income"],
     question: "How is a partnership firm taxed in Bangladesh?",
     irac: {
       issue: "How is partnership firm income taxed under ITA 2023?",
@@ -597,7 +597,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-033",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["ngo tax", "charitable trust tax", " ", "ngo income tax", "charitable income"],
+    triggerKeywords: ["ngo tax", "charitable trust tax", "ngo income tax", "charitable income"],
     question: "Are NGOs and charitable organizations exempt from tax?",
     irac: {
       issue: "Are NGOs and charitable trusts exempt from income tax under ITA 2023?",
@@ -613,7 +613,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-034",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["supplementary duty", "sd goods", " ", "supplementary duty vat", "sd rate"],
+    triggerKeywords: ["supplementary duty", "sd goods", "supplementary duty vat", "sd rate"],
     question: "What is supplementary duty (SD) in Bangladesh?",
     irac: {
       issue: "What is supplementary duty and which goods does it apply to?",
@@ -629,7 +629,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-035",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["custom duty import", "import tax", " ", "import duty bangladesh", "customs charge"],
+    triggerKeywords: ["custom duty import", "import tax", "import duty bangladesh", "customs charge"],
     question: "What taxes apply when importing goods into Bangladesh?",
     irac: {
       issue: "What duties and taxes apply on imports into Bangladesh?",
@@ -645,7 +645,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-036",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["dividends tax", "share dividend", " ", "dividend income tax", "share income"],
+    triggerKeywords: ["dividends tax", "share dividend", "dividend income tax", "share income"],
     question: "How is dividend income taxed?",
     irac: {
       issue: "How is dividend income from shares taxed under ITA 2023?",
@@ -661,7 +661,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-037",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["transfer pricing", "related party transaction", " ", "multinational tax", "arm's length"],
+    triggerKeywords: ["transfer pricing", "related party transaction", "multinational tax", "arm's length"],
     question: "What is transfer pricing and does it apply to my business?",
     irac: {
       issue: "What are Bangladesh's transfer pricing rules under ITA 2023?",
@@ -678,7 +678,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-038",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax return proof bank loan", "bank requires tax return", "   ", "loan tax return requirement"],
+    triggerKeywords: ["tax return proof bank loan", "bank requires tax return", "loan tax return requirement"],
     question: "Do I need a tax return for a bank loan?",
     irac: {
       issue: "Is income tax return submission required for bank loan applications?",
@@ -694,7 +694,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-039",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["provident fund tax", "gratuity tax", " ", "provident fund taxable", "gratuity taxable"],
+    triggerKeywords: ["provident fund tax", "gratuity tax", "provident fund taxable", "gratuity taxable"],
     question: "Is provident fund or gratuity taxable?",
     irac: {
       issue: "Are provident fund contributions and gratuity payments taxable under ITA 2023?",
@@ -710,7 +710,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-040",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["crypto tax", "bitcoin tax", " ", "cryptocurrency bangladesh tax", "digital asset tax"],
+    triggerKeywords: ["crypto tax", "bitcoin tax", "cryptocurrency bangladesh tax", "digital asset tax"],
     question: "Is cryptocurrency income taxable in Bangladesh?",
     irac: {
       issue: "How is cryptocurrency income treated under Bangladesh tax law?",
@@ -727,7 +727,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-041",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["salary abroad income", "foreign salary tax", "  ", "overseas job tax", "foreign employment"],
+    triggerKeywords: ["salary abroad income", "foreign salary tax", "overseas job tax", "foreign employment"],
     question: "I work abroad - do I pay tax in Bangladesh on my foreign salary?",
     irac: {
       issue: "Is foreign salary income of a Bangladeshi national taxable in Bangladesh?",
@@ -743,7 +743,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-042",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["nbr notice response", "tax notice", " ", "income tax notice", "dcit notice"],
+    triggerKeywords: ["nbr notice response", "tax notice", "income tax notice", "dcit notice"],
     question: "I received a tax notice from NBR - what do I do?",
     irac: {
       issue: "How should a taxpayer respond to a notice from the Deputy Commissioner of Taxes?",
@@ -760,7 +760,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-043",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["export income tax", "export earnings tax", "  ", "garments export tax", "export exemption"],
+    triggerKeywords: ["export income tax", "export earnings tax", "garments export tax", "export exemption"],
     question: "Is export income exempt from tax?",
     irac: {
       issue: "What tax exemptions apply to export income under Bangladesh tax law?",
@@ -776,7 +776,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-044",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["pension tax", "retirement income tax", " ", "government pension", "pension taxable"],
+    triggerKeywords: ["pension tax", "retirement income tax", "government pension", "pension taxable"],
     question: "Is pension income taxable in Bangladesh?",
     irac: {
       issue: "Is pension income taxable under ITA 2023?",
@@ -792,7 +792,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-045",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["vat input credit", "input vat", " ", "vat credit claim", "mushak input credit"],
+    triggerKeywords: ["vat input credit", "input vat", "vat credit claim", "mushak input credit"],
     question: "Can I claim input VAT credit on purchases?",
     irac: {
       issue: "How does input VAT credit work under the VAT Act 2012?",
@@ -808,7 +808,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-046",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["large taxpayer", "ltu", " ", "large taxpayer unit", "ltu registration"],
+    triggerKeywords: ["large taxpayer", "ltu", "large taxpayer unit", "ltu registration"],
     question: "What is the Large Taxpayer Unit (LTU) and do I fall under it?",
     irac: {
       issue: "What is the NBR's Large Taxpayer Unit and what taxpayers fall under its jurisdiction?",
@@ -824,7 +824,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-047",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["flat apartment purchase tax", "apartment buy tax", "  ", "property purchase tax", "flat registration tax"],
+    triggerKeywords: ["flat apartment purchase tax", "apartment buy tax", "property purchase tax", "flat registration tax"],
     question: "What taxes do I pay when buying a flat?",
     irac: {
       issue: "What taxes and fees apply when purchasing a flat or apartment in Bangladesh?",
@@ -840,7 +840,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-048",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["small business vat", "cottage industry", "  ", "small business tax", "cottage vat"],
+    triggerKeywords: ["small business vat", "cottage industry", "small business tax", "cottage vat"],
     question: "Do small businesses and cottage industries pay VAT?",
     irac: {
       issue: "What VAT obligations apply to small businesses and cottage industries under VAT Act 2012?",
@@ -856,7 +856,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-049",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["income tax act 2023 changes", "new tax law changes", "  ", "ita 2023 vs ordinance 1984", "tax law changes"],
+    triggerKeywords: ["income tax act 2023 changes", "new tax law changes", "ita 2023 vs ordinance 1984", "tax law changes"],
     question: "What are the major changes in the Income Tax Act 2023 vs old law?",
     irac: {
       issue: "What are the key changes introduced by the Income Tax Act 2023 replacing the IT Ordinance 1984?",
@@ -872,7 +872,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-050",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["tax consultant", "ca firm", "tax advisor", " ", "income tax help", "need tax help"],
+    triggerKeywords: ["tax consultant", "ca firm", "tax advisor", "income tax help", "need tax help"],
     question: "When do I need a professional tax consultant in Bangladesh?",
     irac: {
       issue: "In what situations should a taxpayer engage a professional tax consultant in Bangladesh?",
@@ -924,7 +924,7 @@ const qaBank: QAEntry[] = [
     id: "tax-qa-053",
     area: "tax",
     jurisdiction: "BD",
-    triggerKeywords: ["agricultural income tax", "krishi aay kor", "  ", "farm income tax", "agriculture tax bangladesh"],
+    triggerKeywords: ["agricultural income tax", "krishi aay kor", "farm income tax", "agriculture tax bangladesh"],
     question: "Is agricultural income taxable in Bangladesh?",
     irac: {
       issue: "What is the tax treatment of income from agriculture under ITA 2023?",

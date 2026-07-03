@@ -220,7 +220,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-001",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["punishment murder", "murder punishment", "murder sentence", "section 302", "302 penal code", " ", " ", "killed someone", "how many years for murder", "death penalty murder", "life imprisonment murder"],
+    triggerKeywords: ["punishment murder", "murder punishment", "murder sentence", "section 302", "302 penal code", "killed someone", "how many years for murder", "death penalty murder", "life imprisonment murder"],
     question: "What is the punishment for murder in Bangladesh?",
     irac: {
       issue: "What punishment does Bangladesh law prescribe for the offence of murder?",
@@ -237,7 +237,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-002",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["culpable homicide", "304", "sudden fight death", "unintentional killing", "not murder", "  ", "killed by accident", "difference murder homicide", "heat of passion killing"],
+    triggerKeywords: ["culpable homicide", "304", "sudden fight death", "unintentional killing", "not murder", "killed by accident", "difference murder homicide", "heat of passion killing"],
     question: "What is the difference between murder and culpable homicide?",
     irac: {
       issue: "How does Bangladesh law distinguish murder (Section 302) from culpable homicide not amounting to murder (Section 304)?",
@@ -260,7 +260,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-013",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["how to file fir", "file criminal case", "file case police", " ", " ", "how to complain police", "police not taking case", "gd number", "general diary", "wants to file case"],
+    triggerKeywords: ["how to file fir", "file criminal case", "file case police", "how to complain police", "police not taking case", "gd number", "general diary", "wants to file case"],
     question: "How do I file a criminal case (FIR) in Bangladesh?",
     irac: {
       issue: "What is the process for filing a First Information Report (FIR) at a police station in Bangladesh?",
@@ -277,7 +277,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-016",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["how long detained", "police detention time", "24 hours police", "   ", "detention limit", "kept in police station", "not taken to court", "habeas corpus", "illegal detention"],
+    triggerKeywords: ["how long detained", "police detention time", "24 hours police", "detention limit", "kept in police station", "not taken to court", "habeas corpus", "illegal detention"],
     question: "How long can police detain me without a court order?",
     irac: {
       issue: "What is the maximum time police can hold a person after arrest before producing them before a court?",
@@ -299,7 +299,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-026",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["rape punishment", "punishment rape", " ", "rape sentence bangladesh", "nari shishu rape", "sexual assault", "minor rape", "gang rape punishment"],
+    triggerKeywords: ["rape punishment", "punishment rape", "rape sentence bangladesh", "nari shishu rape", "sexual assault", "minor rape", "gang rape punishment"],
     question: "What is the punishment for rape under Bangladesh law?",
     irac: {
       issue: "What punishment does Bangladesh law prescribe for rape?",
@@ -317,7 +317,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-028",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["drug trafficking punishment", "narcotics", " ", "drug crime bangladesh", "narcotics act 2018", "yaba punishment", "phensidyl punishment", "ice drug", "heroin sentence", "caught with drugs"],
+    triggerKeywords: ["drug trafficking punishment", "narcotics", "drug crime bangladesh", "narcotics act 2018", "yaba punishment", "phensidyl punishment", "ice drug", "heroin sentence", "caught with drugs"],
     question: "What is the punishment for drug trafficking in Bangladesh?",
     irac: {
       issue: "What punishment does the Narcotics Control Act 2018 prescribe for drug trafficking?",
@@ -335,7 +335,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-029",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["cyber crime punishment", "digital security act", " ", "online crime bangladesh", "cyber security act 2023", "facebook case", "fake news case", "online defamation case", "hacking punishment"],
+    triggerKeywords: ["cyber crime punishment", "digital security act", "online crime bangladesh", "cyber security act 2023", "facebook case", "fake news case", "online defamation case", "hacking punishment"],
     question: "What are the punishments under the Cyber Security Act 2023?",
     irac: {
       issue: "What offences and punishments does the Cyber Security Act 2023 of Bangladesh establish?",
@@ -353,7 +353,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-031",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["human trafficking", "trafficking punishment", "  ", "trafficking bangladesh", "sold abroad", "brothel trafficking", "organ trafficking"],
+    triggerKeywords: ["human trafficking", "trafficking punishment", "trafficking bangladesh", "sold abroad", "brothel trafficking", "organ trafficking"],
     question: "What is the punishment for human trafficking in Bangladesh?",
     irac: {
       issue: "What punishment does Bangladesh law prescribe for human trafficking?",
@@ -375,7 +375,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-032",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["cheque bounce", "dishonoured cheque", " ", "cheque return", "ni act 138", "bank cheque case", "payment stopped cheque", "insufficient funds cheque"],
+    triggerKeywords: ["cheque bounce", "dishonoured cheque", "cheque return", "ni act 138", "bank cheque case", "payment stopped cheque", "insufficient funds cheque"],
     question: "What is the punishment for a cheque bounce (dishonour) in Bangladesh?",
     irac: {
       issue: "What criminal and civil remedies exist when a bank cheque is dishonoured?",
@@ -392,7 +392,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-033",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["section 54 abuse", "torture in remand", " ", "police tortured me", "confession by force", "crossfire", "extrajudicial", "custodial torture"],
+    triggerKeywords: ["section 54 abuse", "torture in remand", "police tortured me", "confession by force", "crossfire", "extrajudicial", "custodial torture"],
     question: "What can I do if police torture me during remand or arrest?",
     irac: {
       issue: "What legal remedies exist for custodial torture or abuse of Section 54 powers by police?",
@@ -410,7 +410,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-034",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["confession to police", "", "is confession valid", "section 27 evidence", "police forced confession", "giving statement to police"],
+    triggerKeywords: ["confession to police", "is confession valid", "section 27 evidence", "police forced confession", "giving statement to police"],
     question: "Is a confession given to the police admissible in court?",
     irac: {
       issue: "What is the legal status of a confessional statement made to a police officer under Bangladesh evidence law?",
@@ -427,7 +427,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-035",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["quash fir", "cancel false case", "  ", "withdraw fir", "high court fir", "section 561a", "malicious case", "revenge case"],
+    triggerKeywords: ["quash fir", "cancel false case", "withdraw fir", "high court fir", "section 561a", "malicious case", "revenge case"],
     question: "How can I get a false FIR cancelled or quashed?",
     irac: {
       issue: "What is the legal mechanism to quash a false or maliciously filed FIR in Bangladesh?",
@@ -445,7 +445,7 @@ const qaBank: QAEntry[] = [
     id: "cr-qa-036",
     area: "criminal",
     jurisdiction: "BD",
-    triggerKeywords: ["cyber tribunal jurisdiction", "where to file cyber case", " ", "cyber court location", "cyber appellate tribunal"],
+    triggerKeywords: ["cyber tribunal jurisdiction", "where to file cyber case", "cyber court location", "cyber appellate tribunal"],
     question: "Where are cyber crime cases tried in Bangladesh?",
     irac: {
       issue: "What courts have jurisdiction to try offences under the Cyber Security Act 2023?",

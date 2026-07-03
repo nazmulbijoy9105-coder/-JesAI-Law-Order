@@ -326,16 +326,12 @@ function extractReliefOptions(conclusion: string): string[] {
   const lines = conclusion.split("\n");
 
   for (const line of lines) {
-    const clean = line.replace(/^[\-\*\d\.\s]+/, "").trim();
+    const clean = line.replace(/^[\-\*\d\.\s]+/).trim();
     if (
       clean.length > 10 &&
       clean.length < 200 &&
       !clean.startsWith("**") &&
       !clean.startsWith("|") &&
-      !clean.startsWith("") &&
-      !clean.startsWith("") &&
-      !clean.startsWith("") &&
-      !clean.startsWith("")
     ) {
       options.push(clean);
     }
@@ -346,7 +342,7 @@ function extractReliefOptions(conclusion: string): string[] {
 
 //  Verdict Emoji 
 function verdictEmoji(v: VerdictBand): string {
-  return { GREEN: "", YELLOW: "", RED: "", BLACK: "" }[v];
+  return { GREEN: "✅", YELLOW: "⚠️", RED: "Ὢb", BLACK: "⛔" }[v];
 }
 
 //  Response Formatter  Deterministic Text 
@@ -375,9 +371,9 @@ function formatDeterministicResponse(
     lines.push("**Deterministic Checks:**");
     for (const check of tierChecks) {
       const icon =
-        check.result === "GREEN"  ? "" :
-        check.result === "YELLOW" ? "" :
-        check.result === "RED"    ? "" : "";
+        check.result === "GREEN"  ? "✅" :
+        check.result === "YELLOW" ? "⚠️" :
+        check.result === "RED"    ? "Ὢb" : "⛔";
       lines.push(`${icon} **${check.checkType}:** ${check.basis}`);
     }
     lines.push("");
@@ -483,7 +479,7 @@ function buildBlackResponse(
   return {
     verdict: "BLACK",
     confidenceScore: 0,
-    verdictEmoji: "",
+    verdictEmoji: v === "GREEN" ? "✅" : v === "YELLOW" ? "⚠️" : v === "RED" ? "Ὢb" : "⛔",
     verdictExplanation: trace.stage4.verdictExplanation,
     responseText,
     trace,

@@ -329,7 +329,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-008",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["probation period", "fired during probation", "", "probationary worker rights", "probation notice period"],
+    triggerKeywords: ["probation period", "fired during probation", "probationary worker rights", "probation notice period"],
     question: "Can my employer fire me without any reason while I am on probation?",
     irac: {
       issue: "Whether an employer can terminate a probationary worker without assigning any cause or following formal dismissal procedures.",
@@ -345,7 +345,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-009",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["sick leave", "medical leave", " ", "sick leave entitlement", "medical certificate"],
+    triggerKeywords: ["sick leave", "medical leave", "sick leave entitlement", "medical certificate"],
     question: "How many sick days am I legally entitled to, and can my employer demand a doctor's note?",
     irac: {
       issue: "Determining the statutory entitlement for sick leave and the employer's right to request medical documentation.",
@@ -361,7 +361,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-010",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["casual leave", " ", "casual leave rules", "how many casual leave"],
+    triggerKeywords: ["casual leave", "casual leave rules", "how many casual leave"],
     question: "How many casual leave days do I get per year?",
     irac: {
       issue: "Entitlement and rules regarding casual leave under Bangladesh labour law.",
@@ -377,7 +377,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-011",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["working on friday", "weekly holiday", " ", "friday work compensation", "forced to work friday"],
+    triggerKeywords: ["working on friday", "weekly holiday", "friday work compensation", "forced to work friday"],
     question: "Can my employer force me to work on Friday (the weekly holiday)?",
     irac: {
       issue: "Whether an employer can compel a worker to work on their designated weekly holiday and what the compensation should be.",
@@ -393,7 +393,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-012",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["child labour", "14 year old job", " ", "underage worker", "can a teenager work"],
+    triggerKeywords: ["child labour", "14 year old job", "underage worker", "can a teenager work"],
     question: "Can a 14-year-old be legally employed in a factory or shop in Bangladesh?",
     irac: {
       issue: "The legality of employing children and adolescents under Bangladesh labour law.",
@@ -410,7 +410,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-013",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["female night shift", "women night work", "  ", "can women work at night"],
+    triggerKeywords: ["female night shift", "women night work", "can women work at night"],
     question: "Is it legal for female workers to work night shifts in Bangladesh?",
     irac: {
       issue: "Whether female workers are legally permitted to work during night hours (typically 7 PM to 7 AM).",
@@ -426,7 +426,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-014",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["workplace injury", "accident in factory", " ", "machine injury compensation", "hurt at work"],
+    triggerKeywords: ["workplace injury", "accident in factory", "machine injury compensation", "hurt at work"],
     question: "I was injured at work due to a machine malfunction  can I claim compensation?",
     irac: {
       issue: "A worker suffers physical injury due to an accident arising out of and in the course of employment. The question is the right to compensation.",
@@ -443,7 +443,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-015",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["worker died at factory", "death compensation", " ", "family compensation death"],
+    triggerKeywords: ["worker died at factory", "death compensation", "family compensation death"],
     question: "If a worker dies in a workplace accident, how much compensation does the family get?",
     irac: {
       issue: "Compensation payable to the dependents of a worker who dies from a workplace injury.",
@@ -460,7 +460,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-016",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["labour court case", "how to file case", " ", "file complaint labour", "labour case procedure"],
+    triggerKeywords: ["labour court case", "how to file case", "file complaint labour", "labour case procedure"],
     question: "How do I file a case in the Labour Court?",
     irac: {
       issue: "The procedure, cost, and limitation period for filing a dispute in the Labour Court.",
@@ -476,7 +476,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-017",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["go on strike", "strike rules", "", "legal strike procedure", "workers protest"],
+    triggerKeywords: ["go on strike", "strike rules", "legal strike procedure", "workers protest"],
     question: "What is the legal process for workers to go on strike?",
     irac: {
       issue: "The legal requirements workers must fulfill before going on strike to ensure it is not deemed illegal.",
@@ -493,7 +493,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-018",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["casual worker rights", "daily wage gratuity", " ", "temporary worker benefits", "contract worker rights"],
+    triggerKeywords: ["casual worker rights", "daily wage gratuity", "temporary worker benefits", "contract worker rights"],
     question: "I am a daily-wage/casual worker  am I entitled to gratuity or notice pay?",
     irac: {
       issue: "Whether casual, temporary, or daily-rated workers are entitled to statutory benefits like gratuity and notice period.",
@@ -509,7 +509,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-019",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["employee vs worker", "labour act applicability", "  ", "officer labour law", "manager rights"],
+    triggerKeywords: ["employee vs worker", "labour act applicability", "officer labour law", "manager rights"],
     question: "Does the Labour Act apply to managers, officers, and administrative staff?",
     irac: {
       issue: "Determining whether high-level administrative, managerial, or supervisory staff fall under the definition of 'worker' in the Labour Act.",
@@ -526,7 +526,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-020",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["sexual harassment", "harassment at work", " ", "complaints committee", "boss harassment"],
+    triggerKeywords: ["sexual harassment", "harassment at work", "complaints committee", "boss harassment"],
     question: "I am facing sexual harassment at my workplace  what legal protections do I have?",
     irac: {
       issue: "Legal remedies and institutional mechanisms for a worker facing sexual harassment.",
@@ -543,7 +543,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-021",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["salary deduction", "illegal deduction", " ", "fine from salary", "damage deduction"],
+    triggerKeywords: ["salary deduction", "illegal deduction", "fine from salary", "damage deduction"],
     question: "Can my employer deduct money from my salary for mistakes or fines?",
     irac: {
       issue: "The legal limits on an employer's power to make deductions from a worker's wages.",
@@ -559,7 +559,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-022",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["experience letter", "service certificate", " ", "employer refusing letter", "no experience letter"],
+    triggerKeywords: ["experience letter", "service certificate", "employer refusing letter", "no experience letter"],
     question: "My employer is refusing to give me my experience/service letter. What can I do?",
     irac: {
       issue: "An employer's obligation to issue a service certificate upon termination or resignation.",
@@ -575,7 +575,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-023",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["forced retirement", "retirement age", " ", "mandatory retirement", "retired against will"],
+    triggerKeywords: ["forced retirement", "retirement age", "mandatory retirement", "retired against will"],
     question: "Can an employer force me to retire at a certain age?",
     irac: {
       issue: "Whether there is a statutory retirement age in Bangladesh that allows an employer to forcibly retire a worker.",
@@ -591,7 +591,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-024",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["minimum wage", "  ", "minimum salary bd", "below minimum wage"],
+    triggerKeywords: ["minimum wage", "minimum salary bd", "below minimum wage"],
     question: "What is the minimum wage in Bangladesh?",
     irac: {
       issue: "Determining the applicable minimum wage for a worker.",
@@ -607,7 +607,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-025",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["epz labour law", "export processing zone rules", "  ", "epz worker rights", "bepza"],
+    triggerKeywords: ["epz labour law", "export processing zone rules", "epz worker rights", "bepza"],
     question: "Are labour laws different inside the Export Processing Zones (EPZ)?",
     irac: {
       issue: "Whether the standard Bangladesh Labour Act 2006 applies to workers inside EPZs.",
@@ -624,7 +624,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-026",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["rest interval", "break time", " ", "tea break law", "lunch break hours"],
+    triggerKeywords: ["rest interval", "break time", "tea break law", "lunch break hours"],
     question: "Am I legally entitled to break times or a lunch break during my 8-hour shift?",
     irac: {
       issue: "Statutory requirements for rest intervals during a working day.",
@@ -640,7 +640,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-027",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["factory closing down", "employer bankrupt", " ", "company shutdown workers", "unpaid wages bankruptcy"],
+    triggerKeywords: ["factory closing down", "employer bankrupt", "company shutdown workers", "unpaid wages bankruptcy"],
     question: "My factory is closing down suddenly  how do I get my unpaid wages and dues?",
     irac: {
       issue: "Worker rights and priority of claims when an employer shuts down operations, becomes insolvent, or absconds.",
@@ -657,7 +657,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-028",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["intern rights", "apprentice", "", "unpaid internship", "stipend law"],
+    triggerKeywords: ["intern rights", "apprentice", "unpaid internship", "stipend law"],
     question: "Does the Labour Act apply to interns or apprentices?",
     irac: {
       issue: "Whether interns or apprentices are classified as 'workers' under the Labour Act 2006.",
@@ -673,7 +673,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-029",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["form trade union", "register union", " ", "union formation steps", "employer anti union"],
+    triggerKeywords: ["form trade union", "register union", "union formation steps", "employer anti union"],
     question: "How do we legally form and register a trade union?",
     irac: {
       issue: "The statutory process for workers to form and register a trade union.",
@@ -689,7 +689,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-030",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["leave encashment", "cash out leave", " ", "unused annual leave", "leave balance payment"],
+    triggerKeywords: ["leave encashment", "cash out leave", "unused annual leave", "leave balance payment"],
     question: "Can I get paid for my unused annual leave when I leave the company?",
     irac: {
       issue: "Whether a worker is entitled to monetary compensation for earned but unused annual leave upon termination or resignation.",
@@ -705,7 +705,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-031",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["suspended pending enquiry", "", "suspension pay", "suspended without pay"],
+    triggerKeywords: ["suspended pending enquiry", "suspension pay", "suspended without pay"],
     question: "My employer suspended me pending a domestic enquiry  do I get paid during suspension?",
     irac: {
       issue: "Whether a worker is entitled to wages during a period of suspension pending a domestic enquiry.",
@@ -721,7 +721,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-032",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["final settlement", "full and final", " ", "last dues clearance", "final pay"],
+    triggerKeywords: ["final settlement", "full and final", "last dues clearance", "final pay"],
     question: "How long does my employer have to clear my final settlement after I leave?",
     irac: {
       issue: "The statutory time limit for an employer to pay a separating worker's final dues (wages, gratuity, leave encashment).",
@@ -737,7 +737,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-033",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["piece rate worker", " ", "piece rated wage calculation", "paid per piece"],
+    triggerKeywords: ["piece rate worker", "piece rated wage calculation", "paid per piece"],
     question: "I am paid per piece produced  how does overtime and minimum wage apply to me?",
     irac: {
       issue: "Applying minimum wage and overtime rules to piece-rated workers.",
@@ -753,7 +753,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-034",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["equal pay gender", "women paid less", " ", "same work different pay"],
+    triggerKeywords: ["equal pay gender", "women paid less", "same work different pay"],
     question: "Is it legal for my employer to pay me less than a male colleague for the same work?",
     irac: {
       issue: "The legal stance on gender-based wage discrimination in the private sector in Bangladesh.",
@@ -770,7 +770,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-035",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["provident fund withdrawal", "pf transfer", "  ", "provident fund resign", "pf balance"],
+    triggerKeywords: ["provident fund withdrawal", "pf transfer", "provident fund resign", "pf balance"],
     question: "Can I withdraw my full Provident Fund when I resign?",
     irac: {
       issue: "The rules regarding withdrawal of the employee's own contribution and the employer's contribution to the PF upon resignation.",
@@ -786,7 +786,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-036",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["salary cut", "salary reduced", " ", "pay cut company", "reduced salary without consent"],
+    triggerKeywords: ["salary cut", "salary reduced", "pay cut company", "reduced salary without consent"],
     question: "Can my employer reduce my salary without my written consent?",
     irac: {
       issue: "Whether an employer has the unilateral power to cut an existing worker's salary.",
@@ -802,7 +802,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-037",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["work from home", "remote work", "  ", "wfh rights", "telecommuting bd"],
+    triggerKeywords: ["work from home", "remote work", "wfh rights", "telecommuting bd"],
     question: "Do standard labour rights apply if I am working from home (WFH)?",
     irac: {
       issue: "The applicability of the Labour Act 2006 to remote work/telecommuting arrangements.",
@@ -818,7 +818,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-038",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["government holiday work", " ", "working on public holiday", "bangla noboborsho work"],
+    triggerKeywords: ["government holiday work", "working on public holiday", "bangla noboborsho work"],
     question: "If I work on a government-declared public holiday (like 26 March or 21 Feb), what am I owed?",
     irac: {
       issue: "Compensation for working on a declared public/national holiday.",
@@ -834,7 +834,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-039",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["foreign worker rights", "expat labour law", " ", "foreign employee bd"],
+    triggerKeywords: ["foreign worker rights", "expat labour law", "foreign employee bd"],
     question: "Do foreign nationals working in Bangladesh have the same labour rights?",
     irac: {
       issue: "Whether the Bangladesh Labour Act 2006 applies to expatriate/foreign workers.",
@@ -850,7 +850,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-040",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["workplace bullying", "harassed by boss", " ", "toxic workplace", "verbal abuse"],
+    triggerKeywords: ["workplace bullying", "harassed by boss", "toxic workplace", "verbal abuse"],
     question: "I am being severely bullied and verbally abused by my manager  is there legal recourse?",
     irac: {
       issue: "Whether non-sexual workplace bullying, mental harassment, or verbal abuse is actionable under Bangladesh labour law.",
@@ -866,7 +866,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-041",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["change job role", "demotion", "  ", "transferred without consent", "forced transfer"],
+    triggerKeywords: ["change job role", "demotion", "transferred without consent", "forced transfer"],
     question: "Can my employer transfer me to a different city or demote me without my consent?",
     irac: {
       issue: "The employer's power to unilaterally transfer or demote a worker.",
@@ -882,7 +882,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-042",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["outsourced worker", "subcontractor employee", " ", "third party payroll", "who is real employer"],
+    triggerKeywords: ["outsourced worker", "subcontractor employee", "third party payroll", "who is real employer"],
     question: "I work in a factory but I am on a contractor's payroll  who is my legal employer?",
     irac: {
       issue: "Determining the real employer when a worker is supplied by a third-party contractor or outsourcing agency.",
@@ -898,7 +898,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-043",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["refusing to accept resignation", "forced to stay", "   ", "employer not accepting resign"],
+    triggerKeywords: ["refusing to accept resignation", "forced to stay", "employer not accepting resign"],
     question: "My employer is refusing to accept my resignation letter  am I still bound to work?",
     irac: {
       issue: "Whether an employer's refusal to accept a resignation letter prevents the worker from legally leaving.",
@@ -914,7 +914,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-044",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["notice period buyout", "pay instead of notice", "  ", "short notice"],
+    triggerKeywords: ["notice period buyout", "pay instead of notice", "short notice"],
     question: "Can I pay money instead of working my notice period?",
     irac: {
       issue: "Whether a worker can buy out their notice period by paying the employer.",
@@ -930,7 +930,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-045",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["labour court order not followed", "employer ignored verdict", "  ", "execute labour court order"],
+    triggerKeywords: ["labour court order not followed", "employer ignored verdict", "execute labour court order"],
     question: "I won my case in the Labour Court, but the employer is still not paying  what do I do?",
     irac: {
       issue: "The remedy available to a worker when an employer defies or ignores a Labour Court judgment.",
@@ -947,7 +947,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-046",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["probation notice period", "quit during probation", " ", "probation termination notice"],
+    triggerKeywords: ["probation notice period", "quit during probation", "probation termination notice"],
     question: "How much notice do I have to give if I want to quit during my probation period?",
     irac: {
       issue: "The statutory notice requirement for a worker resigning while on probation.",
@@ -963,7 +963,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-047",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["whistleblower", "reported corruption", " ", "fired for reporting", "retaliation reporting"],
+    triggerKeywords: ["whistleblower", "reported corruption", "fired for reporting", "retaliation reporting"],
     question: "I was fired because I reported illegal activities (corruption/pollution) in my company  am I protected?",
     irac: {
       issue: "Legal protections for workers who face retaliation for whistleblowing.",
@@ -980,7 +980,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-048",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["bank employee rights", "financial institution labour act", " ", "banker termination"],
+    triggerKeywords: ["bank employee rights", "financial institution labour act", "banker termination"],
     question: "Does the Labour Act apply to bank employees?",
     irac: {
       issue: "Whether employees of commercial banks fall under the Bangladesh Labour Act 2006.",
@@ -996,7 +996,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-049",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["grievance committee", "participatory committee", " ", "internal dispute resolution"],
+    triggerKeywords: ["grievance committee", "participatory committee", "internal dispute resolution"],
     question: "My company has a Grievance Committee  do I have to use it before going to court?",
     irac: {
       issue: "Whether approaching the internal grievance/participatory committee is a mandatory pre-condition for filing a case in the Labour Court.",
@@ -1012,7 +1012,7 @@ const qaBank: QAEntry[] = [
     id: "lab-qa-050",
     area: "labour",
     jurisdiction: "BD",
-    triggerKeywords: ["no appointment letter", "verbal job", " ", "working without letter", "prove employment"],
+    triggerKeywords: ["no appointment letter", "verbal job", "working without letter", "prove employment"],
     question: "I have been working for 2 years but never received an appointment letter  am I still a legal worker?",
     irac: {
       issue: "Whether the absence of a formal appointment letter invalidates a worker's statutory rights under the Labour Act.",
