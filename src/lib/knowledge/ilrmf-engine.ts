@@ -326,16 +326,13 @@ function extractReliefOptions(conclusion: string): string[] {
   const lines = conclusion.split("\n");
 
   for (const line of lines) {
-    const clean = line.replace(/^[\-\*\d\.\s]+/).trim();
+    const clean = line.replace(/^[-*\d\.\s]+/, "").trim();
     if (
       clean.length > 10 &&
       clean.length < 200 &&
       !clean.startsWith("**") &&
-      !clean.startsWith("|") &&
+      !clean.startsWith("|")
     ) {
-      options.push(clean);
-    }
-  }
 
   return options.slice(0, 5);
 }
