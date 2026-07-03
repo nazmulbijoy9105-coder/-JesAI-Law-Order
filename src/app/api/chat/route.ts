@@ -405,7 +405,9 @@ export async function POST(req: NextRequest) {
     //  Step 4: Static fallback 
     const scenarioResult = matchScenario(message, activeSession);
     if (scenarioResult.matched) {
-      const wrongSubject = selectedArea && scenarioResult.scenario.area !== selectedArea;
+      const detectedAreaForScenario = detectArea(message);
+const wrongSubject = (selectedArea && scenarioResult.scenario.area !== selectedArea) ||
+                      (!selectedArea && detectedAreaForScenario && detectedAreaForScenario !== "general" && detectedAreaForScenario !== scenarioResult.scenario.area);
       if (!wrongSubject) {
         scenarioSessions.set(sessionId, { scenarioId: scenarioResult.scenario.scenarioId, currentStepIndex: scenarioResult.stepNumber - 1 });
         return NextResponse.json({

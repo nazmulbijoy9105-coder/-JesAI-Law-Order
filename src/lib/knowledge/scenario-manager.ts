@@ -1982,11 +1982,7 @@ export function matchScenario(
     msg.includes("steps") ||
     msg.includes("process") ||
     msg.includes("procedure") ||
-    msg.includes("how to") ||
-    msg.includes("") ||
-    msg.includes("") ||
-    msg.includes("") ||
-    msg.includes("");
+    msg.includes("how to");
 
   if (area && isProcessRequest) {
     const areaScenario = SCENARIOS.find((s) => s.area === area);
