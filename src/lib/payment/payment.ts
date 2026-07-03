@@ -1,6 +1,6 @@
 /**
  * JesAI Payment Integration
- * bKash + Nagad — Bangladesh Mobile Payment
+ * bKash + Nagad  Bangladesh Mobile Payment
  * Flips isPaid flag in Supabase on successful payment
  */
 
@@ -13,7 +13,7 @@ function getSupabase() {
   );
 }
 
-// ── TYPES ─────────────────────────────────────────────────────────────────────
+//  TYPES 
 export type PaymentTier = "basic" | "pro" | "professional"
 export type PaymentMethod = "bkash" | "nagad"
 
@@ -41,13 +41,13 @@ export interface PaymentRecord {
   created_at?: string
 }
 
-// ── PLANS ─────────────────────────────────────────────────────────────────────
+//  PLANS 
 export const PAYMENT_PLANS: PaymentPlan[] = [
   {
     tier: "basic",
     price_bdt: 99,
     label_en: "Basic",
-    label_bn: "বেসিক",
+    label_bn: "",
     queries_per_day: 50,
     bkash_number: process.env.NEXT_PUBLIC_BKASH_NUMBER || "01XXXXXXXXX",
     nagad_number: process.env.NEXT_PUBLIC_NAGAD_NUMBER || "01XXXXXXXXX",
@@ -59,18 +59,18 @@ export const PAYMENT_PLANS: PaymentPlan[] = [
       "Email support",
     ],
     features_bn: [
-      "দৈনিক ৫০টি প্রশ্ন",
-      "সকল ৭টি আইন মডিউল",
-      "পারিবারিক আইন",
-      "বাংলা + ইংরেজি",
-      "ইমেইল সাপোর্ট",
+      "  ",
+      "   ",
+      " ",
+      " + ",
+      " ",
     ],
   },
   {
     tier: "pro",
     price_bdt: 499,
     label_en: "Pro",
-    label_bn: "প্রো",
+    label_bn: "",
     queries_per_day: 999,
     bkash_number: process.env.NEXT_PUBLIC_BKASH_NUMBER || "01XXXXXXXXX",
     nagad_number: process.env.NEXT_PUBLIC_NAGAD_NUMBER || "01XXXXXXXXX",
@@ -82,18 +82,18 @@ export const PAYMENT_PLANS: PaymentPlan[] = [
       "WhatsApp access",
     ],
     features_bn: [
-      "সীমাহীন প্রশ্ন",
-      "সকল ৭টি আইন মডিউল",
-      "অগ্রাধিকার সাপোর্ট",
-      "ডকুমেন্ট বিশ্লেষণ",
-      "হোয়াটসঅ্যাপ সাপোর্ট",
+      " ",
+      "   ",
+      " ",
+      " ",
+      " ",
     ],
   },
   {
     tier: "professional",
     price_bdt: 1999,
     label_en: "Professional",
-    label_bn: "প্রফেশনাল",
+    label_bn: "",
     queries_per_day: 9999,
     bkash_number: process.env.NEXT_PUBLIC_BKASH_NUMBER || "01XXXXXXXXX",
     nagad_number: process.env.NEXT_PUBLIC_NAGAD_NUMBER || "01XXXXXXXXX",
@@ -105,16 +105,16 @@ export const PAYMENT_PLANS: PaymentPlan[] = [
       "WhatsApp + Phone access",
     ],
     features_bn: [
-      "সীমাহীন প্রশ্ন",
-      "সরাসরি আইনজীবী পরামর্শ",
-      "মামলার কৌশল পর্যালোচনা",
-      "দলিল প্রস্তুত",
-      "হোয়াটসঅ্যাপ + ফোন",
+      " ",
+      "  ",
+      "  ",
+      " ",
+      " + ",
     ],
   },
 ]
 
-// ── SUBMIT PAYMENT ────────────────────────────────────────────────────────────
+//  SUBMIT PAYMENT 
 export async function submitPayment(data: {
   user_id: string
   tier: PaymentTier
@@ -141,7 +141,7 @@ export async function submitPayment(data: {
     return { success: false, message: "Transaction ID already used" }
   }
 
-  // Insert payment record — status = pending (admin verifies)
+  // Insert payment record  status = pending (admin verifies)
   const { data: record, error } = await supabase
     .from("payment_records")
     .insert({
@@ -168,7 +168,7 @@ export async function submitPayment(data: {
   }
 }
 
-// ── VERIFY PAYMENT (Admin) ─────────────────────────────────────────────────
+//  VERIFY PAYMENT (Admin) 
 export async function verifyPayment(
   record_id: string,
   approved: boolean
@@ -204,7 +204,7 @@ export async function verifyPayment(
   return { success: true }
 }
 
-// ── CHECK USER TIER ────────────────────────────────────────────────────────
+//  CHECK USER TIER 
 export async function getUserTier(user_id: string): Promise<{
   is_paid: boolean
   tier: string

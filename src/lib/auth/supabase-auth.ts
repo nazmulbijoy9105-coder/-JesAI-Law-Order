@@ -1,5 +1,5 @@
 /**
- * JesAI Auth — Supabase
+ * JesAI Auth  Supabase
  * Guest + Paid Users + Admin
  */
 
@@ -24,7 +24,7 @@ export interface JesAIUser {
   created_at: string
 }
 
-// ── SIGN UP ────────────────────────────────────────────────────────────────
+//  SIGN UP 
 export async function signUp(email: string, password: string, phone?: string) {
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -51,19 +51,19 @@ export async function signUp(email: string, password: string, phone?: string) {
   return data
 }
 
-// ── SIGN IN ────────────────────────────────────────────────────────────────
+//  SIGN IN 
 export async function signIn(email: string, password: string) {
   const { data, error } = await supabase.auth.signInWithPassword({ email, password })
   if (error) throw error
   return data
 }
 
-// ── SIGN OUT ───────────────────────────────────────────────────────────────
+//  SIGN OUT 
 export async function signOut() {
   await supabase.auth.signOut()
 }
 
-// ── GET CURRENT USER ───────────────────────────────────────────────────────
+//  GET CURRENT USER 
 export async function getCurrentUser(): Promise<JesAIUser | null> {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return null
@@ -77,13 +77,13 @@ export async function getCurrentUser(): Promise<JesAIUser | null> {
   return profile || null
 }
 
-// ── IS ADMIN ───────────────────────────────────────────────────────────────
+//  IS ADMIN 
 export async function isAdmin(): Promise<boolean> {
   const user = await getCurrentUser()
   return user?.role === "admin"
 }
 
-// ── RESET PASSWORD ─────────────────────────────────────────────────────────
+//  RESET PASSWORD 
 export async function resetPassword(email: string) {
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/reset-password`,

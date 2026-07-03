@@ -81,7 +81,7 @@ export default function AdminPage() {
         <div style={{ flex: 1 }} />
         <button onClick={() => router.push("/")}
           style={{ padding: "6px 16px", border: "1px solid #333", color: "#666", background: "none", cursor: "pointer", fontFamily: "Rajdhani,sans-serif", letterSpacing: "2px", fontSize: "11px" }}>
-          ← BACK
+           BACK
         </button>
       </div>
 
@@ -90,7 +90,7 @@ export default function AdminPage() {
           { label: "Total", value: stats.total, color: "#888" },
           { label: "Pending", value: stats.pending, color: "#C9A84C" },
           { label: "Verified", value: stats.verified, color: "#1AB89E" },
-          { label: "Revenue (BDT)", value: `৳${stats.revenue.toLocaleString()}`, color: "#A78BFA" },
+          { label: "Revenue (BDT)", value: `${stats.revenue.toLocaleString()}`, color: "#A78BFA" },
         ].map(s => (
           <div key={s.label} style={{ background: "#111", border: "1px solid #1a1a1a", padding: "16px" }}>
             <div style={{ fontSize: "10px", letterSpacing: "2px", color: "#444", marginBottom: "6px" }}>{s.label.toUpperCase()}</div>
@@ -120,12 +120,12 @@ export default function AdminPage() {
               <div style={{ flex: "1", minWidth: "200px" }}>
                 <div style={{ fontWeight: 700, color: "#ddd", fontSize: "13px" }}>{p.users?.email}</div>
                 <div style={{ fontSize: "11px", color: "#555", marginTop: "2px" }}>
-                  {p.phone_number} • {new Date(p.created_at).toLocaleString("en-BD")}
+                  {p.phone_number}  {new Date(p.created_at).toLocaleString("en-BD")}
                 </div>
               </div>
               <div style={{ minWidth: "100px" }}>
-                <div style={{ fontWeight: 700, color: "#C9A84C" }}>৳{p.amount}</div>
-                <div style={{ fontSize: "11px", color: "#555", textTransform: "uppercase" }}>{p.tier} • {p.method}</div>
+                <div style={{ fontWeight: 700, color: "#C9A84C" }}>{p.amount}</div>
+                <div style={{ fontSize: "11px", color: "#555", textTransform: "uppercase" }}>{p.tier}  {p.method}</div>
               </div>
               <div style={{ fontFamily: "Source Code Pro,monospace", fontSize: "12px", color: "#888", minWidth: "120px" }}>
                 {p.transaction_id}
@@ -137,11 +137,11 @@ export default function AdminPage() {
                 <div style={{ display: "flex", gap: "6px" }}>
                   <button onClick={() => handleVerify(p.id, true)}
                     style={{ padding: "6px 14px", background: "#1AB89E", color: "#000", border: "none", cursor: "pointer", fontFamily: "Rajdhani,sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "1px" }}>
-                    VERIFY ✓
+                    VERIFY 
                   </button>
                   <button onClick={() => handleVerify(p.id, false)}
                     style={{ padding: "6px 14px", background: "none", color: "#E74C3C", border: "1px solid rgba(231,76,60,0.3)", cursor: "pointer", fontFamily: "Rajdhani,sans-serif", fontWeight: 700, fontSize: "11px" }}>
-                    REJECT ✗
+                    REJECT 
                   </button>
                 </div>
               )}

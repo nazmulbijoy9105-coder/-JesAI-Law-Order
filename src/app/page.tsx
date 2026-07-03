@@ -4,56 +4,56 @@ import Footer from "@/components/layout/Footer";
 
 const lawAreas = [
   {
-    icon: "⚖️",
+    icon: "",
     title: "Constitutional Law",
     desc: "Fundamental rights, writ jurisdiction, all 17 amendments, arrest safeguards under Bangladesh Constitution 1972.",
     color: "from-green-900/40 to-green-800/20",
     border: "border-green-700/30",
   },
   {
-    icon: "🔒",
+    icon: "",
     title: "Criminal Law",
     desc: "Penal Code, CrPC, FIR, bail, remand, trial procedures and special criminal laws.",
     color: "from-red-900/40 to-red-800/20",
     border: "border-red-700/30",
   },
   {
-    icon: "🏠",
+    icon: "",
     title: "Property & Land Law",
     desc: "Transfer of Property Act, land mutation, khatian, namajaari, deed registration and disputes.",
     color: "from-amber-900/40 to-amber-800/20",
     border: "border-amber-700/30",
   },
   {
-    icon: "👨‍👩‍👧",
+    icon: "",
     title: "Family Law",
     desc: "Marriage, divorce, talaq, mehr, maintenance, custody under Muslim, Hindu & Christian laws.",
     color: "from-purple-900/40 to-purple-800/20",
     border: "border-purple-700/30",
   },
   {
-    icon: "🏭",
+    icon: "",
     title: "Labour Law",
     desc: "Employment rights, wrongful termination, gratuity, provident fund and Labour Act 2006.",
     color: "from-teal-900/40 to-teal-800/20",
     border: "border-teal-700/30",
   },
   {
-    icon: "💼",
+    icon: "",
     title: "Company & Commercial",
     desc: "Companies Act 1994, RJSC registration, MOA/AOA, directors, annual compliance.",
     color: "from-indigo-900/40 to-indigo-800/20",
     border: "border-indigo-700/30",
   },
   {
-    icon: "💰",
+    icon: "",
     title: "Tax Law",
     desc: "Income Tax Act 2023, VAT, NBR regulations, TIN, tax returns and compliance.",
     color: "from-yellow-900/40 to-yellow-800/20",
     border: "border-yellow-700/30",
   },
   {
-    icon: "✈️",
+    icon: "",
     title: "NRB Investment",
     desc: "WHT, BIDA registration, repatriation, FBAR, cross-border investment compliance.",
     color: "from-blue-900/40 to-blue-800/20",
@@ -65,26 +65,26 @@ const howItWorks = [
   {
     step: "01",
     title: "Share Your Situation",
-    desc: "Describe your facts in plain language — no legal jargon needed.",
-    icon: "💬",
+    desc: "Describe your facts in plain language  no legal jargon needed.",
+    icon: "",
   },
   {
     step: "02",
     title: "JesAI Analyses Your Facts",
     desc: "JesAI identifies the relevant legal issues and maps them to Bangladesh law.",
-    icon: "🔍",
+    icon: "",
   },
   {
     step: "03",
     title: "Law Explained Clearly",
     desc: "Get a plain-language explanation of your rights, duties, and procedural options.",
-    icon: "🗺️",
+    icon: "",
   },
   {
     step: "04",
     title: "Step-by-Step Guidance",
-    desc: "Understand what to do next — from filing an FIR to registering a company.",
-    icon: "🎯",
+    desc: "Understand what to do next  from filing an FIR to registering a company.",
+    icon: "",
   },
 ];
 
@@ -114,7 +114,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-400 leading-relaxed mb-10 max-w-2xl mx-auto">
-              JesAI is Bangladesh&apos;s Legal AI — mapping your situation to the
+              JesAI is Bangladesh&apos;s Legal AI  mapping your situation to the
               right laws, explaining your rights, and guiding you step by step.
               From land disputes to criminal matters, company registration to family law.
             </p>
@@ -137,9 +137,9 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Free tier badge — consistent with MAX_QUESTIONS=20 */}
+            {/* Free tier badge  consistent with MAX_QUESTIONS=20 */}
             <div className="inline-flex items-center gap-3 rounded-xl border border-[#c8a84b]/30 bg-[#c8a84b]/10 px-6 py-3">
-              <span className="text-2xl">🎁</span>
+              <span className="text-2xl"></span>
               <div className="text-left">
                 <p className="text-sm font-semibold text-[#c8a84b]">
                   20 Free Questions
@@ -153,7 +153,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Bar — fixed false claims */}
+      {/* Stats Bar  fixed false claims */}
       <section className="border-y border-white/10 bg-[#0d2240]/50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
@@ -172,7 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Law Areas Grid — Contract Law removed */}
+      {/* Law Areas Grid  Contract Law removed */}
       <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -182,7 +182,7 @@ export default function Home() {
             {/* Fixed: no false bdlaws claim */}
             <p className="text-slate-400 max-w-2xl mx-auto">
               NLC-validated legal knowledge covering every major area of
-              Bangladesh law — substantive rights and procedural guidance.
+              Bangladesh law  substantive rights and procedural guidance.
             </p>
           </div>
 
@@ -201,7 +201,7 @@ export default function Home() {
                   {area.desc}
                 </p>
                 <div className="mt-3 text-xs text-[#4ade80] opacity-0 group-hover:opacity-100 transition-opacity">
-                  Ask JesAI →
+                  Ask JesAI 
                 </div>
               </Link>
             ))}
@@ -209,7 +209,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How It Works — IRAC removed */}
+      {/* How It Works  IRAC removed */}
       <section className="py-20 bg-[#0d2240]/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -262,22 +262,22 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <div className="rounded-2xl border border-[#006a4e]/30 bg-gradient-to-br from-[#006a4e]/20 to-[#006a4e]/5 p-8">
-              <div className="text-4xl mb-4">📜</div>
+              <div className="text-4xl mb-4"></div>
               <h3 className="text-xl font-bold text-white mb-3">Substantive Law</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
                 Defines your <strong className="text-white">rights, duties, and offenses</strong>.
-                What the law says about your situation — what you can do, what you cannot,
+                What the law says about your situation  what you can do, what you cannot,
                 and what consequences follow.
               </p>
               <ul className="space-y-2">
                 {[
-                  "Penal Code — what is a crime",
-                  "Specific Relief Act — what relief you can get",
-                  "Transfer of Property Act — your property rights",
-                  "Contract Act — your contractual obligations",
+                  "Penal Code  what is a crime",
+                  "Specific Relief Act  what relief you can get",
+                  "Transfer of Property Act  your property rights",
+                  "Contract Act  your contractual obligations",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs text-slate-400">
-                    <span className="text-[#4ade80] mt-0.5">✓</span>
+                    <span className="text-[#4ade80] mt-0.5"></span>
                     {item}
                   </li>
                 ))}
@@ -285,7 +285,7 @@ export default function Home() {
             </div>
 
             <div className="rounded-2xl border border-[#c8a84b]/30 bg-gradient-to-br from-[#c8a84b]/20 to-[#c8a84b]/5 p-8">
-              <div className="text-4xl mb-4">⚙️</div>
+              <div className="text-4xl mb-4"></div>
               <h3 className="text-xl font-bold text-white mb-3">Procedural Law</h3>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
                 Guides <strong className="text-white">how to enforce</strong> your rights.
@@ -294,13 +294,13 @@ export default function Home() {
               </p>
               <ul className="space-y-2">
                 {[
-                  "CPC — how to file a civil suit",
-                  "CrPC — how criminal cases proceed",
-                  "Evidence Act — what proof is needed",
+                  "CPC  how to file a civil suit",
+                  "CrPC  how criminal cases proceed",
+                  "Evidence Act  what proof is needed",
                   "Court fees, limitation periods, appeals",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-xs text-slate-400">
-                    <span className="text-[#c8a84b] mt-0.5">✓</span>
+                    <span className="text-[#c8a84b] mt-0.5"></span>
                     {item}
                   </li>
                 ))}
@@ -314,8 +314,8 @@ export default function Home() {
       <section className="py-8 bg-[#f42a41]/5 border-y border-[#f42a41]/20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-slate-300">
-            <span className="font-bold text-[#f42a41]">⚠️ Important Disclaimer: </span>
-            JesAI provides <strong>legal literacy and information only</strong> — not legal advice.
+            <span className="font-bold text-[#f42a41]"> Important Disclaimer: </span>
+            JesAI provides <strong>legal literacy and information only</strong>  not legal advice.
             For legal services, representation, or advice, please consult a certified advocate
             registered with the{" "}
             <strong className="text-white">Bangladesh Bar Council</strong>.
@@ -328,13 +328,13 @@ export default function Home() {
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="rounded-2xl border border-[#006a4e]/30 bg-gradient-to-br from-[#006a4e]/20 to-[#0d2240] p-12">
-            <div className="text-5xl mb-6">🇧🇩</div>
+            <div className="text-5xl mb-6"></div>
             <h2 className="text-3xl font-bold text-white mb-4">
               Know Your Rights. Know Your Laws.
             </h2>
             <p className="text-slate-400 mb-8 leading-relaxed">
               Every Bangladeshi citizen deserves to understand the laws that
-              govern their life. Start with 20 free questions — no registration required.
+              govern their life. Start with 20 free questions  no registration required.
             </p>
             <Link
               href="/consult"

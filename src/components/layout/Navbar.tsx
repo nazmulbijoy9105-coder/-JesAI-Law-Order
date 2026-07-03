@@ -45,7 +45,7 @@ export default function Navbar() {
     const cls = colors[tier] ?? "bg-[#4ade80]/10 text-[#4ade80] border-[#4ade80]/30";
     return (
       <span className={`hidden sm:inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border ${cls}`}>
-        ✦ {labels[tier] ?? tier.toUpperCase()}
+         {labels[tier] ?? tier.toUpperCase()}
       </span>
     );
   };

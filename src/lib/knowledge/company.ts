@@ -965,12 +965,9 @@ const qaBank: QAEntry[] = [
 ];
 
 const companyLawModule: KnowledgeModule = {
-  id: "company-law-bd",
-  name: "Bangladesh Company Law",
-  version: "2.0.0",
-  jurisdiction: "BD",
-  lastUpdated: "2025-03-09",
-  validatedBy: "Nazmul, Advocate, Supreme Court of Bangladesh",
+  area: "company",
+  label: "Company Law",
+  description: "Knowledge module for company law in Bangladesh.",
   rules,
   qaBank,
 };

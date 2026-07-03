@@ -1014,7 +1014,7 @@ const qaBank: QAEntry[] = [
 const contractModule: KnowledgeModule = {
   area: "contract",
   label: "Contract Law",
-  description: "Contract formation, breach, remedies, guarantee, sale of goods, quasi-contracts, and limitation under the Contract Act 1872",
+  description: "Knowledge module for contract law in Bangladesh.",
   rules,
   qaBank,
 };

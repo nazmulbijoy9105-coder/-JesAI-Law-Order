@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JesAI — Bangladesh Legal AI | Law & Order",
-  description: "JesAI is Bangladesh's Legal AI — explaining your rights, analysing your situation, and guiding you through the law. Free legal literacy for every Bangladeshi.",
+  title: "JesAI  Bangladesh Legal AI | Law & Order",
+  description: "JesAI is Bangladesh's Legal AI  explaining your rights, analysing your situation, and guiding you through the law. Free legal literacy for every Bangladeshi.",
   keywords: "Bangladesh law, legal AI, legal advice Bangladesh, JesAI, NLC, labour law, family law, property law",
 };
 

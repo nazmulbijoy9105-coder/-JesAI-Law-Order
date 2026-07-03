@@ -64,13 +64,13 @@ export default function ResetPasswordPage() {
       <div className="w-full max-w-sm bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
         {success ? (
           <div className="text-center">
-            <div className="text-4xl mb-4">✅</div>
+            <div className="text-4xl mb-4"></div>
             <h2 className="font-bold text-gray-900 mb-2">Password updated!</h2>
             <p className="text-gray-500 text-[13px]">Redirecting to sign in...</p>
           </div>
         ) : error && !ready ? (
           <div className="text-center">
-            <div className="text-4xl mb-4">⚠️</div>
+            <div className="text-4xl mb-4"></div>
             <p className="text-red-600 text-[14px] mb-4 font-medium">{error}</p>
             <Link href="/auth/signin" className="px-6 py-2.5 rounded-xl bg-[#006A4E] text-white font-bold text-[13px] hover:bg-[#005a40] transition-all">
               Back to Sign In
@@ -98,7 +98,7 @@ export default function ResetPasswordPage() {
               </div>
               <button type="submit" disabled={loading}
                 className="w-full py-3 rounded-xl bg-[#006A4E] text-white font-bold text-[14px] hover:bg-[#005a40] transition-all disabled:opacity-40">
-                {loading ? "Updating..." : "Update Password →"}
+                {loading ? "Updating..." : "Update Password "}
               </button>
             </form>
           </>

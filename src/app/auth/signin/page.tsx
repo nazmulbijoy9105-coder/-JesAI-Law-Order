@@ -62,7 +62,7 @@ function SignInForm() {
 
       {resetSent ? (
         <div className="w-full max-w-sm bg-white rounded-2xl border border-gray-200 p-8 text-center shadow-sm">
-          <div className="text-4xl mb-4">📧</div>
+          <div className="text-4xl mb-4"></div>
           <h2 className="font-bold text-gray-900 mb-2">Reset link sent!</h2>
           <p className="text-gray-500 text-[13px] mb-6">Check your email and click the link to reset your password.</p>
           <button onClick={() => { setResetMode(false); setResetSent(false); }}
@@ -93,20 +93,20 @@ function SignInForm() {
             {!resetMode && (
               <div>
                 <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider block mb-1.5">Password</label>
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="••••••••" required
+                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="" required
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 text-[13px] focus:outline-none focus:border-[#006A4E] focus:ring-2 focus:ring-[#006A4E]/10 transition-all placeholder-gray-400" />
               </div>
             )}
 
             <button type="submit" disabled={loading}
               className="w-full py-3 rounded-xl bg-[#006A4E] text-white font-bold text-[14px] hover:bg-[#005a40] transition-all disabled:opacity-40 shadow-sm">
-              {loading ? "..." : resetMode ? "Send Reset Link" : "Sign In →"}
+              {loading ? "..." : resetMode ? "Send Reset Link" : "Sign In "}
             </button>
           </form>
 
           <div className="mt-4 flex items-center justify-between text-[12px]">
             <button onClick={() => setResetMode(!resetMode)} className="text-gray-400 hover:text-gray-700 transition-colors">
-              {resetMode ? "← Back to Sign In" : "Forgot password?"}
+              {resetMode ? " Back to Sign In" : "Forgot password?"}
             </button>
             <Link href="/auth/signup" className="text-[#006A4E] font-medium hover:underline">Create account</Link>
           </div>

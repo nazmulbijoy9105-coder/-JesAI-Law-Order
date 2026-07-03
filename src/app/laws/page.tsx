@@ -20,9 +20,9 @@ interface LawSubject {
 const LAW_SUBJECTS: LawSubject[] = [
   {
     id: "property",
-    icon: "🏠",
+    icon: "",
     title: "Land & Property Law",
-    titleBn: "ভূমি ও সম্পত্তি আইন",
+    titleBn: "   ",
     subtitle: "Transfer of Property, Mutation, Deed Registration, Tenancy",
     color: "from-amber-900/30 to-amber-800/10",
     border: "border-amber-700/30",
@@ -41,7 +41,7 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "What happens if land is sold with a forged deed?",
-        a: "Under the Registration Act 1908 and Penal Code, selling land with a forged deed is both a civil wrong and a criminal offence. The aggrieved owner can: (1) file a civil suit to cancel the fraudulent deed and restore title, (2) file a criminal complaint for forgery under Sections 463–467 of the Penal Code. Courts regularly set aside fraudulent deeds. A limitation period of 3 years applies from discovery of the fraud.",
+        a: "Under the Registration Act 1908 and Penal Code, selling land with a forged deed is both a civil wrong and a criminal offence. The aggrieved owner can: (1) file a civil suit to cancel the fraudulent deed and restore title, (2) file a criminal complaint for forgery under Sections 463467 of the Penal Code. Courts regularly set aside fraudulent deeds. A limitation period of 3 years applies from discovery of the fraud.",
       },
       {
         q: "Can a landlord evict a tenant without notice or reason?",
@@ -52,20 +52,20 @@ const LAW_SUBJECTS: LawSubject[] = [
         a: "Pre-emption (shafi) is the right of certain persons to purchase land before an outsider, when the owner decides to sell. Under the State Acquisition and Tenancy Act 1950, co-sharer tenants, adjoining land holders (contiguous plot owners), and in some cases shareholders have pre-emption rights. A pre-emption case must be filed within 4 months of the sale registration date.",
       },
       {
-        q: "I have a baynama (sale agreement) but the seller refuses to execute the final deed — what can I do?",
+        q: "I have a baynama (sale agreement) but the seller refuses to execute the final deed  what can I do?",
         a: "A registered baynama (sale agreement) is a valid contract. If the seller refuses to execute the final sale deed, you can file a suit for specific performance under the Specific Relief Act 1877. The court can compel the seller to execute the deed. You must file within 3 years of the seller's refusal. An unregistered baynama can also be enforced but is harder to rely upon as evidence.",
       },
       {
         q: "What is adverse possession and can someone claim my land by occupying it?",
-        a: "Adverse possession allows someone who has openly, continuously, and exclusively occupied land for 12 years (or more) to acquire title to it, even without a deed. However, there is no adverse possession against government khas land. If you discover someone is occupying your land, file a suit for declaration and recovery of possession immediately — time runs against you from the date of dispossession.",
+        a: "Adverse possession allows someone who has openly, continuously, and exclusively occupied land for 12 years (or more) to acquire title to it, even without a deed. However, there is no adverse possession against government khas land. If you discover someone is occupying your land, file a suit for declaration and recovery of possession immediately  time runs against you from the date of dispossession.",
       },
     ],
   },
   {
     id: "criminal",
-    icon: "🔒",
+    icon: "",
     title: "Criminal Law",
-    titleBn: "ফৌজদারি আইন",
+    titleBn: " ",
     subtitle: "Penal Code, CrPC, FIR, Bail, Arrest, Trial",
     color: "from-red-900/30 to-red-800/10",
     border: "border-red-700/30",
@@ -84,14 +84,14 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "How do I get bail after arrest?",
-        a: "For bailable offences, bail is a right — police must grant it. For non-bailable offences, apply to the Sessions Judge or Magistrate's Court. Submit: application with surety names, accused's connection to the area, no flight risk. For High Court bail, instruct an advocate to file a bail application. Courts consider: gravity of offence, criminal record, likelihood of fleeing. First-time accused with strong local ties usually get bail.",
+        a: "For bailable offences, bail is a right  police must grant it. For non-bailable offences, apply to the Sessions Judge or Magistrate's Court. Submit: application with surety names, accused's connection to the area, no flight risk. For High Court bail, instruct an advocate to file a bail application. Courts consider: gravity of offence, criminal record, likelihood of fleeing. First-time accused with strong local ties usually get bail.",
       },
       {
         q: "What is remand and can police keep me in remand indefinitely?",
         a: "Remand (police custody interrogation) is authorised by a magistrate under Section 167 CrPC. Maximum initial custody before charge: 24 hours by police, then must be produced before magistrate. Magistrate can grant police remand in 15-day installments, with total remand not exceeding 15 days in cognizable cases. After 60 days (murder) or 30 days (other cases), if no chargesheet is filed, the accused is entitled to bail as of right under Section 167(2).",
       },
       {
-        q: "I am a victim of a crime — how do I file an FIR?",
+        q: "I am a victim of a crime  how do I file an FIR?",
         a: "An FIR (First Information Report) is filed at the police station where the offence occurred. Write the facts clearly: date, time, place, who did what. The OC (Officer-in-Charge) is legally bound to register the FIR for cognizable offences. If police refuse, you can: (1) approach the Superintendent of Police, (2) file a Naraji (complaint) petition directly before the Magistrate under Section 200 CrPC. Keep a copy of the FIR.",
       },
       {
@@ -100,15 +100,15 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "Can police search my home without a warrant?",
-        a: "Generally no. Under Section 165 CrPC, a police officer needs a search warrant from a magistrate before searching a home. Exceptions: (1) hot pursuit — if a suspect is believed to be inside, (2) if the magistrate gives verbal order (must be confirmed in writing within 24 hours), (3) during arrest of a person at the premises. Police must make a list of everything seized (seizure list) and give you a copy. An illegal search can be challenged in court.",
+        a: "Generally no. Under Section 165 CrPC, a police officer needs a search warrant from a magistrate before searching a home. Exceptions: (1) hot pursuit  if a suspect is believed to be inside, (2) if the magistrate gives verbal order (must be confirmed in writing within 24 hours), (3) during arrest of a person at the premises. Police must make a list of everything seized (seizure list) and give you a copy. An illegal search can be challenged in court.",
       },
     ],
   },
   {
     id: "family",
-    icon: "👨‍👩‍👧",
+    icon: "",
     title: "Family Law",
-    titleBn: "পারিবারিক আইন",
+    titleBn: " ",
     subtitle: "Marriage, Divorce, Custody, Maintenance, Inheritance",
     color: "from-purple-900/30 to-purple-800/10",
     border: "border-purple-700/30",
@@ -123,7 +123,7 @@ const LAW_SUBJECTS: LawSubject[] = [
     commonQuestions: [
       {
         q: "How does a Muslim wife get divorce (khul) in Bangladesh?",
-        a: "A Muslim wife can seek divorce by: (1) Khul — giving up the dower (mehr) in exchange for the husband agreeing to divorce; (2) Judicial dissolution under the Dissolution of Muslim Marriages Act 1939 — grounds include: husband's cruelty, desertion, failure to maintain, imprisonment, or impotency. File in the Family Court. The court process takes 3–6 months typically. A husband can also give talaq which requires registration with the Chairman of the Union Council and 90-day reconciliation notice.",
+        a: "A Muslim wife can seek divorce by: (1) Khul  giving up the dower (mehr) in exchange for the husband agreeing to divorce; (2) Judicial dissolution under the Dissolution of Muslim Marriages Act 1939  grounds include: husband's cruelty, desertion, failure to maintain, imprisonment, or impotency. File in the Family Court. The court process takes 36 months typically. A husband can also give talaq which requires registration with the Chairman of the Union Council and 90-day reconciliation notice.",
       },
       {
         q: "Who gets custody of children after divorce?",
@@ -131,7 +131,7 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "What is dower (mehr) and when must it be paid?",
-        a: "Dower (mehr) is the mandatory payment from husband to wife as part of the Islamic marriage contract. It has two parts: prompt dower (mahr muajjal — due on demand or dissolution) and deferred dower (mahr muajjal — due on death or divorce). An unpaid dower is a debt recoverable by the wife. The wife can refuse cohabitation until prompt dower is paid. The Family Court can award a decree for unpaid dower.",
+        a: "Dower (mehr) is the mandatory payment from husband to wife as part of the Islamic marriage contract. It has two parts: prompt dower (mahr muajjal  due on demand or dissolution) and deferred dower (mahr muajjal  due on death or divorce). An unpaid dower is a debt recoverable by the wife. The wife can refuse cohabitation until prompt dower is paid. The Family Court can award a decree for unpaid dower.",
       },
       {
         q: "How much maintenance (nafaqa) is a divorced wife entitled to?",
@@ -139,7 +139,7 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "Is a marriage valid without registration?",
-        a: "Under the Muslim Family Laws Ordinance 1961, every Muslim marriage must be registered with the local Union Parishad/City Corporation Nikah Registrar. An unregistered marriage is still valid under Islamic law but the husband can face a fine and imprisonment of up to 2 years. Practically, registration is crucial for women's rights — it's evidence of the marriage, dower amount, and witnesses for any future legal proceedings.",
+        a: "Under the Muslim Family Laws Ordinance 1961, every Muslim marriage must be registered with the local Union Parishad/City Corporation Nikah Registrar. An unregistered marriage is still valid under Islamic law but the husband can face a fine and imprisonment of up to 2 years. Practically, registration is crucial for women's rights  it's evidence of the marriage, dower amount, and witnesses for any future legal proceedings.",
       },
       {
         q: "How is inheritance divided after a Muslim person dies?",
@@ -149,9 +149,9 @@ const LAW_SUBJECTS: LawSubject[] = [
   },
   {
     id: "labour",
-    icon: "🏭",
+    icon: "",
     title: "Labour Law",
-    titleBn: "শ্রম আইন",
+    titleBn: " ",
     subtitle: "Employment, Termination, Wages, Gratuity, Maternity",
     color: "from-teal-900/30 to-teal-800/10",
     border: "border-teal-700/30",
@@ -168,12 +168,12 @@ const LAW_SUBJECTS: LawSubject[] = [
         a: "For permanent (confirmed) workers: 120 days' written notice (monthly-rated) or 60 days (others), or equivalent wages in lieu. Gratuity: 30 days' last basic wage per completed year of service (minimum 1 year required). If no provident fund scheme: 45 days per year. Dismissed for misconduct: no gratuity. Resigned: 30 days' notice required, gratuity still payable after 5 years of service in most cases.",
       },
       {
-        q: "My employer has not paid my salary for months — what can I do?",
+        q: "My employer has not paid my salary for months  what can I do?",
         a: "Section 120 requires wages within 7 days (up to 1,000 workers) or 10 days (over 1,000). File: (1) Complaint with DIFE (Department of Inspection for Factories and Establishments), (2) Labour Court complaint for recovery with interest. Wages are a priority debt in insolvency. Evidence needed: salary slips, attendance records, bank statements showing non-payment, appointment letter.",
       },
       {
         q: "Can my employer dismiss me without a domestic enquiry?",
-        a: "No. Section 23 of the Labour Act requires: (1) issue of written charge sheet specifying the misconduct, (2) give reasonable time to respond (usually 7–14 days), (3) conduct a domestic enquiry with an impartial officer where the employee can defend themselves. Dismissal without this procedure is void even if the misconduct actually occurred. Courts regularly reinstate workers dismissed without a proper enquiry.",
+        a: "No. Section 23 of the Labour Act requires: (1) issue of written charge sheet specifying the misconduct, (2) give reasonable time to respond (usually 714 days), (3) conduct a domestic enquiry with an impartial officer where the employee can defend themselves. Dismissal without this procedure is void even if the misconduct actually occurred. Courts regularly reinstate workers dismissed without a proper enquiry.",
       },
       {
         q: "Is overtime at double rate mandatory in Bangladesh?",
@@ -181,7 +181,7 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "What maternity leave and benefits am I entitled to?",
-        a: "Female workers get 16 weeks maternity leave: 8 weeks before and 8 weeks after delivery, with full wages. Requirement: 6 months' continuous employment with the current employer. Maternity benefit is due 8 weeks before expected delivery — the employer must pay upfront. Dismissal during maternity leave is unlawful. Benefit not available for a third or subsequent child (Labour Act 2006, Sections 45–50).",
+        a: "Female workers get 16 weeks maternity leave: 8 weeks before and 8 weeks after delivery, with full wages. Requirement: 6 months' continuous employment with the current employer. Maternity benefit is due 8 weeks before expected delivery  the employer must pay upfront. Dismissal during maternity leave is unlawful. Benefit not available for a third or subsequent child (Labour Act 2006, Sections 4550).",
       },
       {
         q: "What is the minimum wage in Bangladesh and which sectors have higher rates?",
@@ -191,9 +191,9 @@ const LAW_SUBJECTS: LawSubject[] = [
   },
   {
     id: "company",
-    icon: "💼",
+    icon: "",
     title: "Company Law",
-    titleBn: "কোম্পানি আইন",
+    titleBn: " ",
     subtitle: "RJSC Registration, Directors, Shareholders, Compliance",
     color: "from-indigo-900/30 to-indigo-800/10",
     border: "border-indigo-700/30",
@@ -207,7 +207,7 @@ const LAW_SUBJECTS: LawSubject[] = [
     commonQuestions: [
       {
         q: "How do I register a private limited company in Bangladesh?",
-        a: "Steps: (1) Name clearance from RJSC (Registrar of Joint Stock Companies) — search and reserve the name. (2) Draft Memorandum of Association (MOA) and Articles of Association (AOA). (3) Complete Form I (application) and pay prescribed fee. (4) File with RJSC for incorporation certificate. Minimum: 2 shareholders, 2 directors. No minimum paid-up capital required. Timeline: 7–14 working days. Consider using RJSC's online portal for faster processing.",
+        a: "Steps: (1) Name clearance from RJSC (Registrar of Joint Stock Companies)  search and reserve the name. (2) Draft Memorandum of Association (MOA) and Articles of Association (AOA). (3) Complete Form I (application) and pay prescribed fee. (4) File with RJSC for incorporation certificate. Minimum: 2 shareholders, 2 directors. No minimum paid-up capital required. Timeline: 714 working days. Consider using RJSC's online portal for faster processing.",
       },
       {
         q: "What are the annual compliance obligations of a registered company?",
@@ -215,27 +215,27 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "Can a director be removed and how?",
-        a: "A director can be removed by: (1) Shareholder resolution at a general meeting (Section 108 Companies Act) — ordinary resolution (simple majority) with special notice of 28 days. (2) The removed director has the right to circulate a statement to shareholders. (3) Court order for fraudulent/wrongful conduct. A director cannot prevent their removal by the shareholders who appointed them, unless the Articles of Association restrict this.",
+        a: "A director can be removed by: (1) Shareholder resolution at a general meeting (Section 108 Companies Act)  ordinary resolution (simple majority) with special notice of 28 days. (2) The removed director has the right to circulate a statement to shareholders. (3) Court order for fraudulent/wrongful conduct. A director cannot prevent their removal by the shareholders who appointed them, unless the Articles of Association restrict this.",
       },
       {
         q: "What are minority shareholders' rights against oppression by majority?",
         a: "Minority shareholders (at least 1/5 of total shares) can petition the High Court under Section 233 of the Companies Act for relief against oppressive or prejudicial conduct by the majority. The court can: alter the company's constitution, regulate future affairs, order purchase of minority's shares at fair value, or wind up the company. Oppressive conduct includes: exclusion from management, diversion of company assets, diluting shares, refusing dividends.",
       },
       {
-        q: "What is a partnership vs a private limited company — which is better?",
-        a: "Partnership (under the Partnership Act 1932): simple to form, partners have unlimited personal liability, minimal compliance burden, not a separate legal entity. Private Ltd Company (Companies Act 1994): shareholders have limited liability (only lose their investment), separate legal entity, more compliance burden (RJSC filings, audit), better credibility with banks and investors. For significant business or external investment — a private limited company is strongly recommended for liability protection.",
+        q: "What is a partnership vs a private limited company  which is better?",
+        a: "Partnership (under the Partnership Act 1932): simple to form, partners have unlimited personal liability, minimal compliance burden, not a separate legal entity. Private Ltd Company (Companies Act 1994): shareholders have limited liability (only lose their investment), separate legal entity, more compliance burden (RJSC filings, audit), better credibility with banks and investors. For significant business or external investment  a private limited company is strongly recommended for liability protection.",
       },
       {
         q: "How do I wind up (close) a company in Bangladesh?",
-        a: "Voluntary winding up: (1) Pass a special resolution (3/4 majority), (2) appoint a liquidator, (3) liquidator realises assets and pays creditors, (4) file dissolution documents with RJSC. Compulsory winding up: High Court order on petition — usually for inability to pay debts or deadlock. Alternatively, an inactive company can apply for voluntary striking off (dormant company) with RJSC if no assets, liabilities, or operations.",
+        a: "Voluntary winding up: (1) Pass a special resolution (3/4 majority), (2) appoint a liquidator, (3) liquidator realises assets and pays creditors, (4) file dissolution documents with RJSC. Compulsory winding up: High Court order on petition  usually for inability to pay debts or deadlock. Alternatively, an inactive company can apply for voluntary striking off (dormant company) with RJSC if no assets, liabilities, or operations.",
       },
     ],
   },
   {
     id: "tax",
-    icon: "💰",
+    icon: "",
     title: "Tax Law",
-    titleBn: "কর আইন",
+    titleBn: " ",
     subtitle: "Income Tax, VAT, NBR, TIN, Returns, Assessment",
     color: "from-yellow-900/30 to-yellow-800/10",
     border: "border-yellow-700/30",
@@ -253,11 +253,11 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "When is the deadline to file income tax return?",
-        a: "For individuals and companies: 30 November each year (for July–June fiscal year). For companies with a different accounting year: 6 months after the year-end. Late filing: no specific penalty if TIN is held, but late submission of company returns attracts fines. Electronically filed returns through the NBR portal are accepted. You can seek a 2-month extension by application.",
+        a: "For individuals and companies: 30 November each year (for JulyJune fiscal year). For companies with a different accounting year: 6 months after the year-end. Late filing: no specific penalty if TIN is held, but late submission of company returns attracts fines. Electronically filed returns through the NBR portal are accepted. You can seek a 2-month extension by application.",
       },
       {
         q: "What is TIN and who must get one?",
-        a: "TIN (Taxpayer Identification Number) is mandatory for: any person earning above the tax-free threshold, anyone opening a bank account above BDT 1 lakh, importing/exporting goods, registering vehicles, purchasing property above BDT 10 lakh, entering government contracts, getting trade licences, and many other transactions. Apply online at NBR's e-TIN portal (etaxnbr.gov.bd) — it is free and instant.",
+        a: "TIN (Taxpayer Identification Number) is mandatory for: any person earning above the tax-free threshold, anyone opening a bank account above BDT 1 lakh, importing/exporting goods, registering vehicles, purchasing property above BDT 10 lakh, entering government contracts, getting trade licences, and many other transactions. Apply online at NBR's e-TIN portal (etaxnbr.gov.bd)  it is free and instant.",
       },
       {
         q: "When does a business need to register for VAT?",
@@ -265,19 +265,19 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "What are advance income tax (AIT) and withholding tax?",
-        a: "Advance Income Tax (AIT): collected at source at the time of certain transactions — including import of goods, sale of goods by manufacturers, and at export. Withholding tax: deducted from payments to suppliers, contractors, employees (salary tax) before paying them. The payer is responsible for deducting and depositing within 7 days into the government treasury. Both AIT and withholding tax are credits against your final tax liability. Keep all chalan receipts.",
+        a: "Advance Income Tax (AIT): collected at source at the time of certain transactions  including import of goods, sale of goods by manufacturers, and at export. Withholding tax: deducted from payments to suppliers, contractors, employees (salary tax) before paying them. The payer is responsible for deducting and depositing within 7 days into the government treasury. Both AIT and withholding tax are credits against your final tax liability. Keep all chalan receipts.",
       },
       {
-        q: "I disagree with my tax assessment — how do I appeal?",
+        q: "I disagree with my tax assessment  how do I appeal?",
         a: "Appeal Process: (1) First appeal: Commissioner of Taxes (Appeals) within 45 days of the assessment order, with a 10% deposit of disputed tax. (2) Second appeal: Appellate Tribunal (Bangladesh Tax Tribunal) within 60 days of the first appeal order. (3) Third: High Court on a point of law (reference application). At each stage, you can stay recovery by depositing a portion of the disputed tax. Engage a tax advocate or Chartered Accountant for complex appeals.",
       },
     ],
   },
   {
     id: "constitutional",
-    icon: "⚖️",
+    icon: "",
     title: "Constitutional Law",
-    titleBn: "সাংবিধানিক আইন",
+    titleBn: " ",
     subtitle: "Fundamental Rights, Writ Jurisdiction, Detention",
     color: "from-green-900/30 to-green-800/10",
     border: "border-green-700/30",
@@ -295,7 +295,7 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "What is a writ petition and what writs are available?",
-        a: "A writ petition is filed in the High Court Division to enforce constitutional rights or challenge unlawful state action. Types available: (1) Habeas Corpus — release from unlawful detention. (2) Mandamus — compel a public authority to perform a duty. (3) Certiorari — quash an unlawful decision. (4) Prohibition — stop a court/body from exceeding jurisdiction. (5) Quo Warranto — challenge a person's right to hold public office. File at the High Court through a registered advocate.",
+        a: "A writ petition is filed in the High Court Division to enforce constitutional rights or challenge unlawful state action. Types available: (1) Habeas Corpus  release from unlawful detention. (2) Mandamus  compel a public authority to perform a duty. (3) Certiorari  quash an unlawful decision. (4) Prohibition  stop a court/body from exceeding jurisdiction. (5) Quo Warranto  challenge a person's right to hold public office. File at the High Court through a registered advocate.",
       },
       {
         q: "What are the rights of an arrested person under Article 33?",
@@ -307,7 +307,7 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "Can I challenge a government action as unconstitutional?",
-        a: "Yes. File a writ petition (writ of certiorari or mandamus) in the High Court Division within a reasonable time. The court reviews whether the action was: within the authority's legal powers, followed required procedures, infringed fundamental rights, was arbitrary or unreasonable. Government actions — including laws, orders, rules, and administrative decisions — can all be challenged. Public interest litigation (PIL) allows any citizen to challenge actions affecting the general public.",
+        a: "Yes. File a writ petition (writ of certiorari or mandamus) in the High Court Division within a reasonable time. The court reviews whether the action was: within the authority's legal powers, followed required procedures, infringed fundamental rights, was arbitrary or unreasonable. Government actions  including laws, orders, rules, and administrative decisions  can all be challenged. Public interest litigation (PIL) allows any citizen to challenge actions affecting the general public.",
       },
       {
         q: "What is the right to fair trial and what does it include?",
@@ -317,9 +317,9 @@ const LAW_SUBJECTS: LawSubject[] = [
   },
   {
     id: "nrb",
-    icon: "✈️",
+    icon: "",
     title: "NRB & Foreign Investment",
-    titleBn: "প্রবাসী ও বিদেশি বিনিয়োগ আইন",
+    titleBn: "    ",
     subtitle: "Repatriation, BIDA, WHT, DTAA, Cross-border Investment",
     color: "from-blue-900/30 to-blue-800/10",
     border: "border-blue-700/30",
@@ -337,14 +337,14 @@ const LAW_SUBJECTS: LawSubject[] = [
       },
       {
         q: "How do I repatriate investment income from Bangladesh abroad?",
-        a: "Through an authorised dealer bank (AD Bank) or Bangladesh Bank approval: (1) Dividends from company shares: repatriate after withholding tax deduction with BIDA/Bangladesh Bank approval. (2) Capital gains from selling shares: freely repatriable for NRBs using foreign currency accounts. (3) Business profits: through nominee/authorised remittance channels after paying taxes. Keep documentation: investment proof, tax clearance, BIDA registration. Processing time: 2–4 weeks.",
+        a: "Through an authorised dealer bank (AD Bank) or Bangladesh Bank approval: (1) Dividends from company shares: repatriate after withholding tax deduction with BIDA/Bangladesh Bank approval. (2) Capital gains from selling shares: freely repatriable for NRBs using foreign currency accounts. (3) Business profits: through nominee/authorised remittance channels after paying taxes. Keep documentation: investment proof, tax clearance, BIDA registration. Processing time: 24 weeks.",
       },
       {
         q: "What is withholding tax (WHT) on payments to foreign entities?",
-        a: "When a Bangladesh company pays fees, royalties, technical services, or interest to a foreign entity, withholding tax must be deducted at source. Standard rate: 20% on technical services, 20% on royalties, 20% on dividends to foreign shareholders. However, if there is a Double Taxation Avoidance Agreement (DTAA) between Bangladesh and the recipient's country, the DTAA rate applies (often 10–15%). The DTAA rate requires the foreign entity to provide tax residency certificate.",
+        a: "When a Bangladesh company pays fees, royalties, technical services, or interest to a foreign entity, withholding tax must be deducted at source. Standard rate: 20% on technical services, 20% on royalties, 20% on dividends to foreign shareholders. However, if there is a Double Taxation Avoidance Agreement (DTAA) between Bangladesh and the recipient's country, the DTAA rate applies (often 1015%). The DTAA rate requires the foreign entity to provide tax residency certificate.",
       },
       {
-        q: "What is the DTAA between Bangladesh and the US/UK — how does it help?",
+        q: "What is the DTAA between Bangladesh and the US/UK  how does it help?",
         a: "Bangladesh has DTAAs with many countries including the US, UK, Japan, India, and others. Key benefits: (1) Reduced withholding tax rates on dividends, interest, royalties paid across borders. (2) Avoidance of double taxation on the same income in both countries. (3) Tiebreaker rules determine tax residency when income is earned in multiple countries. To use DTAA benefits, the foreign entity must provide a Tax Residency Certificate from their home country's tax authority.",
       },
       {
@@ -352,16 +352,16 @@ const LAW_SUBJECTS: LawSubject[] = [
         a: "If you are a US person (citizen, green card holder, or resident) with foreign bank accounts exceeding $10,000 in total at any point during the year, you must file FinCEN Form 114 (FBAR) with the US Treasury. This is separate from the tax return. Failure to file: civil penalty up to $10,000 per violation, criminal penalties for wilful violations. Bangladesh accounts are foreign accounts for FBAR purposes. Consult a US-licensed tax professional.",
       },
       {
-        q: "I am an NRB planning to buy land in Bangladesh — what are the rules?",
-        a: "NRBs can purchase land/property in Bangladesh using remitted foreign currency. Requirements: (1) Purchase through a bank transfer (not cash) — encashment certificate required. (2) Property registration follows normal procedure — power of attorney (POA) can be given to a trusted person in Bangladesh if you cannot attend in person. (3) NRBs cannot purchase khas (government) land. (4) Rental income from the property: repatriation requires Bangladesh Bank permission. Keep foreign currency remittance proof for future repatriation of sale proceeds.",
+        q: "I am an NRB planning to buy land in Bangladesh  what are the rules?",
+        a: "NRBs can purchase land/property in Bangladesh using remitted foreign currency. Requirements: (1) Purchase through a bank transfer (not cash)  encashment certificate required. (2) Property registration follows normal procedure  power of attorney (POA) can be given to a trusted person in Bangladesh if you cannot attend in person. (3) NRBs cannot purchase khas (government) land. (4) Rental income from the property: repatriation requires Bangladesh Bank permission. Keep foreign currency remittance proof for future repatriation of sale proceeds.",
       },
     ],
   },
   {
     id: "contract",
-    icon: "📝",
+    icon: "",
     title: "Contract Law",
-    titleBn: "চুক্তি আইন",
+    titleBn: " ",
     subtitle: "Agreements, Breach, Guarantee, Remedies, Limitation",
     color: "from-cyan-900/30 to-cyan-800/10",
     border: "border-cyan-700/30",
@@ -376,34 +376,34 @@ const LAW_SUBJECTS: LawSubject[] = [
     commonQuestions: [
       {
         q: "Is a verbal (oral) agreement legally enforceable in Bangladesh?",
-        a: "Yes — oral contracts are valid under Section 10 of the Contract Act 1872. The problem is proof: you must show the agreement existed and its terms in court. Best evidence for oral contracts: WhatsApp/SMS messages, emails, bank transfers showing payment, witnesses, part-performance (delivery of goods, commencement of work). For contracts involving land or real estate above BDT 100, a written and registered agreement is legally required.",
+        a: "Yes  oral contracts are valid under Section 10 of the Contract Act 1872. The problem is proof: you must show the agreement existed and its terms in court. Best evidence for oral contracts: WhatsApp/SMS messages, emails, bank transfers showing payment, witnesses, part-performance (delivery of goods, commencement of work). For contracts involving land or real estate above BDT 100, a written and registered agreement is legally required.",
       },
       {
         q: "What can I do if someone breaches a written contract?",
-        a: "Step 1: Send a formal legal demand notice. Step 2: Try negotiation/mediation. Step 3: If unresolved, file: (a) money suit in Civil Court for compensation and contractual damages within 3 years of breach, (b) specific performance suit if money cannot compensate (e.g., unique land), (c) if the contract includes an arbitration clause — go to arbitration instead. You can recover actual losses, consequential losses (if foreseeable), and liquidated damages if pre-agreed.",
+        a: "Step 1: Send a formal legal demand notice. Step 2: Try negotiation/mediation. Step 3: If unresolved, file: (a) money suit in Civil Court for compensation and contractual damages within 3 years of breach, (b) specific performance suit if money cannot compensate (e.g., unique land), (c) if the contract includes an arbitration clause  go to arbitration instead. You can recover actual losses, consequential losses (if foreseeable), and liquidated damages if pre-agreed.",
       },
       {
-        q: "I paid an advance for work that was not done — how do I recover it?",
-        a: "Under Section 65 of the Contract Act, when a contract fails or is rescinded, the party who received an advance must restore it. File: money suit in Civil Court seeking refund of advance + interest + damages. Before filing, send a legal demand notice giving 15–30 days to respond. Keep: payment receipt, bank transfer record, contract/agreement, any communications about non-performance. Limitation period: 3 years from breach/demand.",
+        q: "I paid an advance for work that was not done  how do I recover it?",
+        a: "Under Section 65 of the Contract Act, when a contract fails or is rescinded, the party who received an advance must restore it. File: money suit in Civil Court seeking refund of advance + interest + damages. Before filing, send a legal demand notice giving 1530 days to respond. Keep: payment receipt, bank transfer record, contract/agreement, any communications about non-performance. Limitation period: 3 years from breach/demand.",
       },
       {
-        q: "I signed as a guarantor for someone's bank loan — can I be sued?",
-        a: "Yes — under Section 128 of the Contract Act, a guarantor's liability is co-extensive with the principal debtor. The bank can sue you directly without first exhausting remedies against the borrower. If you pay, you can then sue the borrower to recover. To defend: check if guarantee was obtained by fraud/misrepresentation, whether the terms have materially changed without your consent, or whether the principal debt is legitimately disputed. Act quickly — guarantee suits have strict timelines.",
+        q: "I signed as a guarantor for someone's bank loan  can I be sued?",
+        a: "Yes  under Section 128 of the Contract Act, a guarantor's liability is co-extensive with the principal debtor. The bank can sue you directly without first exhausting remedies against the borrower. If you pay, you can then sue the borrower to recover. To defend: check if guarantee was obtained by fraud/misrepresentation, whether the terms have materially changed without your consent, or whether the principal debt is legitimately disputed. Act quickly  guarantee suits have strict timelines.",
       },
       {
         q: "Does a contract need a stamp to be admissible in court?",
-        a: "Under the Stamp Act 1899, many commercial documents (loans, mortgages, leases, sale agreements, partnership deeds) require stamping. An unstamped document is inadmissible as evidence unless the stamp deficiency + 10× penalty is paid at the time of filing in court. Courts allow cure of stamp deficiency at the time of litigation. So an unstamped contract is not void — it can still be enforced after paying the penalty. Always stamp commercial contracts at the time of execution.",
+        a: "Under the Stamp Act 1899, many commercial documents (loans, mortgages, leases, sale agreements, partnership deeds) require stamping. An unstamped document is inadmissible as evidence unless the stamp deficiency + 10 penalty is paid at the time of filing in court. Courts allow cure of stamp deficiency at the time of litigation. So an unstamped contract is not void  it can still be enforced after paying the penalty. Always stamp commercial contracts at the time of execution.",
       },
       {
         q: "What is the time limit to sue for breach of contract?",
-        a: "Under the Limitation Act 1908, the general limitation period for breach of contract is 3 years from the date of breach (or when the breach was discovered). For specific performance: 3 years from the date the plaintiff was refused performance. For recovery of money on bond: 3 years. Courts cannot entertain suits filed after limitation — even if the claim is valid. Partial acknowledgment of the debt (in writing) can restart the limitation clock.",
+        a: "Under the Limitation Act 1908, the general limitation period for breach of contract is 3 years from the date of breach (or when the breach was discovered). For specific performance: 3 years from the date the plaintiff was refused performance. For recovery of money on bond: 3 years. Courts cannot entertain suits filed after limitation  even if the claim is valid. Partial acknowledgment of the debt (in writing) can restart the limitation clock.",
       },
     ],
   },
 ];
 
 export const metadata = {
-  title: "Law Areas — Bangladesh Legal Guide | JesAI",
+  title: "Law Areas  Bangladesh Legal Guide | JesAI",
   description: "Plain-language answers to common legal questions in Bangladesh. NLC-validated, grounded in actual legislation.",
 };
 
@@ -428,7 +428,7 @@ export default function LawsPage() {
           </h1>
           <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8">
             Plain-language answers to the most common legal questions in Bangladesh.
-            Each answer is grounded in the actual legislation — Acts, sections, and procedures.
+            Each answer is grounded in the actual legislation  Acts, sections, and procedures.
           </p>
           <Link
             href="/consult"
@@ -487,7 +487,7 @@ export default function LawsPage() {
                     href={`/consult?area=${subject.id}`}
                     className="hidden sm:flex flex-shrink-0 items-center gap-1.5 text-[12px] px-4 py-2 rounded-xl bg-[#006a4e]/20 border border-[#006a4e]/30 text-[#4ade80] hover:bg-[#006a4e]/30 transition-all"
                   >
-                    Ask about this →
+                    Ask about this 
                   </Link>
                 </div>
               </div>
@@ -516,7 +516,7 @@ export default function LawsPage() {
                             href="/consult"
                             className="text-[11px] px-3 py-1.5 rounded-lg bg-[#006a4e]/20 text-[#4ade80] border border-[#006a4e]/30 hover:bg-[#006a4e]/30 transition-all"
                           >
-                            Ask JesAI about my specific situation →
+                            Ask JesAI about my specific situation 
                           </Link>
                         </div>
                       </div>
@@ -531,7 +531,7 @@ export default function LawsPage() {
                   href="/consult"
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-[#006a4e]/20 border border-[#006a4e]/30 text-[#4ade80] text-sm font-medium hover:bg-[#006a4e]/30 transition-all"
                 >
-                  Ask JesAI about {subject.title} →
+                  Ask JesAI about {subject.title} 
                 </Link>
               </div>
             </section>
@@ -561,7 +561,7 @@ export default function LawsPage() {
               </svg>
             </Link>
             <p className="mt-4 text-[11px] text-slate-600">
-              ⚠️ Legal information only — not legal advice. Consult a Bar Council advocate for representation.
+               Legal information only  not legal advice. Consult a Bar Council advocate for representation.
             </p>
           </div>
         </div>

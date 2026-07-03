@@ -1029,7 +1029,7 @@ const qaBank: QAEntry[] = [
 const labourModule: KnowledgeModule = {
   area: "labour",
   label: "Labour Law",
-  description: "Employment rights, termination, wages, gratuity, maternity, overtime, workplace safety, and court procedures under the Labour Act 2006",
+  description: "Knowledge module for labour law in Bangladesh.",
   rules,
   qaBank,
 };

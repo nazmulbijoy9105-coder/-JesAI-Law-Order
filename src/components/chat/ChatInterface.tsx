@@ -47,139 +47,139 @@ const UI_TEXT = {
     signinBtn: "Sign In / Create Account",
     placeholder: "Describe your legal situation...",
     placeholderLimit: "Sign in or subscribe to continue...",
-    footer: "Legal information only — not legal advice. Press Enter to send.",
+    footer: "Legal information only  not legal advice. Press Enter to send.",
     listenBtn: "Voice",
     stopListenBtn: "Stop",
     speakBtn: "Listen",
     stopSpeakBtn: "Stop",
-    langToggle: "বাংলা",
+    langToggle: "",
     newChat: "New Chat",
     history: "Recent",
     today: "Today",
     yesterday: "Yesterday",
-    greeting: `Hello. I'm **JesAI** — your Bangladesh legal literacy companion, created by Neum Lex Counsel (NLC).\n\nDescribe your situation in plain language. I'll identify the legal issues, explain what Bangladesh law says, assess your position, and guide you through your options.\n\n_What's your legal question today?_`,
+    greeting: `Hello. I'm **JesAI**  your Bangladesh legal literacy companion, created by Neum Lex Counsel (NLC).\n\nDescribe your situation in plain language. I'll identify the legal issues, explain what Bangladesh law says, assess your position, and guide you through your options.\n\n_What's your legal question today?_`,
     commonQsTitle: "Common Questions",
     voiceError: "Voice input not supported on this browser. Try Chrome or Edge.",
     voiceListening: "Listening... speak now",
-    voiceReady: "Voice ready — tap to speak",
+    voiceReady: "Voice ready  tap to speak",
   },
   bn: {
-    active: "সক্রিয়",
-    freeLeft: (n: number) => `${n} বাকি`,
-    quickTopics: "কোথায় শুরু করতে চান?",
-    limitTitle: "বিনামূল্যে সীমা শেষ",
-    limitSub: "আরও বিনামূল্যে প্রশ্নের জন্য সাইন ইন করুন, বা সীমাহীন অ্যাক্সেসের জন্য সাবস্ক্রাইব করুন",
-    subscribeBtn: "সাবস্ক্রাইব করুন",
-    signinBtn: "সাইন ইন / অ্যাকাউন্ট তৈরি করুন",
-    placeholder: "আপনার আইনি পরিস্থিতি বলুন...",
-    placeholderLimit: "চালিয়ে যেতে সাইন ইন বা সাবস্ক্রাইব করুন...",
-    footer: "শুধুমাত্র আইনি তথ্য — পরামর্শ নয়। পাঠাতে Enter চাপুন।",
-    listenBtn: "ভয়েস",
-    stopListenBtn: "বন্ধ",
-    speakBtn: "শুনুন",
-    stopSpeakBtn: "বন্ধ",
+    active: "",
+    freeLeft: (n: number) => `${n} `,
+    quickTopics: "   ?",
+    limitTitle: "  ",
+    limitSub: "      ,      ",
+    subscribeBtn: " ",
+    signinBtn: "  /   ",
+    placeholder: "   ...",
+    placeholderLimit: "      ...",
+    footer: "       Enter ",
+    listenBtn: "",
+    stopListenBtn: "",
+    speakBtn: "",
+    stopSpeakBtn: "",
     langToggle: "English",
-    newChat: "নতুন চ্যাট",
-    history: "সাম্প্রতিক",
-    today: "আজ",
-    yesterday: "গতকাল",
-    greeting: `আসসালামুয়ালাইকুম। আমি **JesAI** — আপনার বাংলাদেশ আইনি সাক্ষরতার সহায়ক, নিউম লেক্স কাউন্সেল (NLC) কর্তৃক তৈরি।\n\nআপনার পরিস্থিতি সহজ ভাষায় বলুন। আমি আইনি সমস্যাগুলি চিহ্নিত করব, বাংলাদেশ আইন কী বলে তা ব্যাখ্যা করব, এবং আপনার পদক্ষেপ গাইড করব।\n\n_আজ আপনার আইনি প্রশ্ন কী?_`,
-    commonQsTitle: "সাধারণ প্রশ্ন",
-    voiceError: "এই ব্রাউজারে ভয়েস ইনপুট সমর্থিত নয়। Chrome বা Edge ব্যবহার করুন।",
-    voiceListening: "শুনছি... এখন বলুন",
-    voiceReady: "ভয়েস প্রস্তুত — বলতে ট্যাপ করুন",
+    newChat: " ",
+    history: "",
+    today: "",
+    yesterday: "",
+    greeting: `  **JesAI**      ,    (NLC)  \n\n         ,       ,     \n\n_    ?_`,
+    commonQsTitle: " ",
+    voiceError: "      Chrome  Edge  ",
+    voiceListening: "...  ",
+    voiceReady: "     ",
   },
 };
 
 const QUICK_TOPICS: Record<Language, { icon: string; label: string; area: LawArea }[]> = {
   en: [
-    { icon: "🏠", label: "Land & Property",   area: "property"       },
-    { icon: "👨‍👩‍👧", label: "Family & Marriage", area: "family"         },
-    { icon: "🚔", label: "Police & Criminal",  area: "criminal"       },
-    { icon: "💼", label: "Employment",         area: "labour"         },
-    { icon: "⚖️", label: "Constitutional",     area: "constitutional" },
-    { icon: "💰", label: "Tax & VAT",          area: "tax"            },
-    { icon: "🏢", label: "Company & RJSC",     area: "company"        },
-    { icon: "📝", label: "Contracts",          area: "contract"       },
-    { icon: "✈️", label: "NRB Investment",     area: "nrb"            },
+    { icon: "", label: "Land & Property",   area: "property"       },
+    { icon: "", label: "Family & Marriage", area: "family"         },
+    { icon: "", label: "Police & Criminal",  area: "criminal"       },
+    { icon: "", label: "Employment",         area: "labour"         },
+    { icon: "", label: "Constitutional",     area: "constitutional" },
+    { icon: "", label: "Tax & VAT",          area: "tax"            },
+    { icon: "", label: "Company & RJSC",     area: "company"        },
+    { icon: "", label: "Contracts",          area: "contract"       },
+    { icon: "", label: "NRB Investment",     area: "nrb"            },
   ],
   bn: [
-    { icon: "🏠", label: "জমি ও সম্পত্তি",      area: "property"       },
-    { icon: "👨‍👩‍👧", label: "পরিবার ও বিবাহ",   area: "family"         },
-    { icon: "🚔", label: "পুলিশ ও ফৌজদারি",     area: "criminal"       },
-    { icon: "💼", label: "চাকরি",               area: "labour"         },
-    { icon: "⚖️", label: "সাংবিধানিক অধিকার",  area: "constitutional" },
-    { icon: "💰", label: "কর ও ভ্যাট",          area: "tax"            },
-    { icon: "🏢", label: "কোম্পানি ও RJSC",     area: "company"        },
-    { icon: "📝", label: "চুক্তি আইন",           area: "contract"       },
-    { icon: "✈️", label: "প্রবাসী বিনিয়োগ",    area: "nrb"            },
+    { icon: "", label: "  ",      area: "property"       },
+    { icon: "", label: "  ",   area: "family"         },
+    { icon: "", label: "  ",     area: "criminal"       },
+    { icon: "", label: "",               area: "labour"         },
+    { icon: "", label: " ",  area: "constitutional" },
+    { icon: "", label: "  ",          area: "tax"            },
+    { icon: "", label: "  RJSC",     area: "company"        },
+    { icon: "", label: " ",           area: "contract"       },
+    { icon: "", label: " ",    area: "nrb"            },
   ],
 };
 
 // Common questions by law area for the FAQ panel
 const COMMON_QUESTIONS: Record<string, { en: string; bn: string }[]> = {
   property: [
-    { en: "How do I do namajaari (mutation) for inherited land?", bn: "উত্তরাধিকারসূত্রে পাওয়া জমির নামজারি কিভাবে করব?" },
-    { en: "What happens if someone sells land with a forged deed?", bn: "জাল দলিলে জমি বিক্রি হলে কী করব?" },
-    { en: "Can a landlord evict a tenant without notice?", bn: "নোটিশ ছাড়া বাড়িওয়ালা ভাড়াটে উচ্ছেদ করতে পারে?" },
-    { en: "What is Artha Rin court and when can a bank file there?", bn: "অর্থ ঋণ আদালত কী এবং ব্যাংক কখন মামলা করতে পারে?" },
-    { en: "How do I challenge an illegal land boundary encroachment?", bn: "অবৈধ জমি দখলের বিরুদ্ধে কীভাবে আইনি ব্যবস্থা নেব?" },
+    { en: "How do I do namajaari (mutation) for inherited land?", bn: "     ?" },
+    { en: "What happens if someone sells land with a forged deed?", bn: "      ?" },
+    { en: "Can a landlord evict a tenant without notice?", bn: "      ?" },
+    { en: "What is Artha Rin court and when can a bank file there?", bn: "         ?" },
+    { en: "How do I challenge an illegal land boundary encroachment?", bn: "       ?" },
   ],
   criminal: [
-    { en: "What are my rights when police arrest me?", bn: "পুলিশ গ্রেফতার করলে আমার কী অধিকার আছে?" },
-    { en: "How do I get bail after arrest?", bn: "গ্রেফতারের পর জামিন কিভাবে পাব?" },
-    { en: "What is the difference between a cognizable and non-cognizable offence?", bn: "আমলযোগ্য ও অ-আমলযোগ্য অপরাধের পার্থক্য কী?" },
-    { en: "Can police keep me in custody without producing me before a magistrate?", bn: "ম্যাজিস্ট্রেটের সামনে না এনে পুলিশ আমাকে কতদিন রাখতে পারে?" },
-    { en: "What is remand and how many days can it last?", bn: "রিমান্ড কী এবং এটা কত দিনের হতে পারে?" },
+    { en: "What are my rights when police arrest me?", bn: "      ?" },
+    { en: "How do I get bail after arrest?", bn: "    ?" },
+    { en: "What is the difference between a cognizable and non-cognizable offence?", bn: "  -   ?" },
+    { en: "Can police keep me in custody without producing me before a magistrate?", bn: "        ?" },
+    { en: "What is remand and how many days can it last?", bn: "       ?" },
   ],
   family: [
-    { en: "How does a Muslim wife get divorce in Bangladesh?", bn: "বাংলাদেশে মুসলিম স্ত্রী কিভাবে তালাক নিতে পারেন?" },
-    { en: "Who gets custody of children after divorce?", bn: "তালাকের পর সন্তানের হেফাজত কার কাছে থাকে?" },
-    { en: "What is the legal amount of maintenance a wife can claim?", bn: "স্ত্রী ভরণপোষণ কত টাকা দাবি করতে পারেন?" },
-    { en: "Can a husband refuse to pay mehr (dower)?", bn: "স্বামী কি দেনমোহর দিতে অস্বীকার করতে পারে?" },
-    { en: "How is property divided after a Muslim person dies?", bn: "মুসলিম ব্যক্তির মৃত্যুর পর সম্পত্তি কিভাবে ভাগ হয়?" },
+    { en: "How does a Muslim wife get divorce in Bangladesh?", bn: "      ?" },
+    { en: "Who gets custody of children after divorce?", bn: "      ?" },
+    { en: "What is the legal amount of maintenance a wife can claim?", bn: "      ?" },
+    { en: "Can a husband refuse to pay mehr (dower)?", bn: "      ?" },
+    { en: "How is property divided after a Muslim person dies?", bn: "       ?" },
   ],
   labour: [
-    { en: "What notice and gratuity am I owed if terminated?", bn: "চাকরিচ্যুত হলে আমি কত নোটিশ ও গ্র্যাচুইটি পাব?" },
-    { en: "My employer is not paying my salary for 3 months — what can I do?", bn: "৩ মাস বেতন না দিলে কী করব?" },
-    { en: "How many days maternity leave is a woman entitled to?", bn: "মাতৃত্বকালীন ছুটি কত দিন পাওয়া যায়?" },
-    { en: "Can an employer dismiss me without a domestic enquiry?", bn: "তদন্ত ছাড়া চাকরি থেকে বরখাস্ত করা যায় কি?" },
-    { en: "Is overtime at double rate mandatory?", bn: "ওভারটাইম ডাবল রেটে বাধ্যতামূলক কি?" },
+    { en: "What notice and gratuity am I owed if terminated?", bn: "       ?" },
+    { en: "My employer is not paying my salary for 3 months  what can I do?", bn: "      ?" },
+    { en: "How many days maternity leave is a woman entitled to?", bn: "     ?" },
+    { en: "Can an employer dismiss me without a domestic enquiry?", bn: "       ?" },
+    { en: "Is overtime at double rate mandatory?", bn: "    ?" },
   ],
   contract: [
-    { en: "Is a verbal (oral) contract legally binding in Bangladesh?", bn: "মুখের কথায় (মৌখিক) চুক্তি কি বাংলাদেশে আইনগতভাবে বৈধ?" },
-    { en: "What can I do if someone breaches a written contract with me?", bn: "লিখিত চুক্তি ভঙ্গ হলে আমি কী করতে পারি?" },
-    { en: "I paid an advance but the other party is not performing — can I get it back?", bn: "অগ্রিম দিলাম কিন্তু কাজ হচ্ছে না — ফেরত পাব কি?" },
-    { en: "I signed as a personal guarantor for a loan — how liable am I?", bn: "ঋণের জামিনদার হিসেবে সই করেছি — আমার কতটা দায় আছে?" },
-    { en: "Does a contract need a stamp to be valid?", bn: "চুক্তির জন্য স্ট্যাম্প না লাগালে কি তা বাতিল হয়ে যায়?" },
+    { en: "Is a verbal (oral) contract legally binding in Bangladesh?", bn: "  ()     ?" },
+    { en: "What can I do if someone breaches a written contract with me?", bn: "       ?" },
+    { en: "I paid an advance but the other party is not performing  can I get it back?", bn: "         ?" },
+    { en: "I signed as a personal guarantor for a loan  how liable am I?", bn: "         ?" },
+    { en: "Does a contract need a stamp to be valid?", bn: "         ?" },
   ],
   company: [
-    { en: "How do I register a private limited company in Bangladesh?", bn: "বাংলাদেশে প্রাইভেট লিমিটেড কোম্পানি কিভাবে নিবন্ধন করব?" },
-    { en: "What are the annual compliance requirements for a company?", bn: "কোম্পানির বার্ষিক আইনি দায়িত্বগুলো কী?" },
-    { en: "Can a director be removed without their consent?", bn: "পরিচালক কি তার সম্মতি ছাড়া অপসারণ করা যায়?" },
-    { en: "What is the minimum share capital to register a company?", bn: "কোম্পানি নিবন্ধনের জন্য ন্যূনতম মূলধন কত?" },
-    { en: "How can a minority shareholder protect their rights?", bn: "সংখ্যালঘু শেয়ারহোল্ডার তার অধিকার কিভাবে রক্ষা করবেন?" },
+    { en: "How do I register a private limited company in Bangladesh?", bn: "      ?" },
+    { en: "What are the annual compliance requirements for a company?", bn: "    ?" },
+    { en: "Can a director be removed without their consent?", bn: "       ?" },
+    { en: "What is the minimum share capital to register a company?", bn: "     ?" },
+    { en: "How can a minority shareholder protect their rights?", bn: "      ?" },
   ],
   tax: [
-    { en: "What is the income tax-free threshold in Bangladesh 2024-25?", bn: "২০২৪-২৫ সালে বাংলাদেশে করমুক্ত আয়ের সীমা কত?" },
-    { en: "When is the last date to file income tax return?", bn: "আয়কর রিটার্ন দেওয়ার শেষ তারিখ কবে?" },
-    { en: "What is TIN and how do I get one?", bn: "TIN কী এবং কিভাবে পাব?" },
-    { en: "What are the VAT rates and when must a business register for VAT?", bn: "ভ্যাটের হার কত এবং কখন ভ্যাট নিবন্ধন করতে হবে?" },
-    { en: "What is advance income tax (AIT) and when is it deducted?", bn: "অগ্রিম আয়কর (AIT) কী এবং কখন কাটা হয়?" },
+    { en: "What is the income tax-free threshold in Bangladesh 2024-25?", bn: "-      ?" },
+    { en: "When is the last date to file income tax return?", bn: "     ?" },
+    { en: "What is TIN and how do I get one?", bn: "TIN    ?" },
+    { en: "What are the VAT rates and when must a business register for VAT?", bn: "        ?" },
+    { en: "What is advance income tax (AIT) and when is it deducted?", bn: "  (AIT)     ?" },
   ],
   nrb: [
-    { en: "How do I repatriate profits from Bangladesh to abroad?", bn: "বাংলাদেশ থেকে মুনাফা বিদেশে নিতে কী করব?" },
-    { en: "What is BIDA registration and is it mandatory for foreign investment?", bn: "BIDA নিবন্ধন কী এবং বিদেশি বিনিয়োগের জন্য কি বাধ্যতামূলক?" },
-    { en: "What withholding tax applies to payments to foreign partners?", bn: "বিদেশি অংশীদারকে পেমেন্টে কত উৎসে কর দিতে হয়?" },
-    { en: "Can a non-resident Bangladeshi (NRB) invest in land or property?", bn: "প্রবাসী বাংলাদেশি কি দেশে জমি বা সম্পত্তি কিনতে পারেন?" },
-    { en: "What are the FBAR reporting requirements for Bangladeshis with US bank accounts?", bn: "যুক্তরাষ্ট্রে ব্যাংক অ্যাকাউন্ট থাকলে FBAR জানাতে হয় কি?" },
+    { en: "How do I repatriate profits from Bangladesh to abroad?", bn: "      ?" },
+    { en: "What is BIDA registration and is it mandatory for foreign investment?", bn: "BIDA        ?" },
+    { en: "What withholding tax applies to payments to foreign partners?", bn: "       ?" },
+    { en: "Can a non-resident Bangladeshi (NRB) invest in land or property?", bn: "        ?" },
+    { en: "What are the FBAR reporting requirements for Bangladeshis with US bank accounts?", bn: "    FBAR   ?" },
   ],
   constitutional: [
-    { en: "What are the fundamental rights guaranteed by the Bangladesh Constitution?", bn: "বাংলাদেশ সংবিধানে কী কী মৌলিক অধিকার গ্যারান্টি দেওয়া আছে?" },
-    { en: "What is a writ petition and when can I file one?", bn: "রিট পিটিশন কী এবং কখন দায়ের করা যায়?" },
-    { en: "Can police detain me under Section 54 without a warrant?", bn: "পুলিশ কি ৫৪ ধারায় ওয়ারেন্ট ছাড়া আটক করতে পারে?" },
-    { en: "What are the rights of an arrested person under Article 33?", bn: "সংবিধানের ৩৩ অনুচ্ছেদে গ্রেফতারকৃত ব্যক্তির কী অধিকার আছে?" },
-    { en: "What is a habeas corpus petition?", bn: "হেবিয়াস কর্পাস পিটিশন কী?" },
+    { en: "What are the fundamental rights guaranteed by the Bangladesh Constitution?", bn: "        ?" },
+    { en: "What is a writ petition and when can I file one?", bn: "       ?" },
+    { en: "Can police detain me under Section 54 without a warrant?", bn: "        ?" },
+    { en: "What are the rights of an arrested person under Article 33?", bn: "       ?" },
+    { en: "What is a habeas corpus petition?", bn: "   ?" },
   ],
 };
 
@@ -207,14 +207,14 @@ function formatMessage(content: string) {
       const parts = line.split(/\*\*(.*?)\*\*/g);
       return <p key={i} className="my-0.5 text-[13px] leading-relaxed">{parts.map((p, j) => j % 2 === 1 ? <strong key={j} className="text-white font-semibold">{p}</strong> : p)}</p>;
     }
-    if (line.startsWith("• ") || line.startsWith("- ")) {
-      return <p key={i} className="pl-3 my-0.5 flex gap-2 text-[13px] leading-relaxed"><span className="text-[#4ade80] mt-1 flex-shrink-0 text-[10px]">▸</span><span>{line.slice(2)}</span></p>;
+    if (line.startsWith(" ") || line.startsWith("- ")) {
+      return <p key={i} className="pl-3 my-0.5 flex gap-2 text-[13px] leading-relaxed"><span className="text-[#4ade80] mt-1 flex-shrink-0 text-[10px]"></span><span>{line.slice(2)}</span></p>;
     }
     if (/^\d+\./.test(line)) return <p key={i} className="pl-3 my-0.5 text-[13px] leading-relaxed">{line}</p>;
     if (line.startsWith("---")) return <hr key={i} className="border-white/10 my-3" />;
     if (line.startsWith("_") && line.endsWith("_")) return <p key={i} className="italic text-slate-400 my-0.5 text-[13px]">{line.replace(/_/g, "")}</p>;
-    if (line.startsWith("🔒")) return <p key={i} className="my-1 text-[13px] leading-relaxed text-[#c8a84b]">{line}</p>;
-    if (line.startsWith("⚠️") || line.startsWith("⚠")) return <p key={i} className="my-1 text-[13px] leading-relaxed text-[#f42a41]">{line}</p>;
+    if (line.startsWith("")) return <p key={i} className="my-1 text-[13px] leading-relaxed text-[#c8a84b]">{line}</p>;
+    if (line.startsWith("") || line.startsWith("")) return <p key={i} className="my-1 text-[13px] leading-relaxed text-[#f42a41]">{line}</p>;
     if (line.trim() === "") return <div key={i} className="h-2" />;
     return <p key={i} className="my-0.5 text-[13px] leading-relaxed">{line}</p>;
   });
@@ -225,7 +225,7 @@ function genId() { return `${Date.now()}-${Math.random().toString(36).slice(2)}`
 function getConvTitle(messages: Message[]): string {
   const first = messages.find(m => m.role === "user");
   if (!first) return "New conversation";
-  return first.content.slice(0, 36) + (first.content.length > 36 ? "…" : "");
+  return first.content.slice(0, 36) + (first.content.length > 36 ? "" : "");
 }
 
 export default function ChatInterface() {
@@ -422,7 +422,7 @@ export default function ChatInterface() {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
   }, [sendMessage]);
 
-  // ── Voice Input ───────────────────────────────────────────────
+  //  Voice Input 
   const startListening = useCallback(() => {
     setVoiceError(null);
     const SR = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
@@ -492,15 +492,15 @@ export default function ChatInterface() {
     setVoiceStatus("listening");
   }, [lang, isListening, t.voiceError]);
 
-  // ── Text-to-Speech ────────────────────────────────────────────
+  //  Text-to-Speech 
   const speakMessage = useCallback((id: string, content: string) => {
     if (speakingId === id) { window.speechSynthesis.cancel(); setSpeakingId(null); return; }
     window.speechSynthesis.cancel();
     const cleaned = content
       .replace(/\*\*/g, "").replace(/\*/g, "")
-      .replace(/---/g, "").replace(/🔒/g, "lock")
-      .replace(/⚠️/g, "Warning:").replace(/_/g, "")
-      .replace(/[▸•]/g, "");
+      .replace(/---/g, "")
+      .replace(/_/g, "")
+      .replace(/[]/g, "");
     const u = new SpeechSynthesisUtterance(cleaned);
     u.lang = lang === "bn" ? "bn-BD" : "en-US";
     u.rate = 0.9;
@@ -529,7 +529,7 @@ export default function ChatInterface() {
   return (
     <div style={{ fontFamily: "'DM Sans', system-ui, sans-serif" }} className="flex h-full bg-[#080f1e] overflow-hidden">
 
-      {/* ── Sidebar ───────────────────────────────────────── */}
+      {/*  Sidebar  */}
       <aside className={`${sidebarOpen ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 fixed lg:relative z-40 w-64 h-full flex flex-col border-r border-white/[0.06] bg-[#0a1220] transition-transform duration-300 ease-out`}>
 
         <div className="p-4 border-b border-white/[0.06]">
@@ -550,7 +550,7 @@ export default function ChatInterface() {
             <div className="mb-3 px-2 py-2 rounded-xl bg-[#006a4e]/10 border border-[#006a4e]/20">
               <p className="text-[10px] text-[#4ade80] font-medium truncate">{user.email}</p>
               <p className="text-[10px] text-slate-500 mt-0.5">
-                {effectiveIsPaid ? `Plan: ${user.tier}` : `${freeRemaining === Infinity ? "∞" : freeRemaining} questions left today`}
+                {effectiveIsPaid ? `Plan: ${user.tier}` : `${freeRemaining === Infinity ? "" : freeRemaining} questions left today`}
               </p>
             </div>
           ) : (
@@ -593,7 +593,7 @@ export default function ChatInterface() {
 
         <div className="p-3 border-t border-white/[0.06]">
           <div className="px-2 py-1.5 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/20">
-            <p className="text-[10px] text-[#f42a41] font-semibold">⚠ Legal information only</p>
+            <p className="text-[10px] text-[#f42a41] font-semibold"> Legal information only</p>
             <p className="text-[10px] text-slate-500 mt-0.5 leading-relaxed">Not legal advice. Consult a Bar Council advocate for representation.</p>
           </div>
         </div>
@@ -603,7 +603,7 @@ export default function ChatInterface() {
         <button onClick={() => setSidebarOpen(false)} className="fixed inset-0 bg-black/60 z-30 lg:hidden backdrop-blur-sm" />
       )}
 
-      {/* ── Main Chat ─────────────────────────────────────── */}
+      {/*  Main Chat  */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
 
         {/* Header */}
@@ -628,7 +628,7 @@ export default function ChatInterface() {
                     </span>
                   )}
                 </h1>
-                <p className="text-[10px] text-slate-500 mt-0.5 leading-none">{t.active} · Bangladesh Law</p>
+                <p className="text-[10px] text-slate-500 mt-0.5 leading-none">{t.active}  Bangladesh Law</p>
               </div>
             </div>
           </div>
@@ -668,7 +668,7 @@ export default function ChatInterface() {
             )}
             {effectiveIsPaid && (
               <div className="text-[11px] px-2.5 py-1.5 rounded-lg font-medium bg-[#c8a84b]/15 text-[#c8a84b]">
-                ✦ {user?.tier ?? "paid"}
+                 {user?.tier ?? "paid"}
               </div>
             )}
           </div>
@@ -677,22 +677,22 @@ export default function ChatInterface() {
         {/* Error banner */}
         {apiError && (
           <div className="mx-4 mt-2 px-3 py-2 rounded-xl bg-[#f42a41]/10 border border-[#f42a41]/20 text-[11px] text-[#f42a41] flex items-center gap-2 flex-shrink-0">
-            <span>⚠</span>{apiError}
+            <span></span>{apiError}
           </div>
         )}
 
         {/* Voice error */}
         {voiceError && (
           <div className="mx-4 mt-2 px-3 py-2 rounded-xl bg-[#c8a84b]/10 border border-[#c8a84b]/20 text-[11px] text-[#c8a84b] flex items-center justify-between gap-2 flex-shrink-0">
-            <span>🎤 {voiceError}</span>
-            <button onClick={() => setVoiceError(null)} className="text-slate-500 hover:text-white">✕</button>
+            <span> {voiceError}</span>
+            <button onClick={() => setVoiceError(null)} className="text-slate-500 hover:text-white"></button>
           </div>
         )}
 
         {/* Common Questions panel */}
         {showCommonQs && commonQsForArea.length > 0 && (
           <div className="mx-4 mt-2 p-3 rounded-xl bg-[#0d1e35] border border-white/[0.07] flex-shrink-0">
-            <p className="text-[10px] text-[#c8a84b] uppercase tracking-widest font-medium mb-2">{t.commonQsTitle} — {AREA_LABELS[selectedArea ?? ""]}</p>
+            <p className="text-[10px] text-[#c8a84b] uppercase tracking-widest font-medium mb-2">{t.commonQsTitle}  {AREA_LABELS[selectedArea ?? ""]}</p>
             <div className="space-y-1">
               {commonQsForArea.map((q, i) => (
                 <button
@@ -700,7 +700,7 @@ export default function ChatInterface() {
                   onClick={() => { sendMessage(lang === "bn" ? q.bn : q.en); setShowCommonQs(false); }}
                   className="w-full text-left text-[12px] text-slate-400 hover:text-white px-2 py-1.5 rounded-lg hover:bg-white/[0.05] transition-all duration-150 leading-relaxed"
                 >
-                  <span className="text-[#4ade80] mr-1.5 text-[10px]">▸</span>
+                  <span className="text-[#4ade80] mr-1.5 text-[10px]"></span>
                   {lang === "bn" ? q.bn : q.en}
                 </button>
               ))}
@@ -735,7 +735,7 @@ export default function ChatInterface() {
                     </span>
                     {msg.role === "ai" && (
                       <button onClick={() => speakMessage(msg.id, msg.content)} className={`flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full transition-all duration-200 ${speakingId === msg.id ? "bg-[#f42a41]/20 text-[#f42a41]" : "bg-white/[0.05] text-slate-600 hover:text-[#4ade80] hover:bg-[#006a4e]/15"}`}>
-                        {speakingId === msg.id ? "■ " + t.stopSpeakBtn : "▶ " + t.speakBtn}
+                        {speakingId === msg.id ? " " + t.stopSpeakBtn : " " + t.speakBtn}
                       </button>
                     )}
                   </div>
@@ -756,7 +756,7 @@ export default function ChatInterface() {
                       <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f42a41]/10 text-[#f42a41] border border-[#f42a41]/20">Consult Lawyer</span>
                     )}
                     {msg.metadata.paywallActive && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#c8a84b]/10 text-[#c8a84b] border border-[#c8a84b]/20">🔒 Paid content available</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#c8a84b]/10 text-[#c8a84b] border border-[#c8a84b]/20"> Paid content available</span>
                     )}
                   </div>
                 )}
@@ -780,7 +780,7 @@ export default function ChatInterface() {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Quick topic chips — show on first load or when no area selected */}
+        {/* Quick topic chips  show on first load or when no area selected */}
         {(!hasUserMessages || (!selectedArea && !hasUserMessages)) && (
           <div className="px-3 sm:px-4 pb-3 flex-shrink-0">
             <p className="text-[11px] text-slate-600 mb-2.5 font-medium">{t.quickTopics}</p>

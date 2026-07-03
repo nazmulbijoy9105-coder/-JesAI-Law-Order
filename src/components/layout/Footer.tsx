@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-slate-500 leading-relaxed mb-3">
-              Bangladesh&apos;s Legal AI — NLC-validated knowledge across all
+              Bangladesh&apos;s Legal AI  NLC-validated knowledge across all
               major areas of Bangladesh law. Free for every citizen.
             </p>
             <div className="flex items-center gap-1.5">
@@ -73,10 +73,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-slate-600">
-            © {new Date().getFullYear()} Neum Lex Counsel · NB TECH. All rights reserved.
+             {new Date().getFullYear()} Neum Lex Counsel  NB TECH. All rights reserved.
           </p>
           <p className="text-xs text-slate-600 text-center max-w-md">
-            ⚠️ JesAI provides legal information only — not legal advice.
+             JesAI provides legal information only  not legal advice.
             For legal services, consult a certified Bangladesh Bar Council advocate.
           </p>
         </div>

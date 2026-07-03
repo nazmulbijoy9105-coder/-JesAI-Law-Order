@@ -6,15 +6,15 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
 const LAW_AREAS = [
-  { icon: "⚖️", label: "Constitutional" },
-  { icon: "🔒", label: "Criminal" },
-  { icon: "🏠", label: "Property & Land" },
-  { icon: "👨‍👩‍👧", label: "Family Law" },
-  { icon: "🏭", label: "Labour Law" },
-  { icon: "📝", label: "Contract Law" },
-  { icon: "💼", label: "Company Law" },
-  { icon: "💰", label: "Tax & VAT" },
-  { icon: "✈️", label: "NRB Investment" },
+  { icon: "", label: "Constitutional" },
+  { icon: "", label: "Criminal" },
+  { icon: "", label: "Property & Land" },
+  { icon: "", label: "Family Law" },
+  { icon: "", label: "Labour Law" },
+  { icon: "", label: "Contract Law" },
+  { icon: "", label: "Company Law" },
+  { icon: "", label: "Tax & VAT" },
+  { icon: "", label: "NRB Investment" },
 ];
 
 export default function ConsultClient() {
@@ -25,7 +25,7 @@ export default function ConsultClient() {
       <Navbar />
       <div className="flex flex-1 overflow-hidden">
 
-        {/* ── Sidebar ───────────────────────────────── */}
+        {/*  Sidebar  */}
         <aside className="hidden xl:flex flex-col w-64 flex-shrink-0 border-r border-gray-100 bg-white overflow-y-auto">
 
           {/* User */}
@@ -39,17 +39,17 @@ export default function ConsultClient() {
                   <span className="text-[11px] font-medium text-gray-900 truncate">{user.email}</span>
                 </div>
                 {isPaid
-                  ? <p className="text-[10px] text-amber-700 font-semibold">✦ {tier.toUpperCase()} · Full Access</p>
+                  ? <p className="text-[10px] text-amber-700 font-semibold"> {tier.toUpperCase()}  Full Access</p>
                   : <p className="text-[10px] text-gray-500">Free plan</p>}
                 {!isPaid && (
                   <Link href="/payment" className="mt-2 flex items-center justify-center gap-1 text-[10px] font-bold px-2.5 py-1.5 rounded-lg bg-[#C8A84B] text-white hover:bg-[#b8943b] transition-all">
-                    ✦ Upgrade to Pro
+                     Upgrade to Pro
                   </Link>
                 )}
               </div>
             ) : (
               <div>
-                <p className="text-[11px] font-semibold text-gray-700 mb-1">Guest · 20 free queries</p>
+                <p className="text-[11px] font-semibold text-gray-700 mb-1">Guest  20 free queries</p>
                 <div className="flex gap-1.5">
                   <Link href="/auth/signin" className="flex-1 text-center text-[10px] font-medium px-2 py-1.5 rounded-lg border border-gray-200 text-gray-600 hover:border-gray-300 transition-all">Sign In</Link>
                   <Link href="/auth/signup" className="flex-1 text-center text-[10px] font-semibold px-2 py-1.5 rounded-lg bg-[#006A4E] text-white hover:bg-[#005a40] transition-all">Sign Up</Link>
@@ -63,10 +63,10 @@ export default function ConsultClient() {
             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2.5">Verdict System</p>
             <div className="space-y-1.5">
               {[
-                { v: "🟢", cls: "verdict-green",  label: "GREEN — Relief available"  },
-                { v: "🟡", cls: "verdict-yellow", label: "YELLOW — Court discretion" },
-                { v: "🔴", cls: "verdict-red",    label: "RED — Relief blocked"       },
-                { v: "⬛", cls: "verdict-black",  label: "BLACK — No jurisdiction"   },
+                { v: "", cls: "verdict-green",  label: "GREEN  Relief available"  },
+                { v: "", cls: "verdict-yellow", label: "YELLOW  Court discretion" },
+                { v: "", cls: "verdict-red",    label: "RED  Relief blocked"       },
+                { v: "", cls: "verdict-black",  label: "BLACK  No jurisdiction"   },
               ].map(x => (
                 <div key={x.v} className={`${x.cls} flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-[10px] font-medium`}>
                   <span>{x.v}</span><span>{x.label}</span>
@@ -83,7 +83,7 @@ export default function ConsultClient() {
                 <div key={a.label} className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg hover:bg-gray-50 transition-all">
                   <span className="text-sm">{a.icon}</span>
                   <span className="text-[11px] text-gray-700">{a.label}</span>
-                  <span className="ml-auto text-[9px] text-[#006A4E] font-bold">✓</span>
+                  <span className="ml-auto text-[9px] text-[#006A4E] font-bold"></span>
                 </div>
               ))}
             </div>
@@ -92,16 +92,16 @@ export default function ConsultClient() {
           {/* Disclaimer */}
           <div className="p-4 border-t border-gray-100">
             <div className="rounded-xl bg-red-50 border border-red-100 p-3">
-              <p className="text-[9px] font-bold text-red-600 mb-1">⚠ DISCLAIMER</p>
+              <p className="text-[9px] font-bold text-red-600 mb-1"> DISCLAIMER</p>
               <p className="text-[10px] text-gray-500 leading-relaxed">
-                Legal <strong className="text-gray-700">information only</strong> — not advice.
+                Legal <strong className="text-gray-700">information only</strong>  not advice.
                 Consult a <strong className="text-gray-700">Bar Council advocate</strong> for representation.
               </p>
             </div>
           </div>
         </aside>
 
-        {/* ── Chat ──────────────────────────────────── */}
+        {/*  Chat  */}
         <main className="flex-1 flex flex-col overflow-hidden min-w-0">
           <div className="flex-1 overflow-hidden">
             <ChatInterface />

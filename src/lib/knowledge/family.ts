@@ -268,7 +268,7 @@ const qaBank: QAEntry[] = [
 const familyModule: KnowledgeModule = {
   area: "family",
   label: "Family Law",
-  description: "Muslim, Hindu, Christian, and Adibashi family law covering divorce, custody, maintenance, and dowry",
+  description: "Knowledge module for family law in Bangladesh.",
   rules,
   qaBank,
 };

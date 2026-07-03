@@ -74,13 +74,13 @@ export default function PaymentPage() {
       <Navbar />
       <div className="flex-1 flex items-center justify-center px-4">
         <div className="max-w-md w-full text-center p-10 rounded-2xl border border-green-200 bg-green-50">
-          <div className="text-5xl mb-4">✅</div>
+          <div className="text-5xl mb-4"></div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">Payment Submitted!</h2>
           <p className="text-gray-500 text-[14px] mb-6 leading-relaxed">
-            Your payment will be verified within 1–2 hours. You will receive full access after verification.
+            Your payment will be verified within 12 hours. You will receive full access after verification.
           </p>
           <Link href="/" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#006A4E] text-white font-semibold hover:bg-[#005a40] transition-all">
-            Go to JesAI →
+            Go to JesAI 
           </Link>
         </div>
       </div>
@@ -119,19 +119,19 @@ export default function PaymentPage() {
                         </div>
                       )}
                       <div className="text-[13px] font-bold text-gray-500 mb-1">{cfg.label}</div>
-                      <div className="text-3xl font-bold text-gray-900 mb-1">৳{p.price_bdt.toLocaleString()}</div>
+                      <div className="text-3xl font-bold text-gray-900 mb-1">{p.price_bdt.toLocaleString()}</div>
                       <div className="text-[11px] text-gray-400 mb-4">/month</div>
                       <div className="space-y-2">
                         {FEATURES[p.tier].map((f, i) => (
                           <div key={i} className="flex items-center gap-2">
                             <span className={`text-[11px] ${f.highlight ? "text-[#006A4E]" : "text-gray-400"}`}>
-                              {f.highlight ? "✦" : "✓"}
+                              {f.highlight ? "" : ""}
                             </span>
                             <span className={`text-[12px] ${f.highlight ? "font-semibold text-gray-900" : "text-gray-500"}`}>{f.label}</span>
                           </div>
                         ))}
                       </div>
-                      {selected && <div className="mt-4 text-[11px] font-bold text-[#006A4E]">✓ Selected</div>}
+                      {selected && <div className="mt-4 text-[11px] font-bold text-[#006A4E]"> Selected</div>}
                     </button>
                   );
                 })}
@@ -140,19 +140,19 @@ export default function PaymentPage() {
               <div className="text-center">
                 <button onClick={() => setStep(2)}
                   className="px-10 py-3.5 rounded-xl bg-[#006A4E] text-white font-bold text-[15px] hover:bg-[#005a40] transition-all shadow-sm hover:shadow-md">
-                  Continue with {tierConfig[selectedTier].label} — ৳{plan.price_bdt.toLocaleString()} →
+                  Continue with {tierConfig[selectedTier].label}  {plan.price_bdt.toLocaleString()} 
                 </button>
-                <p className="mt-3 text-[11px] text-gray-400">Pay via bKash or Nagad · Verified within 1–2 hours</p>
+                <p className="mt-3 text-[11px] text-gray-400">Pay via bKash or Nagad  Verified within 12 hours</p>
               </div>
             </>
           ) : (
             <div className="max-w-md mx-auto">
               <form onSubmit={handleSubmit} className="rounded-2xl border border-gray-200 p-8">
                 <div className="flex items-center gap-2 mb-6">
-                  <button onClick={() => setStep(1)} className="text-gray-400 hover:text-gray-700 text-lg">←</button>
+                  <button onClick={() => setStep(1)} className="text-gray-400 hover:text-gray-700 text-lg"></button>
                   <div>
                     <h2 className="font-bold text-gray-900">Complete Payment</h2>
-                    <p className="text-[12px] text-gray-500">{tierConfig[selectedTier].label} — ৳{plan.price_bdt.toLocaleString()}/month</p>
+                    <p className="text-[12px] text-gray-500">{tierConfig[selectedTier].label}  {plan.price_bdt.toLocaleString()}/month</p>
                   </div>
                 </div>
 
@@ -163,7 +163,7 @@ export default function PaymentPage() {
                     {(["bkash", "nagad"] as PaymentMethod[]).map(m => (
                       <button key={m} type="button" onClick={() => setMethod(m)}
                         className={`py-3 rounded-xl border-2 font-semibold text-[13px] transition-all ${method === m ? "border-[#006A4E] bg-[#006A4E]/5 text-[#006A4E]" : "border-gray-200 text-gray-500 hover:border-gray-300"}`}>
-                        {m === "bkash" ? "🟣 bKash" : "🟠 Nagad"}
+                        {m === "bkash" ? " bKash" : " Nagad"}
                       </button>
                     ))}
                   </div>
@@ -171,9 +171,9 @@ export default function PaymentPage() {
 
                 {/* Send to */}
                 <div className="mb-5 p-4 rounded-xl bg-[#006A4E]/5 border border-[#006A4E]/15">
-                  <p className="text-[10px] font-bold text-[#006A4E] uppercase tracking-wider mb-1">Send ৳{plan.price_bdt.toLocaleString()} to</p>
+                  <p className="text-[10px] font-bold text-[#006A4E] uppercase tracking-wider mb-1">Send {plan.price_bdt.toLocaleString()} to</p>
                   <p className="text-2xl font-bold text-gray-900 tracking-widest">{payNumber}</p>
-                  <p className="text-[11px] text-gray-500 mt-0.5">{method === "bkash" ? "bKash" : "Nagad"} — Send Money</p>
+                  <p className="text-[11px] text-gray-500 mt-0.5">{method === "bkash" ? "bKash" : "Nagad"}  Send Money</p>
                 </div>
 
                 {error && (
@@ -196,10 +196,10 @@ export default function PaymentPage() {
 
                 <button type="submit" disabled={loading}
                   className="w-full py-3.5 rounded-xl bg-[#006A4E] text-white font-bold text-[14px] hover:bg-[#005a40] transition-all disabled:opacity-40 shadow-sm">
-                  {loading ? "Submitting..." : "Submit Payment →"}
+                  {loading ? "Submitting..." : "Submit Payment "}
                 </button>
                 <p className="mt-3 text-[11px] text-gray-400 text-center">
-                  Verified by NLC within 1–2 hours of submission.
+                  Verified by NLC within 12 hours of submission.
                 </p>
               </form>
             </div>

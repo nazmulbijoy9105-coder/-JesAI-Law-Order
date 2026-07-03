@@ -1,21 +1,21 @@
-// ─── JesAI API Route — LLM-Powered Legal AI ──────────────────
+//  JesAI API Route  LLM-Powered Legal AI 
 //
 // ARCHITECTURE:
 //   User message
-//     → queryKnowledge()        [RAG: find relevant Q&A + rules]
-//     → buildSystemPrompt()     [inject BD law context]
-//     → Gemini API              [LLM generates personalised answer]
-//     → applyPaywallTier()      [gate conclusion for free users]
-//     → stream to client
+//      queryKnowledge()        [RAG: find relevant Q&A + rules]
+//      buildSystemPrompt()     [inject BD law context]
+//      Gemini API              [LLM generates personalised answer]
+//      applyPaywallTier()      [gate conclusion for free users]
+//      stream to client
 //
 // LLM FALLBACK:
-//   If Gemini unavailable / key missing → falls back to static
+//   If Gemini unavailable / key missing  falls back to static
 //   knowledge store response (current behavior). Zero downtime.
 //
 // ENV REQUIRED:
-//   GEMINI_API_KEY=your_key_here   (Google AI Studio — free tier)
+//   GEMINI_API_KEY=your_key_here   (Google AI Studio  free tier)
 //
-// ─────────────────────────────────────────────────────────────
+// 
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
@@ -34,7 +34,7 @@ import {
   type ScenarioSession,
 } from "@/lib/knowledge/scenario-manager";
 
-// Server-side Supabase for token verification (lazy init — no module-level createClient)
+// Server-side Supabase for token verification (lazy init  no module-level createClient)
 function getSupabaseServer() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -61,33 +61,33 @@ async function verifyUserIsPaid(token: string | null): Promise<boolean> {
   }
 }
 
-// ─── Config ───────────────────────────────────────────────────
+//  Config 
 const GEMINI_API_KEY  = process.env.GEMINI_API_KEY ?? "";
 const GEMINI_MODEL    = "gemini-2.0-flash";
 const LLM_ENABLED     = GEMINI_API_KEY.length > 0;
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "01XXXXXXXXX";
 
-// ─── Language Detection ───────────────────────────────────────
+//  Language Detection 
 function detectLanguage(text: string): "bn" | "en" {
   return /[\u0980-\u09FF]/.test(text) ? "bn" : "en";
 }
 
-// ─── Area Labels ──────────────────────────────────────────────
+//  Area Labels 
 const AREA_LABELS: Record<string, { en: string; bn: string }> = {
-  property:       { en: "Land & Property Law",   bn: "ভূমি ও সম্পত্তি আইন"   },
-  criminal:       { en: "Criminal Law",           bn: "ফৌজদারি আইন"            },
-  family:         { en: "Family Law",             bn: "পারিবারিক আইন"          },
-  labour:         { en: "Labour Law",             bn: "শ্রম আইন"               },
-  company:        { en: "Company Law",            bn: "কোম্পানি আইন"           },
-  tax:            { en: "Tax Law",                bn: "কর আইন"                 },
-  nrb:            { en: "NRB Investment Law",     bn: "প্রবাসী বিনিয়োগ আইন"   },
-  constitutional: { en: "Constitutional Law",     bn: "সাংবিধানিক আইন"         },
-  consumer:       { en: "Consumer Rights Law",    bn: "ভোক্তা অধিকার আইন"     },
-  cyber:          { en: "Cyber Law",              bn: "সাইবার আইন"             },
-  contract:       { en: "Contract Law",           bn: "চুক্তি আইন"             },
+  property:       { en: "Land & Property Law",   bn: "   "   },
+  criminal:       { en: "Criminal Law",           bn: " "            },
+  family:         { en: "Family Law",             bn: " "          },
+  labour:         { en: "Labour Law",             bn: " "               },
+  company:        { en: "Company Law",            bn: " "           },
+  tax:            { en: "Tax Law",                bn: " "                 },
+  nrb:            { en: "NRB Investment Law",     bn: "  "   },
+  constitutional: { en: "Constitutional Law",     bn: " "         },
+  consumer:       { en: "Consumer Rights Law",    bn: "  "     },
+  cyber:          { en: "Cyber Law",              bn: " "             },
+  contract:       { en: "Contract Law",           bn: " "             },
 };
 
-// ─── Out-of-scope response ────────────────────────────────────
+//  Out-of-scope response 
 function outOfScopeResponse(
   selectedArea: LawArea,
   detectedArea: LawArea | null,
@@ -97,10 +97,10 @@ function outOfScopeResponse(
   const det = detectedArea ? (AREA_LABELS[detectedArea] ?? null) : null;
   if (lang === "bn") {
     return (
-      `আপনি এখন **${sel.bn}** বিভাগে আছেন।\n\n` +
-      (det ? `আপনার প্রশ্নটি **${det.bn}** বিষয়ক মনে হচ্ছে।\n\n` : "") +
-      `এই বিভাগে শুধুমাত্র **${sel.bn}** সংক্রান্ত প্রশ্ন করুন।\n\n` +
-      `অন্য বিষয়ের জন্য মূল মেনু থেকে সঠিক বিভাগ বেছে নিন।`
+      `  **${sel.bn}**  \n\n` +
+      (det ? `  **${det.bn}**   \n\n` : "") +
+      `   **${sel.bn}**   \n\n` +
+      `         `
     );
   }
   return (
@@ -110,7 +110,7 @@ function outOfScopeResponse(
   );
 }
 
-// ─── LLM System Prompt Builder — ILRMF Architecture ──────────
+//  LLM System Prompt Builder  ILRMF Architecture 
 function buildSystemPrompt(
   result: KnowledgeResult,
   selectedArea: LawArea | null,
@@ -129,68 +129,68 @@ function buildSystemPrompt(
       lawContext.push(`Assessment: ${irac.application}\nResolution: ${irac.conclusion}`);
     }
     if (result.qaEntry.escalate && result.qaEntry.escalateReason) {
-      lawContext.push(`⚠️ URGENT: ${result.qaEntry.escalateReason}`);
+      lawContext.push(` URGENT: ${result.qaEntry.escalateReason}`);
     }
   }
   if (result.rules.length > 0) {
     const rulesSummary = result.rules
       .slice(0, 5)
-      .map((r) => `• ${r.title} [${r.source}]: ${r.rule.slice(0, 250)}`)
+      .map((r) => ` ${r.title} [${r.source}]: ${r.rule.slice(0, 250)}`)
       .join("\n");
     lawContext.push(`APPLICABLE LAWS:\n${rulesSummary}`);
   }
 
   const langInstruction = lang === "bn"
-    ? "LANGUAGE: সম্পূর্ণ বাংলায় উত্তর দিন। সহজ, উষ্ণ, স্পষ্ট বাংলা ব্যবহার করুন। আইনি পরিভাষা যেখানে প্রচলিত সেখানে ইংরেজিতে রাখুন (FIR, RJSC, Section ইত্যাদি)।"
+    ? "LANGUAGE:     , ,            (FIR, RJSC, Section )"
     : "LANGUAGE: Respond in English. Warm, clear, plain language. Not robotic.";
 
   const ilrmfInstruction = `
-═══════════════════════════════════════════════════
-ILRMF — INTEGRATED LEGAL REASONING & MAPPING FRAMEWORK
-═══════════════════════════════════════════════════
 
-PIPELINE STAGE 1 — FACT EXTRACTION
+ILRMF  INTEGRATED LEGAL REASONING & MAPPING FRAMEWORK
+
+
+PIPELINE STAGE 1  FACT EXTRACTION
 Extract: Parties, Subject matter, Key dates, Documents, Urgency indicators
 
-PIPELINE STAGE 2 — ISSUE CLASSIFICATION
+PIPELINE STAGE 2  ISSUE CLASSIFICATION
 Identify EACH distinct legal issue separately
 
-PIPELINE STAGE 3 — TIER-1 DETERMINISTIC CHECKS
-LIMITATION: 🟢 GREEN (within time) / 🔴 RED (time-barred)
-REGISTRATION: 🟢 GREEN / 🟡 YELLOW (weaker position)
-JURISDICTION: 🟢 PROCEED / ⬛ BLACK (jurisdiction bar)
-EVIDENCE: 🟢 GREEN / 🟡 YELLOW / 🔴 RED
+PIPELINE STAGE 3  TIER-1 DETERMINISTIC CHECKS
+LIMITATION:  GREEN (within time) /  RED (time-barred)
+REGISTRATION:  GREEN /  YELLOW (weaker position)
+JURISDICTION:  PROCEED /  BLACK (jurisdiction bar)
+EVIDENCE:  GREEN /  YELLOW /  RED
 
-PIPELINE STAGE 4 — ARGUMENT TREES
+PIPELINE STAGE 4  ARGUMENT TREES
 Both sides: YOUR SIDE argues / OPPOSING SIDE may argue
 
-PIPELINE STAGE 5 — RELIEF CLASSIFICATION
-🟢 GREEN (deterministic) / 🟡 YELLOW (discretionary) / 🔴 RED (blocked) / ⬛ BLACK (jurisdiction bar)
+PIPELINE STAGE 5  RELIEF CLASSIFICATION
+ GREEN (deterministic) /  YELLOW (discretionary) /  RED (blocked) /  BLACK (jurisdiction bar)
 
-PIPELINE STAGE 6 — RESOLUTION & NEXT STEPS
+PIPELINE STAGE 6  RESOLUTION & NEXT STEPS
 Immediate steps, Documents, Court/authority, Timeline
 
-PIPELINE STAGE 7 — HUMAN TOUCH
+PIPELINE STAGE 7  HUMAN TOUCH
 Sincere, warm closing
 
-VERDICT SUMMARY: **Verdict: [🟢/🟡/🔴/⬛]** + one sentence
-═══════════════════════════════════════════════════`;
+VERDICT SUMMARY: **Verdict: [///]** + one sentence
+`;
 
   const tierInstruction = isPaid
-    ? "ACCESS: FULL — Run all 7 pipeline stages completely."
-    : `ACCESS: FREE — Run stages 1–3 fully. For stages 4–6, end with: "🔒 **Unlock full analysis — ৳[price]**"`;
+    ? "ACCESS: FULL  Run all 7 pipeline stages completely."
+    : `ACCESS: FREE  Run stages 13 fully. For stages 46, end with: " **Unlock full analysis  [price]**"`;
 
-  return `You are JesAI — Bangladesh's Legal Reasoning AI, built by Neum Lex Counsel (NLC).
+  return `You are JesAI  Bangladesh's Legal Reasoning AI, built by Neum Lex Counsel (NLC).
 
 CORE RULES:
-1. Subject: ${areaLabel} — Bangladesh law only
+1. Subject: ${areaLabel}  Bangladesh law only
 2. Use only validated law context + your verified Bangladesh law knowledge
 3. Never invent statutes, case names, penalties, or sections
 4. Always flag urgency prominently
-5. Never use "IRAC" — use ILRMF pipeline stages naturally
+5. Never use "IRAC"  use ILRMF pipeline stages naturally
 6. Be honest about uncertainty
 7. Write with human warmth
-8. Always end with: ⚠️ This is legal information, not legal advice.
+8. Always end with:  This is legal information, not legal advice.
 
  ${langInstruction}
 
@@ -202,7 +202,7 @@ NLC-VALIDATED LAW CONTEXT:
  ${lawContext.length > 0 ? lawContext.join("\n\n") : `Area: ${areaLabel}. Use your verified Bangladesh law knowledge.`}`;
 }
 
-// ─── Gemini API Call ──────────────────────────────────────────
+//  Gemini API Call 
 async function callGemini(
   systemPrompt: string,
   userMessage: string,
@@ -259,7 +259,7 @@ async function callGemini(
   return text.trim();
 }
 
-// ─── Paywall Post-Processing ──────────────────────────────────
+//  Paywall Post-Processing 
 function applyPaywallToLLMResponse(
   llmText: string,
   result: KnowledgeResult,
@@ -267,7 +267,7 @@ function applyPaywallToLLMResponse(
   lang: "en" | "bn"
 ): string {
   if (isPaid) return llmText;
-  if (llmText.includes("🔒")) return llmText;
+  if (llmText.includes("")) return llmText;
 
   const paragraphs = llmText.split(/\n\n+/);
   const freeSection = paragraphs.slice(0, 2).join("\n\n");
@@ -275,34 +275,34 @@ function applyPaywallToLLMResponse(
   const pricing = TIER_PRICING[area] ?? { price: 999, label: "Full Legal Guide" };
 
   const paywallAppend = lang === "bn"
-    ? `\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`
-    : `\n\n🔒 **Unlock full answer — ৳${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`;
+    ? `\n\n **     ${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`
+    : `\n\n **Unlock full answer  ${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`;
 
   return freeSection + paywallAppend;
 }
 
-// ─── Static Fallback Responses ────────────────────────────────
+//  Static Fallback Responses 
 const AREA_FALLBACK: Record<string, string> = {
-  property: "**Land & Property Law — Bangladesh**\n\nI'm here to help with your property matter. Please describe what happened.\n\n_I understand property disputes can be stressful. Let me help you understand your rights._",
-  criminal: "**Criminal Law — Bangladesh**\n\nI can help you understand the criminal law aspects of your situation. Please describe what happened.\n\n_Criminal matters can be frightening. You deserve to understand your rights._",
-  family: "**Family Law — Bangladesh**\n\nI'm here to help with your family law matter. Please describe your situation.\n\n_Family matters are deeply personal. I will explain the law with care._",
-  labour: "**Labour Law — Bangladesh**\n\nI can help with your employment situation. Please describe what happened.\n\n_Your rights as a worker matter. Let me explain what the Labour Act 2006 says._",
-  company: "**Company Law — Bangladesh**\n\nI can assist with your company or business matter. Please describe the issue.\n\n_Navigating company law can be complex. Let me simplify it for you._",
-  tax: "**Tax Law — Bangladesh**\n\nI can help with your tax situation. Please describe the matter.\n\n_Tax issues are time-sensitive. Let me help you understand your position._",
-  nrb: "**NRB Investment — Bangladesh**\n\nI can assist with your cross-border investment or NRB matter. Please describe your situation.\n\n_Cross-border investment has complex rules. Let me guide you through them._",
-  constitutional: "**Constitutional Law — Bangladesh**\n\nI can help with your constitutional rights matter. Please describe the situation.\n\n_Your constitutional rights are fundamental. Let me explain how to protect them._",
-  consumer: "**Consumer Rights — Bangladesh**\n\nI can help with your consumer rights complaint. Please describe what happened.\n\n_As a consumer, you have legal protections. Let me explain them._",
-  cyber: "**Cyber Law — Bangladesh**\n\nI can assist with your cyber or digital law matter. Please describe the issue.\n\n_Digital crime is a serious matter. Let me explain your rights and options._",
-  contract: "**Contract Law — Bangladesh**\n\nI can help with your contract matter. Please describe the situation.\n\n_Contract disputes are about enforcing promises. Let me explain your legal position._",
+  property: "**Land & Property Law  Bangladesh**\n\nI'm here to help with your property matter. Please describe what happened.\n\n_I understand property disputes can be stressful. Let me help you understand your rights._",
+  criminal: "**Criminal Law  Bangladesh**\n\nI can help you understand the criminal law aspects of your situation. Please describe what happened.\n\n_Criminal matters can be frightening. You deserve to understand your rights._",
+  family: "**Family Law  Bangladesh**\n\nI'm here to help with your family law matter. Please describe your situation.\n\n_Family matters are deeply personal. I will explain the law with care._",
+  labour: "**Labour Law  Bangladesh**\n\nI can help with your employment situation. Please describe what happened.\n\n_Your rights as a worker matter. Let me explain what the Labour Act 2006 says._",
+  company: "**Company Law  Bangladesh**\n\nI can assist with your company or business matter. Please describe the issue.\n\n_Navigating company law can be complex. Let me simplify it for you._",
+  tax: "**Tax Law  Bangladesh**\n\nI can help with your tax situation. Please describe the matter.\n\n_Tax issues are time-sensitive. Let me help you understand your position._",
+  nrb: "**NRB Investment  Bangladesh**\n\nI can assist with your cross-border investment or NRB matter. Please describe your situation.\n\n_Cross-border investment has complex rules. Let me guide you through them._",
+  constitutional: "**Constitutional Law  Bangladesh**\n\nI can help with your constitutional rights matter. Please describe the situation.\n\n_Your constitutional rights are fundamental. Let me explain how to protect them._",
+  consumer: "**Consumer Rights  Bangladesh**\n\nI can help with your consumer rights complaint. Please describe what happened.\n\n_As a consumer, you have legal protections. Let me explain them._",
+  cyber: "**Cyber Law  Bangladesh**\n\nI can assist with your cyber or digital law matter. Please describe the issue.\n\n_Digital crime is a serious matter. Let me explain your rights and options._",
+  contract: "**Contract Law  Bangladesh**\n\nI can help with your contract matter. Please describe the situation.\n\n_Contract disputes are about enforcing promises. Let me explain your legal position._",
   general: "I'm JesAI, your Bangladesh legal literacy companion. Please describe your legal situation.\n\n_Whatever your legal challenge, you deserve to understand the law that applies to you._",
 };
 
 const FALLBACK_TEXT: Record<string, string> = {
-  en: "Please describe your legal situation:\n1. What happened\n2. Who is involved\n3. What you want\n\n**JesAI covers:** Land & Property • Criminal • Family • Labour • Company • Tax • NRB • Constitutional • Consumer • Cyber\n\n⚠️ Legal information only — not legal advice.",
-  bn: "অনুগ্রহ করে আপনার আইনি পরিস্থিতি বর্ণনা করুন:\n১. কী হয়েছে\n২. কারা জড়িত\n৩. আপনি কী চান\n\n⚠️ শুধুমাত্র আইনি তথ্য — পরামর্শ নয়।",
+  en: "Please describe your legal situation:\n1. What happened\n2. Who is involved\n3. What you want\n\n**JesAI covers:** Land & Property  Criminal  Family  Labour  Company  Tax  NRB  Constitutional  Consumer  Cyber\n\n Legal information only  not legal advice.",
+  bn: "      :\n.  \n.  \n.   \n\n      ",
 };
 
-// ─── Scenario Sessions ────────────────────────────────────────
+//  Scenario Sessions 
 const scenarioSessions = new Map<string, ScenarioSession>();
 
 function getSessionId(req: NextRequest): string {
@@ -311,7 +311,7 @@ function getSessionId(req: NextRequest): string {
   return `${ip}::${ua}`;
 }
 
-// ─── Main Handler ─────────────────────────────────────────────
+//  Main Handler 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -337,7 +337,7 @@ export async function POST(req: NextRequest) {
     const sessionId = getSessionId(req);
     const activeSession = scenarioSessions.get(sessionId);
 
-    // ── Step 0: Scenario navigation ────────────────────────────
+    //  Step 0: Scenario navigation 
     if (activeSession) {
       if (isNextStepCommand(message)) {
         const r = nextStep(activeSession.scenarioId, activeSession.currentStepIndex);
@@ -366,7 +366,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // ── Step 1: Subject lock ───────────────────────────────────
+    //  Step 1: Subject lock 
     if (selectedArea) {
       const detected = detectArea(message);
       const offTopic = detected !== null && detected !== selectedArea && detected !== "general" && detected !== "administrative" && detected !== "evidence";
@@ -379,10 +379,10 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // ── Step 2: RAG ───────────────────────────────────────────
+    //  Step 2: RAG 
     const result = queryKnowledge(message, selectedArea);
 
-    // ── Step 3: LLM path ──────────────────────────────────────
+    //  Step 3: LLM path 
     if (LLM_ENABLED) {
       try {
         const systemPrompt = buildSystemPrompt(result, selectedArea, isPaid, lang);
@@ -398,11 +398,11 @@ export async function POST(req: NextRequest) {
           metadata: { area: result.area ?? selectedArea, confidence: result.matched ? "high" : "medium", escalate: result.escalate, language: lang, paywallActive: !isPaid, model: GEMINI_MODEL },
         });
       } catch (llmError) {
-        console.error("Gemini error — falling back to static:", llmError);
+        console.error("Gemini error  falling back to static:", llmError);
       }
     }
 
-    // ── Step 4: Static fallback ────────────────────────────────
+    //  Step 4: Static fallback 
     const scenarioResult = matchScenario(message, activeSession);
     if (scenarioResult.matched) {
       const wrongSubject = selectedArea && scenarioResult.scenario.area !== selectedArea;
@@ -423,8 +423,8 @@ export async function POST(req: NextRequest) {
         const price = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.price ?? 99;
         const label = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.label ?? "Full Legal Guide";
         const paywall = lang === "bn"
-          ? `\n\n🔒 **পূর্ণ উত্তর আনলক করুন — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`
-          : `\n\n🔒 **Unlock full answer — ৳${price.toLocaleString()}**\n_${label}_\n\n📱 WhatsApp: **${WHATSAPP_NUMBER}**`;
+          ? `\n\n **     ${price.toLocaleString()}**\n_${label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`
+          : `\n\n **Unlock full answer  ${price.toLocaleString()}**\n_${label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`;
         responseText += paywall;
       }
       return NextResponse.json({

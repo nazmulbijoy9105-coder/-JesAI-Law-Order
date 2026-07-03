@@ -1,14 +1,14 @@
-// ─── Secure User Tier API ─────────────────────────────────────
+//  Secure User Tier API 
 // Returns the authenticated user's paid status, tier, and daily
 // query usage from Supabase. Used by the chat client to determine
 // whether to send isPaid=true to the chat API.
 //
 // Security: reads the Authorization header (Bearer <access_token>)
-// and verifies it with Supabase on the server side — the client
+// and verifies it with Supabase on the server side  the client
 // cannot forge isPaid by manipulating the request body.
 //
 // Also handles daily query counter increment.
-// ─────────────────────────────────────────────────────────────
+// 
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";

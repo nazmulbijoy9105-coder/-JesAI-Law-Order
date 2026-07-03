@@ -462,9 +462,9 @@ const qaBank: QAEntry[] = [
 
 // Export default for index.ts aggregation
 const criminalModule: KnowledgeModule = {
-  id: "bd-criminal-law",
-  name: "Bangladesh Criminal Law",
-  version: "2.0.0",
+  area: "criminal",
+  label: "Criminal Law",
+  description: "Knowledge module for criminal law in Bangladesh.",
   rules,
   qaBank,
 };

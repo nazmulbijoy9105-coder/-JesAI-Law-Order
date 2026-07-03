@@ -37,18 +37,18 @@ export default function SignUpPage() {
 
       {success ? (
         <div className="w-full max-w-sm bg-white rounded-2xl border border-green-200 p-8 text-center shadow-sm">
-          <div className="text-4xl mb-4">✅</div>
+          <div className="text-4xl mb-4"></div>
           <h2 className="font-bold text-gray-900 mb-2">Account created!</h2>
           <p className="text-gray-500 text-[13px] mb-6">Check your email to confirm your account, then sign in.</p>
           <button onClick={() => router.push("/auth/signin")}
             className="px-6 py-2.5 rounded-xl bg-[#006A4E] text-white font-bold text-[13px] hover:bg-[#005a40] transition-all">
-            Sign In →
+            Sign In 
           </button>
         </div>
       ) : (
         <div className="w-full max-w-sm bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
           <h1 className="text-xl font-bold text-gray-900 mb-1">Create Account</h1>
-          <p className="text-[13px] text-gray-500 mb-6">Start with 20 free legal questions — no credit card needed.</p>
+          <p className="text-[13px] text-gray-500 mb-6">Start with 20 free legal questions  no credit card needed.</p>
 
           {error && (
             <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-[13px] text-red-700">{error}</div>
@@ -58,7 +58,7 @@ export default function SignUpPage() {
             {[
               { label: "Email", value: email, set: setEmail, type: "email", ph: "you@example.com", required: true },
               { label: "Phone (optional)", value: phone, set: setPhone, type: "tel", ph: "01XXXXXXXXX", required: false },
-              { label: "Password (min 6 chars)", value: password, set: setPassword, type: "password", ph: "••••••••", required: true },
+              { label: "Password (min 6 chars)", value: password, set: setPassword, type: "password", ph: "", required: true },
               { label: "Confirm Password", value: confirm, set: setConfirm, type: "password", ph: "Repeat password", required: true },
             ].map(f => (
               <div key={f.label}>
@@ -70,7 +70,7 @@ export default function SignUpPage() {
 
             <button type="submit" disabled={loading}
               className="w-full py-3 rounded-xl bg-[#006A4E] text-white font-bold text-[14px] hover:bg-[#005a40] transition-all disabled:opacity-40 shadow-sm">
-              {loading ? "Creating..." : "Create Account →"}
+              {loading ? "Creating..." : "Create Account "}
             </button>
           </form>
 
@@ -79,7 +79,7 @@ export default function SignUpPage() {
             <Link href="/auth/signin" className="text-[#006A4E] font-medium hover:underline">Sign In</Link>
           </p>
           <p className="mt-3 text-[10px] text-gray-400 text-center leading-relaxed">
-            By signing up you agree to use JesAI for legal information only — not legal advice.
+            By signing up you agree to use JesAI for legal information only  not legal advice.
           </p>
         </div>
       )}
