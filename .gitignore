@@ -40,3 +40,22 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+
+# Fix scripts (never commit these)
+fix-*.py
+fix-*.js
+fix-*.sh
+src/lib/knowledge/fix-*.py
+*.png
+!src/**/*.png
+
+# Build artifacts
+.next/
+node_modules/
+out/
+dist/
+
+# Environment (never commit secrets)
+.env
+.env.local
+.env.*.local
