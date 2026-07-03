@@ -1,5 +1,5 @@
-// ─── JesAI Scenario Manager ───────────────────────────────────
-// NLC validated — Nazmul, Advocate, Supreme Court of Bangladesh
+//  JesAI Scenario Manager 
+// NLC validated  Nazmul, Advocate, Supreme Court of Bangladesh
 // Handles multi-step legal scenarios that require sequential guidance
 // Works with: types.ts (QAEntry, LawArea, KnowledgeResult)
 //             index.ts (queryKnowledge, detectArea)
@@ -8,7 +8,7 @@
 import type { LawArea, KnowledgeResult } from "./types";
 import { detectArea } from "./index";
 
-// ─── Types ────────────────────────────────────────────────────
+//  Types 
 
 export interface ScenarioStep {
   stepId: string;           // e.g. "company-reg-step-2"
@@ -57,18 +57,18 @@ export interface ScenarioNoMatch {
 
 export type ScenarioQueryResult = ScenarioResult | ScenarioNoMatch;
 
-// ─── Scenario Definitions ─────────────────────────────────────
+//  Scenario Definitions 
 
 const SCENARIOS: Scenario[] = [
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 1. PRIVATE LIMITED COMPANY REGISTRATION
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "company-pvt-registration",
     area: "company",
     title: "Private Limited Company Registration",
-    titleBn: "প্রাইভেট লিমিটেড কোম্পানি নিবন্ধন",
+    titleBn: "   ",
     description: "Step-by-step guide to register a Pvt Ltd company with RJSC Bangladesh",
     triggerPhrases: [
       "register company step",
@@ -82,9 +82,9 @@ const SCENARIOS: Scenario[] = [
       "company incorporation guide",
     ],
     triggerPhrasesBn: [
-      "কোম্পানি নিবন্ধনের ধাপ",
-      "কোম্পানি কিভাবে খুলবো",
-      "কোম্পানি গঠন",
+      "  ",
+      "  ",
+      " ",
     ],
     totalSteps: 6,
     prerequisites: [
@@ -101,10 +101,10 @@ const SCENARIOS: Scenario[] = [
           "Apply for company name clearance online at roc.gov.bd. Submit 3 proposed names in order of preference. RJSC checks existing registered names for conflicts.",
         documents: ["3 proposed company names", "Brief description of business activity"],
         office: "roc.gov.bd (online only)",
-        estimatedTime: "1–3 working days",
+        estimatedTime: "13 working days",
         cost: "~BDT 200",
         warningNote:
-          "Clearance is valid for only 90 days — begin MOA/AOA drafting immediately after approval.",
+          "Clearance is valid for only 90 days  begin MOA/AOA drafting immediately after approval.",
         nextStepHint: "Next: Prepare Memorandum of Association (MOA) and Articles of Association (AOA).",
         tips: [
           "Choose a name that reflects your business activity",
@@ -117,7 +117,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "company-reg-step-2",
         title: "Draft MOA and AOA",
         instruction:
-          "Prepare Memorandum of Association (MOA) and Articles of Association (AOA). MOA defines business objects, share capital, and members' liability. AOA governs internal management — director powers, meetings, share transfers, dividends.",
+          "Prepare Memorandum of Association (MOA) and Articles of Association (AOA). MOA defines business objects, share capital, and members' liability. AOA governs internal management  director powers, meetings, share transfers, dividends.",
         documents: [
           "Cleared company name",
           "Decided business objects (objects clause)",
@@ -125,11 +125,11 @@ const SCENARIOS: Scenario[] = [
           "Names and NID of all shareholders and directors",
           "Registered office address",
         ],
-        office: "Drafting — can engage NLC or CA for assistance",
-        estimatedTime: "1–3 days",
-        cost: "Lawyer/CA fee BDT 3,000–10,000 (if professional help used)",
+        office: "Drafting  can engage NLC or CA for assistance",
+        estimatedTime: "13 days",
+        cost: "Lawyer/CA fee BDT 3,00010,000 (if professional help used)",
         warningNote:
-          "Draft MOA objects broadly — an overly narrow objects clause will require expensive amendment later when you expand business.",
+          "Draft MOA objects broadly  an overly narrow objects clause will require expensive amendment later when you expand business.",
         nextStepHint: "Next: Submit online application at roc.gov.bd with all documents.",
         tips: [
           "Include multiple business objects to allow future expansion",
@@ -141,7 +141,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "company-reg-step-3",
         title: "Online Submission at RJSC",
         instruction:
-          "Log in to roc.gov.bd and submit the incorporation application. Upload MOA, AOA, and fill Form I (statutory declaration), Form VI (registered office), Form XII (directors). All subscribers must sign MOA/AOA — e-signatures accepted on the portal.",
+          "Log in to roc.gov.bd and submit the incorporation application. Upload MOA, AOA, and fill Form I (statutory declaration), Form VI (registered office), Form XII (directors). All subscribers must sign MOA/AOA  e-signatures accepted on the portal.",
         documents: [
           "Signed MOA and AOA",
           "Form I (statutory declaration by subscriber)",
@@ -153,10 +153,10 @@ const SCENARIOS: Scenario[] = [
           "Passport-size photos of directors",
         ],
         office: "roc.gov.bd (fully online)",
-        estimatedTime: "Submission: 1 day; RJSC processing: 7–15 working days",
-        cost: "RJSC fee based on authorized capital (BDT 3,200 for ≤1 lakh capital)",
+        estimatedTime: "Submission: 1 day; RJSC processing: 715 working days",
+        cost: "RJSC fee based on authorized capital (BDT 3,200 for 1 lakh capital)",
         warningNote:
-          "Double-check all NID numbers and TINs before submission — errors delay the entire process.",
+          "Double-check all NID numbers and TINs before submission  errors delay the entire process.",
         nextStepHint: "Next: Pay RJSC registration fees online.",
         tips: [
           "Create a checklist of all required documents before starting",
@@ -168,17 +168,17 @@ const SCENARIOS: Scenario[] = [
         stepId: "company-reg-step-4",
         title: "Pay RJSC Fees",
         instruction:
-          "Pay the RJSC registration fee online via Sonali Bank sePay or SSL Commerz on the roc.gov.bd payment gateway. Fee amount depends on your authorized capital. Keep the payment receipt — you will need it.",
+          "Pay the RJSC registration fee online via Sonali Bank sePay or SSL Commerz on the roc.gov.bd payment gateway. Fee amount depends on your authorized capital. Keep the payment receipt  you will need it.",
         documents: ["RJSC application reference number", "Payment method (online banking / card)"],
         office: "roc.gov.bd payment gateway",
         estimatedTime: "Immediate",
         cost:
-          "≤BDT 1 lakh capital: BDT 3,200 | BDT 1–5 lakh: BDT 5,000 | BDT 5 lakh–1 crore: BDT 10,000 | BDT 1–5 crore: BDT 20,000",
+          "BDT 1 lakh capital: BDT 3,200 | BDT 15 lakh: BDT 5,000 | BDT 5 lakh1 crore: BDT 10,000 | BDT 15 crore: BDT 20,000",
         warningNote:
           "Keep fee payment receipt. RJSC will not process without confirmed payment.",
         nextStepHint: "Next: Collect Certificate of Incorporation from roc.gov.bd after RJSC approval.",
         tips: [
-          "Payment gateway sometimes has timeouts — try again if failed",
+          "Payment gateway sometimes has timeouts  try again if failed",
           "Screenshot the payment confirmation page",
         ],
       },
@@ -189,11 +189,11 @@ const SCENARIOS: Scenario[] = [
           "After RJSC reviews and approves your application, download the Certificate of Incorporation from roc.gov.bd. The certificate contains your unique Company Registration Number (CRN). Also download the certified copies of MOA and AOA from the portal.",
         documents: ["Certificate of Incorporation (download from roc.gov.bd)"],
         office: "roc.gov.bd (download online)",
-        estimatedTime: "7–15 working days after payment",
+        estimatedTime: "715 working days after payment",
         cost: "Included in registration fee",
         warningNote:
           "Verify company name and CRN on the certificate carefully before proceeding.",
-        nextStepHint: "Next: Post-incorporation steps — TIN, trade licence, bank account.",
+        nextStepHint: "Next: Post-incorporation steps  TIN, trade licence, bank account.",
         tips: [
           "Download multiple copies of the certificate for different purposes",
           "Verify all details on the certificate match your application",
@@ -203,7 +203,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "company-reg-step-6",
         title: "Post-Incorporation Setup",
         instruction:
-          "Complete these mandatory post-incorporation steps: (1) Register company TIN at incometax.gov.bd. (2) Obtain trade licence from ward office of city corporation / municipality. (3) Open company bank account — all directors must visit the bank for KYC with Certificate of Incorporation, MOA/AOA, board resolution, and TIN. (4) Get company common seal made. (5) Register for VAT at vat.gov.bd if annual turnover expected above BDT 50 lakh.",
+          "Complete these mandatory post-incorporation steps: (1) Register company TIN at incometax.gov.bd. (2) Obtain trade licence from ward office of city corporation / municipality. (3) Open company bank account  all directors must visit the bank for KYC with Certificate of Incorporation, MOA/AOA, board resolution, and TIN. (4) Get company common seal made. (5) Register for VAT at vat.gov.bd if annual turnover expected above BDT 50 lakh.",
         documents: [
           "Certificate of Incorporation",
           "MOA and AOA (certified copies)",
@@ -214,34 +214,34 @@ const SCENARIOS: Scenario[] = [
         ],
         office:
           "incometax.gov.bd (TIN) | Ward office (trade licence) | Bank branch (account) | vat.gov.bd (VAT if needed)",
-        estimatedTime: "TIN: instant | Trade licence: 7–30 days | Bank account: 3–7 days",
+        estimatedTime: "TIN: instant | Trade licence: 730 days | Bank account: 37 days",
         cost:
-          "TIN: free | Trade licence: BDT 1,000–5,000 | Bank: nil | Common seal: BDT 500–2,000",
+          "TIN: free | Trade licence: BDT 1,0005,000 | Bank: nil | Common seal: BDT 5002,000",
         warningNote:
-          "Do not begin business operations before opening the company bank account — all company funds must flow through the company account.",
+          "Do not begin business operations before opening the company bank account  all company funds must flow through the company account.",
         nextStepHint:
           "Company is now fully operational. Annual compliance: hold AGM within 120 days of financial year end, file annual return at RJSC within 21 days of AGM.",
         tips: [
-          "Prioritize bank account opening — it enables all other steps",
+          "Prioritize bank account opening  it enables all other steps",
           "Get common seal with company name and 'Limited' engraved",
           "Create a compliance calendar for the year",
         ],
       },
     ],
     finalNote:
-      "✅ Company registration complete. Annual obligations: RJSC annual return (21 days after AGM), income tax return by 15 July, VAT monthly return by 15th (if VAT registered), trade licence renewal by 30 June each year.\n\n📄 Full compliance calendar — NLC can assist.",
+      " Company registration complete. Annual obligations: RJSC annual return (21 days after AGM), income tax return by 15 July, VAT monthly return by 15th (if VAT registered), trade licence renewal by 30 June each year.\n\n Full compliance calendar  NLC can assist.",
     escalate: false,
     relatedScenarios: ["company-opc-registration", "partnership-registration"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 2. LAND PURCHASE
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "property-purchase",
     area: "property",
     title: "Land / Property Purchase",
-    titleBn: "জমি/সম্পত্তি ক্রয়",
+    titleBn: "/ ",
     description: "Step-by-step process for legally buying land or property in Bangladesh",
     triggerPhrases: [
       "buy land steps",
@@ -254,10 +254,10 @@ const SCENARIOS: Scenario[] = [
       "land deed registration",
     ],
     triggerPhrasesBn: [
-      "জমি কেনার ধাপ",
-      "জমি কেনার প্রক্রিয়া",
-      "জমি কিনতে চাই",
-      "দলিল রেজিস্ট্রেশন",
+      "  ",
+      "  ",
+      "  ",
+      " ",
     ],
     totalSteps: 7,
     prerequisites: [
@@ -279,10 +279,10 @@ const SCENARIOS: Scenario[] = [
           "DCR (land development tax receipts)",
         ],
         office: "Sub-Registry office | AC Land office | Survey office",
-        estimatedTime: "1–2 weeks (for certified copies)",
-        cost: "BDT 200–1,000 for certified copies",
+        estimatedTime: "12 weeks (for certified copies)",
+        cost: "BDT 2001,000 for certified copies",
         warningNote:
-          "Never pay advance money before completing title verification. Fraudulent land sales are common — the Khatian in seller's name is the minimum check.",
+          "Never pay advance money before completing title verification. Fraudulent land sales are common  the Khatian in seller's name is the minimum check.",
         nextStepHint: "Next: Check for encumbrances (loans, mortgages on the land).",
         tips: [
           "Cross-verify CS, RS, and BS khatians if available",
@@ -298,10 +298,10 @@ const SCENARIOS: Scenario[] = [
           "Search the Sub-Registry office Non-Encumbrance Certificate (NEC) to confirm the land has no existing mortgage, charge, or lien. Also check with local banks whether the seller has mortgaged the land.",
         documents: ["Khatian details", "Mouza name", "Dag (plot) number"],
         office: "Sub-Registry office (NEC section)",
-        estimatedTime: "3–7 working days",
-        cost: "BDT 200–500 per application",
+        estimatedTime: "37 working days",
+        cost: "BDT 200500 per application",
         warningNote:
-          "If NEC shows an existing mortgage, the land is pledged to a bank — purchasing without clearing the mortgage is legally risky.",
+          "If NEC shows an existing mortgage, the land is pledged to a bank  purchasing without clearing the mortgage is legally risky.",
         nextStepHint: "Next: Negotiate price and draft Sale Agreement (Baina Nama).",
         tips: [
           "Apply for NEC for at least last 15 years",
@@ -313,7 +313,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "property-buy-step-3",
         title: "Sign Sale Agreement (Baina Nama)",
         instruction:
-          "Execute a written Sale Agreement (Baina Nama) setting out: price, payment schedule, possession date, and conditions. Pay advance (bayana) — typically 10–30% of price. Baina Nama should be notarised and may be registered at Sub-Registry. Sets legal rights in case of default.",
+          "Execute a written Sale Agreement (Baina Nama) setting out: price, payment schedule, possession date, and conditions. Pay advance (bayana)  typically 1030% of price. Baina Nama should be notarised and may be registered at Sub-Registry. Sets legal rights in case of default.",
         documents: [
           "Draft Baina Nama (sale agreement)",
           "NID of both buyer and seller",
@@ -322,9 +322,9 @@ const SCENARIOS: Scenario[] = [
         ],
         office: "Notary office | Sub-Registry (optional registration)",
         estimatedTime: "1 day",
-        cost: "Notarisation: BDT 500–2,000 | Registration of Baina: BDT 1,000–5,000",
+        cost: "Notarisation: BDT 5002,000 | Registration of Baina: BDT 1,0005,000",
         warningNote:
-          "Always pay advance via cheque or bank transfer — cash payment is difficult to prove in court if seller defaults.",
+          "Always pay advance via cheque or bank transfer  cash payment is difficult to prove in court if seller defaults.",
         nextStepHint: "Next: Prepare sale deed and calculate registration costs.",
         tips: [
           "Include specific penalty clause for seller's default",
@@ -346,10 +346,10 @@ const SCENARIOS: Scenario[] = [
           "Agreed sale price",
         ],
         office: "Licensed deed writer | Lawyer",
-        estimatedTime: "1–3 days",
-        cost: "Deed writer fee: BDT 2,000–10,000",
+        estimatedTime: "13 days",
+        cost: "Deed writer fee: BDT 2,00010,000",
         warningNote:
-          "Errors in Dag or Khatian number in the deed cause legal complications during mutation — verify all details carefully before registration.",
+          "Errors in Dag or Khatian number in the deed cause legal complications during mutation  verify all details carefully before registration.",
         nextStepHint: "Next: Pay registration costs and register the deed at Sub-Registry.",
         tips: [
           "Read the drafted deed carefully before signing",
@@ -372,7 +372,7 @@ const SCENARIOS: Scenario[] = [
         cost:
           "Dhaka city: ~8.5% of deed value | Other city corp: ~7% | Municipality: ~5% | Rural: ~4%",
         warningNote:
-          "AIT (Advance Income Tax) paid here is a tax credit — include it in your income tax return. Keep all challans.",
+          "AIT (Advance Income Tax) paid here is a tax credit  include it in your income tax return. Keep all challans.",
         nextStepHint: "Next: Register the deed at Sub-Registry office.",
         tips: [
           "Calculate costs based on SUB-REGISTRAR's circle rate, not your negotiated price",
@@ -397,11 +397,11 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "1 day (appointment needed in some offices)",
         cost: "Already paid in Step 5",
         warningNote:
-          "Both parties must physically appear — or execute notarised Power of Attorney (POA) in advance. Sub-Registrar can reject deed if documents missing.",
+          "Both parties must physically appear  or execute notarised Power of Attorney (POA) in advance. Sub-Registrar can reject deed if documents missing.",
         nextStepHint: "Next: Apply for mutation in your name at AC Land office.",
         tips: [
           "Reach Sub-Registry office early morning",
-          "Carry original NIDs — photocopies not accepted",
+          "Carry original NIDs  photocopies not accepted",
           "Ensure witnesses have their original NIDs",
           "Take 2 witnesses who are not family members if possible",
         ],
@@ -414,17 +414,17 @@ const SCENARIOS: Scenario[] = [
         documents: [
           "Registered deed (original)",
           "Application for mutation (namjari)",
-          "Court fee: BDT 100–500",
+          "Court fee: BDT 100500",
           "Copy of Khatian",
           "NID of buyer",
         ],
         office: "AC Land office (Upazila/Union Land Office) for mutation | DC office for some cases",
-        estimatedTime: "30–90 days",
-        cost: "Court fee: BDT 100–500",
+        estimatedTime: "3090 days",
+        cost: "Court fee: BDT 100500",
         warningNote:
-          "Mutation without registered deed is not legally valid. If mutation is delayed — follow up at AC Land office. Always get Mutation Khatian in writing.",
+          "Mutation without registered deed is not legally valid. If mutation is delayed  follow up at AC Land office. Always get Mutation Khatian in writing.",
         nextStepHint:
-          "✅ Purchase complete after mutation. Pay annual land development tax (khajna) each year to maintain record.",
+          " Purchase complete after mutation. Pay annual land development tax (khajna) each year to maintain record.",
         tips: [
           "Apply for e-mutation where available (faster processing)",
           "Follow up regularly at AC Land office",
@@ -434,19 +434,19 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ Land purchase complete. Keep all documents permanently: registered deed, mutation Khatian, all challans.\n\n**Annual obligation:** Pay land development tax (khajna) at Union Parishad / municipality each year.\n\n📄 Full property purchase guide with document templates — NLC can assist.",
+      " Land purchase complete. Keep all documents permanently: registered deed, mutation Khatian, all challans.\n\n**Annual obligation:** Pay land development tax (khajna) at Union Parishad / municipality each year.\n\n Full property purchase guide with document templates  NLC can assist.",
     escalate: false,
     relatedScenarios: ["property-mutation", "flat-purchase"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 3. FIR AND CRIMINAL CASE
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "criminal-fir-process",
     area: "criminal",
     title: "Filing an FIR and Criminal Case Process",
-    titleBn: "এফআইআর দায়ের ও ফৌজদারি মামলা প্রক্রিয়া",
+    titleBn: "     ",
     description: "Step-by-step guide for filing FIR and following through a criminal case in Bangladesh",
     triggerPhrases: [
       "how to file fir",
@@ -458,10 +458,10 @@ const SCENARIOS: Scenario[] = [
       "gd number",
     ],
     triggerPhrasesBn: [
-      "থানায় মামলা করতে চাই",
-      "এফআইআর কিভাবে করবো",
-      "মামলার ধাপ",
-      "জিডি নম্বর",
+      "   ",
+      "  ",
+      " ",
+      " ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -474,14 +474,14 @@ const SCENARIOS: Scenario[] = [
         stepId: "fir-step-1",
         title: "File FIR at Police Station",
         instruction:
-          "Go to the police station (thana) that has jurisdiction over the area where the crime occurred — not where you live. Describe the incident clearly to the Officer-in-Charge (OC). FIR must be written, read back to you, and signed by you. Insist on a copy of the FIR with GD (General Diary) number.",
+          "Go to the police station (thana) that has jurisdiction over the area where the crime occurred  not where you live. Describe the incident clearly to the Officer-in-Charge (OC). FIR must be written, read back to you, and signed by you. Insist on a copy of the FIR with GD (General Diary) number.",
         documents: [
           "NID (your own)",
           "Any evidence available (photos, screenshots, medical report if assault)",
           "Names and descriptions of accused if known",
         ],
         office: "Police station (thana) with territorial jurisdiction",
-        estimatedTime: "Same day — officer must record FIR immediately under CrPC",
+        estimatedTime: "Same day  officer must record FIR immediately under CrPC",
         cost: "No fee for FIR filing",
         warningNote:
           "If OC refuses to record FIR: file written complaint to SP (Superintendent of Police). OC is legally bound to record cognizable offences. Refusal = dereliction of duty.",
@@ -490,7 +490,7 @@ const SCENARIOS: Scenario[] = [
           "Write down your statement before going to police station",
           "Be precise about dates, times, and locations",
           "Mention all witnesses by name and address",
-          "Don't exaggerate — stick to facts",
+          "Don't exaggerate  stick to facts",
           "Get GD number immediately and keep it safe",
         ],
       },
@@ -504,7 +504,7 @@ const SCENARIOS: Scenario[] = [
           "Witness contact information",
         ],
         office: "Police station (investigation by IO)",
-        estimatedTime: "15–180 days depending on case complexity",
+        estimatedTime: "15180 days depending on case complexity",
         cost: "No direct cost",
         warningNote:
           "If IO is not investigating properly: file written complaint to SP or approach court for direction. You can apply to Magistrate Court for investigation order.",
@@ -529,8 +529,8 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "IO investigation: up to 120 days | Charge sheet filing: within investigation period",
         cost: "No direct cost",
         warningNote:
-          "If Final Report (FR) filed and you disagree — you have 30 days to file a Narazi (protest petition). Missing this deadline means the case is dropped.",
-        nextStepHint: "Next: Trial begins — prosecution and defence present evidence.",
+          "If Final Report (FR) filed and you disagree  you have 30 days to file a Narazi (protest petition). Missing this deadline means the case is dropped.",
+        nextStepHint: "Next: Trial begins  prosecution and defence present evidence.",
         tips: [
           "Monitor case progress regularly at court",
           "Keep all case documents organized",
@@ -541,18 +541,18 @@ const SCENARIOS: Scenario[] = [
         stepId: "fir-step-4",
         title: "Trial",
         instruction:
-          "At trial: prosecution presents evidence and witnesses. Accused has right to cross-examine. Defence presents their case. You as complainant may be called as prosecution witness — attend all hearings. Engage a lawyer to represent the prosecution case alongside the public prosecutor.",
+          "At trial: prosecution presents evidence and witnesses. Accused has right to cross-examine. Defence presents their case. You as complainant may be called as prosecution witness  attend all hearings. Engage a lawyer to represent the prosecution case alongside the public prosecutor.",
         documents: [
           "All original evidence",
           "Witness list",
           "Copy of FIR and charge sheet",
         ],
         office: "Magistrate Court (for offences up to 7 years imprisonment) | Sessions Court (for serious offences)",
-        estimatedTime: "6 months – 5+ years depending on case complexity and court workload",
+        estimatedTime: "6 months  5+ years depending on case complexity and court workload",
         cost: "Lawyer fees vary widely",
         warningNote:
-          "Attend all hearing dates — absence can delay the case and in some cases lead to ex-parte proceedings. Engage a private lawyer alongside state prosecutor for better case management.",
-        nextStepHint: "Next: Judgment — conviction or acquittal.",
+          "Attend all hearing dates  absence can delay the case and in some cases lead to ex-parte proceedings. Engage a private lawyer alongside state prosecutor for better case management.",
+        nextStepHint: "Next: Judgment  conviction or acquittal.",
         tips: [
           "Never miss a hearing date",
           "Keep your lawyer updated on any developments",
@@ -571,12 +571,12 @@ const SCENARIOS: Scenario[] = [
         ],
         office:
           "Sessions Court (appeal from Magistrate) | High Court Division (appeal from Sessions Court) | Appellate Division (final)",
-        estimatedTime: "Judgment: after trial concludes | Appeal: file within 30–60 days of judgment",
+        estimatedTime: "Judgment: after trial concludes | Appeal: file within 3060 days of judgment",
         cost: "Appeal lawyer fees",
         warningNote:
-          "Appeal deadlines are strict — missing the limitation period bars the appeal entirely. Engage lawyer immediately after judgment if planning to appeal.",
+          "Appeal deadlines are strict  missing the limitation period bars the appeal entirely. Engage lawyer immediately after judgment if planning to appeal.",
         nextStepHint:
-          "✅ Criminal case process complete. Keep all certified court documents permanently.",
+          " Criminal case process complete. Keep all certified court documents permanently.",
         tips: [
           "Get certified copy of judgment immediately",
           "Decide on appeal within first few days",
@@ -585,21 +585,21 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "⚠️ Criminal cases are complex — always engage a qualified criminal lawyer to assist at every stage.\n\nNLC can refer specialist criminal advocates for:\n• FIR assistance\n• Investigation monitoring\n• Trial representation\n• Appeal preparation",
+      " Criminal cases are complex  always engage a qualified criminal lawyer to assist at every stage.\n\nNLC can refer specialist criminal advocates for:\n FIR assistance\n Investigation monitoring\n Trial representation\n Appeal preparation",
     escalate: true,
     escalateReason:
       "Criminal cases require specialist criminal lawyer. WhatsApp NLC for referral.",
     relatedScenarios: ["criminal-bail"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 4. TAX RETURN FILING
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "tax-return-filing",
     area: "tax",
     title: "Income Tax Return Filing (Individual)",
-    titleBn: "আয়কর রিটার্ন দাখিল (ব্যক্তিগত)",
+    titleBn: "   ()",
     description: "Step-by-step guide to file annual income tax return under Income Tax Act 2023",
     triggerPhrases: [
       "how to file tax return steps",
@@ -610,9 +610,9 @@ const SCENARIOS: Scenario[] = [
       "eit return",
     ],
     triggerPhrasesBn: [
-      "আয়কর রিটার্ন দাখিলের ধাপ",
-      "রিটার্ন জমার প্রক্রিয়া",
-      "আয়কর রিটার্ন কিভাবে দেবো",
+      "   ",
+      "  ",
+      "   ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -625,9 +625,9 @@ const SCENARIOS: Scenario[] = [
         stepId: "tax-return-step-1",
         title: "Collect All Income Documents",
         instruction:
-          "Gather all income documents for the tax year (1 July – 30 June). Salaried person: get salary certificate (Form 108A) from employer — employer is legally required to provide it. Self-employed: prepare income/expense summary. Other income: bank interest certificates, rental income details, dividend certificates.",
+          "Gather all income documents for the tax year (1 July  30 June). Salaried person: get salary certificate (Form 108A) from employer  employer is legally required to provide it. Self-employed: prepare income/expense summary. Other income: bank interest certificates, rental income details, dividend certificates.",
         documents: [
-          "Form 108A — salary certificate from employer",
+          "Form 108A  salary certificate from employer",
           "Bank statements (all accounts) for the year",
           "Bank interest/FD certificates",
           "Rental income details (rent receipts)",
@@ -635,7 +635,7 @@ const SCENARIOS: Scenario[] = [
           "Any other income documents",
         ],
         office: "From employer (Form 108A) | From banks | From companies (dividend)",
-        estimatedTime: "1–7 days to collect all documents",
+        estimatedTime: "17 days to collect all documents",
         cost: "No cost to collect",
         warningNote:
           "Employer must provide Form 108A by July 31 each year. If employer does not provide: demand in writing. This is your legal right under Income Tax Act 2023.",
@@ -650,7 +650,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "tax-return-step-2",
         title: "Gather Investment Proof for Rebate",
         instruction:
-          "Collect documents for all qualifying investments made during the tax year — these reduce your tax by 15% of investment amount. Qualifying investments: Sanchayapatra (savings certificates), DPS receipts, life insurance premium receipts, provident fund contribution receipts, shares purchase statement.",
+          "Collect documents for all qualifying investments made during the tax year  these reduce your tax by 15% of investment amount. Qualifying investments: Sanchayapatra (savings certificates), DPS receipts, life insurance premium receipts, provident fund contribution receipts, shares purchase statement.",
         documents: [
           "Sanchayapatra certificates / encashment receipts",
           "DPS passbook / statement",
@@ -660,10 +660,10 @@ const SCENARIOS: Scenario[] = [
           "Govt Treasury Bond certificates",
         ],
         office: "From relevant institutions (Post Office, Bank, Insurance Co., Broker)",
-        estimatedTime: "1–3 days",
+        estimatedTime: "13 days",
         cost: "No cost to collect",
         warningNote:
-          "Investment rebate cap: 15% of investment, maximum 3% of total income or BDT 10 lakh — whichever is lower. Declare investments to maximise rebate.",
+          "Investment rebate cap: 15% of investment, maximum 3% of total income or BDT 10 lakh  whichever is lower. Declare investments to maximise rebate.",
         nextStepHint: "Next: Calculate your tax liability.",
         tips: [
           "Make investments before June 30 to claim in current year",
@@ -675,7 +675,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "tax-return-step-3",
         title: "Calculate Tax and Prepare Return",
         instruction:
-          "Calculate total income from all sources. Apply slab rates (0%–25%). Deduct investment rebate (15% of qualifying investment). Calculate net tax payable. Check if advance tax or WHT already deducted exceeds tax due (if yes: claim refund). Prepare return form — simplified one-page form available for salaried persons with income below BDT 5 lakh.",
+          "Calculate total income from all sources. Apply slab rates (0%25%). Deduct investment rebate (15% of qualifying investment). Calculate net tax payable. Check if advance tax or WHT already deducted exceeds tax due (if yes: claim refund). Prepare return form  simplified one-page form available for salaried persons with income below BDT 5 lakh.",
         documents: [
           "All income documents from Step 1",
           "All investment documents from Step 2",
@@ -698,7 +698,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "tax-return-step-4",
         title: "Pay Tax Due",
         instruction:
-          "If net tax calculated exceeds WHT already deducted: pay the balance before filing. Pay via: etaxnbr.gov.bd online payment (card, mobile banking, bank transfer) or bank challan at Sonali Bank. Keep payment receipt. If WHT already deducted is MORE than tax due: you will claim refund in the return — no payment needed.",
+          "If net tax calculated exceeds WHT already deducted: pay the balance before filing. Pay via: etaxnbr.gov.bd online payment (card, mobile banking, bank transfer) or bank challan at Sonali Bank. Keep payment receipt. If WHT already deducted is MORE than tax due: you will claim refund in the return  no payment needed.",
         documents: [
           "Tax calculation from Step 3",
           "Payment method (online / bank challan)",
@@ -707,7 +707,7 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "Same day",
         cost: "Tax amount calculated in Step 3 | Minimum BDT 5,000 (city corp) / BDT 3,000 (other areas)",
         warningNote:
-          "Pay tax BEFORE filing — the return system checks payment. Late payment after 30 November: 2% per month surcharge applies.",
+          "Pay tax BEFORE filing  the return system checks payment. Late payment after 30 November: 2% per month surcharge applies.",
         nextStepHint: "Next: Submit the return online or physically.",
         tips: [
           "Pay at least 1-2 days before filing",
@@ -724,36 +724,36 @@ const SCENARIOS: Scenario[] = [
           "Completed return form",
           "Tax payment challan",
           "TIN certificate",
-          "Supporting documents (not attached to return — but keep for 6 years)",
+          "Supporting documents (not attached to return  but keep for 6 years)",
         ],
         office: "etaxnbr.gov.bd (online) | Circle Tax Office (physical)",
         estimatedTime: "Same day | Deadline: 30 November each year",
         cost: "No filing fee",
         warningNote:
-          "The acknowledgement receipt is your proof of compliance — needed for bank loans, visa applications, trade licence renewal. Download and store it.",
+          "The acknowledgement receipt is your proof of compliance  needed for bank loans, visa applications, trade licence renewal. Download and store it.",
         nextStepHint:
-          "✅ Return filed. Next year: repeat by 30 November.",
+          " Return filed. Next year: repeat by 30 November.",
         tips: [
-          "File online — faster and more reliable",
+          "File online  faster and more reliable",
           "Download and save acknowledgement immediately",
           "Keep soft copy in multiple locations",
         ],
       },
     ],
     finalNote:
-      "✅ Tax return complete. Keep acknowledgement receipt — valid proof of compliance for 1 year.\n\n**Annual deadline:** 30 November\n\n**Next steps:** If refund claimed → DCT will verify and issue refund in 1–3 months. If additional tax assessed → DCT will send notice — respond within deadline.\n\n📄 Full tax compliance guide — NLC can assist.",
+      " Tax return complete. Keep acknowledgement receipt  valid proof of compliance for 1 year.\n\n**Annual deadline:** 30 November\n\n**Next steps:** If refund claimed  DCT will verify and issue refund in 13 months. If additional tax assessed  DCT will send notice  respond within deadline.\n\n Full tax compliance guide  NLC can assist.",
     escalate: false,
     relatedScenarios: ["tax-tin-registration"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 5. CHEQUE BOUNCE CASE
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "criminal-cheque-bounce",
     area: "criminal",
     title: "Cheque Bounce (Dishonour) Case",
-    titleBn: "চেক বাউন্স মামলা",
+    titleBn: "  ",
     description: "Step-by-step process for filing a criminal case for cheque dishonour under Section 138 NI Act",
     triggerPhrases: [
       "cheque bounce case steps",
@@ -764,9 +764,9 @@ const SCENARIOS: Scenario[] = [
       "bad cheque case",
     ],
     triggerPhrasesBn: [
-      "চেক বাউন্স মামলার ধাপ",
-      "চেক ফেরত মামলা",
-      "ডিশনার চেক মামলা",
+      "   ",
+      "  ",
+      "  ",
     ],
     totalSteps: 4,
     prerequisites: [
@@ -779,7 +779,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "cheque-step-1",
         title: "Get Dishonour Memo from Bank",
         instruction:
-          "When the cheque is bounced, your bank will send a dishonour memo/slip stating the reason (insufficient funds, account closed, etc.). Collect this memo immediately — it is the primary evidence. The clock starts ticking from this date.",
+          "When the cheque is bounced, your bank will send a dishonour memo/slip stating the reason (insufficient funds, account closed, etc.). Collect this memo immediately  it is the primary evidence. The clock starts ticking from this date.",
         documents: [
           "Dishonour memo/slip from bank",
           "Original bounced cheque",
@@ -793,7 +793,7 @@ const SCENARIOS: Scenario[] = [
         nextStepHint: "Next: Send legal notice to the cheque issuer within 30 days.",
         tips: [
           "Visit bank immediately to collect memo",
-          "Keep the original cheque safe — don't write anything on it",
+          "Keep the original cheque safe  don't write anything on it",
           "Note down exact date of dishonour",
         ],
       },
@@ -813,11 +813,11 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "1-2 days to draft and send",
         cost: "Lawyer fee: BDT 3,000-10,000",
         warningNote:
-          "Notice must be sent within 30 days of dishonour. Count carefully — even one day late can destroy your case. The notice must clearly state the amount and demand payment within specified time (usually 15 days).",
+          "Notice must be sent within 30 days of dishonour. Count carefully  even one day late can destroy your case. The notice must clearly state the amount and demand payment within specified time (usually 15 days).",
         nextStepHint: "Next: If payment not received within notice period, file criminal complaint within 30 days.",
         tips: [
           "Send notice via both AD post and courier for safety",
-          "Track the AD card return — if undelivered, take immediate action",
+          "Track the AD card return  if undelivered, take immediate action",
           "Keep copy of notice with lawyer's seal and signature",
         ],
       },
@@ -841,10 +841,10 @@ const SCENARIOS: Scenario[] = [
         cost: "Court fee: BDT 200-500 | Lawyer fee: BDT 10,000-30,000",
         warningNote:
           "STRICT DEADLINE: File within 30 days of notice expiry. This means total 60 days from dishonour date. Courts rarely condone delay in cheque bounce cases. File even if on the last day.",
-        nextStepHint: "Next: Court process — summons, hearing, and judgment.",
+        nextStepHint: "Next: Court process  summons, hearing, and judgment.",
         tips: [
-          "File well before the deadline — don't wait for last day",
-          "Keep original cheque very safe — required in court",
+          "File well before the deadline  don't wait for last day",
+          "Keep original cheque very safe  required in court",
           "Be present on every hearing date",
         ],
       },
@@ -852,7 +852,7 @@ const SCENARIOS: Scenario[] = [
         stepId: "cheque-step-4",
         title: "Court Process and Recovery",
         instruction:
-          "Court issues summons to accused. At hearing, accused may plead guilty (faster resolution) or not guilty (trial). If convicted: court may impose imprisonment up to 2 years and/or fine up to twice the cheque amount. The fine amount becomes payable to you — you can execute it like a money decree.",
+          "Court issues summons to accused. At hearing, accused may plead guilty (faster resolution) or not guilty (trial). If convicted: court may impose imprisonment up to 2 years and/or fine up to twice the cheque amount. The fine amount becomes payable to you  you can execute it like a money decree.",
         documents: [
           "All documents from Step 3",
           "Witness list (if any)",
@@ -862,7 +862,7 @@ const SCENARIOS: Scenario[] = [
         cost: "Additional lawyer fees for hearings",
         warningNote:
           "Even if accused is imprisoned, you may not recover the money if they have no assets. Consider filing a parallel civil suit for money recovery as backup.",
-        nextStepHint: "✅ Case complete. If fine imposed, execute for recovery.",
+        nextStepHint: " Case complete. If fine imposed, execute for recovery.",
         tips: [
           "Consider filing parallel money recovery suit",
           "Check if accused has attachable assets before filing",
@@ -871,20 +871,20 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "⚠️ Cheque bounce cases have THREE STRICT DEADLINES:\n1. Legal notice: within 30 days of dishonour\n2. Criminal complaint: within 30 days of notice expiry\n3. Total: 60 days from dishonour date\n\nMissing any deadline = case dismissed.\n\nNLC can refer specialist advocates for cheque bounce cases.",
+      " Cheque bounce cases have THREE STRICT DEADLINES:\n1. Legal notice: within 30 days of dishonour\n2. Criminal complaint: within 30 days of notice expiry\n3. Total: 60 days from dishonour date\n\nMissing any deadline = case dismissed.\n\nNLC can refer specialist advocates for cheque bounce cases.",
     escalate: true,
     escalateReason: "Cheque bounce cases require precise deadline management. WhatsApp NLC for urgent referral.",
     relatedScenarios: ["money-recovery-suit"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 6. BAIL APPLICATION
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "criminal-bail",
     area: "criminal",
     title: "Bail Application Process",
-    titleBn: "জামিনের আবেদন প্রক্রিয়া",
+    titleBn: "  ",
     description: "Step-by-step process for applying for bail in Bangladesh courts",
     triggerPhrases: [
       "how to get bail",
@@ -895,10 +895,10 @@ const SCENARIOS: Scenario[] = [
       "jail bail",
     ],
     triggerPhrasesBn: [
-      "জামিনের আবেদন",
-      "জামিন পাওয়ার উপায়",
-      "জামিন প্রক্রিয়া",
-      "কারাগার থেকে জামিন",
+      " ",
+      "  ",
+      " ",
+      "  ",
     ],
     totalSteps: 4,
     prerequisites: [
@@ -911,13 +911,13 @@ const SCENARIOS: Scenario[] = [
         stepId: "bail-step-1",
         title: "Determine Bail Type and Court",
         instruction:
-          "First determine whether the offence is bailable or non-bailable. Bailable offences (Schedule II of CrPC — lighter offences): accused has right to bail — police can grant at police station. Non-bailable offences (serious crimes — murder, rape, dacoity): only a Magistrate or Sessions Judge can grant bail. For anticipatory bail (before arrest): apply to Sessions Court or High Court.",
+          "First determine whether the offence is bailable or non-bailable. Bailable offences (Schedule II of CrPC  lighter offences): accused has right to bail  police can grant at police station. Non-bailable offences (serious crimes  murder, rape, dacoity): only a Magistrate or Sessions Judge can grant bail. For anticipatory bail (before arrest): apply to Sessions Court or High Court.",
         documents: ["Copy of FIR / GD number", "Name of offence charged"],
         office: "Police Station (bailable) | Magistrate Court | Sessions Court | High Court Division",
-        estimatedTime: "Bailable: immediate | Non-bailable: 1–7 days",
+        estimatedTime: "Bailable: immediate | Non-bailable: 17 days",
         cost: "No cost at this stage",
         warningNote:
-          "Non-bailable offence bail is discretionary — court considers: nature of offence, criminal record, flight risk, likelihood of tampering with evidence. Engage lawyer before appearing.",
+          "Non-bailable offence bail is discretionary  court considers: nature of offence, criminal record, flight risk, likelihood of tampering with evidence. Engage lawyer before appearing.",
         nextStepHint: "Next: Engage a criminal lawyer and prepare bail application.",
         tips: [
           "For serious offences, directly approach Sessions Court or High Court",
@@ -938,10 +938,10 @@ const SCENARIOS: Scenario[] = [
           "Surety details (bail bond guarantor)",
         ],
         office: "Court filing section | Magistrate / Sessions / High Court",
-        estimatedTime: "Filing: 1 day | Hearing: 1–7 days after filing",
-        cost: "Lawyer fee: BDT 5,000–50,000+ depending on court level and case seriousness",
+        estimatedTime: "Filing: 1 day | Hearing: 17 days after filing",
+        cost: "Lawyer fee: BDT 5,00050,000+ depending on court level and case seriousness",
         warningNote:
-          "Bail petition quality matters significantly — a well-argued petition with strong grounds succeeds; a poorly drafted one is rejected. Engage an experienced criminal lawyer.",
+          "Bail petition quality matters significantly  a well-argued petition with strong grounds succeeds; a poorly drafted one is rejected. Engage an experienced criminal lawyer.",
         nextStepHint: "Next: Court hearing on bail application.",
         tips: [
           "Gather all supporting documents before meeting lawyer",
@@ -956,11 +956,11 @@ const SCENARIOS: Scenario[] = [
           "At the hearing: accused's lawyer argues grounds for bail. Prosecution (Public Prosecutor or complainant's lawyer) may oppose. Judge considers: severity of offence, evidence strength, accused's record, flight risk, and public interest. If granted: court sets bail amount (bond) and conditions.",
         documents: ["All documents from Step 2", "Lawyer presence mandatory"],
         office: "Magistrate / Sessions / High Court",
-        estimatedTime: "Hearing: 30 minutes–2 hours | Decision: same day or next hearing",
+        estimatedTime: "Hearing: 30 minutes2 hours | Decision: same day or next hearing",
         cost: "No additional cost",
         warningNote:
-          "For serious offences (murder, rape, corruption): Magistrate may not have jurisdiction to grant bail — must go to Sessions Court. For High Court bail: requires senior advocate.",
-        nextStepHint: "Next: If bail granted — execute bail bond with surety.",
+          "For serious offences (murder, rape, corruption): Magistrate may not have jurisdiction to grant bail  must go to Sessions Court. For High Court bail: requires senior advocate.",
+        nextStepHint: "Next: If bail granted  execute bail bond with surety.",
         tips: [
           "Accused should be well-dressed and respectful in court",
           "Family members should attend if possible",
@@ -985,7 +985,7 @@ const SCENARIOS: Scenario[] = [
         warningNote:
           "Accused must comply with all bail conditions (attend all hearings, not leave jurisdiction without permission, not contact witnesses). Violation = bail cancelled + re-arrest.",
         nextStepHint:
-          "✅ Bail secured. Attend all court dates — missing hearings cancels bail automatically.",
+          " Bail secured. Attend all court dates  missing hearings cancels bail automatically.",
         tips: [
           "Arrange surety with sufficient assets before bail hearing",
           "Keep certified copy of bail order safe",
@@ -995,21 +995,21 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "⚠️ Bail conditions must be strictly followed:\n• Attend every court hearing date\n• Do not leave the country without court permission\n• Do not contact prosecution witnesses\n• Surrender passport if ordered\n\nViolating bail conditions → immediate re-arrest and bail cancelled.\n\n**NLC can refer:** Specialist criminal advocates for bail hearings.",
+      " Bail conditions must be strictly followed:\n Attend every court hearing date\n Do not leave the country without court permission\n Do not contact prosecution witnesses\n Surrender passport if ordered\n\nViolating bail conditions  immediate re-arrest and bail cancelled.\n\n**NLC can refer:** Specialist criminal advocates for bail hearings.",
     escalate: true,
     escalateReason:
       "Bail applications require experienced criminal lawyer. WhatsApp NLC for urgent referral.",
     relatedScenarios: ["criminal-fir-process"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 7. MUTATION PROCESS
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "property-mutation",
     area: "property",
     title: "Land Mutation (Namjari) Process",
-    titleBn: "জমি মিউটেশন (নামজারি) প্রক্রিয়া",
+    titleBn: "  () ",
     description: "Step-by-step guide for completing mutation after land purchase or inheritance",
     triggerPhrases: [
       "mutation process",
@@ -1020,10 +1020,10 @@ const SCENARIOS: Scenario[] = [
       "khatian update",
     ],
     triggerPhrasesBn: [
-      "মিউটেশন প্রক্রিয়া",
-      "নামজারি করার ধাপ",
-      "খাতিয়ানে নাম পরিবর্তন",
-      "জমি মিউটেশন",
+      " ",
+      "  ",
+      "  ",
+      " ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -1050,7 +1050,7 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "2-5 days",
         cost: "Certified copies: BDT 200-500 each",
         warningNote:
-          "Original registered deed is mandatory — certified copy not accepted for mutation in most cases.",
+          "Original registered deed is mandatory  certified copy not accepted for mutation in most cases.",
         nextStepHint: "Next: Fill mutation application form.",
         tips: [
           "Get 2-3 extra certified copies of deed as backup",
@@ -1136,8 +1136,8 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "7-30 days after hearing",
         cost: "Certified copy: BDT 100-200",
         warningNote:
-          "Keep the new Mutation Khatian safe — this is your primary ownership proof along with the deed.",
-        nextStepHint: "✅ Mutation complete. Pay annual khajna to maintain record.",
+          "Keep the new Mutation Khatian safe  this is your primary ownership proof along with the deed.",
+        nextStepHint: " Mutation complete. Pay annual khajna to maintain record.",
         tips: [
           "Get 2-3 certified copies of new Khatian",
           "Update khajna record immediately",
@@ -1146,19 +1146,19 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ Mutation complete. Your name is now recorded as owner in government records.\n\n**Important:**\n• Pay annual khajna (land tax) to maintain record\n• Keep Mutation Khatian with your deed permanently\n• Mutation without registered deed can be challenged in court\n\n📄 Full mutation document pack — NLC can assist.",
+      " Mutation complete. Your name is now recorded as owner in government records.\n\n**Important:**\n Pay annual khajna (land tax) to maintain record\n Keep Mutation Khatian with your deed permanently\n Mutation without registered deed can be challenged in court\n\n Full mutation document pack  NLC can assist.",
     escalate: false,
     relatedScenarios: ["property-purchase", "property-inheritance"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 8. FLAT/APARTMENT PURCHASE
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "flat-purchase",
     area: "property",
     title: "Flat/Apartment Purchase Process",
-    titleBn: "ফ্ল্যাট/অ্যাপার্টমেন্ট ক্রয় প্রক্রিয়া",
+    titleBn: "/  ",
     description: "Step-by-step guide for buying an apartment from a real estate developer in Bangladesh",
     triggerPhrases: [
       "buy flat steps",
@@ -1169,9 +1169,9 @@ const SCENARIOS: Scenario[] = [
       "real estate purchase",
     ],
     triggerPhrasesBn: [
-      "ফ্ল্যাট কেনার ধাপ",
-      "অ্যাপার্টমেন্ট কিনতে চাই",
-      "ফ্ল্যাট ক্রয়",
+      "  ",
+      "  ",
+      " ",
     ],
     totalSteps: 6,
     prerequisites: [
@@ -1194,7 +1194,7 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "1-2 weeks",
         cost: "No cost for verification",
         warningNote:
-          "Many buyers lose money to fraudulent developers. Never pay based on brochure alone — verify all documents.",
+          "Many buyers lose money to fraudulent developers. Never pay based on brochure alone  verify all documents.",
         nextStepHint: "Next: Verify flat-specific documents.",
         tips: [
           "Visit developer's previous projects",
@@ -1311,7 +1311,7 @@ const SCENARIOS: Scenario[] = [
         cost: "Registration costs: 5-8% of deed value",
         warningNote:
           "Without registration and mutation, your legal ownership is not complete. Prioritize this step.",
-        nextStepHint: "✅ Flat purchase complete. Pay annual property tax.",
+        nextStepHint: " Flat purchase complete. Pay annual property tax.",
         tips: [
           "Use the same process as land registration",
           "Get holding number immediately after mutation",
@@ -1320,19 +1320,19 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ Flat purchase complete.\n\n**Post-purchase:**\n• Join the building's owners' association/management committee\n• Pay monthly maintenance charges\n• Pay annual property tax\n• Keep all warranties for appliances and fittings\n\n📄 Complete flat purchase checklist — NLC can assist.",
+      " Flat purchase complete.\n\n**Post-purchase:**\n Join the building's owners' association/management committee\n Pay monthly maintenance charges\n Pay annual property tax\n Keep all warranties for appliances and fittings\n\n Complete flat purchase checklist  NLC can assist.",
     escalate: false,
     relatedScenarios: ["property-purchase"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 9. INHERITANCE & SUCCESSION CERTIFICATE
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "property-inheritance",
     area: "property",
     title: "Inheritance & Succession Certificate",
-    titleBn: "উত্তরাধিকার ও উত্তরাধিকার সনদেশ প্রক্রিয়া",
+    titleBn: "    ",
     description: "Process for claiming inheritance and obtaining Succession Certificate for movable assets",
     triggerPhrases: [
       "inheritance process",
@@ -1343,10 +1343,10 @@ const SCENARIOS: Scenario[] = [
       "probate process",
     ],
     triggerPhrasesBn: [
-      "উত্তরাধিকার প্রক্রিয়া",
-      "উত্তরাধিকার সনদেশ",
-      "মৃত্যুর পর সম্পত্তি",
-      "ওয়ারিশ সনদেশ",
+      " ",
+      " ",
+      "  ",
+      " ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -1465,7 +1465,7 @@ const SCENARIOS: Scenario[] = [
         cost: "No direct cost | Some institutions may charge processing fees",
         warningNote:
           "Different institutions have different procedures. Some may require additional documents or court orders.",
-        nextStepHint: "✅ Succession process complete. For land: file mutation separately.",
+        nextStepHint: " Succession process complete. For land: file mutation separately.",
         tips: [
           "Apply to all institutions simultaneously",
           "Get written acknowledgment from each institution",
@@ -1474,19 +1474,19 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ Succession Certificate process complete.\n\n**For Land/Property:**\nSeparate mutation process required — see 'Land Mutation' scenario.\n\n**Important Notes:**\n• Succession Certificate doesn't distribute assets — it only authorizes access\n• Family settlement deed (Raji Naama) is faster if all heirs agree\n• For complex disputes, file partition suit in Civil Court\n\n📄 Inheritance document pack — NLC can assist.",
+      " Succession Certificate process complete.\n\n**For Land/Property:**\nSeparate mutation process required  see 'Land Mutation' scenario.\n\n**Important Notes:**\n Succession Certificate doesn't distribute assets  it only authorizes access\n Family settlement deed (Raji Naama) is faster if all heirs agree\n For complex disputes, file partition suit in Civil Court\n\n Inheritance document pack  NLC can assist.",
     escalate: false,
     relatedScenarios: ["property-mutation", "property-purchase"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 10. PARTNERSHIP FIRM RECONSTITUTION
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "partnership-reconstitution",
     area: "company",
     title: "Partnership Firm Reconstitution",
-    titleBn: "অংশীদারিত্ব পুনর্গঠন",
+    titleBn: " ",
     description: "Step-by-step guide to reconstitute a partnership firm after partner exit, entry, or death",
     triggerPhrases: [
       "reconstitute partnership",
@@ -1498,8 +1498,8 @@ const SCENARIOS: Scenario[] = [
       "add partner firm",
     ],
     triggerPhrasesBn: [
-      "অংশীদারিত্ব পুনর্গঠন",
-      "পার্টনার পরিবর্তন",
+      " ",
+      " ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -1521,10 +1521,10 @@ const SCENARIOS: Scenario[] = [
           "Resignation letter from retiring partner (if voluntary)",
         ],
         office: "Signed at lawyer's office | Notarised",
-        estimatedTime: "1–3 days to draft and execute",
-        cost: "Lawyer/CA fee: BDT 5,000–20,000",
+        estimatedTime: "13 days to draft and execute",
+        cost: "Lawyer/CA fee: BDT 5,00020,000",
         warningNote:
-          "The deed must be signed by the retiring partner — if they refuse to sign, legal action may be required before reconstitution can proceed.",
+          "The deed must be signed by the retiring partner  if they refuse to sign, legal action may be required before reconstitution can proceed.",
         nextStepHint: "Next: Hold Partners' Meeting and record minutes of reconstitution decision.",
         tips: [
           "Clearly specify the effective date",
@@ -1545,7 +1545,7 @@ const SCENARIOS: Scenario[] = [
         office: "Firm's office / any agreed location",
         estimatedTime: "1 day",
         warningNote:
-          "Minutes must be dated correctly — the reconstitution date in minutes must match the Deed of Reconstitution effective date.",
+          "Minutes must be dated correctly  the reconstitution date in minutes must match the Deed of Reconstitution effective date.",
         nextStepHint: "Next: File reconstitution documents with RJSC.",
         tips: [
           "Use firm's letterhead for minutes",
@@ -1567,10 +1567,10 @@ const SCENARIOS: Scenario[] = [
           "Existing registration certificate (original)",
         ],
         office: "RJSC (Registrar of Joint Stock Companies, Dhaka or regional offices)",
-        estimatedTime: "RJSC processing: 7–15 working days",
-        cost: "RJSC amendment fee: BDT 1,000–3,000",
+        estimatedTime: "RJSC processing: 715 working days",
+        cost: "RJSC amendment fee: BDT 1,0003,000",
         warningNote:
-          "If RJSC filing is delayed beyond 90 days: penalty applies. File even if late — an unfiled reconstitution leaves the retired partner on the legal record.",
+          "If RJSC filing is delayed beyond 90 days: penalty applies. File even if late  an unfiled reconstitution leaves the retired partner on the legal record.",
         nextStepHint: "Next: Update bank signatories and notify regulatory authorities.",
         tips: [
           "File as soon as possible after deed execution",
@@ -1592,10 +1592,10 @@ const SCENARIOS: Scenario[] = [
         ],
         office:
           "Bank branch | NBR Circle Tax Office | BIDA (if applicable) | City Corporation / Municipality (trade licence)",
-        estimatedTime: "Bank update: 3–7 days | NBR: 7–15 days",
+        estimatedTime: "Bank update: 37 days | NBR: 715 days",
         cost: "No direct cost",
         warningNote:
-          "Do not use old signatories after reconstitution — the retired partner can still operate the account until bank records are updated. Prioritise bank update.",
+          "Do not use old signatories after reconstitution  the retired partner can still operate the account until bank records are updated. Prioritise bank update.",
         nextStepHint: "Next: Complete capital settlement with the retiring partner.",
         tips: [
           "Visit bank in person with all original documents",
@@ -1615,11 +1615,11 @@ const SCENARIOS: Scenario[] = [
           "Updated profit/loss ratio (for continuing partners' tax returns)",
         ],
         office: "Bank | Retiring partner | CA (for capital calculation)",
-        estimatedTime: "As per deed agreement (typically 30–90 days)",
+        estimatedTime: "As per deed agreement (typically 3090 days)",
         cost: "Capital settlement amount as agreed",
         warningNote:
-          "Without a written No-Claim Certificate — the retiring partner can later claim additional amounts. Always get it in writing and signed.",
-        nextStepHint: "✅ Reconstitution complete. Firm continues with new partner composition.",
+          "Without a written No-Claim Certificate  the retiring partner can later claim additional amounts. Always get it in writing and signed.",
+        nextStepHint: " Reconstitution complete. Firm continues with new partner composition.",
         tips: [
           "Calculate capital balance as of effective date",
           "Get No-Claim Certificate on stamped paper",
@@ -1628,21 +1628,21 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ Partnership reconstitution complete. Firm continues legally under new composition.\n\n**Post-reconstitution:**\n• File firm's next income tax return under new partner composition\n• Update all letterheads and documents\n• Ensure retiring partner's personal tax return excludes firm income from reconstitution date\n\n📄 Full reconstitution document drafting — NLC can assist.",
+      " Partnership reconstitution complete. Firm continues legally under new composition.\n\n**Post-reconstitution:**\n File firm's next income tax return under new partner composition\n Update all letterheads and documents\n Ensure retiring partner's personal tax return excludes firm income from reconstitution date\n\n Full reconstitution document drafting  NLC can assist.",
     escalate: true,
     escalateReason:
       "Partnership reconstitution involves legal drafting and RJSC filing. WhatsApp NLC for full document preparation.",
     relatedScenarios: ["company-pvt-registration"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 11. ONE PERSON COMPANY (OPC) REGISTRATION
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "company-opc-registration",
     area: "company",
     title: "One Person Company (OPC) Registration",
-    titleBn: "ওয়ান পার্সন কোম্পানি নিবন্ধন",
+    titleBn: "   ",
     description: "Step-by-step guide to register a One Person Company in Bangladesh",
     triggerPhrases: [
       "register opc",
@@ -1652,9 +1652,9 @@ const SCENARIOS: Scenario[] = [
       "solo company registration",
     ],
     triggerPhrasesBn: [
-      "ওপিসি নিবন্ধন",
-      "একক ব্যক্তি কোম্পানি",
-      "একাকী কোম্পানি",
+      " ",
+      "  ",
+      " ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -1702,7 +1702,7 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "2-3 days",
         cost: "BDT 5,000-15,000",
         warningNote:
-          "Standard MOA/AOA templates may not have OPC clauses — ensure these are specifically included.",
+          "Standard MOA/AOA templates may not have OPC clauses  ensure these are specifically included.",
         nextStepHint: "Next: Submit online application at RJSC.",
         tips: [
           "Clearly state OPC nature in MOA object clause",
@@ -1725,7 +1725,7 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "Submission: 1 day | Processing: 7-15 days",
         cost: "RJSC fee based on authorized capital",
         warningNote:
-          "Ensure OPC type is correctly selected — wrong selection creates wrong company type.",
+          "Ensure OPC type is correctly selected  wrong selection creates wrong company type.",
         nextStepHint: "Next: Pay fees and receive Certificate.",
         tips: [
           "Double-check OPC type selection",
@@ -1763,7 +1763,7 @@ const SCENARIOS: Scenario[] = [
         cost: "Standard costs",
         warningNote:
           "OPC must convert to Pvt Ltd if you want to add members. Cannot continue as OPC after adding second person.",
-        nextStepHint: "✅ OPC registered. Remember conversion requirement if expanding ownership.",
+        nextStepHint: " OPC registered. Remember conversion requirement if expanding ownership.",
         tips: [
           "Maintain OPC register at registered office",
           "Inform nominee of their role and responsibilities",
@@ -1772,19 +1772,19 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ OPC registration complete.\n\n**Key Restrictions:**\n• Cannot add new members (must convert to Pvt Ltd)\n• Cannot do banking business\n• Nominee takes over if member dies/disabled\n\n**Conversion:** If you later want partners, file conversion to Pvt Ltd.\n\n📄 OPC registration document pack — NLC can assist.",
+      " OPC registration complete.\n\n**Key Restrictions:**\n Cannot add new members (must convert to Pvt Ltd)\n Cannot do banking business\n Nominee takes over if member dies/disabled\n\n**Conversion:** If you later want partners, file conversion to Pvt Ltd.\n\n OPC registration document pack  NLC can assist.",
     escalate: false,
     relatedScenarios: ["company-pvt-registration"],
   },
 
-  // ══════════════════════════════════════════════════════════
+  // 
   // 12. EVICTION SUIT PROCESS
-  // ══════════════════════════════════════════════════════════
+  // 
   {
     scenarioId: "property-eviction",
     area: "property",
     title: "Tenant Eviction Suit Process",
-    titleBn: "ভাড়াটে উচ্ছাদন মামলা প্রক্রিয়া",
+    titleBn: "   ",
     description: "Step-by-step process for legally evicting a tenant under Rent Control Act",
     triggerPhrases: [
       "evict tenant steps",
@@ -1795,9 +1795,9 @@ const SCENARIOS: Scenario[] = [
       "remove tenant legally",
     ],
     triggerPhrasesBn: [
-      "ভাড়াটে উচ্ছাদন",
-      "ভাড়াটে বের করা",
-      "ভাড়াটি মামলা",
+      " ",
+      "  ",
+      " ",
     ],
     totalSteps: 5,
     prerequisites: [
@@ -1821,12 +1821,12 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "1-2 days",
         cost: "Lawyer fee: BDT 2,000-5,000",
         warningNote:
-          "Do NOT cut utilities, change locks, or use force — these are criminal offences. Notice period is mandatory.",
+          "Do NOT cut utilities, change locks, or use force  these are criminal offences. Notice period is mandatory.",
         nextStepHint: "Next: If tenant doesn't comply, file eviction petition.",
         tips: [
           "Send notice via both AD post and courier",
           "Keep AD card return safe",
-          "Notice period varies — check your agreement",
+          "Notice period varies  check your agreement",
         ],
       },
       {
@@ -1847,7 +1847,7 @@ const SCENARIOS: Scenario[] = [
         estimatedTime: "1 day to file",
         cost: "Court fee: varies | Lawyer fee: BDT 10,000-30,000",
         warningNote:
-          "For commercial premises in some areas, Rent Control Act may not apply — file in Civil Court instead.",
+          "For commercial premises in some areas, Rent Control Act may not apply  file in Civil Court instead.",
         nextStepHint: "Next: Court issues summons to tenant.",
         tips: [
           "Include all supporting documents",
@@ -1911,7 +1911,7 @@ const SCENARIOS: Scenario[] = [
         cost: "Execution fees | Police assistance (if applicable)",
         warningNote:
           "Even with court order, physical eviction must be done through proper channels. Using goondas or force is illegal.",
-        nextStepHint: "✅ Eviction complete. Take possession of premises.",
+        nextStepHint: " Eviction complete. Take possession of premises.",
         tips: [
           "Get certified copy of judgment immediately",
           "File execution petition promptly",
@@ -1920,21 +1920,21 @@ const SCENARIOS: Scenario[] = [
       },
     ],
     finalNote:
-      "✅ Eviction complete.\n\n**Important Reminders:**\n• Never use force or illegal methods to evict\n• Process takes 1-3 years — be patient\n• Consider settlement/mediation as alternative\n\n⚠️ Using goondas or forceful eviction is a criminal offence.\n\n📄 Eviction case document pack — NLC can assist.",
+      " Eviction complete.\n\n**Important Reminders:**\n Never use force or illegal methods to evict\n Process takes 1-3 years  be patient\n Consider settlement/mediation as alternative\n\n Using goondas or forceful eviction is a criminal offence.\n\n Eviction case document pack  NLC can assist.",
     escalate: true,
     escalateReason: "Eviction cases require experienced property lawyer. WhatsApp NLC for referral.",
     relatedScenarios: ["property-purchase"],
   },
 ];
 
-// ─── Session State (in-memory per request — stateless) ─────────
+//  Session State (in-memory per request  stateless) 
 
 export interface ScenarioSession {
   scenarioId: string;
   currentStepIndex: number;   // 0-indexed internally
 }
 
-// ─── Core Functions ────────────────────────────────────────────
+//  Core Functions 
 
 /**
  * Try to match the user's message to a scenario.
@@ -1983,10 +1983,10 @@ export function matchScenario(
     msg.includes("process") ||
     msg.includes("procedure") ||
     msg.includes("how to") ||
-    msg.includes("ধাপ") ||
-    msg.includes("প্রক্রিয়া") ||
-    msg.includes("গাইড") ||
-    msg.includes("উপায");
+    msg.includes("") ||
+    msg.includes("") ||
+    msg.includes("") ||
+    msg.includes("");
 
   if (area && isProcessRequest) {
     const areaScenario = SCENARIOS.find((s) => s.area === area);
@@ -2011,7 +2011,7 @@ export function nextStep(
 
   const nextIndex = currentStepIndex + 1;
   if (nextIndex >= scenario.steps.length) {
-    // Already at final step — return completion
+    // Already at final step  return completion
     return buildScenarioResult(scenario, scenario.steps.length - 1, true);
   }
   return buildScenarioResult(scenario, nextIndex);
@@ -2069,7 +2069,7 @@ export function getScenarioById(scenarioId: string): Scenario | undefined {
   return SCENARIOS.find((s) => s.scenarioId === scenarioId);
 }
 
-// ─── Internal Builder ──────────────────────────────────────────
+//  Internal Builder 
 
 function buildScenarioResult(
   scenario: Scenario,
@@ -2101,7 +2101,7 @@ function formatScenarioStep(
   stepNumber: number,
   isComplete: boolean
 ): string {
-  const progress = `▶ Step ${stepNumber} of ${scenario.totalSteps}`;
+  const progress = ` Step ${stepNumber} of ${scenario.totalSteps}`;
   const progressBar = buildProgressBar(stepNumber, scenario.totalSteps);
 
   // Add Bengali title if available
@@ -2117,7 +2117,7 @@ function formatScenarioStep(
 
   if (step.documents && step.documents.length > 0) {
     out += `\n**Documents needed:**\n`;
-    step.documents.forEach((doc) => { out += `• ${doc}\n`; });
+    step.documents.forEach((doc) => { out += ` ${doc}\n`; });
   }
 
   if (step.office) {
@@ -2133,12 +2133,12 @@ function formatScenarioStep(
   }
 
   if (step.warningNote) {
-    out += `\n\n⚠️ **Important:** ${step.warningNote}`;
+    out += `\n\n **Important:** ${step.warningNote}`;
   }
 
   if (step.tips && step.tips.length > 0) {
-    out += `\n\n💡 **Tips:**\n`;
-    step.tips.forEach((tip) => { out += `• ${tip}\n`; });
+    out += `\n\n **Tips:**\n`;
+    step.tips.forEach((tip) => { out += ` ${tip}\n`; });
   }
 
   if (!isComplete && step.nextStepHint) {
@@ -2148,7 +2148,7 @@ function formatScenarioStep(
   if (isComplete) {
     out += `\n\n---\n${scenario.finalNote}`;
     if (scenario.escalate && scenario.escalateReason) {
-      out += `\n\n⚠️ **Professional help recommended:** ${scenario.escalateReason}`;
+      out += `\n\n **Professional help recommended:** ${scenario.escalateReason}`;
     }
   }
 
@@ -2158,7 +2158,7 @@ function formatScenarioStep(
 function buildProgressBar(current: number, total: number): string {
   const filled = Math.round((current / total) * 10);
   const empty = 10 - filled;
-  return `[${"█".repeat(filled)}${"░".repeat(empty)}]`;
+  return `[${"".repeat(filled)}${"".repeat(empty)}]`;
 }
 
 /**
@@ -2170,14 +2170,14 @@ export function isNextStepCommand(message: string): boolean {
     msg === "next" ||
     msg === "next step" ||
     msg === "continue" ||
-    msg === "পরবর্তী" ||
-    msg === "পরের ধাপ" ||
+    msg === "" ||
+    msg === " " ||
     msg.startsWith("next step") ||
     msg === "go on" ||
     msg === "ok next" ||
     msg === "proceed" ||
-    msg === "চলুন" ||
-    msg === "এগিয়ে চলুন"
+    msg === "" ||
+    msg === " "
   );
 }
 
@@ -2190,9 +2190,9 @@ export function isPrevStepCommand(message: string): boolean {
     msg === "back" ||
     msg === "previous" ||
     msg === "previous step" ||
-    msg === "আগের ধাপ" ||
+    msg === " " ||
     msg === "go back" ||
-    msg === "পেছনে"
+    msg === ""
   );
 }
 
@@ -2206,8 +2206,8 @@ export function isListScenariosCommand(message: string): boolean {
     msg === "show scenarios" ||
     msg === "what scenarios" ||
     msg === "available guides" ||
-    msg === "সব স্কিনারিও" ||
-    msg === "কি কি গাইড আছে"
+    msg === " " ||
+    msg === "   "
   );
 }
 
@@ -2217,8 +2217,8 @@ export function isListScenariosCommand(message: string): boolean {
 export function isGoToStepCommand(message: string): { isCommand: boolean; stepNumber?: number } {
   const msg = message.toLowerCase().trim();
   
-  // Match patterns like "go to step 3", "jump to step 5", "ধাপ ৩ এ যান"
-  const goToMatch = msg.match(/(?:go to|jump to|ধাপ)\s*(\d+)/);
+  // Match patterns like "go to step 3", "jump to step 5", "   "
+  const goToMatch = msg.match(/(?:go to|jump to|)\s*(\d+)/);
   if (goToMatch) {
     return { isCommand: true, stepNumber: parseInt(goToMatch[1]) };
   }

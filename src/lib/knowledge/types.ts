@@ -1,4 +1,4 @@
-// ─── JesAI Knowledge Store — Core Types ──────────────────────
+//  JesAI Knowledge Store  Core Types 
 // NLC validates every entry before it goes live.
 
 export type Jurisdiction =
@@ -33,7 +33,7 @@ export type LawArea =
   | "evidence"
   | "general";
 
-// ── A single legal rule ───────────────────────────────────────
+//  A single legal rule 
 export interface LegalRule {
   id: string;
   area: LawArea;
@@ -47,7 +47,7 @@ export interface LegalRule {
   nlcNote?: string;
 }
 
-// ── A Q&A entry ───────────────────────────────────────────────
+//  A Q&A entry 
 export interface QAEntry {
   id: string;
   area: LawArea;
@@ -66,7 +66,7 @@ export interface QAEntry {
   lastVerified: string;
 }
 
-// ── Subject area module ───────────────────────────────────────
+//  Subject area module 
 export interface KnowledgeModule {
   area: LawArea;
   label: string;
@@ -75,7 +75,7 @@ export interface KnowledgeModule {
   qaBank: QAEntry[];
 }
 
-// ── Query result ──────────────────────────────────────────────
+//  Query result 
 export interface KnowledgeResult {
   matched: boolean;
   area: LawArea | null;

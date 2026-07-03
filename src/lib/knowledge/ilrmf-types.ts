@@ -1,6 +1,6 @@
-// ─── ILRMF Engine Types ───────────────────────────────────────
+//  ILRMF Engine Types 
 // Deterministic output contract for JesAI BD
-// All fields are computed — zero LLM involvement
+// All fields are computed  zero LLM involvement
 
 export type VerdictBand = "GREEN" | "YELLOW" | "RED" | "BLACK";
 

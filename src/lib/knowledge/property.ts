@@ -1,5 +1,5 @@
-// ─── JesAI Property & Land Knowledge Module ──────────────────
-// NLC validated — Nazmul, Advocate, Supreme Court of Bangladesh
+//  JesAI Property & Land Knowledge Module 
+// NLC validated  Nazmul, Advocate, Supreme Court of Bangladesh
 // 242 topics covered across 27 categories
 // Free tier: awareness + public info only
 // Paid tier: document lists (99-399 Tk), procedures (999-19,999 Tk)
@@ -12,7 +12,7 @@ const rules: LegalRule[] = [
     id: "prop-title-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Title Dispute — Specific Relief Act 1877",
+    title: "Title Dispute  Specific Relief Act 1877",
     rule: "A person whose title to immovable property is disputed may file a declaration suit under Section 42 of the Specific Relief Act 1877 to obtain a court declaration of their title. The burden of proof lies on the plaintiff to establish superior title.",
     source: "Specific Relief Act 1877, Section 42; Code of Civil Procedure 1908",
     certainty: "confirmed",
@@ -23,7 +23,7 @@ const rules: LegalRule[] = [
     id: "prop-limitation-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Limitation Period — Property Suits",
+    title: "Limitation Period  Property Suits",
     rule: "For suits to recover possession of immovable property, the limitation period is 12 years from the date of dispossession. For title declaration suits, it is also 12 years. For mortgage redemption, it is 30 years.",
     source: "Limitation Act 1908, Articles 142, 144, 147",
     certainty: "confirmed",
@@ -34,7 +34,7 @@ const rules: LegalRule[] = [
     id: "prop-adverse-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Adverse Possession — 12 Year Rule",
+    title: "Adverse Possession  12 Year Rule",
     rule: "A person in continuous, open, hostile, and exclusive possession of land for 12 years acquires title by adverse possession under the Limitation Act 1908. The original owner's right to sue is extinguished after 12 years.",
     source: "Limitation Act 1908, Article 142; State Acquisition and Tenancy Act 1950",
     certainty: "confirmed",
@@ -45,7 +45,7 @@ const rules: LegalRule[] = [
     id: "prop-mutation-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Mutation — Legal Requirement After Transfer",
+    title: "Mutation  Legal Requirement After Transfer",
     rule: "After any transfer of land ownership, the new owner must apply for mutation (Namajaari) at the local Union Land Office. Mutation updates the government khatian record. Without mutation, the transferee cannot pay land tax or legally possess the land in their name.",
     source: "State Acquisition and Tenancy Act 1950; Land Reform Ordinance 1984",
     certainty: "confirmed",
@@ -67,7 +67,7 @@ const rules: LegalRule[] = [
     id: "prop-mortgage-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Artha Rin Adalat — Bank Loan Recovery",
+    title: "Artha Rin Adalat  Bank Loan Recovery",
     rule: "Banks and financial institutions recover defaulted loans secured by property through the Artha Rin Adalat (Money Loan Court) under the Artha Rin Adalat Ain 2003. The court can order attachment and auction of the mortgaged property.",
     source: "Artha Rin Adalat Ain 2003",
     certainty: "confirmed",
@@ -78,7 +78,7 @@ const rules: LegalRule[] = [
     id: "prop-preemption-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Pre-emption Right (Shafi) — Co-owner/Neighbour",
+    title: "Pre-emption Right (Shafi)  Co-owner/Neighbour",
     rule: "Under the State Acquisition and Tenancy Act 1950, a co-sharer or adjoining landowner has the right of pre-emption (shafi) to purchase land sold to an outsider at the same price. The pre-emption suit must be filed within 4 months of the sale registration.",
     source: "State Acquisition and Tenancy Act 1950, Sections 96-100",
     certainty: "confirmed",
@@ -89,7 +89,7 @@ const rules: LegalRule[] = [
     id: "prop-inheritance-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Muslim Inheritance — Hanafi Rules",
+    title: "Muslim Inheritance  Hanafi Rules",
     rule: "Under Muslim personal law (Hanafi school applied in Bangladesh), property passes on death to heirs according to fixed Quranic shares. A son receives double the share of a daughter. Wife receives 1/8 if children exist, 1/4 if no children. A Muslim cannot disinherit an heir by will beyond 1/3 of estate.",
     source: "Muslim Personal Law (Shariat) Application Act 1937; Succession Act 1925 (for probate)",
     certainty: "confirmed",
@@ -100,7 +100,7 @@ const rules: LegalRule[] = [
     id: "prop-cheque-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Cheque Dishonour — Criminal Liability",
+    title: "Cheque Dishonour  Criminal Liability",
     rule: "Under the Negotiable Instruments Act 1881 (Section 138 as amended), dishonour of a cheque for insufficiency of funds is a criminal offence. The payee must send a legal notice within 30 days of dishonour. If unpaid within 30 days of notice, a criminal complaint may be filed within 30 days thereafter.",
     source: "Negotiable Instruments Act 1881, Section 138",
     certainty: "confirmed",
@@ -111,7 +111,7 @@ const rules: LegalRule[] = [
     id: "prop-khas-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Khas Land — Government Ownership",
+    title: "Khas Land  Government Ownership",
     rule: "Khas land is government-owned land not held by any private party. Under the Land Reform Ordinance 1984 and subsequent circulars, khas land can be settled (allocated) to landless people and certain eligible applicants through the District Administration. Unauthorized occupation of khas land is illegal.",
     source: "Land Reform Ordinance 1984; State Acquisition and Tenancy Act 1950",
     certainty: "confirmed",
@@ -122,7 +122,7 @@ const rules: LegalRule[] = [
     id: "prop-easement-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Easement Rights — Right of Way",
+    title: "Easement Rights  Right of Way",
     rule: "Under the Easements Act 1882, an easement is a right which the owner or occupier of certain land possesses over an adjacent land for the beneficial use of his own land. A right of way is the most common easement. It can be acquired by grant, prescription (20 years), or necessity.",
     source: "Easements Act 1882, Sections 4, 15, 36",
     certainty: "confirmed",
@@ -133,7 +133,7 @@ const rules: LegalRule[] = [
     id: "prop-gift-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Gift Deed (Hiba) — Muslim Law",
+    title: "Gift Deed (Hiba)  Muslim Law",
     rule: "Under Muslim law, a gift (Hiba) is the immediate transfer of property without consideration. It requires: declaration by donor, acceptance by donee, and delivery of possession. A gift of immovable property must be registered. Once accepted and delivered, it is irrevocable unless made under fraud/undue influence.",
     source: "Muslim Personal Law; Registration Act 1908",
     certainty: "confirmed",
@@ -155,7 +155,7 @@ const rules: LegalRule[] = [
     id: "prop-khatian-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Land Records — CS, RS, BS Khatian",
+    title: "Land Records  CS, RS, BS Khatian",
     rule: "Bangladesh land records are maintained in three major surveys: CS (Cadastral Survey, early 20th century), RS (Revisional Survey, 1960s-80s), and BS (Bangladesh Survey, digital, ongoing). RS khatian is the primary document for mutation, but BS khatian is legally superior where available. Discrepancies are resolved via the Land Survey Tribunal.",
     source: "State Acquisition and Tenancy Act 1950; Land Survey Tribunal Act 2023",
     certainty: "confirmed",
@@ -166,7 +166,7 @@ const rules: LegalRule[] = [
     id: "prop-injunction-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Injunction — Temporary & Permanent",
+    title: "Injunction  Temporary & Permanent",
     rule: "Under the Specific Relief Act 1877, a temporary injunction (Order 39, CPC) preserves the status quo during a lawsuit. A permanent injunction is granted as a final relief to restrain a party from doing a particular act (e.g., building on disputed land). Violation of an injunction is punishable as civil contempt.",
     source: "Specific Relief Act 1877; CPC Order 39",
     certainty: "confirmed",
@@ -178,7 +178,7 @@ const rules: LegalRule[] = [
     area: "property",
     jurisdiction: "BD",
     jurisdiction: "BD",
-    title: "Court Fees — Ad Valorem System",
+    title: "Court Fees  Ad Valorem System",
     rule: "Under the Court Fees Act 1870, suits for declaration, possession, or partition of immovable property are subject to ad valorem (based on value) court fees. The fee is a percentage of the market value of the property (typically 5-10% depending on the relief sought), payable on plaint filing. No suit is accepted without prescribed fees.",
     source: "Court Fees Act 1870; Suits Valuation Act 1887",
     certainty: "confirmed",
@@ -189,7 +189,7 @@ const rules: LegalRule[] = [
     id: "prop-poa-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Power of Attorney (POA) — Execution & Scope",
+    title: "Power of Attorney (POA)  Execution & Scope",
     rule: "Under the Powers of Attorney Act 1882 and Registration Act 1908, a POA can be General (GPA) or Special (SPA). A GPA allows wide powers including sale. Any POA authorizing sale of immovable property MUST be registered and adequately stamped. An unregistered POA for sale has no legal effect.",
     source: "Powers of Attorney Act 1882; Registration Act 1908, Section 17",
     certainty: "confirmed",
@@ -200,7 +200,7 @@ const rules: LegalRule[] = [
     id: "prop-nonmuslim-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Non-Muslim Inheritance — Hindu & Christian",
+    title: "Non-Muslim Inheritance  Hindu & Christian",
     rule: "Hindus in Bangladesh are generally governed by classical Hindu law (Dayabhaga or Mitakshara school depending on region) where daughters historically had limited rights unless no son exists, though courts are evolving. Christians are governed by the Succession Act 1925, which gives equal shares to widow, sons, and daughters.",
     source: "Hindu Law; Succession Act 1925",
     certainty: "confirmed",
@@ -211,7 +211,7 @@ const rules: LegalRule[] = [
     id: "prop-money-001",
     area: "property",
     jurisdiction: "BD",
-    title: "Money Recovery Suit — General",
+    title: "Money Recovery Suit  General",
     rule: "For recovery of a liquidated sum (money) not based on a cheque, a Money Suit is filed under Order 37 of the CPC (Summary Procedure) or as a regular suit. Limitation is 3 years from the date the money became due. The suit is filed in the Civil Court having jurisdiction over the defendant's residence or where the cause of action arose.",
     source: "Code of Civil Procedure 1908, Order 37; Limitation Act 1908",
     certainty: "confirmed",
@@ -221,18 +221,18 @@ const rules: LegalRule[] = [
 ];
 
 const qaBank: QAEntry[] = [
-  // ── CATEGORY 1: TITLE DISPUTES ────────────────────────────
+  //  CATEGORY 1: TITLE DISPUTES 
   {
     id: "prop-qa-title-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["title dispute", "land dispute", "property dispute", "land problem", "ownership dispute", "who owns", "my land taken", "ownership challenge", "land ownership"],
-    question: "Someone is challenging my ownership of land — what can I do?",
+    question: "Someone is challenging my ownership of land  what can I do?",
     irac: {
       issue: "Whether a landowner whose title is being challenged can obtain legal recognition of their ownership.",
       rule: "Under Section 42 of the Specific Relief Act 1877, any person entitled to any legal character or right to any property may seek a court declaration. The Transfer of Property Act 1882 and Registration Act 1908 govern valid transfer and proof of ownership.",
       application: "If your title documents (deed, khatian, mutation record) are in order and registered, you have strong grounds to defend ownership. A declaration suit filed in Civil Court establishes your title formally. If the challenge involves a forged deed, a cancellation suit must also be filed.",
-      conclusion: "Gather all title documents immediately: registered deed, CS/RS/BS khatian, mutation record, tax receipts, possession evidence. Do not vacate the land. File a declaration suit in Civil Court if challenged formally.\n\n📋 **Want the full document checklist for a title suit?** — Document List: ৳99\n📄 **Want step-by-step procedure + court filing guide?** — Procedure Guide: ৳999",
+      conclusion: "Gather all title documents immediately: registered deed, CS/RS/BS khatian, mutation record, tax receipts, possession evidence. Do not vacate the land. File a declaration suit in Civil Court if challenged formally.\n\n **Want the full document checklist for a title suit?**  Document List: 99\n **Want step-by-step procedure + court filing guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-title-001", "prop-registration-001"],
@@ -243,12 +243,12 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["lost deed", "deed lost", "lost title", "missing deed", "duplicate deed"],
-    question: "I lost my land deed — how do I get a duplicate?",
+    question: "I lost my land deed  how do I get a duplicate?",
     irac: {
       issue: "Whether a landowner who has lost their original registered deed can obtain a certified copy and establish their ownership.",
       rule: "Under the Registration Act 1908, certified copies of registered documents are available from the Sub-Registrar's office. A certified copy has the same evidentiary value as the original for court purposes.",
       application: "A lost registered deed can be replaced with a certified copy from the Sub-Registrar office where it was originally registered. You need the deed number, registration date, and volume/book reference. Additionally, your khatian and mutation records independently confirm ownership.",
-      conclusion: "Apply for a certified copy at the Sub-Registrar's office. You will need: deed number, registration year, your NID. Fee is approximately BDT 200-500 depending on pages.\n\n📋 **Want the exact application form and documents list?** — Document List: ৳99\n📄 **Want full procedure + Sub-Registrar office guide?** — Procedure Guide: ৳999",
+      conclusion: "Apply for a certified copy at the Sub-Registrar's office. You will need: deed number, registration year, your NID. Fee is approximately BDT 200-500 depending on pages.\n\n **Want the exact application form and documents list?**  Document List: 99\n **Want full procedure + Sub-Registrar office guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-registration-001"],
@@ -259,12 +259,12 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["forged deed", "fake deed", "fraudulent deed", "deed forgery", "fake registration"],
-    question: "Someone has forged a deed to claim my land — what can I do?",
+    question: "Someone has forged a deed to claim my land  what can I do?",
     irac: {
       issue: "Whether a landowner can challenge a forged or fraudulent deed used to claim their property.",
       rule: "Forgery of a deed is a criminal offence under Penal Code 1860 (Sections 463-477A). Civilly, a fraudulent deed can be cancelled under Section 31 of the Specific Relief Act 1877. Both criminal and civil remedies run simultaneously.",
       application: "You can file a criminal case (FIR) at the police station for forgery/fraud AND file a civil suit for cancellation of the fraudulent deed in Civil Court. An injunction can be obtained immediately to stop any further transfer of the land pending court decision.",
-      conclusion: "Act immediately — file both FIR and civil suit. Every day of delay risks further transfer of your land.\n\n⚠️ This requires professional legal action. WhatsApp NLC for referral.\n\n📋 **Document checklist for forgery case?** — Document List: ৳199\n📄 **Full procedure guide — FIR + civil suit + injunction?** — Procedure Guide: ৳1,999",
+      conclusion: "Act immediately  file both FIR and civil suit. Every day of delay risks further transfer of your land.\n\n This requires professional legal action. WhatsApp NLC for referral.\n\n **Document checklist for forgery case?**  Document List: 199\n **Full procedure guide  FIR + civil suit + injunction?**  Procedure Guide: 1,999",
     },
     escalate: true,
     escalateReason: "Forged deed cases require immediate court action. Contact NLC via WhatsApp for referral to a qualified advocate.",
@@ -276,12 +276,12 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["adverse possession", "long possession", "living 12 years", "occupying land", "possessing land for years"],
-    question: "I have been living on land for many years — can I claim ownership?",
+    question: "I have been living on land for many years  can I claim ownership?",
     irac: {
       issue: "Whether long-term continuous possession of land gives rise to a legal claim of ownership through adverse possession.",
       rule: "Under the Limitation Act 1908 (Article 142), a person in continuous, open, hostile, exclusive possession of land for 12 years acquires prescriptive title. The original owner's right to sue is extinguished. The possession must be without the owner's permission.",
       application: "If you have been in continuous, uninterrupted, open, and exclusive possession for 12+ years without the owner's permission and without their interference, you may have acquired title by adverse possession. Evidence needed: neighbours' testimony, utility bills, tax payment receipts, old photographs.",
-      conclusion: "Gather all evidence of continuous possession. File a declaratory suit in Civil Court establishing your title through adverse possession.\n\n📋 **Document and evidence checklist?** — Document List: ৳99\n📄 **Full procedure guide for adverse possession suit?** — Procedure Guide: ৳999",
+      conclusion: "Gather all evidence of continuous possession. File a declaratory suit in Civil Court establishing your title through adverse possession.\n\n **Document and evidence checklist?**  Document List: 99\n **Full procedure guide for adverse possession suit?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-adverse-001", "prop-limitation-001"],
@@ -297,25 +297,25 @@ const qaBank: QAEntry[] = [
       issue: "Whether an eligible person can apply to the government for settlement (allocation) of khas land.",
       rule: "Under the Land Reform Ordinance 1984 and DC office circulars, eligible landless families and individuals may apply for khas land settlement through the Upazila Land Office. Priority is given to landless farmers, widows, and displaced persons.",
       application: "Applications are submitted at the Upazila Land Office (AC Land). Eligibility: Bangladeshi citizen, owning less than 0.5 acres of land, not previously allotted khas land. The DC office verifies eligibility and issues a settlement khatian.",
-      conclusion: "Apply at your Upazila AC Land office with eligibility documents.\n\n📋 **Full eligibility criteria + document list?** — Document List: ৳99\n📄 **Step-by-step application procedure + office guide?** — Procedure Guide: ৳999",
+      conclusion: "Apply at your Upazila AC Land office with eligibility documents.\n\n **Full eligibility criteria + document list?**  Document List: 99\n **Step-by-step application procedure + office guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-khas-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 2: BOUNDARY & ENCROACHMENT ──────────────────
+  //  CATEGORY 2: BOUNDARY & ENCROACHMENT 
   {
     id: "prop-qa-boundary-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["boundary dispute", "neighbour encroachment", "encroachment", "fence dispute", "wall dispute", "neighbour took land"],
-    question: "My neighbour has encroached on my land — what can I do?",
+    question: "My neighbour has encroached on my land  what can I do?",
     irac: {
       issue: "Whether a landowner can recover land encroached upon by a neighbour.",
       rule: "Under the Code of Civil Procedure 1908, a landowner can file a suit for recovery of possession. An interim injunction can be obtained to stop further encroachment immediately. The Transfer of Property Act 1882 and survey records define legal boundaries.",
       application: "You can obtain an urgent interim injunction from Civil Court to stop the neighbour from further encroachment. Then file a suit for recovery of the encroached portion. Survey records (CS/RS/BS maps) from the land office establish the true boundary.",
-      conclusion: "First: obtain survey records from AC Land office to confirm your boundary. Second: send a written legal notice to neighbour. Third: apply for interim injunction if they continue.\n\n📋 **Document checklist for encroachment suit?** — Document List: ৳99\n📄 **Full procedure guide including injunction application?** — Procedure Guide: ৳1,499",
+      conclusion: "First: obtain survey records from AC Land office to confirm your boundary. Second: send a written legal notice to neighbour. Third: apply for interim injunction if they continue.\n\n **Document checklist for encroachment suit?**  Document List: 99\n **Full procedure guide including injunction application?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: ["prop-title-001", "prop-limitation-001"],
@@ -326,30 +326,30 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["river erosion", "erosion land", "river took land", "char land", "accretion"],
-    question: "My land was eroded by the river — do I still own it?",
+    question: "My land was eroded by the river  do I still own it?",
     irac: {
       issue: "Whether a landowner retains title to land lost due to river erosion, and whether they can reclaim land if it resurfaces.",
       rule: "Under the State Acquisition and Tenancy Act 1950, land lost to river erosion retains its legal status in records. If land resurfaces (accretes) within 30 years, the original owner can reclaim it. Newly formed char land belongs to the government until settled.",
-      application: "If your land was eroded within 30 years, maintain your khatian record and apply to the AC Land office to reclaim when it resurfaces. Do not abandon your khatian record — it is your legal proof of prior ownership.",
-      conclusion: "Keep your khatian and prior records. Apply to AC Land office if land resurfaces. Newly formed char requires fresh settlement application.\n\n📋 **Document list for erosion/char land claim?** — Document List: ৳199\n📄 **Full procedure guide for char land reclaim?** — Procedure Guide: ৳1,999",
+      application: "If your land was eroded within 30 years, maintain your khatian record and apply to the AC Land office to reclaim when it resurfaces. Do not abandon your khatian record  it is your legal proof of prior ownership.",
+      conclusion: "Keep your khatian and prior records. Apply to AC Land office if land resurfaces. Newly formed char requires fresh settlement application.\n\n **Document list for erosion/char land claim?**  Document List: 199\n **Full procedure guide for char land reclaim?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-khas-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 3: INHERITANCE & SUCCESSION ─────────────────
+  //  CATEGORY 3: INHERITANCE & SUCCESSION 
   {
     id: "prop-qa-inherit-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["inheritance", "inherit", "father died", "mother died", "property after death", "who gets property", "succession"],
-    question: "My father died — how is his property divided among heirs?",
+    question: "My father died  how is his property divided among heirs?",
     irac: {
       issue: "How immovable and movable property of a deceased Muslim is distributed among surviving heirs under Bangladesh law.",
       rule: "Under Muslim personal law (Hanafi school), property distributes according to fixed Quranic shares. Son: twice daughter's share. Wife: 1/8 with children, 1/4 without. Daughter: half of son's share. Parents: 1/6 each if deceased has children.",
       application: "First step is to determine all surviving heirs and their relationship to the deceased. Then calculate shares under Hanafi rules. All heirs must agree on partition or file a partition suit. A Succession Certificate from court may be needed for movable assets like bank accounts.",
-      conclusion: "Prepare the heir list with all family members. Calculate shares. For movable assets apply for Succession Certificate from court. For land — file partition suit or execute family settlement deed.\n\n📋 **Heir list + share calculation worksheet?** — Document List: ৳199\n📄 **Full inheritance procedure + Succession Certificate guide?** — Procedure Guide: ৳1,999\n📄 **Complete inheritance document pack?** — Full Pack: ৳4,999",
+      conclusion: "Prepare the heir list with all family members. Calculate shares. For movable assets apply for Succession Certificate from court. For land  file partition suit or execute family settlement deed.\n\n **Heir list + share calculation worksheet?**  Document List: 199\n **Full inheritance procedure + Succession Certificate guide?**  Procedure Guide: 1,999\n **Complete inheritance document pack?**  Full Pack: 4,999",
     },
     escalate: false,
     relatedRules: ["prop-inheritance-001"],
@@ -360,12 +360,12 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["probate", "will", "wasiyat", "bequest", "testamentary"],
-    question: "My father left a will — how do I execute it legally?",
+    question: "My father left a will  how do I execute it legally?",
     irac: {
       issue: "How a will (wasiyat) left by a deceased Muslim is legally executed in Bangladesh.",
-      rule: "Under Muslim personal law, a will is valid only up to 1/3 of the estate — the remaining 2/3 distributes by Quranic shares. A will cannot benefit an heir who already inherits. Probate of a will is obtained from the District Judge's court under the Succession Act 1925.",
+      rule: "Under Muslim personal law, a will is valid only up to 1/3 of the estate  the remaining 2/3 distributes by Quranic shares. A will cannot benefit an heir who already inherits. Probate of a will is obtained from the District Judge's court under the Succession Act 1925.",
       application: "File a probate petition in District Judge's court with the original will, death certificate, and list of heirs. The court issues Letters of Administration or Probate after hearing all parties. Only then can assets be transferred per the will.",
-      conclusion: "Do not distribute assets without court probate — it can be challenged later.\n\n📋 **Probate petition documents list?** — Document List: ৳199\n📄 **Full probate procedure guide?** — Procedure Guide: ৳1,999",
+      conclusion: "Do not distribute assets without court probate  it can be challenged later.\n\n **Probate petition documents list?**  Document List: 199\n **Full probate procedure guide?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-inheritance-001"],
@@ -380,45 +380,45 @@ const qaBank: QAEntry[] = [
     irac: {
       issue: "The legal process for partitioning inherited land among multiple heirs.",
       rule: "Under the Code of Civil Procedure 1908 (Order 20 Rule 18), co-heirs can file a partition suit in Civil Court. If all heirs agree, a registered family settlement deed (raji naama) is faster and cheaper than a court suit.",
-      application: "Option 1 — Mutual agreement: All heirs sign a registered partition deed at Sub-Registrar office. Each heir then mutates their share separately. Option 2 — Court partition: File partition suit in Civil Court. Court appoints a Commissioner who physically measures and divides the land.",
-      conclusion: "Mutual agreement with registered deed is faster (1-3 months, lower cost). Court partition takes 2-5 years but is binding on all parties.\n\n📋 **Partition deed + mutation document list?** — Document List: ৳199\n📄 **Full partition procedure (both options)?** — Procedure Guide: ৳1,999\n📄 **Family settlement deed template + filing guide?** — Full Pack: ৳4,999",
+      application: "Option 1  Mutual agreement: All heirs sign a registered partition deed at Sub-Registrar office. Each heir then mutates their share separately. Option 2  Court partition: File partition suit in Civil Court. Court appoints a Commissioner who physically measures and divides the land.",
+      conclusion: "Mutual agreement with registered deed is faster (1-3 months, lower cost). Court partition takes 2-5 years but is binding on all parties.\n\n **Partition deed + mutation document list?**  Document List: 199\n **Full partition procedure (both options)?**  Procedure Guide: 1,999\n **Family settlement deed template + filing guide?**  Full Pack: 4,999",
     },
     escalate: false,
     relatedRules: ["prop-inheritance-001", "prop-mutation-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 4: JOINT PROPERTY & PRE-EMPTION ─────────────
+  //  CATEGORY 4: JOINT PROPERTY & PRE-EMPTION 
   {
     id: "prop-qa-preemption-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["preemption", "shafi", "co-sharer sold", "neighbour sold land", "right to buy first", "pre-emption"],
-    question: "My co-sharer sold land to an outsider without telling me — can I claim it?",
+    question: "My co-sharer sold land to an outsider without telling me  can I claim it?",
     irac: {
       issue: "Whether a co-sharer has the right to pre-empt a sale of jointly owned land to an outsider.",
-      rule: "Under the State Acquisition and Tenancy Act 1950 (Sections 96-100), a co-sharer in land has the right of pre-emption (shafi) — the right to purchase the sold share at the same price paid by the buyer. The pre-emption suit must be filed within 4 months of the sale deed registration.",
-      application: "You must file the pre-emption suit within 4 months of the registration date — not from when you found out. The court requires you to deposit the purchase price. If successful, the sale to the outsider is set aside and you acquire the share.",
-      conclusion: "⚠️ The 4-month deadline is absolute. Check the registration date immediately.\n\n📋 **Pre-emption suit document list?** — Document List: ৳199\n📄 **Full pre-emption procedure + deposit guide?** — Procedure Guide: ৳1,999",
+      rule: "Under the State Acquisition and Tenancy Act 1950 (Sections 96-100), a co-sharer in land has the right of pre-emption (shafi)  the right to purchase the sold share at the same price paid by the buyer. The pre-emption suit must be filed within 4 months of the sale deed registration.",
+      application: "You must file the pre-emption suit within 4 months of the registration date  not from when you found out. The court requires you to deposit the purchase price. If successful, the sale to the outsider is set aside and you acquire the share.",
+      conclusion: " The 4-month deadline is absolute. Check the registration date immediately.\n\n **Pre-emption suit document list?**  Document List: 199\n **Full pre-emption procedure + deposit guide?**  Procedure Guide: 1,999",
     },
     escalate: true,
-    escalateReason: "4-month limitation is strict — file immediately. WhatsApp NLC for urgent referral.",
+    escalateReason: "4-month limitation is strict  file immediately. WhatsApp NLC for urgent referral.",
     relatedRules: ["prop-preemption-001", "prop-limitation-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 5: LAND SALE & MONEY RECOVERY ───────────────
+  //  CATEGORY 5: LAND SALE & MONEY RECOVERY 
   {
     id: "prop-qa-sale-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["baynama", "advance money", "land advance", "sale agreement", "buyer not paying", "seller not giving land"],
-    question: "I paid advance money for land but the seller is not giving it — what can I do?",
+    question: "I paid advance money for land but the seller is not giving it  what can I do?",
     irac: {
       issue: "Whether a buyer who has paid an advance (baynama) for land can enforce the sale or recover their money.",
       rule: "A baynama (agreement to sell) is a binding contract under the Contract Act 1872. Under Section 12 of the Specific Relief Act 1877, a buyer can file a suit for specific performance to compel the seller to complete the sale. Alternatively, the buyer can claim refund with damages.",
-      application: "You can file a suit for specific performance in Civil Court to force the seller to execute the final deed. Or you can claim refund of advance plus damages for breach. A baynama should be registered for stronger legal standing — an unregistered baynama has weaker evidentiary value.",
-      conclusion: "File suit for specific performance within 3 years of breach (Limitation Act). Keep all payment receipts and the original baynama.\n\n📋 **Document list for specific performance suit?** — Document List: ৳199\n📄 **Full procedure guide for baynama enforcement?** — Procedure Guide: ৳1,999",
+      application: "You can file a suit for specific performance in Civil Court to force the seller to execute the final deed. Or you can claim refund of advance plus damages for breach. A baynama should be registered for stronger legal standing  an unregistered baynama has weaker evidentiary value.",
+      conclusion: "File suit for specific performance within 3 years of breach (Limitation Act). Keep all payment receipts and the original baynama.\n\n **Document list for specific performance suit?**  Document List: 199\n **Full procedure guide for baynama enforcement?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-registration-001", "prop-limitation-001"],
@@ -429,12 +429,12 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["power of attorney fraud", "POA fraud", "attorney fraud", "power of attorney land"],
-    question: "Someone used a fake power of attorney to sell my land — what can I do?",
+    question: "Someone used a fake power of attorney to sell my land  what can I do?",
     irac: {
       issue: "Whether a landowner can recover land sold through a fraudulent or forged power of attorney.",
       rule: "A power of attorney must be authenticated. Fraudulent use of a POA to transfer property is a criminal offence (Penal Code 1860, Sections 463-468). The transfer can be set aside under Section 31 of the Specific Relief Act 1877 as being obtained by fraud.",
       application: "File FIR for forgery AND file civil suit to cancel the fraudulent transfer. Apply for injunction immediately to stop further dealings with the land. Also report to the Sub-Registrar office to flag the registration.",
-      conclusion: "⚠️ Act immediately — every day risks further transfer.\n\nWhatsApp NLC for urgent referral to advocate.\n\n📄 **Full procedure guide — FIR + cancellation suit?** — Procedure Guide: ৳2,999",
+      conclusion: " Act immediately  every day risks further transfer.\n\nWhatsApp NLC for urgent referral to advocate.\n\n **Full procedure guide  FIR + cancellation suit?**  Procedure Guide: 2,999",
     },
     escalate: true,
     escalateReason: "POA fraud requires immediate criminal and civil action. Contact NLC via WhatsApp urgently.",
@@ -442,36 +442,36 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 6: LEASE & TENANCY ──────────────────────────
+  //  CATEGORY 6: LEASE & TENANCY 
   {
     id: "prop-qa-eviction-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["evict tenant", "eviction", "tenant not leaving", "tenant overstaying", "rent not paid"],
-    question: "My tenant is not paying rent and not leaving — how do I evict them?",
+    question: "My tenant is not paying rent and not leaving  how do I evict them?",
     irac: {
       issue: "Whether a landlord can evict a tenant who fails to pay rent or refuses to vacate.",
-      rule: "Under the Premises Rent Control Act 1991, a landlord may file an eviction suit in the Rent Controller Court for non-payment of rent (2 months default) or expiry of tenancy. A court order is required — self-help eviction (cutting utilities, locking out) is illegal.",
+      rule: "Under the Premises Rent Control Act 1991, a landlord may file an eviction suit in the Rent Controller Court for non-payment of rent (2 months default) or expiry of tenancy. A court order is required  self-help eviction (cutting utilities, locking out) is illegal.",
       application: "Send written notice to tenant demanding rent payment and/or vacation within 30 days. If ignored, file eviction petition in Rent Controller Court (for residential/commercial premises). For premises not covered by Rent Control Act, file civil suit for eviction.",
-      conclusion: "Do NOT cut electricity, water, or forcibly remove tenant — this exposes you to criminal liability.\n\n📋 **Eviction notice template + document list?** — Document List: ৳199\n📄 **Full eviction procedure guide?** — Procedure Guide: ৳1,499",
+      conclusion: "Do NOT cut electricity, water, or forcibly remove tenant  this exposes you to criminal liability.\n\n **Eviction notice template + document list?**  Document List: 199\n **Full eviction procedure guide?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: [],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 7: MORTGAGE & BANK LOAN ─────────────────────
+  //  CATEGORY 7: MORTGAGE & BANK LOAN 
   {
     id: "prop-qa-mortgage-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["loan default", "bank default", "bank taking land", "foreclosure", "artha rin", "mortgage default"],
-    question: "I defaulted on a bank loan secured by my land — what will happen?",
+    question: "I defaulted on a bank loan secured by my land  what will happen?",
     irac: {
       issue: "What legal process a bank follows when a borrower defaults on a loan secured by immovable property in Bangladesh.",
       rule: "Under the Artha Rin Adalat Ain 2003, banks file recovery suits in the Artha Rin Adalat (Money Loan Court). The court can order attachment of the mortgaged property and auction. The borrower can raise defences and also apply for restructuring.",
-      application: "Once the bank files suit in Artha Rin Adalat, you will receive a summons. You have the right to file a written statement of defence. You can also approach the bank for loan restructuring — banks often prefer restructuring over lengthy litigation. If the court orders auction, you can challenge the valuation.",
-      conclusion: "Do not ignore the summons — a one-sided decree will be passed against you.\n\nContact the bank's loan recovery department for restructuring options before court proceedings begin.\n\n📋 **Document list for Artha Rin Adalat defence?** — Document List: ৳299\n📄 **Full procedure guide — defence + restructuring options?** — Procedure Guide: ৳2,999\n📄 **Complete Artha Rin Adalat defence pack?** — Full Pack: ৳9,999",
+      application: "Once the bank files suit in Artha Rin Adalat, you will receive a summons. You have the right to file a written statement of defence. You can also approach the bank for loan restructuring  banks often prefer restructuring over lengthy litigation. If the court orders auction, you can challenge the valuation.",
+      conclusion: "Do not ignore the summons  a one-sided decree will be passed against you.\n\nContact the bank's loan recovery department for restructuring options before court proceedings begin.\n\n **Document list for Artha Rin Adalat defence?**  Document List: 299\n **Full procedure guide  defence + restructuring options?**  Procedure Guide: 2,999\n **Complete Artha Rin Adalat defence pack?**  Full Pack: 9,999",
     },
     escalate: true,
     escalateReason: "Artha Rin cases move fast. WhatsApp NLC for referral to specialist advocate immediately.",
@@ -483,37 +483,37 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["mortgage redemption", "redeem mortgage", "paid loan back", "clear mortgage", "free property from mortgage"],
-    question: "I paid back my loan — how do I remove the mortgage from my land?",
+    question: "I paid back my loan  how do I remove the mortgage from my land?",
     irac: {
       issue: "How a borrower who has repaid a loan obtains release of the mortgage over their property.",
-      rule: "Under the Transfer of Property Act 1882 (Section 60), upon repayment of the mortgage debt, the mortgagor has the right to redemption — the mortgagee must re-transfer the property. The bank must issue a No Objection Certificate (NOC) and execute a deed of reconveyance.",
+      rule: "Under the Transfer of Property Act 1882 (Section 60), upon repayment of the mortgage debt, the mortgagor has the right to redemption  the mortgagee must re-transfer the property. The bank must issue a No Objection Certificate (NOC) and execute a deed of reconveyance.",
       application: "After full loan repayment, obtain: (1) No Objection Certificate from bank, (2) Reconveyance deed from bank, (3) Register the reconveyance deed at Sub-Registrar's office, (4) Apply for mutation to update khatian. Without registered reconveyance, the mortgage encumbrance remains on record.",
-      conclusion: "Get the reconveyance deed registered — an NOC alone is not sufficient to clear your title records.\n\n📋 **Mortgage release document list?** — Document List: ৳199\n📄 **Full mortgage redemption procedure?** — Procedure Guide: ৳1,499",
+      conclusion: "Get the reconveyance deed registered  an NOC alone is not sufficient to clear your title records.\n\n **Mortgage release document list?**  Document List: 199\n **Full mortgage redemption procedure?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: ["prop-mortgage-001", "prop-registration-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 8: GOVERNMENT ACQUISITION ───────────────────
+  //  CATEGORY 8: GOVERNMENT ACQUISITION 
   {
     id: "prop-qa-acquisition-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["government acquired land", "acquisition", "govt took land", "road project land", "compensation land"],
-    question: "The government acquired my land for a road/project — am I getting fair compensation?",
+    question: "The government acquired my land for a road/project  am I getting fair compensation?",
     irac: {
       issue: "Whether a landowner whose property is acquired for a government project receives adequate compensation and what remedies exist if they do not.",
       rule: "Under the Acquisition and Requisition of Immovable Property Act 2017, the government must pay compensation at market value plus 200% solatium (additional compensation). The affected owner can file an objection before the Joint District Judge and appeal to the High Court.",
       application: "When an acquisition notice is served, the Joint District Judge assesses compensation. If you believe the offer is below market value, file a written objection citing comparable land prices in the area. You can also file an appeal against the compensation award.",
-      conclusion: "Do not accept compensation cheque without verifying it matches market value — acceptance may waive your right to appeal.\n\n📋 **Objection to compensation — document list?** — Document List: ৳299\n📄 **Full objection + appeal procedure guide?** — Procedure Guide: ৳2,999",
+      conclusion: "Do not accept compensation cheque without verifying it matches market value  acceptance may waive your right to appeal.\n\n **Objection to compensation  document list?**  Document List: 299\n **Full objection + appeal procedure guide?**  Procedure Guide: 2,999",
     },
     escalate: false,
     relatedRules: [],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 9: MUTATION & REGISTRATION ──────────────────
+  //  CATEGORY 9: MUTATION & REGISTRATION 
   {
     id: "prop-qa-mutation-001",
     area: "property",
@@ -524,7 +524,7 @@ const qaBank: QAEntry[] = [
       issue: "The legal process for updating land records (mutation/namajaari) in the buyer's name after a land purchase.",
       rule: "Under the State Acquisition and Tenancy Act 1950, mutation is mandatory after any transfer of ownership. Without mutation, the buyer cannot legally pay land tax or possess the land in their name in government records.",
       application: "After registering the deed at Sub-Registrar, apply for mutation at the Upazila Land Office (AC Land). Submit application with required documents. The AC Land office inspects, hears objections from neighbours (public notice), and if satisfied issues mutation khatian.",
-      conclusion: "Mutation should be done within 60 days of registration to avoid complications.\n\n📋 **Mutation application document list?** — Document List: ৳99\n📄 **Full mutation procedure guide (e-Mutation + manual)?** — Procedure Guide: ৳999\n📄 **Complete mutation document pack?** — Full Pack: ৳2,999",
+      conclusion: "Mutation should be done within 60 days of registration to avoid complications.\n\n **Mutation application document list?**  Document List: 99\n **Full mutation procedure guide (e-Mutation + manual)?**  Procedure Guide: 999\n **Complete mutation document pack?**  Full Pack: 2,999",
     },
     escalate: false,
     relatedRules: ["prop-mutation-001", "prop-registration-001"],
@@ -535,48 +535,48 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["khatian mismatch", "record mismatch", "wrong khatian", "bs rs cs mismatch", "record correction"],
-    question: "My BS/RS/CS khatian records don't match — how do I correct them?",
+    question: "My BS/RS/CS khatian records don't match  how do I correct them?",
     irac: {
       issue: "How a landowner corrects discrepancies between different survey records (CS, RS, BS khatian).",
       rule: "Survey record corrections are handled through the Land Survey Tribunal Act 2023. Errors in khatian records can be corrected through the AC Land office for minor clerical errors, or through the Land Survey Tribunal for substantive disputes.",
       application: "For minor errors (spelling, area figure): apply to AC Land office with supporting documents. For substantive mismatches between CS/RS/BS: file a case before the Land Survey Tribunal with all record copies and survey maps.",
-      conclusion: "Identify whether the mismatch is clerical (AC Land can fix) or substantive (needs Tribunal).\n\n📋 **Record correction document list?** — Document List: ৳199\n📄 **Full correction procedure guide?** — Procedure Guide: ৳1,499",
+      conclusion: "Identify whether the mismatch is clerical (AC Land can fix) or substantive (needs Tribunal).\n\n **Record correction document list?**  Document List: 199\n **Full correction procedure guide?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: ["prop-mutation-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 10: CHEQUE & MONEY DISPUTES ─────────────────
+  //  CATEGORY 10: CHEQUE & MONEY DISPUTES 
   {
     id: "prop-qa-cheque-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["cheque bounce", "cheque dishonour", "cheque returned", "bounced cheque", "bad cheque"],
-    question: "Someone gave me a cheque that bounced — what can I do?",
+    question: "Someone gave me a cheque that bounced  what can I do?",
     irac: {
       issue: "What legal remedy a payee has when a cheque is dishonoured for insufficient funds.",
       rule: "Under the Negotiable Instruments Act 1881 (Section 138), cheque dishonour is a criminal offence. The payee must: (1) receive dishonour notice from bank, (2) send legal notice to drawer within 30 days of dishonour, (3) file criminal complaint within 30 days if payment not received within 30 days of notice.",
-      application: "Three strict deadlines apply — missing any one bars your legal remedy. Collect the dishonour memo from your bank immediately. Send a legal notice demanding payment within 30 days. If unpaid, file criminal complaint at Magistrate Court within the next 30 days.",
-      conclusion: "⚠️ Three 30-day deadlines — do not miss any one of them.\n\n📋 **Cheque bounce case document list?** — Document List: ৳99\n📄 **Legal notice template + full procedure guide?** — Procedure Guide: ৳999\n📄 **Complete cheque bounce case pack?** — Full Pack: ৳2,999",
+      application: "Three strict deadlines apply  missing any one bars your legal remedy. Collect the dishonour memo from your bank immediately. Send a legal notice demanding payment within 30 days. If unpaid, file criminal complaint at Magistrate Court within the next 30 days.",
+      conclusion: " Three 30-day deadlines  do not miss any one of them.\n\n **Cheque bounce case document list?**  Document List: 99\n **Legal notice template + full procedure guide?**  Procedure Guide: 999\n **Complete cheque bounce case pack?**  Full Pack: 2,999",
     },
     escalate: false,
     relatedRules: ["prop-cheque-001"],
     lastVerified: "2025-03-09",
   },
 
-  // ── CATEGORY 11: APARTMENT/FLAT ───────────────────────────
+  //  CATEGORY 11: APARTMENT/FLAT 
   {
     id: "prop-qa-flat-001",
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["flat possession", "builder not giving flat", "apartment not handed over", "developer default", "REHAB developer"],
-    question: "I paid for a flat but the builder is not handing it over — what can I do?",
+    question: "I paid for a flat but the builder is not handing it over  what can I do?",
     irac: {
       issue: "Whether a flat buyer can compel a developer to hand over possession of a purchased apartment.",
       rule: "Under the Real Estate Development and Management Act 2010, developers must fulfil contractual obligations and hand over possession as agreed. A buyer can file for specific performance under the Specific Relief Act 1877. Additionally, the Real Estate Regulatory Authority (RERA) handles complaints against registered developers.",
       application: "First, review your sale agreement for the agreed handover date. If overdue, send a formal legal notice. Then file complaint with REHAB (Real Estate and Housing Association of Bangladesh) and/or file a suit for specific performance in Civil Court.",
-      conclusion: "Keep all payment receipts, sale agreement, and correspondence with the developer.\n\n📋 **Flat possession dispute document list?** — Document List: ৳299\n📄 **Full procedure guide — complaint + specific performance?** — Procedure Guide: ৳2,999\n📄 **Complete flat dispute pack (highest value)?** — Full Pack: ৳9,999",
+      conclusion: "Keep all payment receipts, sale agreement, and correspondence with the developer.\n\n **Flat possession dispute document list?**  Document List: 299\n **Full procedure guide  complaint + specific performance?**  Procedure Guide: 2,999\n **Complete flat dispute pack (highest value)?**  Full Pack: 9,999",
     },
     escalate: true,
     escalateReason: "High-value dispute. WhatsApp NLC for referral to property specialist advocate.",
@@ -588,12 +588,12 @@ const qaBank: QAEntry[] = [
     area: "property",
     jurisdiction: "BD",
     triggerKeywords: ["RAJUK flat", "RAJUK plot", "RAJUK allotment", "RAJUK dispute"],
-    question: "I have a dispute over my RAJUK flat/plot allotment — what can I do?",
+    question: "I have a dispute over my RAJUK flat/plot allotment  what can I do?",
     irac: {
       issue: "How a person disputes a RAJUK flat or plot allotment decision.",
       rule: "RAJUK (Rajdhani Unnayan Kartripakkha) allotments are governed by specific RAJUK schemes and rules. Disputes over allotments can be challenged through RAJUK's internal appeal mechanism and then through the High Court Division via writ petition.",
       application: "First file a written complaint/appeal to the RAJUK Chairman. If rejected, file a writ petition in the High Court Division challenging the allotment decision as illegal or procedurally unfair.",
-      conclusion: "Keep all original allotment documents, payment receipts, and correspondence with RAJUK.\n\n📋 **RAJUK dispute document list?** — Document List: ৳299\n📄 **Full RAJUK appeal procedure?** — Procedure Guide: ৳3,999\n📄 **Complete RAJUK dispute pack?** — Full Pack: ৳9,999–19,999",
+      conclusion: "Keep all original allotment documents, payment receipts, and correspondence with RAJUK.\n\n **RAJUK dispute document list?**  Document List: 299\n **Full RAJUK appeal procedure?**  Procedure Guide: 3,999\n **Complete RAJUK dispute pack?**  Full Pack: 9,99919,999",
     },
     escalate: true,
     escalateReason: "RAJUK disputes often require writ petition. WhatsApp NLC for referral.",
@@ -601,44 +601,44 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-03-09",
   },
 
-  // ════════ ENRICHED SECTION: QA 021-050 ════════
-  // ── CATEGORY 12: GIFT DEED (HIBA) ────────────────────────
+  //  ENRICHED SECTION: QA 021-050 
+  //  CATEGORY 12: GIFT DEED (HIBA) 
   {
     id: "prop-qa-gift-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["gift deed", "hiba", "দানপত্র", "gift property", "transfer without money", "parent gifting land"],
+    triggerKeywords: ["gift deed", "hiba", "", "gift property", "transfer without money", "parent gifting land"],
     question: "How do I legally gift my land to my child?",
     irac: {
       issue: "The legal procedure for transferring immovable property as a gift under Muslim law.",
       rule: "Under Muslim Law (Hiba), a gift requires: 1) Declaration by donor, 2) Acceptance by donee, 3) Delivery of possession. Under the Registration Act 1908, a gift of immovable property MUST be registered. It must also be properly stamped. Once accepted and possession delivered, it is irrevocable.",
       application: "Draft a gift deed on non-judicial stamp paper. Both donor and donee must sign in the presence of witnesses. Register it at the Sub-Registrar's office. After registration, hand over physical possession (or symbolic possession via keys/documents). Finally, mutate the property in the donee's name.",
-      conclusion: "A gift deed is the best way to transfer property to children during your lifetime without sale complications.\n\n📋 **Gift deed document list + stamp calculation?** — Document List: ৳99\n📄 **Full gift deed drafting + registration guide?** — Procedure Guide: ৳1,499",
+      conclusion: "A gift deed is the best way to transfer property to children during your lifetime without sale complications.\n\n **Gift deed document list + stamp calculation?**  Document List: 99\n **Full gift deed drafting + registration guide?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: ["prop-gift-001", "prop-registration-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 13: EASEMENT & RIGHT OF WAY ─────────────────
+  //  CATEGORY 13: EASEMENT & RIGHT OF WAY 
   {
     id: "prop-qa-easement-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["road blocked", "no access to land", "right of way", "neighbour blocked road", "driveway dispute", "গলি বন্ধ"],
-    question: "My neighbour blocked the only road to my land — what can I do?",
+    triggerKeywords: ["road blocked", "no access to land", "right of way", "neighbour blocked road", "driveway dispute", " "],
+    question: "My neighbour blocked the only road to my land  what can I do?",
     irac: {
       issue: "Whether a landowner can legally enforce a right of way over adjacent land when access is blocked.",
       rule: "Under the Easements Act 1882, if a landowner has been using a path over another's land continuously for 20 years (prescriptive easement), they acquire a legal right of way. Alternatively, if the land has absolutely no other access (right of necessity), the neighbour must provide access.",
       application: "Gather evidence that you or previous owners have used this road for 20+ years (tax receipts, old photos, witness testimony). Send a legal notice to the neighbour. If they refuse, file an easement suit in Civil Court seeking a permanent injunction to keep the road open.",
-      conclusion: "Do not take the law into your own hands. Prove 20 years of continuous use, or prove there is no other alternative access.\n\n📋 **Easement suit evidence checklist?** — Document List: ৳199\n📄 **Full right of way suit procedure?** — Procedure Guide: ৳1,999",
+      conclusion: "Do not take the law into your own hands. Prove 20 years of continuous use, or prove there is no other alternative access.\n\n **Easement suit evidence checklist?**  Document List: 199\n **Full right of way suit procedure?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-easement-001", "prop-injunction-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 14: LAND RECORDS & SURVEY ──────────────────
+  //  CATEGORY 14: LAND RECORDS & SURVEY 
   {
     id: "prop-qa-record-001",
     area: "property",
@@ -649,7 +649,7 @@ const qaBank: QAEntry[] = [
       issue: "Understanding the hierarchy and legal weight of different land survey records in Bangladesh.",
       rule: "CS (Cadastral Survey) is the oldest. RS (Revisional Survey) was done in phases from the 1960s-1980s and is the primary document used for mutations. BS (Bangladesh Survey) is the newest digital survey. Where BS khatian is available and final, it supersedes RS and CS. However, RS remains the operational standard in most areas.",
       application: "When buying land, check the RS khatian first as it dictates current mutation. If a BS khatian exists for that area, cross-check it. If there is a massive discrepancy (e.g., different area size), you may need to resolve it via the Land Survey Tribunal before purchasing.",
-      conclusion: "RS is your primary working document. BS is the modern legal superior where available. CS is historical. Always cross-check RS and BS if possible before buying.\n\n📋 **Land verification checklist (all khatians)?** — Document List: ৳199",
+      conclusion: "RS is your primary working document. BS is the modern legal superior where available. CS is historical. Always cross-check RS and BS if possible before buying.\n\n **Land verification checklist (all khatians)?**  Document List: 199",
     },
     escalate: false,
     relatedRules: ["prop-khatian-001"],
@@ -659,31 +659,31 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-record-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["land porcha", "get khatian copy", "land record online", "ভূমি রেকর্ড", "survey record copy"],
+    triggerKeywords: ["land porcha", "get khatian copy", "land record online", " ", "survey record copy"],
     question: "How do I get a copy of my land record (Porcha)?",
     irac: {
       issue: "The process for obtaining a certified copy of land records (Porcha/Khatian) from the government.",
       rule: "Land records can now be obtained online via the 'Porcha' web portal (porcha.gov.bd) or physically from the Upazila Land Office (AC Land). The online portal provides CS, RS, and BS records. For legal use in court, a certified physical copy with the seal of the AC Land is often required.",
       application: "Online: Go to porcha.gov.bd, register, search by Dag/Khatian number, pay via bKash, and download. Physical: Apply to the AC Land office with a small fee. For court submissions, get the physical certified copy from the AC Land.",
-      conclusion: "Use porcha.gov.bd for quick verification. Get a sealed physical copy from the AC Land office for court or deed registration purposes.\n\n📋 **Porcha application guide?** — Document List: ৳49",
+      conclusion: "Use porcha.gov.bd for quick verification. Get a sealed physical copy from the AC Land office for court or deed registration purposes.\n\n **Porcha application guide?**  Document List: 49",
     },
     escalate: false,
     relatedRules: ["prop-khatian-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 15: STAMP DUTY & REGISTRATION ──────────────
+  //  CATEGORY 15: STAMP DUTY & REGISTRATION 
   {
     id: "prop-qa-stamp-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["stamp duty cost", "how much stamp", "registration cost", "deed stamp price", "স্ট্যাম্প খরচ"],
+    triggerKeywords: ["stamp duty cost", "how much stamp", "registration cost", "deed stamp price", " "],
     question: "How much stamp duty do I need to pay for a land sale deed?",
     irac: {
       issue: "Calculating the government fees required to legally register a property transfer deed.",
       rule: "Under the Stamp Act 1899 and local government regulations, stamp duty varies by location: City Corporation (e.g., Dhaka, Chattogram) is typically around 3-4% of the land's current market value. Municipality/Pourashava areas are 2-3%. Rural areas are 1-2%. Additionally, a registration fee of around 1-2% and local government/vat taxes apply.",
       application: "If you buy land worth BDT 50 lakh in Dhaka City Corporation: 3% stamp duty = BDT 1.5 lakh. 1.5% registration fee = BDT 75,000. Plus local taxes. Total cost can be 5-7% of the land value.",
-      conclusion: "Always calculate 5-7% of the land value as your total registration budget. Underpaying stamp duty leads to penalties later. Buy non-judicial stamp papers from the authorized treasury or use e-stamping where available.\n\n📄 **Stamp duty calculator + full registration guide?** — Procedure Guide: ৳999",
+      conclusion: "Always calculate 5-7% of the land value as your total registration budget. Underpaying stamp duty leads to penalties later. Buy non-judicial stamp papers from the authorized treasury or use e-stamping where available.\n\n **Stamp duty calculator + full registration guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-stamp-001", "prop-registration-001"],
@@ -693,13 +693,13 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-stamp-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["unregistered deed", "deed not registered", "can I use unregistered deed", "অনিবন্ধিত দলিল"],
+    triggerKeywords: ["unregistered deed", "deed not registered", "can I use unregistered deed", " "],
     question: "What happens if my land sale deed was not registered?",
     irac: {
       issue: "The legal consequences of transferring immovable property without registering the deed.",
       rule: "Under Section 49 of the Registration Act 1908, an unregistered document transferring immovable property cannot be used as evidence in court to prove the transfer. It is legally as if the transfer never happened, even if you have the physical paper and paid the money.",
       application: "If you bought land with an unregistered deed and the seller now claims the land is still his, you cannot use the unregistered deed in court to prove you are the owner. You would have to rely on other evidence (payment receipts, possession), which is very difficult.",
-      conclusion: "An unregistered sale deed is INVALID for legal purposes. You must get it registered at the Sub-Registrar's office. If the seller refuses to show up for registration, your only option is to file a suit for specific performance in Civil Court to force them to register it.\n\n📄 **Specific performance suit guide for unregistered deeds?** — Procedure Guide: ৳1,999",
+      conclusion: "An unregistered sale deed is INVALID for legal purposes. You must get it registered at the Sub-Registrar's office. If the seller refuses to show up for registration, your only option is to file a suit for specific performance in Civil Court to force them to register it.\n\n **Specific performance suit guide for unregistered deeds?**  Procedure Guide: 1,999",
     },
     escalate: true,
     escalateReason: "Unregistered deed disputes are complex. WhatsApp NLC for referral.",
@@ -707,18 +707,18 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 16: POWER OF ATTORNEY ──────────────────────
+  //  CATEGORY 16: POWER OF ATTORNEY 
   {
     id: "prop-qa-poa-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["make power of attorney", "POA process", "মাননীয় প্রতিনিধি", "how to make GPA", "power of attorney stamp"],
+    triggerKeywords: ["make power of attorney", "POA process", " ", "how to make GPA", "power of attorney stamp"],
     question: "How do I make a valid Power of Attorney (POA) for land?",
     irac: {
       issue: "The legal requirements for creating a valid Power of Attorney that can be used for property transactions.",
       rule: "Under the Powers of Attorney Act 1882 and Registration Act 1908, if a POA authorizes the sale or transfer of immovable property, it MUST be registered and properly stamped. A Special Power of Attorney (SPA) is for a specific task; a General Power of Attorney (GPA) gives broad powers. The principal must sign it in person.",
       application: "Draft the POA on non-judicial stamp paper detailing the exact powers given. The principal signs in front of two witnesses. If it involves land sale, take it to the Sub-Registrar for registration. The attorney's signature must also be verified.",
-      conclusion: "For land matters, ALWAYS register the POA. An unregistered POA for property sale is legally useless.\n\n📋 **POA drafting checklist?** — Document List: ৳99\n📄 **Full POA drafting + registration guide?** — Procedure Guide: ৳1,499",
+      conclusion: "For land matters, ALWAYS register the POA. An unregistered POA for property sale is legally useless.\n\n **POA drafting checklist?**  Document List: 99\n **Full POA drafting + registration guide?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: ["prop-poa-001"],
@@ -728,31 +728,31 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-poa-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["GPA sell land", "can attorney sell land", "attorney sold my land", "GPA validity", "জিপিএ দিয়ে জমি বিক্রি"],
+    triggerKeywords: ["GPA sell land", "can attorney sell land", "attorney sold my land", "GPA validity", "   "],
     question: "Can someone sell my land using a General Power of Attorney (GPA)?",
     irac: {
       issue: "Whether an attorney-in-fact can legally transfer property on behalf of the owner using a GPA.",
       rule: "Yes, IF the registered GPA explicitly grants the power to sell/transfer immovable property. The Supreme Court of Bangladesh has upheld that a registered GPA authorizing sale is legally valid. The buyer from a valid GPA gets good title, provided they verify the GPA is genuine and the attorney acts within its scope.",
       application: "If you gave someone a registered GPA with selling authority, they can legally sell your land. If they sell it without your permission but the GPA gives them the power, the sale is valid in the eyes of the law. To prevent misuse, use a Special Power of Attorney (SPA) limited to a specific task.",
-      conclusion: "A registered GPA with selling powers is extremely powerful. Never give a GPA with broad selling powers unless you absolutely trust the person. Revoke it immediately if trust is broken.\n\n📄 **GPA revocation procedure guide?** — Procedure Guide: ৳999",
+      conclusion: "A registered GPA with selling powers is extremely powerful. Never give a GPA with broad selling powers unless you absolutely trust the person. Revoke it immediately if trust is broken.\n\n **GPA revocation procedure guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-poa-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 17: NON-MUSLIM INHERITANCE ─────────────────
+  //  CATEGORY 17: NON-MUSLIM INHERITANCE 
   {
     id: "prop-qa-nonmuslim-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["hindu property", "hindu inheritance", "christian inheritance", "non-muslim will", "দাস সম্পত্তি"],
+    triggerKeywords: ["hindu property", "hindu inheritance", "christian inheritance", "non-muslim will", " "],
     question: "How is property divided if the deceased was Hindu or Christian?",
     irac: {
       issue: "The rules of inheritance for non-Muslims in Bangladesh.",
       rule: "Hindus are generally governed by uncodified traditional law (Mitakshara/Dayabhaga schools). Traditionally, a daughter does not inherit equally with a son if a son exists, though courts often ensure she gets a share for maintenance. Christians are governed by the Indian Succession Act 1925, which gives equal shares (1/3rd) to the widow, sons, and daughters.",
       application: "For Hindus, property often passes to the sons, with daughters having a right to residence/maintenance or a share if no sons exist. For Christians, the property is divided strictly in equal 1/3rd shares among widow, sons, and daughters.",
-      conclusion: "Non-Muslim inheritance is complex and highly dependent on specific customs and case law. Do not assume Muslim rules apply.\n\n⚠️ WhatsApp NLC for referral to an advocate specializing in non-Muslim personal law.",
+      conclusion: "Non-Muslim inheritance is complex and highly dependent on specific customs and case law. Do not assume Muslim rules apply.\n\n WhatsApp NLC for referral to an advocate specializing in non-Muslim personal law.",
     },
     escalate: true,
     escalateReason: "Non-Muslim inheritance requires specialized personal law expertise.",
@@ -760,18 +760,18 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 18: MONEY RECOVERY (General) ────────────────
+  //  CATEGORY 18: MONEY RECOVERY (General) 
   {
     id: "prop-qa-money-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["owe me money", "money recovery", "borrowed money not returned", "লোন পরিশোধ", "recover money court"],
-    question: "Someone owes me money (not a cheque) — how do I recover it?",
+    triggerKeywords: ["owe me money", "money recovery", "borrowed money not returned", " ", "recover money court"],
+    question: "Someone owes me money (not a cheque)  how do I recover it?",
     irac: {
       issue: "Legal remedy for recovering a liquidated sum of money without a negotiable instrument.",
       rule: "Under Order 37 of the CPC, a Money Recovery Suit can be filed as a Summary Suit. The defendant must appear and pay or show cause why they shouldn't. Limitation is 3 years from the date the money became due. The suit is filed where the defendant lives or where the transaction occurred.",
       application: "Gather evidence: loan agreement, bank transfer receipts, WhatsApp messages acknowledging the debt, witness testimony. File a Summary Suit in the Civil Court. The court will issue a summons; if the defendant fails to appear, a decree is passed ex-parte.",
-      conclusion: "File within 3 years. Summary suits are faster than regular suits. If the debtor has no assets, even a court decree won't get your money back—check their financial status before suing.\n\n📋 **Money suit document list?** — Document List: ৳99\n📄 **Full money recovery suit guide?** — Procedure Guide: ৳1,499",
+      conclusion: "File within 3 years. Summary suits are faster than regular suits. If the debtor has no assets, even a court decree won't get your money backcheck their financial status before suing.\n\n **Money suit document list?**  Document List: 99\n **Full money recovery suit guide?**  Procedure Guide: 1,499",
     },
     escalate: false,
     relatedRules: ["prop-money-001", "prop-limitation-001"],
@@ -781,31 +781,31 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-money-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["money suit time", "how long civil case", "civil court duration", "দেওয়ানি মামলার সময়কাল"],
+    triggerKeywords: ["money suit time", "how long civil case", "civil court duration", "  "],
     question: "How long does a civil property or money suit take in Bangladesh?",
     irac: {
       issue: "The expected timeline for a civil lawsuit to reach a final judgment in Bangladesh.",
       rule: "While the Code of Civil Procedure 1908 mandates speedy justice, the practical reality in Bangladesh is that civil suits take 5 to 15 years to reach a final decree due to case backlogs, adjournments, and appeals. Injunctions can be obtained in 1-3 months, but the final decree takes much longer.",
       application: "If you file a title dispute suit today, expect 2-5 years at the trial court level. If appealed to the High Court, add another 3-5 years. Therefore, securing an injunction early is crucial to protect your possession/status quo while the case drags on.",
-      conclusion: "Manage your expectations: Civil cases are marathon, not sprint. Focus on getting a temporary injunction immediately to protect your position. Document everything meticulously as the case will outlast many judges.\n\n📄 **Civil case strategy guide?** — Procedure Guide: ৳999",
+      conclusion: "Manage your expectations: Civil cases are marathon, not sprint. Focus on getting a temporary injunction immediately to protect your position. Document everything meticulously as the case will outlast many judges.\n\n **Civil case strategy guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-injunction-001", "prop-courtfee-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 19: INJUNCTIONS & STAY ORDERS ───────────────
+  //  CATEGORY 19: INJUNCTIONS & STAY ORDERS 
   {
     id: "prop-qa-injunction-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["stop construction", "stay order", "injunction construction", "কাজ বন্ধ করা", "temporary injunction"],
-    question: "Someone is building on my land — how do I get a stay order immediately?",
+    triggerKeywords: ["stop construction", "stay order", "injunction construction", "  ", "temporary injunction"],
+    question: "Someone is building on my land  how do I get a stay order immediately?",
     irac: {
       issue: "How to obtain an urgent court order to stop illegal construction on disputed land.",
       rule: "Under Order 39 Rules 1 & 2 of the CPC, a Temporary Injunction can be granted ex-parte (without hearing the other side first in extreme urgency) to maintain the status quo. You must prove: 1) A prima facie case, 2) Irreparable injury if not granted, 3) Balance of convenience in your favor.",
       application: "File a civil suit along with an application for Temporary Injunction. Ask the court for an 'ex-parte ad-interim injunction' to stop construction immediately. The court may issue the order the same day if the threat is imminent, and the builder will be served a notice.",
-      conclusion: "Speed is critical. Once a building is completed, courts are reluctant to order demolition. Go to court the moment construction starts.\n\n⚠️ This requires immediate professional drafting. WhatsApp NLC.\n\n📄 **Injunction application drafting guide?** — Procedure Guide: ৳2,999",
+      conclusion: "Speed is critical. Once a building is completed, courts are reluctant to order demolition. Go to court the moment construction starts.\n\n This requires immediate professional drafting. WhatsApp NLC.\n\n **Injunction application drafting guide?**  Procedure Guide: 2,999",
     },
     escalate: true,
     escalateReason: "Ex-parte injunctions require urgent, expert court representation.",
@@ -816,49 +816,49 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-injunction-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["stay order vs injunction", "difference stay injunction", "স্থগিতাদেশ বনাম নিষেধাজ্ঞা"],
+    triggerKeywords: ["stay order vs injunction", "difference stay injunction", "  "],
     question: "What is the difference between a stay order and an injunction?",
     irac: {
       issue: "Clarifying common legal terminology used by laymen regarding court orders.",
       rule: "'Stay order' is a colloquial term not strictly defined in the CPC. It usually means an order that stays (pauses) a proceeding or action. An 'Injunction' is a formal legal remedy under the Specific Relief Act and CPC Order 39 that restrains a party from doing a specific act (e.g., building, selling). A stay order is often an injunction in practice.",
       application: "When people say 'I got a stay order against the construction', they usually mean the court granted a Temporary Injunction under Order 39. Both terms aim to stop an action, but 'Injunction' is the correct legal term to use in court.",
-      conclusion: "In property disputes, you want a Temporary Injunction under Order 39 of the CPC. Use the correct term when talking to your lawyer or the court.\n\n📋 **Legal terminology glossary?** — Document List: ৳49",
+      conclusion: "In property disputes, you want a Temporary Injunction under Order 39 of the CPC. Use the correct term when talking to your lawyer or the court.\n\n **Legal terminology glossary?**  Document List: 49",
     },
     escalate: false,
     relatedRules: ["prop-injunction-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 20: COURT FEES & PROCEDURE ─────────────────
+  //  CATEGORY 20: COURT FEES & PROCEDURE 
   {
     id: "prop-qa-courtfee-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["how much court fee", "property suit cost", "advocate fee", "দেওয়ানি খরচ", "plaint fee"],
+    triggerKeywords: ["how much court fee", "property suit cost", "advocate fee", " ", "plaint fee"],
     question: "How much court fee do I need to pay to file a property suit?",
     irac: {
       issue: "Understanding the cost structure for initiating civil litigation regarding property.",
       rule: "Under the Court Fees Act 1870, property suits are subject to ad valorem (percentage-based) fees. For a declaration or possession suit, it is typically a percentage of the market value of the property (varies by relief, usually 5-10%). This can be very high. Additionally, there are advocate fees, process fees, and incidental costs.",
       application: "If your land is worth BDT 50 lakh, and the ad valorem rate is 7.5%, the court fee alone is BDT 3.75 lakh. This must be paid as stamps on the plaint (complaint) before the court accepts it. If you are poor, you can apply for 'Pauper' status (Leave to sue as indigent person) under Order 33 CPC to waive the fee.",
-      conclusion: "Court fees are a major expense in property suits. Calculate this before filing. If you cannot afford it, ask your lawyer about filing as an 'indigent person' (Order 33 CPC).\n\n📄 **Court fee calculation + indigent person application guide?** — Procedure Guide: ৳999",
+      conclusion: "Court fees are a major expense in property suits. Calculate this before filing. If you cannot afford it, ask your lawyer about filing as an 'indigent person' (Order 33 CPC).\n\n **Court fee calculation + indigent person application guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-courtfee-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 21: SPECIFIC PERFORMANCE & DAMAGES ───────────
+  //  CATEGORY 21: SPECIFIC PERFORMANCE & DAMAGES 
   {
     id: "prop-qa-sp-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["claim compensation land", "don't want the land, want money", "damages instead of land", "বিকল্প ক্ষতিপূরণ"],
-    question: "The seller breached the land agreement — can I take compensation instead of the land?",
+    triggerKeywords: ["claim compensation land", "don't want the land, want money", "damages instead of land", " "],
+    question: "The seller breached the land agreement  can I take compensation instead of the land?",
     irac: {
       issue: "Whether a buyer can claim monetary damages instead of forcing the seller to transfer the property.",
       rule: "Under Section 20 of the Specific Relief Act 1877, specific performance is discretionary. The court will not order it if: 1) Compensation is an adequate remedy (e.g., property is not unique), 2) The buyer cannot perform their side (e.g., pay the money), 3) It would cause undue hardship to the seller. If specific performance is denied, the buyer can claim damages for breach.",
       application: "If you agreed to buy a standard 5-decimal plot in a large block where identical plots are available, the court might say 'take your money back plus some interest' rather than forcing the sale. However, if the plot has unique features (corner plot, specific location), the court will likely order specific performance.",
-      conclusion: "You can ask for damages in your plaint as an alternative relief. If the court denies specific performance, it will assess the damages based on the difference between the contract price and current market value.\n\n📄 **Specific performance vs damages strategy guide?** — Procedure Guide: ৳1,999",
+      conclusion: "You can ask for damages in your plaint as an alternative relief. If the court denies specific performance, it will assess the damages based on the difference between the contract price and current market value.\n\n **Specific performance vs damages strategy guide?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-title-001", "prop-limitation-001"],
@@ -868,13 +868,13 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-sp-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["double sale", "sold to two people", "দ্বৈত বিক্রয়", "seller cheated two buyers"],
-    question: "The seller sold the same land to me and someone else — who gets it?",
+    triggerKeywords: ["double sale", "sold to two people", " ", "seller cheated two buyers"],
+    question: "The seller sold the same land to me and someone else  who gets it?",
     irac: {
       issue: "Resolving a dispute where a fraudster sells the same property to two different buyers.",
       rule: "Under the Transfer of Property Act 1882, the buyer who gets the deed registered FIRST and takes physical possession has the strongest legal claim. The second buyer, even if innocent, usually loses out and must sue the seller for refund and damages. If neither has registered, the first to register wins.",
       application: "If you registered your deed on Jan 10, and the other buyer registered on Jan 15, you have priority. File a declaration suit and injunction immediately to prevent the second buyer from taking possession. The second buyer's remedy is against the seller, not you.",
-      conclusion: "Race to the Sub-Registrar. The first to register generally wins. If you are the second buyer, your target is the seller's assets for compensation, not the land (unless the first buyer's deed is flawed).\n\n⚠️ Urgent legal action required. WhatsApp NLC.",
+      conclusion: "Race to the Sub-Registrar. The first to register generally wins. If you are the second buyer, your target is the seller's assets for compensation, not the land (unless the first buyer's deed is flawed).\n\n Urgent legal action required. WhatsApp NLC.",
     },
     escalate: true,
     escalateReason: "Double sale requires immediate injunction to secure possession.",
@@ -882,30 +882,30 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 22: PARTITION DETAILS ────────────────────────
+  //  CATEGORY 22: PARTITION DETAILS 
   {
     id: "prop-qa-partition-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["sell my share", "sell undivided share", "অংশ বিক্রি", "co-sharer sell share without permission"],
+    triggerKeywords: ["sell my share", "sell undivided share", " ", "co-sharer sell share without permission"],
     question: "Can I sell my undivided share of inherited land without my siblings' permission?",
     irac: {
       issue: "Whether a co-sharer can alienate their share in joint property without the consent of other co-sharers.",
-      rule: "Under Muslim law and the Transfer of Property Act 1882, a co-sharer can sell or mortgage their specific share in joint property without the consent of other co-sharers. However, they cannot sell a specific, physically identified portion of the land—they can only sell their proportional share (e.g., '1/4th share'). The buyer steps into the shoes of the seller.",
+      rule: "Under Muslim law and the Transfer of Property Act 1882, a co-sharer can sell or mortgage their specific share in joint property without the consent of other co-sharers. However, they cannot sell a specific, physically identified portion of the landthey can only sell their proportional share (e.g., '1/4th share'). The buyer steps into the shoes of the seller.",
       application: "You and 3 brothers inherited 100 decimals. You can sell your 25-decimal share to a stranger without asking your brothers. You cannot say 'I am selling the North corner'. You sell '25% of the whole property'. The buyer will then have to file a partition suit to physically separate that 25%.",
-      conclusion: "Yes, you can sell your undivided share. The buyer gets your legal rights but cannot take physical possession of a specific area until a partition suit is filed and decided.\n\n📄 **Undivided share sale deed drafting guide?** — Procedure Guide: ৳1,999",
+      conclusion: "Yes, you can sell your undivided share. The buyer gets your legal rights but cannot take physical possession of a specific area until a partition suit is filed and decided.\n\n **Undivided share sale deed drafting guide?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-inheritance-001", "prop-preemption-001"],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 23: WAQF & ENDOWMENT ────────────────────────
+  //  CATEGORY 23: WAQF & ENDOWMENT 
   {
     id: "prop-qa-waqf-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["waqf property", "মওকফ", "endowment land", "mosque land", "waqf estate sell"],
+    triggerKeywords: ["waqf property", "", "endowment land", "mosque land", "waqf estate sell"],
     question: "What is Waqf property and can it be sold?",
     irac: {
       issue: "The legal nature of Waqf (endowment) property and whether it can be transferred or sold.",
@@ -918,13 +918,13 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 24: RENT & LEASE DETAILS ────────────────────
+  //  CATEGORY 24: RENT & LEASE DETAILS 
   {
     id: "prop-qa-lease-001",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["lease expired", "overstaying tenant", "lease ended but running business", "ইজারা শেষ"],
-    question: "My commercial lease expired but I'm still running my shop — what happens?",
+    triggerKeywords: ["lease expired", "overstaying tenant", "lease ended but running business", " "],
+    question: "My commercial lease expired but I'm still running my shop  what happens?",
     irac: {
       issue: "The legal status of a tenant who continues to occupy premises after the lease expires without a new agreement.",
       rule: "Under the Transfer of Property Act 1882, if a tenant continues in possession after the lease expires and the landlord accepts rent, the lease is renewed on a month-to-month basis under the same terms. However, for premises covered by the Premises Rent Control Act, the tenant gains statutory protection and can only be evicted on specific grounds.",
@@ -939,25 +939,25 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-lease-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["sublet", "sublease", "rent out my rented shop", "আন্ডারলেট"],
+    triggerKeywords: ["sublet", "sublease", "rent out my rented shop", ""],
     question: "Can I sub-let my rented shop or flat to someone else?",
     irac: {
       issue: "Whether a tenant has the legal right to sub-let leased premises without the landlord's consent.",
       rule: "Under the Transfer of Property Act 1882, a tenant CANNOT sub-let the whole or part of the leased premises without the landlord's written consent, unless the lease agreement explicitly permits it. Doing so is a ground for eviction under the Premises Rent Control Act 1991.",
       application: "If your lease agreement says 'No sub-letting' and you rent half your shop to another vendor, the landlord can file an eviction suit against you. If the lease is silent, you still technically need consent to protect yourself.",
-      conclusion: "Do not sub-let without written permission from the landlord. Get a 'No Objection Certificate' (NOC) for sub-letting in writing to avoid eviction risks.\n\n📋 **Sub-letting NOC template?** — Document List: ৳99",
+      conclusion: "Do not sub-let without written permission from the landlord. Get a 'No Objection Certificate' (NOC) for sub-letting in writing to avoid eviction risks.\n\n **Sub-letting NOC template?**  Document List: 99",
     },
     escalate: false,
     relatedRules: [],
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 25: MORTGAGE DETAILS ────────────────────────
+  //  CATEGORY 25: MORTGAGE DETAILS 
   {
     id: "prop-qa-mortgage-003",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["mortgage vs pledge", "difference mortgage pledge", "বন্ধক বনাম গণ্ডি"],
+    triggerKeywords: ["mortgage vs pledge", "difference mortgage pledge", "  "],
     question: "What is the difference between a mortgage and a pledge?",
     irac: {
       issue: "Distinguishing between two types of security interests over property.",
@@ -970,18 +970,18 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 26: ACQUISITION DETAILS ─────────────────────
+  //  CATEGORY 26: ACQUISITION DETAILS 
   {
     id: "prop-qa-acq-002",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["govt acquire for private company", "acquisition private project", "সরকারি অধিগ্রহণ বেসরকারি"],
+    triggerKeywords: ["govt acquire for private company", "acquisition private project", "  "],
     question: "Can the government acquire my land for a private company's project?",
     irac: {
       issue: "Whether the government can use its eminent domain power to acquire land for private entities.",
       rule: "Under the Acquisition and Requisition of Immovable Property Act 2017, the government CAN acquire land for 'public purpose', which legally includes projects of public importance or public-private partnerships (PPP). However, the Supreme Court of Bangladesh has strictly scrutinized acquisitions where land is handed over directly to private companies without genuine public benefit.",
       application: "If your land is acquired for a private housing project or factory claiming to be a 'public purpose', you have strong grounds to challenge the acquisition in the High Court via writ petition, arguing it is a misuse of the acquisition act to benefit private entities.",
-      conclusion: "The government cannot acquire land simply to give it to a private businessman. It must be for a genuine public purpose (road, school, govt factory). If you suspect foul play, challenge it in the High Court immediately before the compensation is paid and possession is taken.\n\n⚠️ High Court writ required. WhatsApp NLC for referral.",
+      conclusion: "The government cannot acquire land simply to give it to a private businessman. It must be for a genuine public purpose (road, school, govt factory). If you suspect foul play, challenge it in the High Court immediately before the compensation is paid and possession is taken.\n\n High Court writ required. WhatsApp NLC for referral.",
     },
     escalate: true,
     escalateReason: "Challenging government acquisition requires a High Court writ petition filed by a specialist advocate.",
@@ -989,18 +989,18 @@ const qaBank: QAEntry[] = [
     lastVerified: "2025-04-10",
   },
 
-  // ── CATEGORY 27: APARTMENT & FLAT DETAILS ────────────────
+  //  CATEGORY 27: APARTMENT & FLAT DETAILS 
   {
     id: "prop-qa-flat-003",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["buying flat checklist", "flat documents check", "ফ্ল্যাট কেনার আগে", "RAJUK approval flat"],
+    triggerKeywords: ["buying flat checklist", "flat documents check", "  ", "RAJUK approval flat"],
     question: "What documents should I check before buying an apartment?",
     irac: {
       issue: "The essential due diligence documents a buyer must verify before investing in a flat.",
       rule: "Under the Real Estate Development and Management Act 2010, developers must maintain transparent records. A buyer must verify: 1) RAJUK approved plan, 2) Land ownership deed of the developer, 3) Mutation of the land, 4) Encumbrance certificate (no mortgage), 5) Tax receipts, 6) Developer's registration with RAJUK/RERA.",
       application: "Never buy a flat based only on a glossy brochure. Go to the land office and verify the developer actually owns the land. Check RAJUK's website to see if the building plan is approved for that specific plot. Ensure there is no bank mortgage on the land.",
-      conclusion: "Essential checks: RAJUK plan, Land deed, Mutation, Encumbrance Certificate, Tax receipts.\n\n📋 **Complete Flat Buyer's Due Diligence Checklist?** — Document List: ৳199\n📄 **Full Flat Buying Guide + Verification Procedure?** — Procedure Guide: ৳1,999",
+      conclusion: "Essential checks: RAJUK plan, Land deed, Mutation, Encumbrance Certificate, Tax receipts.\n\n **Complete Flat Buyer's Due Diligence Checklist?**  Document List: 199\n **Full Flat Buying Guide + Verification Procedure?**  Procedure Guide: 1,999",
     },
     escalate: false,
     relatedRules: ["prop-title-001", "prop-mutation-001"],
@@ -1010,13 +1010,13 @@ const qaBank: QAEntry[] = [
     id: "prop-qa-flat-004",
     area: "property",
     jurisdiction: "BD",
-    triggerKeywords: ["roof ownership", "flat roof rights", "ফ্ল্যাটের ছাদ", "who owns rooftop"],
+    triggerKeywords: ["roof ownership", "flat roof rights", " ", "who owns rooftop"],
     question: "Who owns the roof of an apartment building?",
     irac: {
       issue: "Determining the legal ownership of the common areas, specifically the roof, in a multi-story building.",
       rule: "Under the Condominium Act (Draft/Principles) and standard property law, the roof, stairs, elevators, and land beneath the building are 'common areas'. They are jointly owned by all flat owners in proportion to their flat size. A single flat owner cannot claim exclusive rights to the roof or install equipment there without the consent of the management committee/other owners.",
       application: "If the top-floor flat owner builds a room on the roof without permission, other owners can file a suit for mandatory injunction to remove the illegal construction, as it encroaches on common property.",
-      conclusion: "The roof is jointly owned by all flat owners. No single owner can exclusively use it without majority consent. Decisions regarding the roof are made by the Owners' Association/Management Committee.\n\n📄 **Apartment ownership rights guide?** — Procedure Guide: ৳999",
+      conclusion: "The roof is jointly owned by all flat owners. No single owner can exclusively use it without majority consent. Decisions regarding the roof are made by the Owners' Association/Management Committee.\n\n **Apartment ownership rights guide?**  Procedure Guide: 999",
     },
     escalate: false,
     relatedRules: ["prop-title-001"],
@@ -1027,7 +1027,7 @@ const qaBank: QAEntry[] = [
 const propertyModule: KnowledgeModule = {
   area: "property",
   label: "Land, Property & Money Disputes",
-  description: "242 topics covering title disputes, boundary/encroachment, inheritance, mortgage, mutation, cheque bounce, flat/apartment disputes, easements, stamp duty, POA, and more — Bangladesh's most common civil matters.",
+  description: "242 topics covering title disputes, boundary/encroachment, inheritance, mortgage, mutation, cheque bounce, flat/apartment disputes, easements, stamp duty, POA, and more  Bangladesh's most common civil matters.",
   rules,
   qaBank,
 };
