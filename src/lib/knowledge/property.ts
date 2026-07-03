@@ -177,7 +177,6 @@ const rules: LegalRule[] = [
     id: "prop-courtfee-001",
     area: "property",
     jurisdiction: "BD",
-    jurisdiction: "BD",
     title: "Court Fees  Ad Valorem System",
     rule: "Under the Court Fees Act 1870, suits for declaration, possession, or partition of immovable property are subject to ad valorem (based on value) court fees. The fee is a percentage of the market value of the property (typically 5-10% depending on the relief sought), payable on plaint filing. No suit is accepted without prescribed fees.",
     source: "Court Fees Act 1870; Suits Valuation Act 1887",
@@ -1026,8 +1025,8 @@ const qaBank: QAEntry[] = [
 
 const propertyModule: KnowledgeModule = {
   area: "property",
-  label: "Land, Property & Money Disputes",
-  description: "242 topics covering title disputes, boundary/encroachment, inheritance, mortgage, mutation, cheque bounce, flat/apartment disputes, easements, stamp duty, POA, and more  Bangladesh's most common civil matters.",
+  label: "Property Law",
+  description: "Knowledge module for property law in Bangladesh.",
   rules,
   qaBank,
 };
