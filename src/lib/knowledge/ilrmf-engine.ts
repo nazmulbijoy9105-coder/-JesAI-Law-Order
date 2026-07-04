@@ -8,7 +8,7 @@
 //   (4) Mandatory reasoning trace output
 //
 // Confidence formula (Section 3.8, ILRMF Academic v2.0):
-//   C = (BaseScore  RuleMatchFactor)
+//   C = (BaseScore * RuleMatchFactor)
 //       - MissingFactPenalty
 //       - AmbiguityPenalty
 //       - ConflictPenalty
@@ -52,16 +52,15 @@ const THRESHOLD_YELLOW = 0.50;
 const THRESHOLD_RED    = 0.20;
 
 // Penalty values (per Section 3.8)
-const PENALTY_MISSING_FACT  = 0.10; // per mandatory missing fact, cap 0.40
-const PENALTY_AMBIGUITY     = 0.15; // per ambiguous rule, cap 0.30
-const PENALTY_CONFLICT      = 0.20; // per unresolved conflict, cap 0.40
-const PENALTY_ESCALATION    = 0.12; // escalate=true means complexity/urgency
+const PENALTY_MISSING_FACT  = 0.10;
+const PENALTY_AMBIGUITY     = 0.15;
+const PENALTY_CONFLICT      = 0.20;
+const PENALTY_ESCALATION    = 0.12;
 
 // Completeness threshold  below this emit BLACK immediately
 const COMPLETENESS_THRESHOLD = 0.15;
 
 //  Tier-1 Deterministic Checks 
-// These run pure logic on the query text  zero LLM
 
 const LIMITATION_PATTERNS: { pattern: RegExp; period: string; area: string }[] = [
   { pattern: /land|property|deed|mutation|khatian/i,   period: "12 years",  area: "property" },
@@ -78,25 +77,25 @@ const TIME_BAR_PATTERNS = [
 
 const JURISDICTION_BARS: { pattern: RegExp; bar: string }[] = [
   { pattern: /service.*matter|government.*employee|civil.*servant/i,
-    bar: "Administrative Tribunal has exclusive jurisdiction  High Court writ not maintainable" },
+    bar: "Administrative Tribunal has exclusive jurisdiction - High Court writ not maintainable" },
   { pattern: /labour.*court|industrial.*dispute/i,
     bar: "Labour Court has exclusive jurisdiction under Labour Act 2006" },
   { pattern: /tax.*tribunal|nbr.*appeal/i,
-    bar: "Taxes Appellate Tribunal jurisdiction  exhaust before High Court" },
+    bar: "Taxes Appellate Tribunal jurisdiction - exhaust before High Court" },
 ];
 
 const EVIDENCE_ISSUES: { pattern: RegExp; issue: string; penalty: number }[] = [
   { pattern: /confession.*police|police.*confession/i,
-    issue: "Police confession inadmissible under Evidence Act s.25  significant evidence risk",
+    issue: "Police confession inadmissible under Evidence Act s.25 - significant evidence risk",
     penalty: 0.20 },
   { pattern: /verbal.*agreement|oral.*contract|no.*written/i,
-    issue: "No written agreement  proof challenge; verbal contract enforceable but harder to establish",
+    issue: "No written agreement - proof challenge; verbal contract enforceable but harder to establish",
     penalty: 0.15 },
   { pattern: /no.*witness|without.*witness/i,
     issue: "Absence of witnesses reduces evidence quality",
     penalty: 0.10 },
   { pattern: /digital.*evidence|electronic.*evidence|screenshot|whatsapp/i,
-    issue: "Electronic evidence requires s.65B certificate  verify availability",
+    issue: "Electronic evidence requires s.65B certificate - verify availability",
     penalty: 0.08 },
 ];
 
@@ -118,8 +117,8 @@ function runTierOneChecks(
       checkType: "LIMITATION",
       result: isTimeBared ? "RED" : "GREEN",
       basis: isTimeBared
-        ? `Limitation period concern detected  ${limMatch.area} limitation: ${limMatch.period} (Limitation Act 1908)`
-        : `Within apparent limitation period  ${limMatch.area}: ${limMatch.period} (Limitation Act 1908)`,
+        ? `Limitation period concern detected - ${limMatch.area} limitation: ${limMatch.period} (Limitation Act 1908)`
+        : `Within apparent limitation period - ${limMatch.area}: ${limMatch.period} (Limitation Act 1908)`,
       penalty: isTimeBared ? 0.25 : 0,
     });
   }
@@ -154,7 +153,7 @@ function runTierOneChecks(
       checks.push({
         checkType: "REGISTRATION",
         result: "YELLOW",
-        basis: "Unregistered deed  Transfer of Property Act s.48: first REGISTERED deed prevails; unregistered position is weaker",
+        basis: "Unregistered deed - Transfer of Property Act s.48: first REGISTERED deed prevails; unregistered position is weaker",
         penalty: 0.15,
       });
     }
@@ -225,7 +224,7 @@ function stage3(
   const checks = runTierOneChecks(message, entry, area);
   const tierOnePenalty = Math.min(
     checks.reduce((sum, c) => sum + c.penalty, 0),
-    0.60 // hard cap on tier-one penalties combined
+    0.60
   );
 
   return {
@@ -247,16 +246,13 @@ function stage4(
   tierOnePenalty: number
 ): ReasoningTrace["stage4"] {
 
-  // Base score  keyword match density
   const baseScore = stage1Out.matchDensity;
 
-  // Rule match factor  weighted average of rule certainties
   const weights = relatedRules.map((r) => CERTAINTY_WEIGHTS[r.certainty] ?? 0.5);
   const ruleMatchFactor = weights.length > 0
     ? weights.reduce((a, b) => a + b, 0) / weights.length
-    : 0.75; // default if no related rules found
+    : 0.75;
 
-  // Penalties
   const missingFactPenalty = entry.escalate
     ? Math.min(1 * PENALTY_MISSING_FACT, 0.40)
     : 0;
@@ -271,17 +267,14 @@ function stage4(
 
   const escalationPenalty = tierOnePenalty;
 
-  // Raw score
   const rawScore = (baseScore * ruleMatchFactor)
     - missingFactPenalty
     - ambiguityPenalty
     - conflictPenalty
     - escalationPenalty;
 
-  // Clamp to [0, 1]
   const finalScore = Math.max(0, Math.min(1, rawScore));
 
-  // Scoring breakdown
   const scoring: ScoringBreakdown = {
     baseScore,
     ruleMatchFactor,
@@ -293,21 +286,18 @@ function stage4(
     finalScore,
   };
 
-  // Verdict band
   const verdict: VerdictBand =
     finalScore >= THRESHOLD_GREEN  ? "GREEN"  :
     finalScore >= THRESHOLD_YELLOW ? "YELLOW" :
     finalScore >= THRESHOLD_RED    ? "RED"    : "BLACK";
 
-  // Verdict explanation
   const verdictExplanations: Record<VerdictBand, string> = {
     GREEN:  "Applicable rule clearly governs stated facts; proceed with recommended relief.",
     YELLOW: "Applicable rule exists but fact gaps or ambiguity require professional review before action.",
-    RED:    "Weak or partial rule match; mandatory professional review  do not act unilaterally.",
-    BLACK:  "No operable rule match or jurisdiction bar identified  immediate referral to qualified advocate required.",
+    RED:    "Weak or partial rule match; mandatory professional review - do not act unilaterally.",
+    BLACK:  "No operable rule match or jurisdiction bar identified - immediate referral to qualified advocate required.",
   };
 
-  // Extract relief options from conclusion text
   const reliefOptions = extractReliefOptions(entry.irac.conclusion);
 
   return {
@@ -333,13 +323,16 @@ function extractReliefOptions(conclusion: string): string[] {
       !clean.startsWith("**") &&
       !clean.startsWith("|")
     ) {
+      options.push(clean);
+    }
+  }
 
   return options.slice(0, 5);
 }
 
 //  Verdict Emoji 
 function verdictEmoji(v: VerdictBand): string {
-  return { GREEN: "✅", YELLOW: "⚠️", RED: "Ὢb", BLACK: "⛔" }[v];
+  return { GREEN: "✅", YELLOW: "⚠️", RED: "🔴", BLACK: "⛔" }[v];
 }
 
 //  Response Formatter  Deterministic Text 
@@ -357,56 +350,46 @@ function formatDeterministicResponse(
 
   const lines: string[] = [];
 
-  //  Issue 
   lines.push(`**${trace.stage2.issue}**\n`);
-
-  //  Rule 
   lines.push(`**What the law says:**\n${trace.stage2.ruleText}\n`);
 
-  //  Tier-1 checks (always free  per ILRMF spec) 
   if (tierChecks.length > 0) {
     lines.push("**Deterministic Checks:**");
     for (const check of tierChecks) {
       const icon =
         check.result === "GREEN"  ? "✅" :
         check.result === "YELLOW" ? "⚠️" :
-        check.result === "RED"    ? "Ὢb" : "⛔";
+        check.result === "RED"    ? "🔴" : "⛔";
       lines.push(`${icon} **${check.checkType}:** ${check.basis}`);
     }
     lines.push("");
   }
 
-  //  Application (paid only) 
   if (isPaid) {
     lines.push(`**How this applies:**\n${trace.stage3.application}\n`);
     lines.push(`**What you should do:**\n${trace.stage4.conclusion}\n`);
   } else {
-    // Free: show first 2 lines of application only
     const appLines = trace.stage3.application.split("\n").slice(0, 2).join("\n");
     lines.push(`**How this applies:**\n${appLines}\n`);
 
-    // Paywall marker
     const price = lang === "bn"
-      ? " **   **   ,  ,  "
-      : " **Unlock full analysis**  complete action plan, document checklist, step-by-step guide";
+      ? " **পূর্ণ বিশ্লেষণ আনলক করুন** - সম্পূর্ণ অ্যাকশন প্ল্যান, ডকুমেন্ট চেকলিস্ট, ধাপে ধাপে গাইড"
+      : " **Unlock full analysis** - complete action plan, document checklist, step-by-step guide";
     lines.push(price + "\n");
   }
 
-  //  Verdict (always shown  mandatory per ILRMF) 
   lines.push("---");
   lines.push(
     `**Verdict: ${emoji} ${verdict}** (Rule-match confidence: ${scorePercent}%)`
   );
   lines.push(`_${verdictExplanation}_`);
 
-  //  Trace reference 
   lines.push(
     `\n_Trace ID: ${trace.traceId} | Pipeline: ILRMF v${PIPELINE_VERSION} | Corpus: ${CORPUS_VERSION}_`
   );
 
-  //  Disclaimer (always) 
   lines.push(
-    "\n Legal information only  not legal advice. For representation, consult a registered Bangladesh Bar Council advocate."
+    "\n⚠️ Legal information only - not legal advice. For representation, consult a registered Bangladesh Bar Council advocate."
   );
 
   return lines.join("\n");
@@ -463,20 +446,20 @@ function buildBlackResponse(
       confidenceScore: 0,
       verdict: "BLACK",
       verdictExplanation:
-        "No operable rule match  query is outside current corpus scope or requires specialist advice.",
+        "No operable rule match - query is outside current corpus scope or requires specialist advice.",
       reliefOptions: ["Consult a qualified Bangladesh Bar Council advocate"],
     },
   };
 
   const responseText =
     lang === "bn"
-      ? ` **BLACK      **\n\n             \n\n_Trace ID: ${traceId}_`
-      : ` **BLACK  No operable rule match**\n\nYour query is outside the current rule corpus scope. Please consult a qualified advocate.\n\n_Trace ID: ${traceId}_`;
+      ? `**⛔ BLACK - কোনো প্রযোজ্য নিয়ম মেলেনি**\n\nআপনার প্রশ্ন বর্তমান নিয়ম কর্পাসের সুযোগের বাইরে। দয়া করে একজন যোগ্য আইনজীবীর পরামর্শ নিন।\n\n_Trace ID: ${traceId}_`
+      : `**⛔ BLACK - No operable rule match**\n\nYour query is outside the current rule corpus scope. Please consult a qualified advocate.\n\n_Trace ID: ${traceId}_`;
 
   return {
     verdict: "BLACK",
     confidenceScore: 0,
-    verdictEmoji: v === "GREEN" ? "✅" : v === "YELLOW" ? "⚠️" : v === "RED" ? "Ὢb" : "⛔",
+    verdictEmoji: verdictEmoji("BLACK"),
     verdictExplanation: trace.stage4.verdictExplanation,
     responseText,
     trace,
@@ -506,7 +489,6 @@ export function runILRMF(
   const traceId = randomUUID();
   const now = new Date().toISOString();
 
-  // No match  emit BLACK immediately
   if (!result.matched || !result.qaEntry) {
     return buildBlackResponse(message, result.area, lang);
   }
@@ -514,7 +496,6 @@ export function runILRMF(
   const entry = result.qaEntry;
   const relatedRules = result.rules;
 
-  //  STAGE 1 
   const keywords = entry.triggerKeywords;
   const msg = message.toLowerCase();
   const matchScore = keywords.filter((kw) =>
@@ -523,15 +504,12 @@ export function runILRMF(
 
   const s1 = stage1(message, entry, matchScore);
 
-  // BLACK if completeness below threshold
   if (s1.completenessScore < COMPLETENESS_THRESHOLD) {
     return buildBlackResponse(message, result.area, lang);
   }
 
-  //  STAGE 2 
   const s2 = stage2(entry, relatedRules);
 
-  //  STAGE 3 
   const { stage: s3, tierOnePenalty } = stage3(
     message,
     entry,
@@ -539,7 +517,6 @@ export function runILRMF(
     s1.matchDensity
   );
 
-  // Jurisdiction bar  emit BLACK
   const jurisBar = s3.tierOneChecks.find(
     (c) => c.checkType === "JURISDICTION" && c.result === "BLACK"
   );
@@ -548,15 +525,13 @@ export function runILRMF(
     blackResult.trace.stage3.tierOneChecks = s3.tierOneChecks;
     blackResult.responseText =
       lang === "bn"
-        ? ` **BLACK   **\n\n${jurisBar.basis}\n\n_Trace ID: ${traceId}_`
-        : ` **BLACK  Jurisdiction Bar**\n\n${jurisBar.basis}\n\nPlease approach the correct tribunal or court.\n\n_Trace ID: ${traceId}_`;
+        ? `**⛔ BLACK - এখতিয়ার বাধা**\n\n${jurisBar.basis}\n\nদয়া করে সঠিক ট্রাইব্যুনাল বা আদালতে যান।\n\n_Trace ID: ${traceId}_`
+        : `**⛔ BLACK - Jurisdiction Bar**\n\n${jurisBar.basis}\n\nPlease approach the correct tribunal or court.\n\n_Trace ID: ${traceId}_`;
     return blackResult;
   }
 
-  //  STAGE 4 
   const s4 = stage4(entry, relatedRules, s1, s2, tierOnePenalty);
 
-  //  Assemble trace 
   const trace: ReasoningTrace = {
     traceId,
     timestamp: now,
@@ -568,7 +543,6 @@ export function runILRMF(
     stage4: s4,
   };
 
-  //  Format response 
   const responseText = formatDeterministicResponse(entry, trace, isPaid, lang);
 
   return {
@@ -587,8 +561,6 @@ export function runILRMF(
 }
 
 //  Reproducibility Test Helper 
-// Run same query N times  all outputs must be identical
-// Used for benchmark validation (Section 7.1, ILRMF paper)
 export function reproducibilityTest(
   message: string,
   result: Parameters<typeof runILRMF>[1],
