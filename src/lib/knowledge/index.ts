@@ -2,6 +2,7 @@
 // Returns KnowledgeResult which flows directly into ILRMFInput.knowledge
 
 import criminalData from "./criminal";
+import { propertyData } from "./property";
 import familyData from "./family";
 import labourData from "./labour";
 import companyData from "./company";
@@ -9,6 +10,7 @@ import taxData from "./tax";
 import nrbData from "./nrb";
 import constitutionalData from "./constitutional";
 import contractData from "./contract";
+import type { LawArea, KnowledgeResult, QAEntry, LegalRule, KnowledgeBank } from "./types";
 
 // ─── Area Metadata ──────────────────────────────────────────
 
