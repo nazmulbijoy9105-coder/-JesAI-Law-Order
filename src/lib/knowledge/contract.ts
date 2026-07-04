@@ -10,180 +10,128 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "con-formation-001",
-    jurisdiction: "BD",
     title: "Valid Contract  Section 10, Contract Act 1872",
     rule: "A contract is valid if: (1) there is an offer and acceptance, (2) lawful consideration, (3) free consent (not obtained by coercion, undue influence, fraud, misrepresentation or mistake), (4) parties are competent (age 18+, sound mind), and (5) the object is lawful. Contracts against public policy or law are void.",
     source: "Contract Act 1872, Section 10",
     certainty: "confirmed",
-    tags: ["valid contract", "offer", "acceptance", "consideration", "free consent", "agreement"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-breach-001",
-    jurisdiction: "BD",
     title: "Breach of Contract  Sections 7374, Contract Act 1872",
     rule: "When a party breaches a contract, the aggrieved party is entitled to: (1) compensation for losses naturally arising from the breach (Section 73), (2) liquidated damages if pre-agreed in the contract (Section 74), and (3) specific performance or injunction if damages are inadequate (Specific Relief Act 1877).",
     source: "Contract Act 1872, Sections 7374; Specific Relief Act 1877",
     certainty: "confirmed",
-    tags: ["breach of contract", "breach", "damages", "compensation", "liquidated damages", "specific performance"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-void-001",
-    jurisdiction: "BD",
     title: "Void and Voidable Contracts  Sections 2(g), 2(i), 1923",
     rule: "A void contract has no legal effect from the beginning (e.g., contracts for illegal purposes, by incompetent parties, without consideration). A voidable contract is valid until rescinded by the aggrieved party (e.g., contracts made under coercion, undue influence, fraud, or misrepresentation). On rescission of a voidable contract, the parties are restored to original position.",
     source: "Contract Act 1872, Sections 2(g), 2(i), 1923",
     certainty: "confirmed",
-    tags: ["void contract", "voidable contract", "illegal contract", "fraud", "misrepresentation", "coercion"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-indemnity-001",
-    jurisdiction: "BD",
     title: "Indemnity  Section 124, Contract Act 1872",
     rule: "A contract of indemnity is a contract by which one party promises to save the other from loss caused by the promisor's conduct or by the conduct of any other person. The indemnity-holder can recover all damages, costs, and sums paid in any suit that the promisor was compelled to pay.",
     source: "Contract Act 1872, Section 124",
     certainty: "confirmed",
-    tags: ["indemnity", "indemnify", "hold harmless", "indemnification clause", "loss protection"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-guarantee-001",
-    jurisdiction: "BD",
     title: "Contract of Guarantee  Section 126, Contract Act 1872",
     rule: "A contract of guarantee is a contract to perform the promise or discharge the liability of a third person in case of their default. Three parties: principal debtor, creditor, and surety. The surety's liability is co-extensive with that of the principal debtor unless the contract otherwise provides.",
     source: "Contract Act 1872, Section 126",
     certainty: "confirmed",
-    tags: ["guarantee", "guarantor", "surety", "personal guarantee", "co-extensive liability"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-limitation-001",
-    jurisdiction: "BD",
     title: "Limitation Period for Contract Claims  Limitation Act 1908",
     rule: "The limitation period for a suit based on breach of contract is 3 years from when the breach occurred or was discovered. For money recovery on a written contract: 3 years. For specific performance of contract: 3 years from when the plaintiff was refused performance. Courts cannot entertain time-barred suits even if the claim is valid.",
     source: "Limitation Act 1908, First Schedule",
     certainty: "confirmed",
-    tags: ["limitation", "3 years", "time limit", "limitation period", "time bar", "deadline to sue"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-specific-001",
-    jurisdiction: "BD",
     title: "Specific Performance  Specific Relief Act 1877",
     rule: "Courts can order specific performance of a contract where monetary compensation is inadequate to remedy the breach  typically contracts for sale of unique property, rare goods, or irreplaceable items. Courts will refuse specific performance where: the contract is not certain, the plaintiff cannot perform their side, or constant court supervision would be needed.",
     source: "Specific Relief Act 1877, Sections 1225",
     certainty: "confirmed",
-    tags: ["specific performance", "force contract", "compel performance", "property contract", "irreplaceable"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-stamp-001",
-    jurisdiction: "BD",
     title: "Stamp Duty on Contracts  Stamp Act 1899",
     rule: "Most commercial agreements (lease, sale, mortgage, partnership deed, power of attorney, loan agreements above BDT 20,000) require stamping under the Stamp Act 1899. An unstamped agreement is inadmissible as evidence in court until the deficiency plus 10 penalty is paid. Stamping can be done at the time of filing in court.",
     source: "Stamp Act 1899; Registration Act 1908",
     certainty: "confirmed",
-    tags: ["stamp duty", "stamp", "unstamped", "agreement stamp", "admissibility", "court"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-offer-001",
-    jurisdiction: "BD",
     title: "Offer and Acceptance  Sections 2(a), 39, Contract Act 1872",
     rule: "An offer is a proposal by one party to another indicating willingness to do or abstain from doing something to obtain their assent. It must be certain and communicated. Acceptance must be absolute and unqualified (mirror image rule). A counter-offer kills the original offer. Acceptance is complete when communicated to the offeror.",
     source: "Contract Act 1872, Sections 2(a), 39",
     certainty: "confirmed",
-    tags: ["offer", "acceptance", "proposal", "counter-offer", "mirror image rule", "communication"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-consideration-001",
-    jurisdiction: "BD",
     title: "Lawful Consideration  Sections 2(d), 2325, Contract Act 1872",
     rule: "Consideration means something in return (act, abstinence, or promise). It must move at the desire of the promisor, can be from the promisee or a third party, may be past, present, or future, but must be lawful and have some value (not necessarily adequate). A promise without consideration is generally void unless it's a written and registered gift or falls under specific exceptions.",
     source: "Contract Act 1872, Sections 2(d), 2325",
     certainty: "confirmed",
-    tags: ["consideration", "something in return", "past consideration", "adequacy", "nudum pactum"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-minor-001",
-    jurisdiction: "BD",
     title: "Minor's Contract  Section 11, Contract Act 1872",
     rule: "A person under 18 years is a minor. Agreements by minors are void ab initio (completely void from the start, per Mohori Bibee v. Dharmodas Ghose). A minor cannot be sued for breach, nor can they ratify the contract upon reaching majority. However, a minor can be a beneficiary (e.g., receiving a gift or property via trust).",
     source: "Contract Act 1872, Section 11; Privy Council precedent",
     certainty: "confirmed",
-    tags: ["minor", "under 18", "void ab initio", "incompetent", "minor contract"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-restraint-001",
-    jurisdiction: "BD",
     title: "Restraint of Trade  Section 27, Contract Act 1872",
     rule: "Every agreement that restrains a person from exercising a lawful profession, trade, or business is void to that extent. Exceptions: sale of goodwill (reasonable restriction in time/space allowed), partnership deeds (restrictions during partnership), and non-compete during employment (only if strictly necessary to protect trade secrets, not general post-employment bans).",
     source: "Contract Act 1872, Section 27",
     certainty: "confirmed",
-    tags: ["restraint of trade", "non-compete", "void agreement", "competition", "goodwill"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-soga-001",
-    jurisdiction: "BD",
     title: "Sale of Goods  Conditions vs Warranties, SOGA 1930",
     rule: "A condition is a stipulation essential to the main purpose of the contract (breach gives right to reject goods). A warranty is subsidiary to the main purpose (breach gives right to damages only). Implied conditions: title, description, fitness for purpose (if buyer relies on seller), merchantable quality, sale by sample.",
     source: "Sale of Goods Act 1930, Sections 1216",
     certainty: "confirmed",
-    tags: ["sale of goods", "condition", "warranty", "merchantable quality", "fitness for purpose", "soga"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-frustration-001",
-    jurisdiction: "BD",
     title: "Frustration of Contract (Force Majeure)  Section 56, Contract Act 1872",
     rule: "A contract to do an act that becomes impossible or unlawful after it is made becomes void. This applies to objective impossibility (e.g., property destroyed by act of God, war making performance illegal), not subjective inability (e.g., seller can't find a cheaper supplier). Parties are discharged from future obligations but liable for what was already performed.",
     source: "Contract Act 1872, Section 56",
     certainty: "confirmed",
-    tags: ["frustration", "force majeure", "impossible performance", "void contract", "act of god"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-quasi-001",
-    jurisdiction: "BD",
     title: "Quasi-Contracts  Sections 6872, Contract Act 1872",
     rule: "Quasi-contracts are not actual agreements but obligations imposed by law to prevent unjust enrichment. Examples: supply of necessities to a person incapable of contracting (S.68), payment by an interested person (S.69), non-gratuitous acts (S.70), finder of goods (S.71), and money paid by mistake or under coercion (S.72).",
     source: "Contract Act 1872, Sections 6872",
     certainty: "confirmed",
-    tags: ["quasi contract", "unjust enrichment", "mistaken payment", "necessities", "finder of goods"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-bailment-001",
-    jurisdiction: "BD",
     title: "Bailment  Sections 148171, Contract Act 1872",
     rule: "Bailment is the delivery of goods by one person to another for some purpose, to be returned or disposed of as directed. The bailee must take reasonable care of goods, not mix them with their own, not make unauthorized use, and return them when the purpose is achieved. A bailee is strictly liable if they fail to return goods on demand.",
     source: "Contract Act 1872, Sections 148171",
     certainty: "confirmed",
-    tags: ["bailment", "bailee", "bailor", "safekeeping", "delivery of goods", "repair"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-penalty-001",
-    jurisdiction: "BD",
     title: "Liquidated Damages vs Penalty  Section 74, Contract Act 1872",
     rule: "Section 74 treats a stipulation for liquidated damages or penalty as a genuine pre-estimate of loss. Courts can only interfere if the stipulated amount is so extravagant that it shows no genuine attempt to estimate loss. If it's a genuine pre-estimate, it's enforceable; if punitive, courts may grant only actual proven damages.",
     source: "Contract Act 1872, Section 74",
     certainty: "confirmed",
-    tags: ["liquidated damages", "penalty", "pre-estimate", "stipulated damages", "forfeiture"],
-    lastVerified: "2025-04-01",
   },
 ];
 
 const qaBank: QAEntry[] = [
   {
     id: "con-qa-001",
-    jurisdiction: "BD",
     triggerKeywords: ["breach of contract", "supplier not delivering", "party not performing", "agreement broken", "default on contract", "contract violated"],
     question: "Someone breached a contract with me  what can I do to recover my loss?",
     irac: {
@@ -194,11 +142,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-breach-001", "con-limitation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-002",
-    jurisdiction: "BD",
     triggerKeywords: ["verbal agreement", "oral agreement", "no written contract", "handshake deal", "oral contract valid"],
     question: "Is a verbal agreement legally binding in Bangladesh?",
     irac: {
@@ -209,11 +155,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-003",
-    jurisdiction: "BD",
     triggerKeywords: ["advance payment", "advance not returned", "refund advance", "security deposit", "deposit not returned", "advance money"],
     question: "I paid an advance/deposit and the other party is refusing to refund it after not performing  what can I do?",
     irac: {
@@ -224,11 +168,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-breach-001", "con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-004",
-    jurisdiction: "BD",
     triggerKeywords: ["personal guarantee", "guarantor liability", "bank guarantee", "signed guarantee", "liable as guarantor"],
     question: "I signed a personal guarantee for someone's loan  am I liable if they default?",
     irac: {
@@ -240,11 +182,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Personal guarantee claims often involve large sums and move to execution quickly. Seek urgent legal advice.",
     relatedRules: ["con-guarantee-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-005",
-    jurisdiction: "BD",
     triggerKeywords: ["contract fraud", "signed under pressure", "cheated into contract", "misrepresentation contract", "coercion contract"],
     question: "I was deceived or pressured into signing a contract  can I cancel it?",
     irac: {
@@ -256,12 +196,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Contract fraud may also carry criminal implications (cheating under Penal Code). A lawyer can advise on both civil and criminal options.",
     relatedRules: ["con-void-001", "con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   //  ENRICHED SECTION: QA 006-050 
   {
     id: "con-qa-006",
-    jurisdiction: "BD",
     triggerKeywords: ["what is an offer", "proposal contract", "offer vs invitation", "catalogue price offer", "counter offer"],
     question: "What is a valid legal offer, and how is it different from an invitation to treat?",
     irac: {
@@ -272,11 +210,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-offer-001", "con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-007",
-    jurisdiction: "BD",
     triggerKeywords: ["acceptance by email", "whatsapp acceptance", "acceptance rules", "when is contract formed"],
     question: "Does accepting a contract via WhatsApp or email create a valid binding agreement?",
     irac: {
@@ -287,11 +223,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-offer-001", "con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-008",
-    jurisdiction: "BD",
     triggerKeywords: ["what is consideration", "contract without payment", "free promise", "adequacy of consideration", "past consideration"],
     question: "What counts as valid 'consideration' in a contract? Can I enforce a free promise?",
     irac: {
@@ -302,11 +236,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-consideration-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-009",
-    jurisdiction: "BD",
     triggerKeywords: ["contract with minor", "under 18 agreement", "minor bought phone", "can minor sign"],
     question: "Is a contract with a person under 18 years old legally valid?",
     irac: {
@@ -317,11 +249,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-minor-001", "con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-010",
-    jurisdiction: "BD",
     triggerKeywords: ["non-compete clause", "restraint of trade", "cannot work for competitor", "non-compete agreement"],
     question: "Are non-compete clauses in employment or business contracts enforceable in Bangladesh?",
     irac: {
@@ -332,11 +262,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-restraint-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-011",
-    jurisdiction: "BD",
     triggerKeywords: ["condition vs warranty", "defective goods", "breach of condition", "reject goods"],
     question: "What is the difference between a 'condition' and a 'warranty' in a sale of goods contract?",
     irac: {
@@ -347,11 +275,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-012",
-    jurisdiction: "BD",
     triggerKeywords: ["ownership transfer", "when does property pass", "risk passes", "goods ownership"],
     question: "When does ownership (property) of goods pass from seller to buyer?",
     irac: {
@@ -362,11 +288,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-013",
-    jurisdiction: "BD",
     triggerKeywords: ["bought defective product", "seller lied about product", "fake product", "not as described"],
     question: "I bought goods that are defective or not as described  what are my legal rights?",
     irac: {
@@ -377,11 +301,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001", "con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-014",
-    jurisdiction: "BD",
     triggerKeywords: ["contract impossible", "force majeure", "cannot perform contract", "war pandemic contract"],
     question: "What happens if a contract becomes impossible to perform due to war, flood, or pandemic?",
     irac: {
@@ -392,11 +314,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-frustration-001", "con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-015",
-    jurisdiction: "BD",
     triggerKeywords: ["transfer contract rights", "assign contract", "can I transfer my agreement", "assignment"],
     question: "Can I transfer my rights or obligations under a contract to someone else?",
     irac: {
@@ -407,11 +327,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-016",
-    jurisdiction: "BD",
     triggerKeywords: ["penalty clause", "liquidated damages clause", "late fee contract", "forfeiture clause"],
     question: "Is a penalty clause or late fee clause in a contract enforceable?",
     irac: {
@@ -422,11 +340,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-penalty-001", "con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-017",
-    jurisdiction: "BD",
     triggerKeywords: ["force someone to sell", "specific performance suit", "buyer won't transfer property", "compel performance"],
     question: "Can I force someone to complete a sale of land or property if they back out?",
     irac: {
@@ -438,11 +354,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Specific performance suits for property are complex and require precise drafting of pleadings. Consult a lawyer immediately.",
     relatedRules: ["con-specific-001", "con-limitation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-018",
-    jurisdiction: "BD",
     triggerKeywords: ["stop someone from breaching", "injunction contract", "court order stop", "temporary injunction"],
     question: "Can I get a court order to stop someone from violating our contract before they actually do it?",
     irac: {
@@ -454,11 +368,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Injunction applications require immediate court representation and detailed affidavit drafting.",
     relatedRules: ["con-specific-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-019",
-    jurisdiction: "BD",
     triggerKeywords: ["paid by mistake", "double payment", "wrong transfer", "recover mistaken payment"],
     question: "I accidentally transferred money to the wrong person/account  can I legally get it back?",
     irac: {
@@ -469,11 +381,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-quasi-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-020",
-    jurisdiction: "BD",
     triggerKeywords: ["betting agreement", "gambling contract", "wagering contract", "fantasy cricket legal"],
     question: "Are betting or gambling agreements legally enforceable in Bangladesh?",
     irac: {
@@ -484,11 +394,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-021",
-    jurisdiction: "BD",
     triggerKeywords: ["gave goods for repair", "goods damaged at shop", "bailee damaged goods", "tailor ruined cloth"],
     question: "I gave my goods to someone for repair/safekeeping and they were damaged or lost  what can I do?",
     irac: {
@@ -499,11 +407,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-bailment-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-022",
-    jurisdiction: "BD",
     triggerKeywords: ["end a contract", "terminate agreement", "how to cancel contract", "discharge of contract"],
     question: "How can a contract be legally terminated without going to court?",
     irac: {
@@ -514,11 +420,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-023",
-    jurisdiction: "BD",
     triggerKeywords: ["digital signature", "e-contract valid", "electronic agreement", "sign pdf contract"],
     question: "Is a contract signed via digital signature or PDF e-signature legally valid?",
     irac: {
@@ -529,11 +433,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001", "con-stamp-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-024",
-    jurisdiction: "BD",
     triggerKeywords: ["unstamped agreement", "agreement not stamped", "can i use unstamped paper", "stamp deficiency"],
     question: "What happens if my agreement is not properly stamped? Is it completely useless?",
     irac: {
@@ -544,11 +446,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-stamp-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-025",
-    jurisdiction: "BD",
     triggerKeywords: ["both parties mistaken", "mistake in contract", "mutual mistake", "error in agreement"],
     question: "Both parties made a mistake about a fundamental fact in our contract  is it valid?",
     irac: {
@@ -559,11 +459,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-void-001", "con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-026",
-    jurisdiction: "BD",
     triggerKeywords: ["silence as acceptance", "no reply means yes", "didn't reply to offer"],
     question: "If I send an offer and the other person doesn't reply, does their silence mean they accepted?",
     irac: {
@@ -574,11 +472,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-offer-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-027",
-    jurisdiction: "BD",
     triggerKeywords: ["indemnity clause", "hold harmless", "indemnify me", "who pays if sued"],
     question: "What does an 'indemnity clause' in a contract actually do?",
     irac: {
@@ -589,11 +485,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-indemnity-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-028",
-    jurisdiction: "BD",
     triggerKeywords: ["seller didn't deliver", "late delivery goods", "non-delivery", "buyer rights late delivery"],
     question: "A supplier failed to deliver goods on the agreed date  what are my rights as a buyer?",
     irac: {
@@ -604,11 +498,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001", "con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-029",
-    jurisdiction: "BD",
     triggerKeywords: ["buyer not paying", "refusing to pay", "buyer default", "seller rights unpaid goods"],
     question: "I delivered goods but the buyer is refusing to pay  what can I do?",
     irac: {
@@ -619,11 +511,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001", "con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-030",
-    jurisdiction: "BD",
     triggerKeywords: ["time limit to sue", "3 years over", "limitation expired", "can i still sue"],
     question: "It has been more than 3 years since the contract breach  can I still file a case?",
     irac: {
@@ -635,11 +525,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "If the limitation period is near expiry or slightly crossed, only a lawyer can evaluate if exceptions (like acknowledgment of debt) apply.",
     relatedRules: ["con-limitation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-031",
-    jurisdiction: "BD",
     triggerKeywords: ["no termination clause", "how to end without clause", "reasonable notice contract"],
     question: "Our contract doesn't have a termination clause  how can we end it?",
     irac: {
@@ -650,11 +538,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-032",
-    jurisdiction: "BD",
     triggerKeywords: ["undue influence", "elderly pressured", "doctor patient contract", "trusted person contract"],
     question: "What is 'undue influence' and how does it make a contract voidable?",
     irac: {
@@ -666,11 +552,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Undue influence cases require strong evidence of the power dynamic and often involve property disputes requiring swift legal action.",
     relatedRules: ["con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-033",
-    jurisdiction: "BD",
     triggerKeywords: ["as is where is", "caveat emptor", "bought as is", "no warranty"],
     question: "I bought something 'As Is Where Is'  can I still complain if it's defective?",
     irac: {
@@ -681,11 +565,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-034",
-    jurisdiction: "BD",
     triggerKeywords: ["contingent contract", "conditional agreement", "contract depends on future event", "if then contract"],
     question: "What is a contingent contract and when does it become binding?",
     irac: {
@@ -696,11 +578,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-035",
-    jurisdiction: "BD",
     triggerKeywords: ["terrible service", "service not up to standard", "refuse to pay for bad service", "breach of implied condition"],
     question: "I paid for a service but it was extremely poor quality  can I refuse to pay the full amount?",
     irac: {
@@ -711,11 +591,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-036",
-    jurisdiction: "BD",
     triggerKeywords: ["mental agony damages", "emotional distress contract", "pain and suffering contract"],
     question: "Can I claim compensation for mental agony or emotional distress caused by a contract breach?",
     irac: {
@@ -726,11 +604,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-037",
-    jurisdiction: "BD",
     triggerKeywords: ["agreement vs contract", "is every agreement a contract", "legally binding difference"],
     question: "What is the exact difference between an 'Agreement' and a 'Contract'?",
     irac: {
@@ -741,11 +617,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-038",
-    jurisdiction: "BD",
     triggerKeywords: ["promissory estoppel", "promise without consideration", "broke a free promise", "detrimental reliance"],
     question: "Someone made a free promise, I relied on it to my loss  can I enforce it?",
     irac: {
@@ -757,11 +631,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Promissory estoppel requires strong evidence of detrimental reliance and is a complex equitable argument.",
     relatedRules: ["con-consideration-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-039",
-    jurisdiction: "BD",
     triggerKeywords: ["landlord forfeit lease", "evict for non-payment", "lease breach", "arrear of rent"],
     question: "Can a landlord cancel a lease agreement and evict a tenant for not paying rent?",
     irac: {
@@ -773,11 +645,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Eviction and lease forfeiture are heavily regulated by rent control laws. Wrongful eviction attempts lead to criminal liability.",
     relatedRules: ["con-specific-001", "con-breach-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-040",
-    jurisdiction: "BD",
     triggerKeywords: ["implied terms", "custom and usage", "unwritten contract terms", "trade practice contract"],
     question: "Can a contract have terms that were never actually written down or spoken?",
     irac: {
@@ -788,11 +658,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-soga-001", "con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-041",
-    jurisdiction: "BD",
     triggerKeywords: ["minor return goods", "minor bought phone", "minor restitution", "restore minor"],
     question: "A minor bought an expensive item from my shop  can I force them to keep it or lose the money?",
     irac: {
@@ -803,11 +671,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-minor-001", "con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-042",
-    jurisdiction: "BD",
     triggerKeywords: ["arbitration clause", "go to court or arbitrator", "dispute resolution clause", "arbitration act"],
     question: "Our contract has an 'Arbitration Clause'  does this mean I cannot go to civil court?",
     irac: {
@@ -819,11 +685,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Navigating between civil courts and arbitration requires precise procedural steps under the Arbitration Act 2001.",
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-043",
-    jurisdiction: "BD",
     triggerKeywords: ["drafting breach notice", "legal notice format", "demand letter", "pre-litigation notice"],
     question: "How do I draft an effective legal demand notice for breach of contract?",
     irac: {
@@ -834,11 +698,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-breach-001", "con-limitation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-044",
-    jurisdiction: "BD",
     triggerKeywords: ["escrow agreement", "holding money until condition met", "conditional payment", "third party holding funds"],
     question: "What is an Escrow Agreement and when should I use one?",
     irac: {
@@ -849,11 +711,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-045",
-    jurisdiction: "BD",
     triggerKeywords: ["amend contract after signing", "change contract terms", "variation of contract", "add clause later"],
     question: "Can we change or add terms to a contract after it has been signed?",
     irac: {
@@ -864,11 +724,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-046",
-    jurisdiction: "BD",
     triggerKeywords: ["rescission vs termination", "cancel contract completely", "void ab initio vs future"],
     question: "What is the difference between 'Rescission' and 'Termination' of a contract?",
     irac: {
@@ -879,11 +737,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-void-001", "con-specific-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-047",
-    jurisdiction: "BD",
     triggerKeywords: ["party dies", "contract after death", "inherit contract", "personal service contract death"],
     question: "What happens to a contract if one of the parties dies?",
     irac: {
@@ -894,11 +750,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-048",
-    jurisdiction: "BD",
     triggerKeywords: ["third party beneficiary", "can third person sue", "stranger to contract", "privity of contract"],
     question: "Can a person who is not a party to the contract sue if the contract benefits them?",
     irac: {
@@ -909,11 +763,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-formation-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-049",
-    jurisdiction: "BD",
     triggerKeywords: ["illegal contract", "against public policy", "contract to commit crime", "immoral agreement"],
     question: "If a contract is for an illegal purpose, can I still sue to get my money back?",
     irac: {
@@ -925,11 +777,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Illegal contracts may expose the parties to criminal liability. Do not admit to illegal acts without a lawyer.",
     relatedRules: ["con-void-001"],
-    lastVerified: "2025-04-01",
   },
   {
     id: "con-qa-050",
-    jurisdiction: "BD",
     triggerKeywords: ["liquidated damages vs actual damages", "how much compensation", "measure of damages", "remote damages"],
     question: "How does a court calculate the compensation amount for a breach of contract?",
     irac: {
@@ -940,7 +790,6 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["con-breach-001", "con-penalty-001"],
-    lastVerified: "2025-04-01",
   },
 ];
 

@@ -9,90 +9,65 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "nrb-bida-001",
-    jurisdiction: "BD",
     title: "BIDA Registration - Foreign Investment",
     rule: "All foreign investment in Bangladesh requires registration with the Bangladesh Investment Development Authority (BIDA). BIDA OSS (One Stop Service) processes registration. 100% foreign ownership permitted in most sectors. Minimum capital requirement: USD 50,000 for foreign companies.",
     source: "Bangladesh Investment Development Authority Act 2016",
     certainty: "confirmed",
-    tags: ["bida", "foreign investment", "registration", "100% ownership", "oss"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-repatriate-001",
-    jurisdiction: "BD",
     title: "Profit Repatriation - Foreign Investors",
     rule: "Foreign investors may repatriate post-tax profits, dividends, capital, and royalties freely through authorized dealer banks. Bangladesh Bank approval required for amounts above prescribed limits. All repatriation must be through banking channels.",
     source: "Foreign Exchange Regulation Act 1947; Bangladesh Bank FX Guidelines",
     certainty: "confirmed",
-    tags: ["repatriation", "profit", "dividend", "foreign investor", "bangladesh bank"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-wht-001",
-    jurisdiction: "BD",
     title: "Withholding Tax on Foreign Payments",
     rule: "Bangladesh imposes WHT on payments to non-residents: Dividends 20%, Interest 20%, Royalties 20%, Technical fees 10%, Management fees 10%. DTAA countries get reduced rates. WHT deducted at source by the paying company.",
     source: "Income Tax Act 2023, Sections 98-101; DTAA Treaties",
     certainty: "confirmed",
-    tags: ["wht", "withholding tax", "dividend", "royalty", "non-resident", "dtaa"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-dtaa-001",
-    jurisdiction: "BD",
     title: "Double Taxation Avoidance Agreements",
     rule: "Bangladesh has DTAA with 30+ countries including USA, UK, Japan, China, India, Germany, Singapore, Malaysia, UAE, Saudi Arabia, Canada, Australia, South Korea. DTAA reduces or eliminates double taxation on income earned in Bangladesh by residents of treaty countries.",
     source: "Income Tax Act 2023; Individual DTAA Treaties",
     certainty: "confirmed",
-    tags: ["dtaa", "double taxation", "treaty", "usa", "uk", "japan", "china"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-remittance-001",
-    jurisdiction: "BD",
     title: "Inward Remittance - 2.5% Cash Incentive",
     rule: "Bangladesh government provides 2.5% cash incentive on inward foreign remittance sent through legal banking channels (SWIFT, exchange houses). Incentive paid by Bangladesh Bank. Remittance through hundi/hawala is illegal under Foreign Exchange Regulation Act 1947.",
     source: "Bangladesh Bank Circular; Foreign Exchange Regulation Act 1947",
     certainty: "confirmed",
-    tags: ["remittance", "2.5%", "incentive", "inward", "hundi", "hawala", "nrb"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-property-001",
-    jurisdiction: "BD",
     title: "NRB Property Rights in Bangladesh",
     rule: "Non-Resident Bangladeshis can purchase, hold, and sell property in Bangladesh. Property can be purchased using foreign remittance or NRB accounts (NFCD/RFCD). No special permission required for NRBs to buy immovable property. Inheritance rights same as resident Bangladeshis.",
     source: "Transfer of Property Act 1882; Bangladesh Bank FX Guidelines",
     certainty: "confirmed",
-    tags: ["nrb", "property", "land", "purchase", "nfcd", "rfcd", "inheritance"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-account-001",
-    jurisdiction: "BD",
     title: "NRB Bank Accounts - NFCD and RFCD",
     rule: "NRBs can open NFCD (Non-Resident Foreign Currency Deposit) accounts in USD, GBP, EUR, JPY. RFCD (Resident Foreign Currency Deposit) for returnees. Interest on NFCD is tax-free. Funds freely repatriable. Can be operated from abroad. Available at all authorized dealer banks.",
     source: "Bangladesh Bank Foreign Exchange Guidelines",
     certainty: "confirmed",
-    tags: ["nfcd", "rfcd", "nrb account", "foreign currency", "tax free", "interest"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-tax-holiday-001",
-    jurisdiction: "BD",
     title: "Tax Holiday for Foreign Investors",
     rule: "Foreign investors in priority sectors get tax holidays: EPZ - 10 years full exemption. SEZ - 10 years full exemption. Priority sectors outside EPZ/SEZ - 5-10 years depending on location. Reduced corporate tax rate of 20% for listed companies (standard 27.5%).",
     source: "Income Tax Act 2023; BIDA Act 2016; EPZ Authority Act",
     certainty: "confirmed",
-    tags: ["tax holiday", "epz", "sez", "10 years", "foreign investor", "exemption"],
-    lastVerified: "2025-03-09",
   },
 ];
 
 const qaBank: QAEntry[] = [
   {
     id: "nrb-qa-001",
-    jurisdiction: "BD",
     triggerKeywords: ["register company bangladesh", "foreign company bangladesh", "set up business bangladesh", "bida registration", "start business bangladesh"],
     question: "How do I register a foreign company in Bangladesh?",
     irac: {
@@ -103,11 +78,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-002",
-    jurisdiction: "BD",
     triggerKeywords: ["send money bangladesh", "remittance bangladesh", "transfer money bangladesh", "hundi", "send remittance"],
     question: "How do I legally send money to Bangladesh from abroad?",
     irac: {
@@ -118,11 +91,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-remittance-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-003",
-    jurisdiction: "BD",
     triggerKeywords: ["withholding tax", "wht", "tax on dividend", "tax on royalty", "non-resident tax bangladesh"],
     question: "What is withholding tax (WHT) on payments to foreign companies in Bangladesh?",
     irac: {
@@ -133,11 +104,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-wht-001", "nrb-dtaa-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-004",
-    jurisdiction: "BD",
     triggerKeywords: ["repatriate profit", "send profit abroad", "take money out bangladesh", "profit repatriation", "dividend repatriation"],
     question: "How can a foreign investor take profits out of Bangladesh?",
     irac: {
@@ -148,11 +117,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-repatriate-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-005",
-    jurisdiction: "BD",
     triggerKeywords: ["nrb buy land", "nrb property", "buy property bangladesh from abroad", "overseas bangladeshi property", "non-resident buy land"],
     question: "Can an NRB (Non-Resident Bangladeshi) buy land or property in Bangladesh?",
     irac: {
@@ -163,11 +130,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-006",
-    jurisdiction: "BD",
     triggerKeywords: ["nrb bank account", "nfcd account", "rfcd account", "foreign currency account bangladesh", "nrb savings"],
     question: "What bank accounts can an NRB open in Bangladesh?",
     irac: {
@@ -178,11 +143,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-account-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-007",
-    jurisdiction: "BD",
     triggerKeywords: ["foreign investment sectors", "which sectors foreign", "invest bangladesh", "allowed sectors", "restricted sectors bangladesh"],
     question: "Which sectors are open for foreign investment in Bangladesh?",
     irac: {
@@ -193,11 +156,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-tax-holiday-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-008",
-    jurisdiction: "BD",
     triggerKeywords: ["usa partner bangladesh", "american partner", "foreign partner company", "joint venture bangladesh", "foreign shareholder"],
     question: "Can I have a foreign partner or shareholder in my Bangladesh company?",
     irac: {
@@ -208,11 +169,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-dtaa-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-009",
-    jurisdiction: "BD",
     triggerKeywords: ["tax holiday bangladesh", "epz tax", "sez investment", "tax exemption bangladesh", "10 year tax"],
     question: "What tax holidays are available for foreign investors in Bangladesh?",
     irac: {
@@ -223,11 +182,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-tax-holiday-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-010",
-    jurisdiction: "BD",
     triggerKeywords: ["liaison office bangladesh", "rep office bangladesh", "branch office bangladesh", "representative office", "liaison vs branch"],
     question: "What is the difference between a liaison office, branch office, and subsidiary in Bangladesh?",
     irac: {
@@ -238,11 +195,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "nrb-qa-011",
-    jurisdiction: "BD",
     triggerKeywords: ["fera compliance", "foreign exchange regulation", "fx violation", "bangladesh bank fx circular", "fera penalty", "unauthorized forex"],
     question: "What are the foreign exchange compliance requirements for foreign investors in Bangladesh?",
     irac: {
@@ -253,12 +208,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-repatriate-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-012",
-    jurisdiction: "BD",
     triggerKeywords: ["arbitration bangladesh", "international arbitration", "dispute resolution foreign investor", "icc arbitration", "bilateral investment treaty", "bit bangladesh"],
     question: "How are disputes between foreign investors and Bangladesh resolved?",
     irac: {
@@ -269,12 +222,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-013",
-    jurisdiction: "BD",
     triggerKeywords: ["intellectual property bangladesh", "ip registration", "trademark bangladesh", "patent bangladesh", "copyright bangladesh", "ip foreign investor"],
     question: "How does a foreign company protect intellectual property in Bangladesh?",
     irac: {
@@ -285,12 +236,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-014",
-    jurisdiction: "BD",
     triggerKeywords: ["epz rules", "sez rules", "export processing zone", "special economic zone", "epz worker", "epz labour law", "sez labour"],
     question: "What are the special rules for operating in EPZ or SEZ in Bangladesh?",
     irac: {
@@ -301,12 +250,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-tax-holiday-001", "nrb-bida-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-015",
-    jurisdiction: "BD",
     triggerKeywords: ["power of attorney bangladesh", "poa nrb", "foreign poa", "attorney abroad", "nrb representative"],
     question: "How can an NRB or foreign investor give Power of Attorney to someone in Bangladesh?",
     irac: {
@@ -317,12 +264,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-016",
-    jurisdiction: "BD",
     triggerKeywords: ["nrb citizenship", "dual citizenship bangladesh", "nrb card", "citizenship amendment 2008", "overseas bangladeshi citizenship"],
     question: "Can an NRB hold dual citizenship with Bangladesh?",
     irac: {
@@ -333,12 +278,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-017",
-    jurisdiction: "BD",
     triggerKeywords: ["bangladesh bank fe circular", "foreign loan bangladesh", "external commercial borrowing", "ecb bangladesh", "foreign currency loan"],
     question: "Can a Bangladesh company borrow from foreign lenders? What are the rules?",
     irac: {
@@ -349,12 +292,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-bida-001", "nrb-repatriate-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-018",
-    jurisdiction: "BD",
     triggerKeywords: ["nrb tax return", "nrb tax filing", "overseas bangladeshi tax", "income tax nrb", "tax obligation bangladesh"],
     question: "What are the tax obligations of an NRB who has income in Bangladesh?",
     irac: {
@@ -365,12 +306,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-dtaa-001", "nrb-account-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-019",
-    jurisdiction: "BD",
     triggerKeywords: ["nrb investment bond", "wage earners development bond", "us dollar premium bond", "nrb bond", "nrb savings bond"],
     question: "What government bonds and savings schemes are available for NRBs?",
     irac: {
@@ -381,12 +320,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-account-001", "nrb-remittance-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "nrb-qa-020",
-    jurisdiction: "BD",
     triggerKeywords: ["nrb inheritance", "nrb property inheritance", "inheritance bangladesh from abroad", "foreign heir bangladesh", "probate nrb"],
     question: "How does an NRB claim inheritance of property in Bangladesh?",
     irac: {
@@ -397,7 +334,6 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["nrb-property-001"],
-    lastVerified: "2025-03-09",
   },
 ];
 

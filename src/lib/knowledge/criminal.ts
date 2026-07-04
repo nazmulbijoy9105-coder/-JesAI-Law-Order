@@ -12,183 +12,129 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "cr-murder-001",
-    jurisdiction: "BD",
     title: "Murder  Section 302, Penal Code 1860",
     rule: "Whoever commits murder shall be punished with death or imprisonment for life, and shall also be liable to fine.",
     source: "Penal Code 1860, Section 302",
     certainty: "confirmed",
-    tags: ["murder", "302", "death penalty", "life imprisonment", "homicide"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-culpable-001",
-    jurisdiction: "BD",
     title: "Culpable Homicide Not Amounting to Murder  Section 304",
     rule: "Punishment for culpable homicide not amounting to murder is imprisonment for life or up to 10 years, and fine. If the act by which death is caused is done with knowledge but without intention, imprisonment up to 10 years or fine or both.",
     source: "Penal Code 1860, Section 304",
     certainty: "confirmed",
-    tags: ["culpable homicide", "304", "sudden fight", "provocation", "manslaughter"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-theft-001",
-    jurisdiction: "BD",
     title: "Theft  Section 379, Penal Code 1860",
     rule: "Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to 3 years, or with fine, or with both.",
     source: "Penal Code 1860, Section 379",
     certainty: "confirmed",
-    tags: ["theft", "379", "stealing", "3 years"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-robbery-001",
-    jurisdiction: "BD",
     title: "Robbery  Section 392, Penal Code 1860",
     rule: "Whoever commits robbery shall be punished with rigorous imprisonment for a term up to 10 years and fine. If robbery is committed on a highway between sunset and sunrise, imprisonment may extend to 14 years.",
     source: "Penal Code 1860, Section 392",
     certainty: "confirmed",
-    tags: ["robbery", "392", "10 years", "highway", "violence"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-dacoity-001",
-    jurisdiction: "BD",
     title: "Dacoity  Section 395, Penal Code 1860",
     rule: "Whoever commits dacoity (robbery by 5 or more persons) shall be punished with imprisonment for life or rigorous imprisonment up to 10 years, and fine.",
     source: "Penal Code 1860, Section 395",
     certainty: "confirmed",
-    tags: ["dacoity", "395", "gang robbery", "5 persons", "life imprisonment"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-hurt-001",
-    jurisdiction: "BD",
     title: "Grievous Hurt  Section 325, Penal Code 1860",
     rule: "Whoever voluntarily causes grievous hurt shall be punished with imprisonment up to 7 years and fine. Grievous hurt includes permanent disfigurement, fracture, or injuries endangering life.",
     source: "Penal Code 1860, Sections 320, 325",
     certainty: "confirmed",
-    tags: ["grievous hurt", "325", "7 years", "injury", "disfigurement"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-kidnap-001",
-    jurisdiction: "BD",
     title: "Kidnapping  Section 363, Penal Code 1860",
     rule: "Whoever kidnaps any person shall be punished with imprisonment up to 7 years and fine. Kidnapping for ransom carries heavier punishment under special laws.",
     source: "Penal Code 1860, Section 363",
     certainty: "confirmed",
-    tags: ["kidnapping", "363", "7 years", "abduction"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-forgery-001",
-    jurisdiction: "BD",
     title: "Forgery  Sections 463-468, Penal Code 1860",
     rule: "Forgery of documents: up to 2 years. Forgery of court records or public registers: up to 7 years. Forgery for purpose of cheating: up to 7 years. Using forged documents: same punishment as forgery.",
     source: "Penal Code 1860, Sections 463-468, 471",
     certainty: "confirmed",
-    tags: ["forgery", "463", "468", "fake document", "2-7 years"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-arrest-001",
-    jurisdiction: "BD",
     title: "Arrest Without Warrant  CrPC Section 54",
     rule: "Police may arrest without warrant in cognizable offences  offences serious enough to allow arrest without court order. These include murder, robbery, dacoity, kidnapping, and most offences punishable with 3 or more years.",
     source: "Code of Criminal Procedure 1898, Section 54",
     certainty: "confirmed",
-    tags: ["arrest", "warrant", "section 54", "cognizable", "police power"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-detention-001",
-    jurisdiction: "BD",
     title: "Maximum Detention Without Court Order  24 Hours",
     rule: "Under CrPC Section 61, no police officer shall detain in custody a person arrested without warrant for longer than 24 hours. After 24 hours, the arrested person must be produced before a Magistrate.",
     source: "Code of Criminal Procedure 1898, Section 61; Constitution Article 33",
     certainty: "confirmed",
-    tags: ["detention", "24 hours", "magistrate", "custody", "police", "section 61"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-bail-001",
-    jurisdiction: "BD",
     title: "Bailable vs Non-Bailable Offences  CrPC",
     rule: "Bailable offences: bail is a right  police or Magistrate must grant bail. Non-bailable offences: bail is discretionary  court decides based on nature of offence, antecedents, and likelihood of fleeing. High Court has power to grant bail in any case.",
     source: "Code of Criminal Procedure 1898, Sections 496-498; Second Schedule",
     certainty: "confirmed",
-    tags: ["bail", "bailable", "non-bailable", "right to bail", "high court bail"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-remand-001",
-    jurisdiction: "BD",
     title: "Remand  Police Custody for Investigation",
     rule: "Police may apply for remand (custody) for investigation purposes. Magistrate may authorise detention in police custody not exceeding 15 days in total. After 15 days, accused goes to judicial custody (jail), not police station.",
     source: "Code of Criminal Procedure 1898, Section 167",
     certainty: "confirmed",
-    tags: ["remand", "police custody", "15 days", "investigation", "magistrate"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-rape-001",
-    jurisdiction: "BD",
     title: "Rape  Nari O Shishu Nirjatan Daman Ain 2000",
     rule: "Punishment for rape under the Women and Children Repression Prevention Act 2000: rigorous imprisonment for life and fine. If rape causes death, punishment is death or life imprisonment. Gang rape: death or life imprisonment.",
     source: "Nari O Shishu Nirjatan Daman Ain 2000, Section 9",
     certainty: "confirmed",
-    tags: ["rape", "women", "children", "nari shishu", "life imprisonment", "section 9"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-acid-001",
-    jurisdiction: "BD",
     title: "Acid Attack  Nari O Shishu Nirjatan Daman Ain 2000",
     rule: "Punishment for acid attack causing death: death penalty. Causing grievous hurt: death or life imprisonment. Causing simple hurt: imprisonment 3-7 years and fine. Acid Control Act 2002 also regulates acid sale and possession.",
     source: "Nari O Shishu Nirjatan Daman Ain 2000, Section 4; Acid Control Act 2002",
     certainty: "confirmed",
-    tags: ["acid attack", "acid", "death penalty", "nari shishu", "acid control"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-drug-001",
-    jurisdiction: "BD",
     title: "Drug Trafficking  Narcotics Control Act 2018",
     rule: "Punishment for drug trafficking under Narcotics Control Act 2018: death or life imprisonment for trafficking large quantities of heroin, cocaine, or phensidyl. Lesser quantities: 2 years to life depending on drug and amount.",
     source: "Narcotics Control Act 2018, Sections 19, 34",
     certainty: "confirmed",
-    tags: ["drug", "narcotics", "trafficking", "heroin", "death penalty", "life imprisonment"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-cyber-001",
-    jurisdiction: "BD",
     title: "Cyber Defamation  Cyber Security Act 2023",
     rule: "Publishing false defamatory information online: imprisonment up to 3 years or fine up to BDT 5 lakh or both. Hacking/unauthorized access: up to 7 years. Spreading false information to destabilise state: up to 14 years.",
     source: "Cyber Security Act 2023, Sections 21, 17, 28",
     certainty: "confirmed",
-    tags: ["cyber", "defamation", "online", "hacking", "cyber security act", "3 years"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-cheque-001",
-    jurisdiction: "BD",
     title: "Cheque Dishonour  Negotiable Instruments Act 1881",
     rule: "Dishonour of a cheque for insufficiency of funds is a criminal offence under NI Act Section 138. Punishment: imprisonment up to 1 year, or fine up to twice the cheque amount, or both. It is a bailable, compoundable offence.",
     source: "Negotiable Instruments Act 1881, Section 138",
     certainty: "confirmed",
-    tags: ["cheque bounce", "dishonour", "ni act", "138", "Cheque case"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "cr-torture-001",
-    jurisdiction: "BD",
     title: "Torture in Custody  Torture and Custodial Death Prevention Act 2013",
     rule: "Causing torture (physical or mental) to a person in police custody or remand for extracting confession or information is a criminal offence. Punishment: minimum 3 years, up to 10 years imprisonment and fine. Custodial death: death penalty or life imprisonment.",
     source: "Torture and Custodial Death (Prevention) Act 2013",
     certainty: "confirmed",
-    tags: ["torture", "custodial death", "remand torture", "police torture", "section 54 abuse"],
-    lastVerified: "2025-03-09",
   }
 ];
 
@@ -200,7 +146,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "cr-qa-001",
-    jurisdiction: "BD",
     triggerKeywords: ["punishment murder", "murder punishment", "murder sentence", "section 302", "302 penal code", "killed someone", "how many years for murder", "death penalty murder", "life imprisonment murder"],
     question: "What is the punishment for murder in Bangladesh?",
     irac: {
@@ -211,12 +156,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["cr-murder-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-002",
-    jurisdiction: "BD",
     triggerKeywords: ["culpable homicide", "304", "sudden fight death", "unintentional killing", "not murder", "killed by accident", "difference murder homicide", "heat of passion killing"],
     question: "What is the difference between murder and culpable homicide?",
     irac: {
@@ -227,7 +170,6 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["cr-murder-001", "cr-culpable-001"],
-    lastVerified: "2025-03-09",
   },
 
   // ... (Keep all your other standard Penal Code entries like Theft, Robbery, Dacoity, Hurt, Kidnapping, Forgery, Cheating, Breach of Trust, Intimidation, Defamation exactly as they were, just mentally acknowledge they are fine) ...
@@ -238,7 +180,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "cr-qa-013",
-    jurisdiction: "BD",
     triggerKeywords: ["how to file fir", "file criminal case", "file case police", "how to complain police", "police not taking case", "gd number", "general diary", "wants to file case"],
     question: "How do I file a criminal case (FIR) in Bangladesh?",
     irac: {
@@ -249,12 +190,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["cr-arrest-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-016",
-    jurisdiction: "BD",
     triggerKeywords: ["how long detained", "police detention time", "24 hours police", "detention limit", "kept in police station", "not taken to court", "habeas corpus", "illegal detention"],
     question: "How long can police detain me without a court order?",
     irac: {
@@ -266,7 +205,6 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Illegal detention beyond 24 hours requires urgent High Court writ. WhatsApp NLC immediately.",
     relatedRules: ["cr-detention-001"],
-    lastVerified: "2025-03-09",
   },
 
   // 
@@ -275,7 +213,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "cr-qa-026",
-    jurisdiction: "BD",
     triggerKeywords: ["rape punishment", "punishment rape", "rape sentence bangladesh", "nari shishu rape", "sexual assault", "minor rape", "gang rape punishment"],
     question: "What is the punishment for rape under Bangladesh law?",
     irac: {
@@ -287,12 +224,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Rape cases require immediate police report and medical examination. Contact NLC for referral to specialist advocate.",
     relatedRules: ["cr-rape-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-028",
-    jurisdiction: "BD",
     triggerKeywords: ["drug trafficking punishment", "narcotics", "drug crime bangladesh", "narcotics act 2018", "yaba punishment", "phensidyl punishment", "ice drug", "heroin sentence", "caught with drugs"],
     question: "What is the punishment for drug trafficking in Bangladesh?",
     irac: {
@@ -304,12 +239,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Drug cases carry severe penalties and move fast in Speedy Trial Tribunals. WhatsApp NLC for immediate referral.",
     relatedRules: ["cr-drug-001"],
-    lastVerified: "2025-03-09",
   },
   
   {
     id: "cr-qa-029",
-    jurisdiction: "BD",
     triggerKeywords: ["cyber crime punishment", "digital security act", "online crime bangladesh", "cyber security act 2023", "facebook case", "fake news case", "online defamation case", "hacking punishment"],
     question: "What are the punishments under the Cyber Security Act 2023?",
     irac: {
@@ -321,12 +254,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Cyber cases often result in immediate arrest warrants. Anticipatory bail at High Court is highly recommended.",
     relatedRules: ["cr-cyber-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-031",
-    jurisdiction: "BD",
     triggerKeywords: ["human trafficking", "trafficking punishment", "trafficking bangladesh", "sold abroad", "brothel trafficking", "organ trafficking"],
     question: "What is the punishment for human trafficking in Bangladesh?",
     irac: {
@@ -338,7 +269,6 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Human trafficking involves organized syndicates and cross-border laws. NLC can refer to specialized rights organizations.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
 
   // 
@@ -347,7 +277,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "cr-qa-032",
-    jurisdiction: "BD",
     triggerKeywords: ["cheque bounce", "dishonoured cheque", "cheque return", "ni act 138", "bank cheque case", "payment stopped cheque", "insufficient funds cheque"],
     question: "What is the punishment for a cheque bounce (dishonour) in Bangladesh?",
     irac: {
@@ -358,12 +287,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["cr-cheque-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-033",
-    jurisdiction: "BD",
     triggerKeywords: ["section 54 abuse", "torture in remand", "police tortured me", "confession by force", "crossfire", "extrajudicial", "custodial torture"],
     question: "What can I do if police torture me during remand or arrest?",
     irac: {
@@ -375,12 +302,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Custodial torture requires immediate High Court intervention and medical documentation. NLC provides emergency referrals.",
     relatedRules: ["cr-torture-001", "cr-remand-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-034",
-    jurisdiction: "BD",
     triggerKeywords: ["confession to police", "is confession valid", "section 27 evidence", "police forced confession", "giving statement to police"],
     question: "Is a confession given to the police admissible in court?",
     irac: {
@@ -391,12 +316,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["cr-torture-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-035",
-    jurisdiction: "BD",
     triggerKeywords: ["quash fir", "cancel false case", "withdraw fir", "high court fir", "section 561a", "malicious case", "revenge case"],
     question: "How can I get a false FIR cancelled or quashed?",
     irac: {
@@ -408,12 +331,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "FIR Quashing requires immediate High Court intervention to prevent arrest. NLC provides urgent HCD referrals.",
     relatedRules: ["cr-arrest-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "cr-qa-036",
-    jurisdiction: "BD",
     triggerKeywords: ["cyber tribunal jurisdiction", "where to file cyber case", "cyber court location", "cyber appellate tribunal"],
     question: "Where are cyber crime cases tried in Bangladesh?",
     irac: {
@@ -424,7 +345,6 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["cr-cyber-001"],
-    lastVerified: "2025-03-09",
   }
 
 ];

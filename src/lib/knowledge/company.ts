@@ -16,123 +16,87 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "co-pvt-001",
-    jurisdiction: "BD",
     title: "Private Limited Company  Companies Act 1994",
     rule: "Minimum 2, maximum 50 shareholders. Minimum 2 directors. Shares cannot be offered to public. Name must include 'Limited' or 'Ltd'. Registered with RJSC. Separate legal entity with limited liability.",
     source: "Companies Act 1994, Sections 2, 9, 11",
     certainty: "confirmed",
-    tags: ["private limited", "pvt ltd", "company", "shareholders", "directors", "limited liability"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-opc-001",
-    jurisdiction: "BD",
     title: "One Person Company (OPC)  Rules 2020",
     rule: "Single Bangladeshi individual can incorporate OPC. Sole member is sole director. No share transfer or new members without converting. Limited liability applies. Cannot be used for banking business.",
     source: "Companies Act 1994 (amended); One Person Company Rules 2020",
     certainty: "confirmed",
-    tags: ["opc", "one person company", "single director", "sole shareholder"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-partnership-001",
-    jurisdiction: "BD",
     title: "Partnership  Partnership Act 1932",
     rule: "Partnership registration with RJSC is optional but recommended. Unregistered firm cannot sue. Maximum 20 partners (10 in banking). Partners have unlimited personal liability.",
     source: "Partnership Act 1932, Sections 4, 69",
     certainty: "confirmed",
-    tags: ["partnership", "firm", "partners", "unlimited liability", "partnership deed"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-foreign-001",
-    jurisdiction: "BD",
     title: "Foreign Company Registration",
     rule: "Foreign companies must register with RJSC within 30 days of establishing Bangladesh presence. Options: Branch Office (full commerce), Liaison Office (promotion only), Subsidiary (new BD company). BIDA registration also required.",
     source: "Companies Act 1994, Sections 379-386; Foreign Company Rules 2018",
     certainty: "confirmed",
-    tags: ["foreign company", "branch office", "liaison office", "bida", "fc"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-annual-001",
-    jurisdiction: "BD",
     title: "Annual Compliance  Companies Act 1994",
     rule: "AGM within 120 days of financial year end. Annual return filed with RJSC within 21 days of AGM. Audited financials required. Non-filing: penalty + possible strike-off.",
     source: "Companies Act 1994, Sections 81, 192",
     certainty: "confirmed",
-    tags: ["annual return", "agm", "audit", "rjsc filing", "compliance"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-pub-001",
-    jurisdiction: "BD",
     title: "Public Limited Company  Companies Act 1994",
     rule: "Minimum 7 shareholders, no maximum. Minimum 3 directors. Can offer shares to public. Name must include 'Public Limited Company' or 'PLC'. Must obtain prospectus or file statement in lieu. More stringent compliance including mandatory audit regardless of capital.",
     source: "Companies Act 1994, Sections 2, 10, 12",
     certainty: "confirmed",
-    tags: ["public limited", "plc", "ipo", "public company", "prospectus"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-director-001",
-    jurisdiction: "BD",
     title: "Director Duties and Liabilities  Companies Act 1994",
     rule: "Directors owe fiduciary duty to company. Must act in good faith, avoid conflict of interest, not make secret profits, disclose personal interest in contracts. Breach: liable to repay profits, compensate company, possible criminal liability under S.142-147.",
     source: "Companies Act 1994, Sections 140-147",
     certainty: "confirmed",
-    tags: ["director duties", "fiduciary duty", "conflict of interest", "director liability"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-meeting-001",
-    jurisdiction: "BD",
     title: "Company Meetings  Companies Act 1994",
     rule: "Board meeting: at least once per quarter. AGM: within 120 days of financial year end (max 15 months gap). EGM: as needed. Notice period: Board 7 days, AGM 21 days, EGM 21 days (shorter if 95% consent). Quorum: Board = per AOA (usually majority), AGM = 5 members or 25% of total, whichever is less.",
     source: "Companies Act 1994, Sections 81, 84, 86, 87, 93",
     certainty: "confirmed",
-    tags: ["board meeting", "agm", "egm", "quorum", "notice period", "minutes"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-charge-001",
-    jurisdiction: "BD",
     title: "Creation and Registration of Charges  Companies Act 1994",
     rule: "Company must register charges on property (mortgage, hypothecation) with RJSC within 30 days of creation. Form VIII for creation, Form IX for satisfaction. Unregistered charge is void against liquidator and any creditor. Applies to: property, uncalled share capital, book debts, goodwill.",
     source: "Companies Act 1994, Sections 148-155",
     certainty: "confirmed",
-    tags: ["charge", "mortgage", "hypothecation", "form viii", "form ix", "security"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-fdi-001",
-    jurisdiction: "BD",
     title: "Foreign Direct Investment  Sectors and Restrictions",
     rule: "BIDA Act 2016 + Investment Policy 2021: 100% FDI allowed in most manufacturing and service sectors. Reserved sectors: defense, nuclear energy, security printing, forestry. Restricted: banking (requires BB approval, max 62% foreign), insurance (requires IDRA approval, max 60% foreign), telecommunications (requires BTRC approval). Profit repatriation allowed for FDI companies.",
     source: "BIDA Act 2016; Investment Policy 2021; Bangladesh Bank FDI Guidelines",
     certainty: "confirmed",
-    tags: ["fdi", "foreign investment", "reserved sectors", "profit repatriation", "bida"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-windup-001",
-    jurisdiction: "BD",
     title: "Winding Up by Court  Companies Act 1994",
     rule: "Court can wind up company on petition by: company, creditor, contributory, or Registrar. Grounds: inability to pay debts, just and equitable, deadlock, persistent non-compliance. Official liquidator appointed. Preferential debts paid first: employee wages (4 months), government dues. Contributories liable to deficiency.",
     source: "Companies Act 1994, Sections 284-385",
     certainty: "confirmed",
-    tags: ["winding up", "court winding up", "liquidator", "creditor petition", "insolvency"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-convert-001",
-    jurisdiction: "BD",
     title: "Conversion of Company Type  Companies Act 1994",
     rule: "Private Ltd can convert to Public Ltd by special resolution (75%) + meeting minimum requirements (7 shareholders, 3 directors). Public Ltd can convert to Private Ltd by special resolution if it has not issued shares to public or has bought back all public shares. OPC converts to Pvt Ltd on adding member.",
     source: "Companies Act 1994, Sections 16-18",
     certainty: "confirmed",
-    tags: ["conversion", "private to public", "public to private", "company type change"],
-    lastVerified: "2025-03-09",
   },
 ];
 
@@ -140,7 +104,6 @@ const qaBank: QAEntry[] = [
   //  COMPANY FORMATION 
   {
     id: "co-qa-001",
-    jurisdiction: "BD",
     triggerKeywords: ["register company", "form company", "incorporate", "start company"],
     question: "How do I register a private limited company in Bangladesh?",
     irac: {
@@ -151,11 +114,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-002",
-    jurisdiction: "BD",
     triggerKeywords: ["company name clearance", "name approval rjsc", "name availability company", "rjsc name check"],
     question: "How do I get company name clearance from RJSC?",
     irac: {
@@ -166,11 +127,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-003",
-    jurisdiction: "BD",
     triggerKeywords: ["one person company", "opc", "single person company", "single member company"],
     question: "Can one person form a company alone?",
     irac: {
@@ -181,11 +140,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-opc-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-004",
-    jurisdiction: "BD",
     triggerKeywords: ["company vs partnership", "pvt ltd vs firm", "which is better company or firm", "difference company firm"],
     question: "What is the difference between a company and a partnership firm?",
     irac: {
@@ -196,11 +153,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001", "co-partnership-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-005",
-    jurisdiction: "BD",
     triggerKeywords: ["register partnership", "firm registration", "partnership deed registration", "register firm"],
     question: "How do I register a partnership firm?",
     irac: {
@@ -211,11 +166,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-partnership-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-006",
-    jurisdiction: "BD",
     triggerKeywords: ["foreign company register", "branch office bangladesh", "liaison office", "foreign branch bd"],
     question: "How does a foreign company register in Bangladesh?",
     irac: {
@@ -227,11 +180,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Foreign company registration needs RJSC + BIDA + Bangladesh Bank coordination. WhatsApp NLC.",
     relatedRules: ["co-foreign-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-007",
-    jurisdiction: "BD",
     triggerKeywords: ["add director", "change director", "remove director", "director appointment removal"],
     question: "How do I add or remove a director?",
     irac: {
@@ -242,11 +193,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-008",
-    jurisdiction: "BD",
     triggerKeywords: ["change company address", "registered office change", "rjsc address", "company address update"],
     question: "How do I change my company's registered address?",
     irac: {
@@ -257,11 +206,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-009",
-    jurisdiction: "BD",
     triggerKeywords: ["annual return company", "agm rjsc", "annual compliance company", "company annual filing"],
     question: "What are the annual compliance requirements for a company?",
     irac: {
@@ -272,11 +219,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-annual-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-010",
-    jurisdiction: "BD",
     triggerKeywords: ["increase capital", "increase authorized capital", "capital increase", "authorized capital"],
     question: "How do I increase my company's share capital?",
     irac: {
@@ -287,11 +232,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-011",
-    jurisdiction: "BD",
     triggerKeywords: ["transfer shares", "sell shares", "share transfer procedure", "shares sell"],
     question: "How do I transfer shares in a private limited company?",
     irac: {
@@ -302,11 +245,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-012",
-    jurisdiction: "BD",
     triggerKeywords: ["dissolve company", "close company", "wind up company", "company dissolution"],
     question: "How do I close or dissolve a company?",
     irac: {
@@ -318,11 +259,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Company dissolution requires specialist guidance. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-013",
-    jurisdiction: "BD",
     triggerKeywords: ["shareholder dispute", "minority shareholder", "oppression mismanagement", "director conflict"],
     question: "What can a minority shareholder do against mismanagement?",
     irac: {
@@ -334,11 +273,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Shareholder disputes need High Court petition. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-014",
-    jurisdiction: "BD",
     triggerKeywords: ["trade licence", "business licence", "trade license renewal", "trade licence dhaka"],
     question: "How do I get and renew a trade licence?",
     irac: {
@@ -349,11 +286,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-015",
-    jurisdiction: "BD",
     triggerKeywords: ["rjsc certified copy", "company documents copy", "rjsc documents", "certificate copy"],
     question: "How do I get certified copies of company documents from RJSC?",
     irac: {
@@ -364,11 +299,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-016",
-    jurisdiction: "BD",
     triggerKeywords: ["what is moa aoa", "memorandum articles", "memorandum association", "articles association"],
     question: "What are MOA and AOA and why are they important?",
     irac: {
@@ -379,11 +312,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-017",
-    jurisdiction: "BD",
     triggerKeywords: ["bida registration", "foreign investment", "bida licence", "foreign investor"],
     question: "What is BIDA registration and when do I need it?",
     irac: {
@@ -395,11 +326,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Foreign investment and BIDA registration complex. WhatsApp NLC.",
     relatedRules: ["co-foreign-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-018",
-    jurisdiction: "BD",
     triggerKeywords: ["company bank account", "corporate bank account", "open company account", "business account"],
     question: "How do I open a bank account for my company?",
     irac: {
@@ -410,11 +339,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-019",
-    jurisdiction: "BD",
     triggerKeywords: ["company not doing business", "dormant company", "dormant rjsc", "company no activity"],
     question: "What happens if my company is not doing any business?",
     irac: {
@@ -425,11 +352,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-annual-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-020",
-    jurisdiction: "BD",
     triggerKeywords: ["change company name", "rename company", "company name change rjsc"],
     question: "How do I change my company's name?",
     irac: {
@@ -440,11 +365,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-021",
-    jurisdiction: "BD",
     triggerKeywords: ["company secretary", "company law compliant", "cs officer", "company secretary requirement"],
     question: "Does my company need a Company Secretary?",
     irac: {
@@ -455,11 +378,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-annual-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-022",
-    jurisdiction: "BD",
     triggerKeywords: ["dividend declaration", "declare dividend", "dividend pay company", "dividend procedure"],
     question: "How does a company declare and pay dividends?",
     irac: {
@@ -470,11 +391,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-annual-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-023",
-    jurisdiction: "BD",
     triggerKeywords: ["company audit", "auditor appointment", "company auditor", "audit requirement"],
     question: "When does a company need an auditor?",
     irac: {
@@ -485,11 +404,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-annual-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-024",
-    jurisdiction: "BD",
     triggerKeywords: ["company loan", "company borrowing", "company bank loan", "business loan"],
     question: "Can a company take a bank loan and what documents are needed?",
     irac: {
@@ -500,11 +417,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-025",
-    jurisdiction: "BD",
     triggerKeywords: ["company penalty rjsc", "rjsc fine", "non-filing penalty", "company compliance penalty"],
     question: "What are the penalties for non-compliance with RJSC?",
     irac: {
@@ -515,11 +430,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-annual-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-026",
-    jurisdiction: "BD",
     triggerKeywords: ["merger acquisition", "company merger", "amalgamation", "takeover bangladesh"],
     question: "How do companies merge or get acquired in Bangladesh?",
     irac: {
@@ -531,11 +444,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Mergers and acquisitions require specialist legal guidance. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-027",
-    jurisdiction: "BD",
     triggerKeywords: ["epz company", "sez", "export processing zone", "beza"],
     question: "Can I register a company in EPZ or SEZ?",
     irac: {
@@ -547,11 +458,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "EPZ/SEZ registration is complex. WhatsApp NLC for specialist guidance.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-028",
-    jurisdiction: "BD",
     triggerKeywords: ["company striking off", "struck off company", "restore struck company", "company removed register"],
     question: "My company was struck off by RJSC  can I restore it?",
     irac: {
@@ -563,11 +472,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Company restoration requires High Court application. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-029",
-    jurisdiction: "BD",
     triggerKeywords: ["ngo registration", "society registration", "society act", "nonprofit registration"],
     question: "How do I register an NGO or society in Bangladesh?",
     irac: {
@@ -578,11 +485,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-030",
-    jurisdiction: "BD",
     triggerKeywords: ["startup registration", "startup company", "startup bangladesh", "new business register"],
     question: "What is the easiest way to legally register a startup in Bangladesh?",
     irac: {
@@ -593,11 +498,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001", "co-opc-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-031",
-    jurisdiction: "BD",
     triggerKeywords: ["company resolution", "board resolution", "board minutes", "resolution pass"],
     question: "What is a board resolution and when is it needed?",
     irac: {
@@ -608,11 +511,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-032",
-    jurisdiction: "BD",
     triggerKeywords: ["company seal", "common seal", "company stamp", "seal requirement"],
     question: "Does my company need a common seal?",
     irac: {
@@ -623,11 +524,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-033",
-    jurisdiction: "BD",
     triggerKeywords: ["company contract", "director contract", "director service agreement", "managing director"],
     question: "Can a director be an employee of the company?",
     irac: {
@@ -638,11 +537,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-034",
-    jurisdiction: "BD",
     triggerKeywords: ["intellectual property company", "patent trademark", "trademark registration", "copyright company"],
     question: "How does a company protect its brand and intellectual property?",
     irac: {
@@ -653,12 +550,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   //  ENRICHED SECTION: QA 035-050 
   {
     id: "co-qa-035",
-    jurisdiction: "BD",
     triggerKeywords: ["public limited company", "plc registration", "public company", "ipo company"],
     question: "How do I register a public limited company in Bangladesh?",
     irac: {
@@ -670,11 +565,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Public company and IPO requirements need BSEC coordination. WhatsApp NLC.",
     relatedRules: ["co-pub-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-036",
-    jurisdiction: "BD",
     triggerKeywords: ["director duties", "fiduciary duty", "director responsibility", "director breach duty"],
     question: "What are the legal duties of a company director in Bangladesh?",
     irac: {
@@ -685,11 +578,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-director-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-037",
-    jurisdiction: "BD",
     triggerKeywords: ["board meeting", "board meeting notice", "board meeting quorum", "board minutes"],
     question: "How do I conduct a valid board meeting?",
     irac: {
@@ -700,11 +591,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-meeting-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-038",
-    jurisdiction: "BD",
     triggerKeywords: ["company mortgage", "charge registration", "property mortgage company", "form viii rjsc"],
     question: "How does a company register a mortgage or charge on its property?",
     irac: {
@@ -715,11 +604,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-charge-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-039",
-    jurisdiction: "BD",
     triggerKeywords: ["fdi bangladesh", "foreign investment sectors", "100% foreign ownership", "restricted sectors bangladesh"],
     question: "In which sectors can foreigners invest 100% in Bangladesh?",
     irac: {
@@ -731,11 +618,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "FDI sector rules are complex and sector-specific. WhatsApp NLC.",
     relatedRules: ["co-fdi-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-040",
-    jurisdiction: "BD",
     triggerKeywords: ["convert private to public", "private to public conversion", "convert company type", "opc to private"],
     question: "Can I convert my private limited company to a public limited company?",
     irac: {
@@ -746,11 +631,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-convert-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-041",
-    jurisdiction: "BD",
     triggerKeywords: ["director disqualification", "disqualified director", "who cannot be director", "director barred"],
     question: "Who cannot be a director of a company in Bangladesh?",
     irac: {
@@ -761,11 +644,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-director-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-042",
-    jurisdiction: "BD",
     triggerKeywords: ["company books inspection", "inspect company records", "shareholder inspection rights", "company accounts access"],
     question: "Can shareholders inspect company books and records?",
     irac: {
@@ -776,11 +657,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-043",
-    jurisdiction: "BD",
     triggerKeywords: ["company tax rate", "corporate tax bangladesh", "company income tax", "tax rate company"],
     question: "What is the corporate tax rate for companies in Bangladesh?",
     irac: {
@@ -791,11 +670,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-044",
-    jurisdiction: "BD",
     triggerKeywords: ["related party transaction", "director personal interest", "director conflict interest", "interest disclosure"],
     question: "What are the rules for related party transactions in a company?",
     irac: {
@@ -806,11 +683,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-director-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-045",
-    jurisdiction: "BD",
     triggerKeywords: ["reduce share capital", "capital reduction", "decrease authorized capital", "return capital shareholders"],
     question: "Can a company reduce its share capital?",
     irac: {
@@ -822,11 +697,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Capital reduction requires High Court petition. WhatsApp NLC.",
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-046",
-    jurisdiction: "BD",
     triggerKeywords: ["proxy voting", "proxy shareholder meeting", "attend agm by proxy", "proxy form"],
     question: "Can a shareholder attend and vote at a meeting through a proxy?",
     irac: {
@@ -837,11 +710,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-meeting-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-047",
-    jurisdiction: "BD",
     triggerKeywords: ["company fraud", "director fraud", "fraudulent company", "punishment company fraud"],
     question: "What is the punishment for company fraud in Bangladesh?",
     irac: {
@@ -853,11 +724,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Company fraud requires criminal complaint and police/law enforcement coordination. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-048",
-    jurisdiction: "BD",
     triggerKeywords: ["sole proprietorship", "single business", "proprietorship registration", "individual business"],
     question: "How do I register a sole proprietorship business in Bangladesh?",
     irac: {
@@ -868,11 +737,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-opc-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-049",
-    jurisdiction: "BD",
     triggerKeywords: ["subsidary company", "holding company", "subsidiary rules", "parent company"],
     question: "What defines a subsidiary and holding company in Bangladesh?",
     irac: {
@@ -883,11 +750,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "co-qa-050",
-    jurisdiction: "BD",
     triggerKeywords: ["rjsc online", "roc.gov.bd guide", "rjsc portal", "online company registration"],
     question: "How do I use the RJSC online portal (roc.gov.bd) for company filings?",
     irac: {
@@ -898,7 +763,6 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["co-pvt-001", "co-annual-001"],
-    lastVerified: "2025-03-09",
   },
 ];
 

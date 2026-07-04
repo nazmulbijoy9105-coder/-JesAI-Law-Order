@@ -13,53 +13,38 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "tax-ita-001",
-    jurisdiction: "BD",
     title: "Income Tax Act 2023 - Replaced Ordinance 1984",
     rule: "The Income Tax Act 2023 (  ) came into force on 1 July 2023, fully replacing the Income Tax Ordinance 1984. All income tax matters from FY 2023-24 onward are governed by the new Act.",
     source: "Income Tax Act 2023, Section 1",
     certainty: "confirmed",
-    tags: ["income tax act 2023", "ita 2023", "new tax law"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-slab-001",
-    jurisdiction: "BD",
     title: "Individual Tax Slabs FY 2024-25",
     rule: "Tax-free threshold: BDT 3,50,000 (general). Women/65+ senior: BDT 4,00,000. Freedom fighters/disabled: BDT 4,75,000. Rates: 5%, 10%, 15%, 20%, 25% progressively.",
     source: "Income Tax Act 2023, Third Schedule; Finance Act 2024",
     certainty: "confirmed",
-    tags: ["tax slab", "income tax rate", "2024-25", "individual tax"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-vat-001",
-    jurisdiction: "BD",
     title: "VAT Standard Rate 15% - VAT Act 2012",
     rule: "Standard VAT rate 15%. Reduced rates: 5%, 7.5%, 10% on specified goods/services. Zero rate on exports. VAT registration threshold: BDT 50 lakh annual turnover.",
     source: "VAT and Supplementary Duty Act 2012; Finance Act 2024",
     certainty: "confirmed",
-    tags: ["vat", "15%", "vat rate", "mushak", "value added tax"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-wht-001",
-    jurisdiction: "BD",
     title: "Withholding Tax - Income Tax Act 2023 Chapter XII",
     rule: "WHT deducted at source by payer on: salary (slab), bank interest (10-15%), rent (10-15%), contractor (3-7%), professional fees (10%), dividend (10-20%), NRB profit (20% with TIN, 30% without TIN).",
     source: "Income Tax Act 2023, Chapter XII",
     certainty: "confirmed",
-    tags: ["withholding tax", "wht", "source deduction"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-corporate-001",
-    jurisdiction: "BD",
     title: "Corporate Tax Rates FY 2024-25",
     rule: "Publicly traded: 22.5%. Private limited: 27.5%. Bank/insurance listed: 37.5%. Bank unlisted: 40%. Telecom: 45%. Tobacco: 45%. Cooperative: 15%. One-person company: 25%.",
     source: "Income Tax Act 2023, Third Schedule; Finance Act 2024",
     certainty: "confirmed",
-    tags: ["corporate tax", "27.5%", "22.5%", "company tax"],
-    lastVerified: "2025-03-09",
   },
 ];
 
@@ -67,7 +52,6 @@ const qaBank: QAEntry[] = [
   //  TIN & REGISTRATION 
   {
     id: "tax-qa-001",
-    jurisdiction: "BD",
     triggerKeywords: ["need tin", "get tin", "tin registration", "etin", "tin "],
     question: "How do I get a TIN in Bangladesh?",
     irac: {
@@ -78,11 +62,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-002",
-    jurisdiction: "BD",
     triggerKeywords: ["tin mandatory", "tin required", "when need tin"],
     question: "When is TIN mandatory in Bangladesh?",
     irac: {
@@ -93,12 +75,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   //  INCOME TAX RETURNS 
   {
     id: "tax-qa-003",
-    jurisdiction: "BD",
     triggerKeywords: ["file tax return", "how to file return", "income tax return"],
     question: "How do I file my income tax return in Bangladesh?",
     irac: {
@@ -109,11 +89,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-004",
-    jurisdiction: "BD",
     triggerKeywords: ["tax slab", "income tax rate", "tax rate 2024", "tax rate 2025"],
     question: "What are the income tax rates for 2024-25?",
     irac: {
@@ -124,11 +102,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-005",
-    jurisdiction: "BD",
     triggerKeywords: ["tax rebate", "investment rebate", "tax savings", "rebate calculation"],
     question: "How do I reduce tax through investment rebate?",
     irac: {
@@ -139,11 +115,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-006",
-    jurisdiction: "BD",
     triggerKeywords: ["late return", "return late penalty", "missed deadline", "return after november"],
     question: "What happens if I file my tax return late?",
     irac: {
@@ -154,11 +128,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-007",
-    jurisdiction: "BD",
     triggerKeywords: ["minimum tax", "tin holder minimum", "zero income tax", "minimum payment"],
     question: "Is there a minimum tax even below the tax-free limit?",
     irac: {
@@ -169,12 +141,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   //  VAT 
   {
     id: "tax-qa-008",
-    jurisdiction: "BD",
     triggerKeywords: ["vat registration", "mushak registration", "bin registration", "vat certificate"],
     question: "How do I register for VAT?",
     irac: {
@@ -185,11 +155,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-009",
-    jurisdiction: "BD",
     triggerKeywords: ["vat return", "mushak 9.1", "monthly vat", "vat filing"],
     question: "How do I file a monthly VAT return?",
     irac: {
@@ -200,11 +168,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-010",
-    jurisdiction: "BD",
     triggerKeywords: ["vat exempt", "zero vat", "no vat goods", "vat free items"],
     question: "Which goods and services are exempt from VAT?",
     irac: {
@@ -215,12 +181,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   //  WITHHOLDING TAX 
   {
     id: "tax-qa-011",
-    jurisdiction: "BD",
     triggerKeywords: ["withholding tax", "source tax", "tds bangladesh", "wht deduction"],
     question: "What is withholding tax and who must deduct it?",
     irac: {
@@ -231,11 +195,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-012",
-    jurisdiction: "BD",
     triggerKeywords: ["salary tax deduction", "employee tax", "payroll tax", "salary withholding"],
     question: "How is income tax deducted from salary?",
     irac: {
@@ -246,12 +208,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001", "tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   //  BUSINESS TAX 
   {
     id: "tax-qa-013",
-    jurisdiction: "BD",
     triggerKeywords: ["company tax rate", "corporate tax", "corporate tax rate", "business tax"],
     question: "What is the corporate tax rate in Bangladesh?",
     irac: {
@@ -262,11 +222,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-corporate-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-014",
-    jurisdiction: "BD",
     triggerKeywords: ["advance tax", "quarterly tax", "advance income tax", "quarterly payment"],
     question: "Do I have to pay advance income tax?",
     irac: {
@@ -277,11 +235,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-015",
-    jurisdiction: "BD",
     triggerKeywords: ["tax audit", "nbr audit", "selected audit", "dcit audit"],
     question: "What happens if NBR audits my tax return?",
     irac: {
@@ -293,12 +249,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Tax audit requires professional response. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   //  DISPUTES & APPEALS 
   {
     id: "tax-qa-016",
-    jurisdiction: "BD",
     triggerKeywords: ["tax appeal", "challenge tax demand", "object tax", "tax dispute"],
     question: "How do I challenge a tax demand I disagree with?",
     irac: {
@@ -310,11 +264,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Tax appeals have strict deadlines. WhatsApp NLC for specialist referral.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-017",
-    jurisdiction: "BD",
     triggerKeywords: ["tax refund", "overpaid tax", "refund income tax", "excess tax paid"],
     question: "How do I get a refund if I overpaid tax?",
     irac: {
@@ -325,12 +277,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   //  PROPERTY & CAPITAL GAINS 
   {
     id: "tax-qa-018",
-    jurisdiction: "BD",
     triggerKeywords: ["land sale tax", "property tax", "capital gain tax", "property capital gain"],
     question: "Do I pay tax when selling land or property?",
     irac: {
@@ -341,11 +291,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-019",
-    jurisdiction: "BD",
     triggerKeywords: ["house rent income", "rental income tax", "landlord tax", "rent tax"],
     question: "Do I pay tax on house rent income?",
     irac: {
@@ -356,12 +304,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001", "tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   //  SPECIAL SITUATIONS 
   {
     id: "tax-qa-020",
-    jurisdiction: "BD",
     triggerKeywords: ["undisclosed income", "black money", "undeclared income", "voluntary disclosure"],
     question: "Can I disclose undeclared income and pay tax on it?",
     irac: {
@@ -373,11 +319,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Voluntary disclosure strategy requires professional guidance. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-021",
-    jurisdiction: "BD",
     triggerKeywords: ["freelancer tax", "remote work tax", "digital income tax", "online income foreign"],
     question: "Do freelancers and remote workers pay tax in Bangladesh?",
     irac: {
@@ -388,11 +332,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-022",
-    jurisdiction: "BD",
     triggerKeywords: ["gift tax", "gift money tax", "received gift taxable", "gift from family"],
     question: "Is a gift I received taxable?",
     irac: {
@@ -403,11 +345,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-023",
-    jurisdiction: "BD",
     triggerKeywords: ["bank interest tax", "savings interest", "fd tax", "fixed deposit tax"],
     question: "How is bank interest taxed?",
     irac: {
@@ -418,11 +358,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-024",
-    jurisdiction: "BD",
     triggerKeywords: ["tax penalty", "tax evasion penalty", "tax fine", "nbr penalty"],
     question: "What are the penalties for tax evasion?",
     irac: {
@@ -433,11 +371,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-025",
-    jurisdiction: "BD",
     triggerKeywords: ["sanchayapatra tax", "savings certificate tax", "national savings tax"],
     question: "What tax applies on sanchayapatra?",
     irac: {
@@ -448,11 +384,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-026",
-    jurisdiction: "BD",
     triggerKeywords: ["surcharge wealth", "net wealth tax", "wealth surcharge", "assets surcharge"],
     question: "What is wealth surcharge in Bangladesh tax?",
     irac: {
@@ -463,11 +397,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-027",
-    jurisdiction: "BD",
     triggerKeywords: ["facebook business tax", "e-commerce tax", "online shop tax", "digital business"],
     question: "Do I pay tax on Facebook or e-commerce income?",
     irac: {
@@ -478,11 +410,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-028",
-    jurisdiction: "BD",
     triggerKeywords: ["remittance tax", "foreign remittance", "nrb remittance", "overseas income"],
     question: "Is foreign remittance taxable in Bangladesh?",
     irac: {
@@ -493,11 +423,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-029",
-    jurisdiction: "BD",
     triggerKeywords: ["stamp duty", "registration fee land", "deed registration cost", "land registration tax"],
     question: "What are stamp duty and registration fees for land?",
     irac: {
@@ -508,11 +436,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-030",
-    jurisdiction: "BD",
     triggerKeywords: ["tax clearance", "tax proof", "tcc certificate", "tax compliance proof"],
     question: "How do I get proof that I have paid my taxes?",
     irac: {
@@ -523,12 +449,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   //  NEW Q&A 031-050 
   {
     id: "tax-qa-031",
-    jurisdiction: "BD",
     triggerKeywords: ["business income tax", "sole trader tax", "proprietorship tax", "business profit tax"],
     question: "How is sole proprietorship business income taxed?",
     irac: {
@@ -539,11 +463,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-032",
-    jurisdiction: "BD",
     triggerKeywords: ["partnership tax", "firm tax", "partnership income tax", "firm income"],
     question: "How is a partnership firm taxed in Bangladesh?",
     irac: {
@@ -554,11 +476,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-033",
-    jurisdiction: "BD",
     triggerKeywords: ["ngo tax", "charitable trust tax", "ngo income tax", "charitable income"],
     question: "Are NGOs and charitable organizations exempt from tax?",
     irac: {
@@ -569,11 +489,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-034",
-    jurisdiction: "BD",
     triggerKeywords: ["supplementary duty", "sd goods", "supplementary duty vat", "sd rate"],
     question: "What is supplementary duty (SD) in Bangladesh?",
     irac: {
@@ -584,11 +502,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-035",
-    jurisdiction: "BD",
     triggerKeywords: ["custom duty import", "import tax", "import duty bangladesh", "customs charge"],
     question: "What taxes apply when importing goods into Bangladesh?",
     irac: {
@@ -599,11 +515,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-036",
-    jurisdiction: "BD",
     triggerKeywords: ["dividends tax", "share dividend", "dividend income tax", "share income"],
     question: "How is dividend income taxed?",
     irac: {
@@ -614,11 +528,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-037",
-    jurisdiction: "BD",
     triggerKeywords: ["transfer pricing", "related party transaction", "multinational tax", "arm's length"],
     question: "What is transfer pricing and does it apply to my business?",
     irac: {
@@ -630,11 +542,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Transfer pricing compliance is complex. WhatsApp NLC for specialist referral.",
     relatedRules: ["tax-corporate-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-038",
-    jurisdiction: "BD",
     triggerKeywords: ["tax return proof bank loan", "bank requires tax return", "loan tax return requirement"],
     question: "Do I need a tax return for a bank loan?",
     irac: {
@@ -645,11 +555,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-039",
-    jurisdiction: "BD",
     triggerKeywords: ["provident fund tax", "gratuity tax", "provident fund taxable", "gratuity taxable"],
     question: "Is provident fund or gratuity taxable?",
     irac: {
@@ -660,11 +568,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-040",
-    jurisdiction: "BD",
     triggerKeywords: ["crypto tax", "bitcoin tax", "cryptocurrency bangladesh tax", "digital asset tax"],
     question: "Is cryptocurrency income taxable in Bangladesh?",
     irac: {
@@ -676,11 +582,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Cryptocurrency tax issues carry legal and regulatory risk. WhatsApp NLC for guidance.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-041",
-    jurisdiction: "BD",
     triggerKeywords: ["salary abroad income", "foreign salary tax", "overseas job tax", "foreign employment"],
     question: "I work abroad - do I pay tax in Bangladesh on my foreign salary?",
     irac: {
@@ -691,11 +595,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-042",
-    jurisdiction: "BD",
     triggerKeywords: ["nbr notice response", "tax notice", "income tax notice", "dcit notice"],
     question: "I received a tax notice from NBR - what do I do?",
     irac: {
@@ -707,11 +609,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Tax notice response requires professional help. WhatsApp NLC.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-043",
-    jurisdiction: "BD",
     triggerKeywords: ["export income tax", "export earnings tax", "garments export tax", "export exemption"],
     question: "Is export income exempt from tax?",
     irac: {
@@ -722,11 +622,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-corporate-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-044",
-    jurisdiction: "BD",
     triggerKeywords: ["pension tax", "retirement income tax", "government pension", "pension taxable"],
     question: "Is pension income taxable in Bangladesh?",
     irac: {
@@ -737,11 +635,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-045",
-    jurisdiction: "BD",
     triggerKeywords: ["vat input credit", "input vat", "vat credit claim", "mushak input credit"],
     question: "Can I claim input VAT credit on purchases?",
     irac: {
@@ -752,11 +648,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-046",
-    jurisdiction: "BD",
     triggerKeywords: ["large taxpayer", "ltu", "large taxpayer unit", "ltu registration"],
     question: "What is the Large Taxpayer Unit (LTU) and do I fall under it?",
     irac: {
@@ -767,11 +661,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-corporate-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-047",
-    jurisdiction: "BD",
     triggerKeywords: ["flat apartment purchase tax", "apartment buy tax", "property purchase tax", "flat registration tax"],
     question: "What taxes do I pay when buying a flat?",
     irac: {
@@ -782,11 +674,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-048",
-    jurisdiction: "BD",
     triggerKeywords: ["small business vat", "cottage industry", "small business tax", "cottage vat"],
     question: "Do small businesses and cottage industries pay VAT?",
     irac: {
@@ -797,11 +687,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-049",
-    jurisdiction: "BD",
     triggerKeywords: ["income tax act 2023 changes", "new tax law changes", "ita 2023 vs ordinance 1984", "tax law changes"],
     question: "What are the major changes in the Income Tax Act 2023 vs old law?",
     irac: {
@@ -812,11 +700,9 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-050",
-    jurisdiction: "BD",
     triggerKeywords: ["tax consultant", "ca firm", "tax advisor", "income tax help", "need tax help"],
     question: "When do I need a professional tax consultant in Bangladesh?",
     irac: {
@@ -828,11 +714,9 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Complex tax matters require professional guidance. WhatsApp NLC for referral.",
     relatedRules: [],
-    lastVerified: "2025-03-09",
   },
   {
     id: "tax-qa-051",
-    jurisdiction: "BD",
     triggerKeywords: ["vat enforcement", "vat audit", "vat inspection", "nbr vat visit", "vat officer visit", "mushak audit"],
     question: "What happens during a VAT audit by NBR?",
     irac: {
@@ -844,12 +728,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "VAT audit requires professional response. WhatsApp NLC for CA referral.",
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-052",
-    jurisdiction: "BD",
     triggerKeywords: ["vat deregistration", "close vat", "vat cancellation", "bin cancel", "stop vat registration"],
     question: "How do I cancel or deregister my VAT registration?",
     irac: {
@@ -860,12 +742,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-053",
-    jurisdiction: "BD",
     triggerKeywords: ["agricultural income tax", "krishi aay kor", "farm income tax", "agriculture tax bangladesh"],
     question: "Is agricultural income taxable in Bangladesh?",
     irac: {
@@ -876,12 +756,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-slab-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-054",
-    jurisdiction: "BD",
     triggerKeywords: ["tax amnesty", "black money white", "undisclosed asset", "voluntary disclosure scheme", "tax pardon"],
     question: "Is there a current tax amnesty or voluntary disclosure scheme in Bangladesh?",
     irac: {
@@ -893,12 +771,10 @@ const qaBank: QAEntry[] = [
     escalate: true,
     escalateReason: "Voluntary disclosure strategy requires professional tax planning. WhatsApp NLC for CA referral.",
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-055",
-    jurisdiction: "BD",
     triggerKeywords: ["turnover tax", "4 percent tax", "small business tax", "turnover tax bangladesh", "vat turnover"],
     question: "What is turnover tax and who pays it?",
     irac: {
@@ -909,12 +785,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-056",
-    jurisdiction: "BD",
     triggerKeywords: ["tax assessment", "self assessment", "best judgment", "dcit assessment", "tax officer assessment"],
     question: "What are the different types of tax assessment under ITA 2023?",
     irac: {
@@ -925,12 +799,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-057",
-    jurisdiction: "BD",
     triggerKeywords: ["tax deduction certificate", "wht certificate", "source tax certificate", "form 108a", "tax credit certificate"],
     question: "How do I claim tax credit for tax already deducted at source?",
     irac: {
@@ -941,12 +813,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-wht-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-058",
-    jurisdiction: "BD",
     triggerKeywords: ["vat composition", "composition scheme", "small trader vat", "composition vat", "simplified vat"],
     question: "Is there a simplified VAT scheme for small traders?",
     irac: {
@@ -957,12 +827,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-059",
-    jurisdiction: "BD",
     triggerKeywords: ["tax return revision", "amend return", "correct tax return", "return mistake", "revise return"],
     question: "Can I revise my tax return if I made a mistake?",
     irac: {
@@ -973,12 +841,10 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001"],
-    lastVerified: "2025-03-09",
   },
 
   {
     id: "tax-qa-060",
-    jurisdiction: "BD",
     triggerKeywords: ["nbr online services", "etax portal", "online tax", "digital tax bangladesh", "nbr app", "etaxnbr"],
     question: "What online services does NBR offer for taxpayers?",
     irac: {
@@ -989,7 +855,6 @@ const qaBank: QAEntry[] = [
     },
     escalate: false,
     relatedRules: ["tax-ita-001", "tax-vat-001"],
-    lastVerified: "2025-03-09",
   },
 ];
 
