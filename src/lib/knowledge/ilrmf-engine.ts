@@ -334,8 +334,8 @@ export function runILRMF(input: ILRMFInput): ILRMFResult {
   }
 
   const s1: ReasoningTrace["stage1"] = {
-    jurisdiction: entry.jurisdiction,
-    area: entry.area,
+    jurisdiction: entry.jurisdiction ?? "BD",
+    area: entry.area ?? knowledge.area ?? "general",
     keywordsMatched: matched,
     matchDensity,
     completenessScore: matchDensity,
@@ -467,7 +467,7 @@ export function runILRMF(input: ILRMFInput): ILRMFResult {
     },
     escalate: entry.escalate,
     escalateReason: entry.escalateReason ?? null,
-    area: entry.area,
+    area: entry.area ?? knowledge.area ?? "general",
     language: lang,
     matchedEntryId: entry.id,
     matchedRuleIds: rules.map((r) => r.id),

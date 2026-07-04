@@ -40,14 +40,10 @@ export type LawArea =
 
 export interface LegalRule {
   id: string;
-  area: LawArea;
-  jurisdiction: string;
   title: string;
   source: string;
   rule: string;
   certainty: "confirmed" | "arguable" | "verify-with-lawyer";
-  tags: string[];
-  lastVerified: string;
 }
 
 // ─── IRAC Structure ────────────────────────────────────────
@@ -73,8 +69,8 @@ export interface IRAC {
 export interface QAEntry {
   id: string;
   question: string;
-  area: LawArea;
-  jurisdiction: string;
+  area?: LawArea;
+  jurisdiction?: string;
   triggerKeywords: string[];
   irac: IRAC;
   relatedRules: string[];
