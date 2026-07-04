@@ -25,7 +25,7 @@
 // after mass uprising. Constitution Review Commission formed 2024.
 // Last verified: 2025-03-09
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 const rules: LegalRule[] = [
   {
@@ -1312,7 +1312,7 @@ const qaBank: QAEntry[] = [
 
 ];
 
-const constitutionalModule: KnowledgeModule = {
+const constitutionalModule: KnowledgeBank = {
   area: "constitutional",
   label: "Constitutional Law",
   description: "Knowledge module for constitutional law in Bangladesh.",

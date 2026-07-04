@@ -5,7 +5,7 @@
 // Audience: Businesses, individuals, law students
 // Last verified: 2025-04-01
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 const rules: LegalRule[] = [
   {
@@ -1011,7 +1011,7 @@ const qaBank: QAEntry[] = [
   },
 ];
 
-const contractModule: KnowledgeModule = {
+const contractModule: KnowledgeBank = {
   area: "contract",
   label: "Contract Law",
   description: "Knowledge module for contract law in Bangladesh.",

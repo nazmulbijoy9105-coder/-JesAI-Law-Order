@@ -4,7 +4,7 @@
 //         Foreign Investment, NRB rights, Repatriation
 // Last verified: 2025-03-09
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 const rules: LegalRule[] = [
   {
@@ -429,7 +429,7 @@ const qaBank: QAEntry[] = [
   },
 ];
 
-const nrbModule: KnowledgeModule = {
+const nrbModule: KnowledgeBank = {
   area: "nrb",
   label: "NRB Investment & Foreign Investment Law",
   description: "Knowledge module for nrb law in Bangladesh.",

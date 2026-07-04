@@ -3,7 +3,7 @@
 // NLC validated  Md Nazmul Islam, Advocate, SCB
 // Structured for ILRMF v2.0 KnowledgeResult pipeline
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 //  Legal Rules 
 const rules: LegalRule[] = [
@@ -265,7 +265,7 @@ const qaBank: QAEntry[] = [
 ];
 
 //  Module Export 
-const familyModule: KnowledgeModule = {
+const familyModule: KnowledgeBank = {
   area: "family",
   label: "Family Law",
   description: "Knowledge module for family law in Bangladesh.",

@@ -11,7 +11,7 @@
 //  Societies Registration Act 1860 (for NPO)
 // Last verified: 2025-03-09
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 const rules: LegalRule[] = [
   {
@@ -964,7 +964,7 @@ const qaBank: QAEntry[] = [
   },
 ];
 
-const companyLawModule: KnowledgeModule = {
+const companyLawModule: KnowledgeBank = {
   area: "company",
   label: "Company Law",
   description: "Knowledge module for company law in Bangladesh.",

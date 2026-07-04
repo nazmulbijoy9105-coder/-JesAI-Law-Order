@@ -8,7 +8,7 @@
 //  Income Tax Ordinance 1984 - REPEALED, not referenced
 // Last verified: 2025-03-09
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 const rules: LegalRule[] = [
   {
@@ -1058,7 +1058,7 @@ const qaBank: QAEntry[] = [
   },
 ];
 
-const taxModule: KnowledgeModule = {
+const taxModule: KnowledgeBank = {
   area: "tax",
   label: "Tax Law - Income Tax Act 2023, VAT & NBR",
   description: "Knowledge module for tax law in Bangladesh.",

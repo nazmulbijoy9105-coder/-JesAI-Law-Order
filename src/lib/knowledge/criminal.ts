@@ -7,7 +7,7 @@
 // ILRMF Conformant Corpus v2.0  Expanded semantic triggers
 // Last verified: 2025-03-09
 
-import type { KnowledgeModule, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 
 const rules: LegalRule[] = [
   {
@@ -461,7 +461,7 @@ const qaBank: QAEntry[] = [
 ];
 
 // Export default for index.ts aggregation
-const criminalModule: KnowledgeModule = {
+const criminalModule: KnowledgeBank = {
   area: "criminal",
   label: "Criminal Law",
   description: "Knowledge module for criminal law in Bangladesh.",
