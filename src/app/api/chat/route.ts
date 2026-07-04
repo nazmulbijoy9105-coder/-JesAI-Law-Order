@@ -1,40 +1,20 @@
-//  JesAI API Route  LLM-Powered Legal AI 
-//
-// ARCHITECTURE:
-//   User message
-//      queryKnowledge()        [RAG: find relevant Q&A + rules]
-//      buildSystemPrompt()     [inject BD law context]
-//      Gemini API              [LLM generates personalised answer]
-//      applyPaywallTier()      [gate conclusion for free users]
-//      stream to client
-//
-// LLM FALLBACK:
-//   If Gemini unavailable / key missing  falls back to static
-//   knowledge store response (current behavior). Zero downtime.
-//
-// ENV REQUIRED:
-//   GEMINI_API_KEY=your_key_here   (Google AI Studio  free tier)
-//
-// 
+//  JesAI API Route — ILRMF Orchestrator
+// Zero LLM. Zero transformation bridge.
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import type { LawArea, KnowledgeResult } from "@/lib/knowledge/types";
+import { queryKnowledge, detectArea, TIER_PRICING } from "@/lib/knowledge";
+import type { ILRMFInput, ILRMFResult, VerdictBand } from "@/lib/knowledge/ilrmf-types";
+import { runILRMF } from "@/lib/knowledge/ilrmf-engine";
 import {
-  queryKnowledge,
-  detectArea,
-  formatResponse,
-  TIER_PRICING,
-} from "@/lib/knowledge";
-import {
-  matchScenario,
-  nextStep,
-  isNextStepCommand,
-  isPrevStepCommand,
+  matchScenario, nextStep,
+  isNextStepCommand, isPrevStepCommand,
   type ScenarioSession,
 } from "@/lib/knowledge/scenario-manager";
 
-// Server-side Supabase for token verification (lazy init  no module-level createClient)
+// ─── Auth ──────────────────────────────────────────────────
+
 function getSupabaseServer() {
   return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -45,288 +25,104 @@ function getSupabaseServer() {
 async function verifyUserIsPaid(token: string | null): Promise<boolean> {
   if (!token) return false;
   try {
-    const supabaseServer = getSupabaseServer();
-    const { data: { user } } = await supabaseServer.auth.getUser(token);
+    const { data: { user } } = await getSupabaseServer().auth.getUser(token);
     if (!user) return false;
-    const { data: profile } = await supabaseServer
-      .from("users")
-      .select("is_paid, tier, tier_expires_at")
-      .eq("id", user.id)
-      .single();
-    if (!profile?.is_paid) return false;
-    if (profile.tier_expires_at && new Date(profile.tier_expires_at) < new Date()) return false;
+    const { data: p } = await getSupabaseServer().from("users").select("is_paid, tier_expires_at").eq("id", user.id).single();
+    if (!p?.is_paid) return false;
+    if (p.tier_expires_at && new Date(p.tier_expires_at) < new Date()) return false;
     return true;
-  } catch {
-    return false;
-  }
+  } catch { return false; }
 }
 
-//  Config 
-const GEMINI_API_KEY  = process.env.GEMINI_API_KEY ?? "";
-const GEMINI_MODEL    = "gemini-2.0-flash";
-const LLM_ENABLED     = GEMINI_API_KEY.length > 0;
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "01XXXXXXXXX";
+// ─── Helpers ───────────────────────────────────────────────
 
-//  Language Detection 
-function detectLanguage(text: string): "bn" | "en" {
-  return /[\u0980-\u09FF]/.test(text) ? "bn" : "en";
+const WHATSAPP = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "01XXXXXXXXX";
+
+function detectLanguage(t: string): "en" | "bn" {
+  return /[\u0980-\u09FF]/.test(t) ? "bn" : "en";
 }
 
-//  Area Labels 
 const AREA_LABELS: Record<string, { en: string; bn: string }> = {
-  property:       { en: "Land & Property Law",   bn: "জমি ও সম্পত্তি আইন" },
-  criminal:       { en: "Criminal Law",           bn: "ফৌজরাণা আইন" },
-  family:         { en: "Family Law",             bn: "পারিবারিক আইন" },
-  labour:         { en: "Labour Law",             bn: "শ্রমিক আইন" },
-  company:        { en: "Company Law",            bn: "কোম্পানী আইন" },
-  tax:            { en: "Tax Law",                bn: "কর আইন" },
-  nrb:            { en: "NRB Investment Law",     bn: "প্রবাসী বিনিয়োগ আইন" },
-  constitutional: { en: "Constitutional Law",     bn: "সংবিধান আইন" },
-  consumer:       { en: "Consumer Rights Law",    bn: "ভোক্তারী অধিকার আইন" },
-  cyber:          { en: "Cyber Law",              bn: "সাইবার আইন" },
-  contract:       { en: "Contract Law",           bn: "চুক্তি আইন" },
+  property: { en: "Land & Property Law", bn: "জমি ও সম্পত্তি আইন" },
+  criminal: { en: "Criminal Law", bn: "ফৌজদারি আইন" },
+  family: { en: "Family Law", bn: "পারিবারিক আইন" },
+  labour: { en: "Labour Law", bn: "শ্রমিক আইন" },
+  company: { en: "Company Law", bn: "কোম্পানী আইন" },
+  tax: { en: "Tax Law", bn: "কর আইন" },
+  nrb: { en: "NRB Investment Law", bn: "প্রবাসী বিনিয়োগ আইন" },
+  constitutional: { en: "Constitutional Law", bn: "সংবিধান আইন" },
+  consumer: { en: "Consumer Rights Law", bn: "ভোক্তা অধিকার আইন" },
+  cyber: { en: "Cyber Law", bn: "সাইবার আইন" },
+  contract: { en: "Contract Law", bn: "চুক্তি আইন" },
 };
 
-//  Out-of-scope response 
-function outOfScopeResponse(
-  selectedArea: LawArea,
-  detectedArea: LawArea | null,
-  lang: "en" | "bn"
-): string {
-  const sel = AREA_LABELS[selectedArea] ?? { en: selectedArea, bn: selectedArea };
-  const det = detectedArea ? (AREA_LABELS[detectedArea] ?? null) : null;
-  if (lang === "bn") {
-    return (
-      `  **${sel.bn}**  \n\n` +
-      (det ? `  **${det.bn}**   \n\n` : "") +
-      `   **${sel.bn}**   \n\n` +
-      `         `
-    );
-  }
-  return (
-    `You are in the **${sel.en}** section.\n\n` +
-    (det ? `Your question appears to be about **${det.en}**.\n\n` : "") +
-    `Please ask about **${sel.en}** only, or return to the main menu to switch topics.`
-  );
+function outOfScope(sel: LawArea, det: LawArea | null, lang: "en" | "bn") {
+  const s = AREA_LABELS[sel] ?? { en: sel, bn: sel };
+  const d = det ? AREA_LABELS[det] : null;
+  return lang === "bn"
+    ? `⚠️ আপনি **${s.bn}** বিভাগে আছেন।${d ? ` আপনার প্রশ্ন **${d.bn}** সম্পর্কিত।` : ""} অনুগ্রহ করে **${s.bn}** সম্পর্কে জিজ্ঞাসা করুন।`
+    : `⚠️ You are in **${s.en}**.${d ? ` Your question is about **${d.en}**.` : ""} Please ask about **${s.en}** only.`;
 }
 
-//  LLM System Prompt Builder  ILRMF Architecture 
-function buildSystemPrompt(
-  result: KnowledgeResult,
-  selectedArea: LawArea | null,
-  isPaid: boolean,
-  lang: "en" | "bn"
-): string {
-  const areaLabel = selectedArea
-    ? (AREA_LABELS[selectedArea]?.[lang === "bn" ? "bn" : "en"] ?? selectedArea)
-    : "Bangladesh Law";
+const FALLBACKS: Record<string, string> = {
+  property: "**Land & Property Law — Bangladesh**\n\nPlease describe:\n• Location of the property\n• When the issue started\n• Documents you have\n\n_I understand property disputes can be stressful._",
+  criminal: "**Criminal Law — Bangladesh**\n\nPlease describe:\n• What happened\n• When and where\n• Has any FIR been filed?\n\n_Criminal matters can be frightening._",
+  family: "**Family Law — Bangladesh**\n\nPlease describe your family law matter.\n\n_Family matters are deeply personal._",
+  labour: "**Labour Law — Bangladesh**\n\nPlease describe your employment situation.\n\n_Your rights as a worker matter._",
+  company: "**Company Law — Bangladesh**\n\nPlease describe your company or business matter.\n\n_Let me simplify company law for you._",
+  tax: "**Tax Law — Bangladesh**\n\nPlease describe your tax situation.\n\n_Tax issues are time-sensitive._",
+  nrb: "**NRB Investment — Bangladesh**\n\nPlease describe your NRB matter.\n\n_Cross-border rules are complex._",
+  constitutional: "**Constitutional Law — Bangladesh**\n\nPlease describe your constitutional rights matter.\n\n_Your rights are fundamental._",
+  consumer: "**Consumer Rights — Bangladesh**\n\nPlease describe your consumer complaint.\n\n_You have legal protections._",
+  cyber: "**Cyber Law — Bangladesh**\n\nPlease describe your cyber law matter.\n\n_Digital crime is serious._",
+  contract: "**Contract Law — Bangladesh**\n\nPlease describe your contract matter.\n\n_Contracts are about enforcing promises._",
+  general: "I'm JesAI. Please describe your legal situation:\n1. What happened\n2. Who is involved\n3. What you want\n\n**JesAI covers:** Land • Criminal • Family • Labour • Company • Tax • NRB • Constitutional • Consumer • Cyber",
+};
 
-  const lawContext: string[] = [];
-  if (result.qaEntry) {
-    const { irac } = result.qaEntry;
-    lawContext.push(`VALIDATED LEGAL CONTEXT:\nIssue: ${irac.issue}\nLaw: ${irac.rule}`);
-    if (isPaid) {
-      lawContext.push(`Assessment: ${irac.application}\nResolution: ${irac.conclusion}`);
-    }
-    if (result.qaEntry.escalate && result.qaEntry.escalateReason) {
-      lawContext.push(` URGENT: ${result.qaEntry.escalateReason}`);
-    }
-  }
-  if (result.rules.length > 0) {
-    const rulesSummary = result.rules
-      .slice(0, 5)
-      .map((r) => ` ${r.title} [${r.source}]: ${r.rule.slice(0, 250)}`)
-      .join("\n");
-    lawContext.push(`APPLICABLE LAWS:\n${rulesSummary}`);
-  }
+const sessions = new Map<string, ScenarioSession>();
 
-  const langInstruction = lang === "bn"
-    ? "LANGUAGE:     , ,            (FIR, RJSC, Section )"
-    : "LANGUAGE: Respond in English. Warm, clear, plain language. Not robotic.";
-
-  const ilrmfInstruction = `
-
-ILRMF  INTEGRATED LEGAL REASONING & MAPPING FRAMEWORK
-
-
-PIPELINE STAGE 1  FACT EXTRACTION
-Extract: Parties, Subject matter, Key dates, Documents, Urgency indicators
-
-PIPELINE STAGE 2  ISSUE CLASSIFICATION
-Identify EACH distinct legal issue separately
-
-PIPELINE STAGE 3  TIER-1 DETERMINISTIC CHECKS
-LIMITATION:  GREEN (within time) /  RED (time-barred)
-REGISTRATION:  GREEN /  YELLOW (weaker position)
-JURISDICTION:  PROCEED /  BLACK (jurisdiction bar)
-EVIDENCE:  GREEN /  YELLOW /  RED
-
-PIPELINE STAGE 4  ARGUMENT TREES
-Both sides: YOUR SIDE argues / OPPOSING SIDE may argue
-
-PIPELINE STAGE 5  RELIEF CLASSIFICATION
- GREEN (deterministic) /  YELLOW (discretionary) /  RED (blocked) /  BLACK (jurisdiction bar)
-
-PIPELINE STAGE 6  RESOLUTION & NEXT STEPS
-Immediate steps, Documents, Court/authority, Timeline
-
-PIPELINE STAGE 7  HUMAN TOUCH
-Sincere, warm closing
-
-VERDICT SUMMARY: **Verdict: [///]** + one sentence
-`;
-
-  const tierInstruction = isPaid
-    ? "ACCESS: FULL  Run all 7 pipeline stages completely."
-    : `ACCESS: FREE  Run stages 13 fully. For stages 46, end with: " **Unlock full analysis  [price]**"`;
-
-  return `You are JesAI  Bangladesh's Legal Reasoning AI, built by Neum Lex Counsel (NLC).
-
-CORE RULES:
-1. Subject: ${areaLabel}  Bangladesh law only
-2. Use only validated law context + your verified Bangladesh law knowledge
-3. Never invent statutes, case names, penalties, or sections
-4. Always flag urgency prominently
-5. Never use "IRAC"  use ILRMF pipeline stages naturally
-6. Be honest about uncertainty
-7. Write with human warmth
-8. Always end with:  This is legal information, not legal advice.
-
- ${langInstruction}
-
- ${ilrmfInstruction}
-
- ${tierInstruction}
-
-NLC-VALIDATED LAW CONTEXT:
- ${lawContext.length > 0 ? lawContext.join("\n\n") : `Area: ${areaLabel}. Use your verified Bangladesh law knowledge.`}`;
+function getSessionId(req: NextRequest) {
+  return `${req.headers.get("x-forwarded-for") ?? "anon"}::${(req.headers.get("user-agent") ?? "").slice(0, 40)}`;
 }
 
-//  Gemini API Call 
-async function callGemini(
-  systemPrompt: string,
-  userMessage: string,
-  conversationHistory: { role: "user" | "model"; text: string }[] = []
-): Promise<string> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+const VERDICT_CONFIDENCE: Record<VerdictBand, string> = {
+  GREEN: "high", YELLOW: "medium", RED: "low", BLACK: "critical",
+};
 
-  const contents = [
-    {
-      role: "user",
-      parts: [{ text: `[SYSTEM INSTRUCTIONS]\n${systemPrompt}\n[END SYSTEM]\n\nUser's question: ${userMessage}` }],
-    },
-  ];
-
-  for (const turn of conversationHistory.slice(-6)) {
-    contents.push({
-      role: turn.role,
-      parts: [{ text: turn.text }],
-    });
-  }
-
-  const body = {
-    contents,
-    generationConfig: {
-      temperature: 0.4,
-      topK: 40,
-      topP: 0.95,
-      maxOutputTokens: 2048,
-      stopSequences: [],
-    },
-    safetySettings: [
-      { category: "HARM_CATEGORY_HARASSMENT",        threshold: "BLOCK_ONLY_HIGH" },
-      { category: "HARM_CATEGORY_HATE_SPEECH",       threshold: "BLOCK_ONLY_HIGH" },
-      { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_ONLY_HIGH" },
-      { category: "HARM_CATEGORY_DANGEROUS_CONTENT", threshold: "BLOCK_ONLY_HIGH" },
-    ],
+function ilrmfMeta(r: ILRMFResult, lang: "en" | "bn", paid: boolean) {
+  return {
+    area: r.area,
+    confidence: VERDICT_CONFIDENCE[r.verdict],
+    escalate: r.escalate,
+    escalateReason: r.escalateReason,
+    language: lang,
+    paywallActive: !paid,
+    verdict: r.verdict,
+    confidenceScore: r.confidenceScore,
+    traceId: r.trace.traceId,
+    source: r.source,
+    matchedEntryId: r.matchedEntryId,
+    matchedRuleIds: r.matchedRuleIds,
   };
-
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-    signal: AbortSignal.timeout(25000),
-  });
-
-  if (!response.ok) {
-    const err = await response.text();
-    throw new Error(`Gemini API error ${response.status}: ${err}`);
-  }
-
-  const data = await response.json();
-  const text: string = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "";
-  if (!text) throw new Error("Gemini returned empty response");
-  return text.trim();
 }
 
-//  Paywall Post-Processing 
-function applyPaywallToLLMResponse(
-  llmText: string,
-  result: KnowledgeResult,
-  isPaid: boolean,
-  lang: "en" | "bn"
-): string {
-  if (isPaid) return llmText;
-  // paywall skip check removed (was empty string include bug)
-
-  const paragraphs = llmText.split(/\n\n+/);
-  const freeSection = paragraphs.slice(0, 2).join("\n\n");
-  const area = result.area ?? "general";
-  const pricing = TIER_PRICING[area] ?? { price: 999, label: "Full Legal Guide" };
-
-  const paywallAppend = lang === "bn"
-    ? `\n\n **     ${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`
-    : `\n\n **Unlock full answer  ${pricing.price.toLocaleString()}**\n_${pricing.label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`;
-
-  return freeSection + paywallAppend;
+function scenarioMeta(r: { scenario: { area: string; escalate: boolean; scenarioId: string }; stepNumber: number; totalSteps: number; progressPercent: number; isComplete: boolean }, lang: "en" | "bn") {
+  return {
+    area: r.scenario.area, confidence: "high" as const, escalate: r.scenario.escalate,
+    language: lang, paywallActive: false,
+    scenario: { scenarioId: r.scenario.scenarioId, stepNumber: r.stepNumber, totalSteps: r.totalSteps, progressPercent: r.progressPercent, isComplete: r.isComplete },
+  };
 }
 
-//  Static Fallback Responses 
-const AREA_FALLBACK: Record<string, string> = {
-  property: "**Land & Property Law  Bangladesh**\n\nI'm here to help with your property matter. Please describe what happened.\n\n_I understand property disputes can be stressful. Let me help you understand your rights._",
-  criminal: "**Criminal Law  Bangladesh**\n\nI can help you understand the criminal law aspects of your situation. Please describe what happened.\n\n_Criminal matters can be frightening. You deserve to understand your rights._",
-  family: "**Family Law  Bangladesh**\n\nI'm here to help with your family law matter. Please describe your situation.\n\n_Family matters are deeply personal. I will explain the law with care._",
-  labour: "**Labour Law  Bangladesh**\n\nI can help with your employment situation. Please describe what happened.\n\n_Your rights as a worker matter. Let me explain what the Labour Act 2006 says._",
-  company: "**Company Law  Bangladesh**\n\nI can assist with your company or business matter. Please describe the issue.\n\n_Navigating company law can be complex. Let me simplify it for you._",
-  tax: "**Tax Law  Bangladesh**\n\nI can help with your tax situation. Please describe the matter.\n\n_Tax issues are time-sensitive. Let me help you understand your position._",
-  nrb: "**NRB Investment  Bangladesh**\n\nI can assist with your cross-border investment or NRB matter. Please describe your situation.\n\n_Cross-border investment has complex rules. Let me guide you through them._",
-  constitutional: "**Constitutional Law  Bangladesh**\n\nI can help with your constitutional rights matter. Please describe the situation.\n\n_Your constitutional rights are fundamental. Let me explain how to protect them._",
-  consumer: "**Consumer Rights  Bangladesh**\n\nI can help with your consumer rights complaint. Please describe what happened.\n\n_As a consumer, you have legal protections. Let me explain them._",
-  cyber: "**Cyber Law  Bangladesh**\n\nI can assist with your cyber or digital law matter. Please describe the issue.\n\n_Digital crime is a serious matter. Let me explain your rights and options._",
-  contract: "**Contract Law  Bangladesh**\n\nI can help with your contract matter. Please describe the situation.\n\n_Contract disputes are about enforcing promises. Let me explain your legal position._",
-  general: "I'm JesAI, your Bangladesh legal literacy companion. Please describe your legal situation.\n\n_Whatever your legal challenge, you deserve to understand the law that applies to you._",
-};
+// ─── POST Handler ──────────────────────────────────────────
 
-const FALLBACK_TEXT: Record<string, string> = {
-  en: "Please describe your legal situation:\n1. What happened\n2. Who is involved\n3. What you want\n\n**JesAI covers:** Land & Property  Criminal  Family  Labour  Company  Tax  NRB  Constitutional  Consumer  Cyber\n\n Legal information only  not legal advice.",
-  bn: "      :\n.  \n.  \n.   \n\n      ",
-};
-
-//  Scenario Sessions 
-const scenarioSessions = new Map<string, ScenarioSession>();
-
-function getSessionId(req: NextRequest): string {
-  const ip = req.headers.get("x-forwarded-for") ?? "anon";
-  const ua = (req.headers.get("user-agent") ?? "").slice(0, 40);
-  return `${ip}::${ua}`;
-}
-
-//  Main Handler 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
-    const {
-      message,
-      selectedArea = null,
-      history = [],
-    } = body as {
-      message: string;
-      selectedArea?: LawArea | null;
-      history?: { role: "user" | "assistant"; content: string }[];
+    const { message, selectedArea = null, history = [] } = (await req.json()) as {
+      message: string; selectedArea?: LawArea | null; history?: { role: string; content: string }[];
     };
 
-    const authHeader = req.headers.get("authorization");
-    const token = authHeader?.replace("Bearer ", "").trim() ?? null;
+    const token = req.headers.get("authorization")?.replace("Bearer ", "").trim() ?? null;
     const isPaid = await verifyUserIsPaid(token);
 
     if (!message || typeof message !== "string") {
@@ -334,125 +130,80 @@ export async function POST(req: NextRequest) {
     }
 
     const lang = detectLanguage(message);
-    const sessionId = getSessionId(req);
-    const activeSession = scenarioSessions.get(sessionId);
+    const sid = getSessionId(req);
+    const session = sessions.get(sid);
 
-    //  Step 0: Scenario navigation 
-    if (activeSession) {
+    // Step 0: Scenario navigation
+    if (session) {
       if (isNextStepCommand(message)) {
-        const r = nextStep(activeSession.scenarioId, activeSession.currentStepIndex);
+        const r = nextStep(session.scenarioId, session.currentStepIndex);
         if (r.matched) {
-          r.isComplete
-            ? scenarioSessions.delete(sessionId)
-            : scenarioSessions.set(sessionId, { scenarioId: r.scenario.scenarioId, currentStepIndex: r.stepNumber - 1 });
-          return NextResponse.json({
-            response: r.summary,
-            source: "scenario",
-            metadata: { area: r.scenario.area, confidence: "high", escalate: r.scenario.escalate, language: lang, paywallActive: false, scenario: { scenarioId: r.scenario.scenarioId, stepNumber: r.stepNumber, totalSteps: r.totalSteps, progressPercent: r.progressPercent, isComplete: r.isComplete } },
-          });
+          r.isComplete ? sessions.delete(sid) : sessions.set(sid, { scenarioId: r.scenario.scenarioId, currentStepIndex: r.stepNumber - 1 });
+          return NextResponse.json({ response: r.summary, source: "scenario", metadata: scenarioMeta(r, lang) });
         }
       }
       if (isPrevStepCommand(message)) {
-        const ti = Math.max(0, activeSession.currentStepIndex - 1);
-        const r = nextStep(activeSession.scenarioId, Math.max(0, ti - 1));
+        const r = nextStep(session.scenarioId, Math.max(0, session.currentStepIndex - 2));
         if (r.matched) {
-          scenarioSessions.set(sessionId, { scenarioId: r.scenario.scenarioId, currentStepIndex: r.stepNumber - 1 });
-          return NextResponse.json({
-            response: r.summary,
-            source: "scenario",
-            metadata: { area: r.scenario.area, confidence: "high", escalate: r.scenario.escalate, language: lang, paywallActive: false, scenario: { scenarioId: r.scenario.scenarioId, stepNumber: r.stepNumber, totalSteps: r.totalSteps, progressPercent: r.progressPercent, isComplete: r.isComplete } },
-          });
+          sessions.set(sid, { scenarioId: r.scenario.scenarioId, currentStepIndex: r.stepNumber - 1 });
+          return NextResponse.json({ response: r.summary, source: "scenario", metadata: scenarioMeta(r, lang) });
         }
       }
     }
 
-    //  Step 1: Subject lock 
+    // Step 1: Subject lock
     if (selectedArea) {
-      const detected = detectArea(message);
-      const offTopic = detected !== null && detected !== selectedArea && detected !== "general" && detected !== "administrative" && detected !== "evidence";
-      if (offTopic) {
-        return NextResponse.json({
-          response: outOfScopeResponse(selectedArea, detected, lang),
-          source: "guard",
-          metadata: { area: selectedArea, confidence: "low", escalate: false, language: lang, paywallActive: false, offTopic: true },
-        });
+      const det = detectArea(message);
+      if (det && det !== selectedArea && det !== "general" && det !== "administrative" && det !== "evidence") {
+        return NextResponse.json({ response: outOfScope(selectedArea, det, lang), source: "guard", metadata: { area: selectedArea, confidence: "low", escalate: false, language: lang, paywallActive: false, offTopic: true } });
       }
     }
 
-    //  Step 2: RAG 
-    const result = queryKnowledge(message, selectedArea);
+    // Step 2: RAG
+    const knowledgeResult: KnowledgeResult = queryKnowledge(message, selectedArea);
 
-    //  Step 3: LLM path 
-    if (LLM_ENABLED) {
-      try {
-        const systemPrompt = buildSystemPrompt(result, selectedArea, isPaid, lang);
-        const geminiHistory = history.map((h) => ({
-          role: h.role === "assistant" ? "model" as const : "user" as const,
-          text: h.content,
-        }));
-        const llmResponse = await callGemini(systemPrompt, message, geminiHistory);
-        const finalResponse = applyPaywallToLLMResponse(llmResponse, result, isPaid, lang);
-        return NextResponse.json({
-          response: finalResponse,
-          source: "llm",
-          metadata: { area: result.area ?? selectedArea, confidence: result.matched ? "high" : "medium", escalate: result.escalate, language: lang, paywallActive: !isPaid, model: GEMINI_MODEL },
-        });
-      } catch (llmError) {
-        console.error("Gemini error  falling back to static:", llmError);
-      }
-    }
-
-    //  Step 4: Static fallback 
-    const scenarioResult = matchScenario(message, activeSession);
-    if (scenarioResult.matched) {
-      const detectedAreaForScenario = detectArea(message);
-const wrongSubject = (selectedArea && scenarioResult.scenario.area !== selectedArea) ||
-                      (!selectedArea && detectedAreaForScenario && detectedAreaForScenario !== "general" && detectedAreaForScenario !== scenarioResult.scenario.area);
-      if (!wrongSubject) {
-        scenarioSessions.set(sessionId, { scenarioId: scenarioResult.scenario.scenarioId, currentStepIndex: scenarioResult.stepNumber - 1 });
-        return NextResponse.json({
-          response: scenarioResult.summary,
-          source: "scenario",
-          metadata: { area: scenarioResult.scenario.area, confidence: "high", escalate: scenarioResult.scenario.escalate, language: lang, paywallActive: false, scenario: { scenarioId: scenarioResult.scenario.scenarioId, stepNumber: scenarioResult.stepNumber, totalSteps: scenarioResult.totalSteps, progressPercent: scenarioResult.progressPercent, isComplete: scenarioResult.isComplete } },
-        });
-      }
-    }
-
-    if (result.matched && result.qaEntry) {
-      const formatted = formatResponse(result);
-      let responseText = typeof formatted === "string" ? formatted : (formatted as any).response ?? "";
-      if (!isPaid) {
-        const price = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.price ?? 99;
-        const label = TIER_PRICING[selectedArea ?? result.area ?? "general"]?.label ?? "Full Legal Guide";
-        const paywall = lang === "bn"
-          ? `\n\n **     ${price.toLocaleString()}**\n_${label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`
-          : `\n\n **Unlock full answer  ${price.toLocaleString()}**\n_${label}_\n\n WhatsApp: **${WHATSAPP_NUMBER}**`;
-        responseText += paywall;
-      }
-      return NextResponse.json({
-        response: responseText,
-        source: "knowledge",
-        metadata: { area: result.area, confidence: result.confidence, escalate: result.escalate, language: lang, paywallActive: !isPaid },
-      });
-    }
-
-    const areaForPrompt = selectedArea ?? result.area;
-    if (areaForPrompt && AREA_FALLBACK[areaForPrompt]) {
-      return NextResponse.json({
-        response: AREA_FALLBACK[areaForPrompt],
-        source: "area_prompt",
-        metadata: { area: areaForPrompt, confidence: "low", escalate: false, language: lang, paywallActive: false },
-      });
-    }
-
-    return NextResponse.json({
-      response: FALLBACK_TEXT[lang] ?? FALLBACK_TEXT.en,
-      source: "fallback",
-      metadata: { area: null, confidence: "low", escalate: false, language: lang, paywallActive: false },
+    // Step 3: ILRMF (zero bridge — direct pass-through)
+    const ilrmf: ILRMFResult = runILRMF({
+      message,
+      knowledge: knowledgeResult,
+      isPaid,
+      language: lang,
     });
 
-  } catch (error) {
-    console.error("JesAI error:", error);
+    // Step 4: ILRMF hit
+    if (ilrmf.verdict !== "BLACK") {
+      return NextResponse.json({ response: ilrmf.responseText, source: "ilrmf_deterministic", metadata: ilrmfMeta(ilrmf, lang, isPaid) });
+    }
+
+    // Step 5: Scenario fallback
+    const sc = matchScenario(message, session);
+    if (sc.matched) {
+      const det = detectArea(message);
+      const wrong = (selectedArea && sc.scenario.area !== selectedArea) || (!selectedArea && det && det !== "general" && det !== sc.scenario.area);
+      if (!wrong) {
+        sessions.set(sid, { scenarioId: sc.scenario.scenarioId, currentStepIndex: sc.stepNumber - 1 });
+        return NextResponse.json({ response: sc.summary, source: "scenario", metadata: scenarioMeta(sc, lang) });
+      }
+    }
+
+    // Step 6: Area fallback
+    const fb = selectedArea ?? knowledgeResult.area;
+    if (fb && FALLBACKS[fb]) {
+      return NextResponse.json({ response: FALLBACKS[fb], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
+    }
+
+    // Step 7: Final fallback
+    const finalText = lang === "bn"
+      ? `⛔ **BLACK — কোনো প্রযোজ্য নিয়ম মেলেনি**\n\nআপনার প্রশ্নটি বর্তমান কর্পাসের সুযোগের বাইরে।\n\n_Trace ID: ${ilrmf.trace.traceId}_`
+      : `⛔ **BLACK — No operable rule match**\n\nYour query is outside the current rule corpus scope.\n\n_Trace ID: ${ilrmf.trace.traceId}_`;
+
+    return NextResponse.json({ response: finalText, source: "fallback", metadata: { area: null, confidence: "critical", escalate: true, language: lang, paywallActive: false, traceId: ilrmf.trace.traceId } });
+  } catch (e) {
+    console.error("JesAI error:", e);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
+}
+
+export async function GET() {
+  return NextResponse.json({ status: "healthy", engine: "ILRMF v2.1.0", mode: "deterministic", llmEnabled: false, timestamp: new Date().toISOString() });
 }

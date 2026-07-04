@@ -1,233 +1,196 @@
-//  JesAI Knowledge Store  Master Router
-// NLC validates all modules. Add new modules here as built.
+//  JesAI Knowledge Index — RAG Layer
+// Returns KnowledgeResult which flows directly into ILRMFInput.knowledge
 
-import type { KnowledgeResult, LawArea, QAEntry } from "./types";
-import nrbModule from "./nrb";
-import propertyModule from "./property";
-import criminalModule from "./criminal";
-import taxModule from "./tax";
-import companyModule from "./company";
-import familyModule from "./family";
-import labourModule from "./labour";
-import contractModule from "./contract";
-import constitutionalModule from "./constitutional";
+import type { LawArea, KnowledgeResult, KnowledgeBank, LegalRule, QAEntry } from "./types";
+import { propertyData } from "./property";
+import { criminalData } from "./criminal";
+import { familyData } from "./family";
+import { labourData } from "./labour";
+import { companyData } from "./company";
+import { taxData } from "./tax";
+import { nrbData } from "./nrb";
+import { constitutionalData } from "./constitutional";
+import { contractData } from "./contract";
 
-const MODULES = [
-  constitutionalModule,
-  criminalModule,
-  propertyModule,
-  familyModule,
-  labourModule,
-  contractModule,
-  companyModule,
-  taxModule,
-  nrbModule,
+// ─── Area Metadata ──────────────────────────────────────────
+
+const AREA_META: Record<string, { label: string; description: string }> = {
+  property:       { label: "Land & Property",       description: "Deeds, mutation, khatian, possession disputes" },
+  criminal:       { label: "Criminal Law",          description: "FIR, bail, penal code offences, cyber crime" },
+  family:         { label: "Family Law",            description: "Marriage, divorce, custody, maintenance" },
+  labour:         { label: "Labour & Employment",   description: "Termination, salary, gratuity, labour court" },
+  company:        { label: "Company Law",           description: "RJSC registration, director duties, shares" },
+  tax:            { label: "Tax Law",               description: "Income tax, VAT, NBR proceedings" },
+  nrb:            { label: "NRB Investment",        description: "FC account, remittance, Sanchayapatra" },
+  constitutional: { label: "Constitutional Law",    description: "Fundamental rights, writ, HCD" },
+  consumer:       { label: "Consumer Rights",       description: "CPA 2009, defective goods, services" },
+  cyber:          { label: "Cyber Law",             description: "ICT Act 2006, online fraud, data" },
+  contract:       { label: "Contract Law",          description: "Agreements, breach, specific performance" },
+};
+
+// ─── Consolidated Banks ─────────────────────────────────────
+
+const ALL_BANKS: KnowledgeBank[] = [
+  propertyData,
+  criminalData,
+  familyData,
+  labourData,
+  companyData,
+  taxData,
+  nrbData,
+  constitutionalData,
+  contractData,
 ];
+
+// ─── Dual-Language Area Detection ───────────────────────────
+
+const AREA_KEYWORDS: Record<string, { en: string[]; bn: string[] }> = {
+  property: {
+    en: ["land", "property", "deed", "khatian", "mutation", "dag", "mouza", "possession", "boundary", "namjari", "purchase", "sale deed", "register", "encroached", "adverse possession"],
+    bn: ["জমি", "সম্পত্তি", "দলিল", "খতিয়ান", "মিউটেশন", "দাগ", "মৌজা", "দখল", "সীমানা", "নামজারি", "ক্রয়", "বিক্রয় দলিল", "রেজিস্ট্রি", "ভোগদখল", "জব্দ", "দখলদারিকরণ"],
+  },
+  criminal: {
+    en: ["fir", "police", "criminal", "murder", "theft", "fraud", "bail", "arrest", "penal code", "crpc", "cheque bounce", "dishonour", "case", "accused"],
+    bn: ["এফআইআর", "পুলিশ", "ফৌজদারি", "হত্যা", "চুরি", "জালিয়াতি", "জামিন", "গ্রেফতার", "দণ্ডবিধি", "মামলা", "আসামি", "বাদী", "থানা", "জিডি", "চেক বাউন্স"],
+  },
+  family: {
+    en: ["divorce", "marriage", "wife", "husband", "child custody", "maintenance", "mahr", "dower", "family court"],
+    bn: ["তালাক", "বিবাহ", "স্ত্রী", "স্বামী", "সন্তান হেফাজত", "ভরণপোষণ", "মোহরানা", "দেনমোহর", "পারিবারিক আদালত"],
+  },
+  labour: {
+    en: ["labour", "salary", "termination", "gratuity", "employee", "employer", "labour court", "overtime", "notice period", "fired"],
+    bn: ["শ্রম", "বেতন", "বরখাস্ত", "গ্র্যাচুইটি", "কর্মী", "মালিক", "শ্রম আদালত", "ওভারটাইম", "নোটিশ", "ছাঁটাই", "চাকরি হারানো"],
+  },
+  company: {
+    en: ["company", "rjsc", "director", "shareholder", "memorandum", "articles", "incorporation", "annual return", "share"],
+    bn: ["কোম্পানি", "আরজেএসসি", "পরিচালক", "শেয়ারহোল্ডার", "মেমোরেন্ডাম", "আর্টিকেল", "নিবন্ধন", "বার্ষিক প্রতিবেদন", "শেয়ার"],
+  },
+  tax: {
+    en: ["tax", "tin", "vat", "nbr", "income tax", "return", "assessment", "customs", "duty"],
+    bn: ["কর", "টিআইএন", "ভ্যাট", "এনবিআর", "আয়কর", "রিটার্ন", "মূল্যায়ন", "কাস্টমস", "শুল্ক"],
+  },
+  nrb: {
+    en: ["nrb", "expatriate", "remittance", "fc account", "foreign exchange", "sanchayapatra", "wage earner"],
+    bn: ["এনআরবি", "প্রবাসী", "রেমিট্যান্স", "বৈদেশিক হিসাব", "সঞ্চয়পত্র", "বৈদেশিক বিনিময়", "মজুরি উপার্জনকারী"],
+  },
+  constitutional: {
+    en: ["writ", "fundamental right", "constitution", "high court", "hcd", "supreme court", "article"],
+    bn: ["রিট", "মৌলিক অধিকার", "সংবিধান", "হাইকোর্ট", "সুপ্রিম কোর্ট", "অনুচ্ছেদ"],
+  },
+  consumer: {
+    en: ["consumer", "defective", "warranty", "refund", "cpa", "seller", "product quality"],
+    bn: ["ভোক্তা", "ত্রুটিপূর্ণ", "ওয়ারেন্টি", "ফেরত", "বিক্রেতা", "পণ্যের মান"],
+  },
+  cyber: {
+    en: ["cyber", "hack", "online fraud", "ict act", "digital", "facebook", "social media", "data theft"],
+    bn: ["সাইবার", "হ্যাক", "অনলাইন জালিয়াতি", "আইসিটি আইন", "ডিজিটাল", "ফেসবুক", "সোশ্যাল মিডিয়া", "তথ্য চুরি"],
+  },
+  contract: {
+    en: ["contract", "agreement", "breach", "specific performance", "damages", "void", "valid"],
+    bn: ["চুক্তি", "চুক্তিভঙ্গ", "ক্ষতিপূরণ", "বাতিল", "অবৈধ", "বৈধ"],
+  },
+};
 
 export function detectArea(message: string): LawArea | null {
   const msg = message.toLowerCase();
+  let bestArea: LawArea | null = null;
+  let bestCount = 0;
 
-  const areaKeywords: Record<LawArea, string[]> = {
-    nrb: [
-      "nrb", "non-resident", "nonresident", "usa partner", "foreign partner",
-      "repatriate", "bida", "wht", "withholding", "dtaa", "fbar",
-      "overseas", "abroad", "dollar", "usd", "nrb business", "foreign investment",
-      "\u09aa\u09cd\u09b0\u09ac\u09be\u09b8\u09c0", "\u09ac\u09bf\u09a6\u09c7\u09b6\u09c0",
-      "\u09b0\u09bf\u09ae\u09bf\u099f\u09c7\u09a8\u09cd\u09b8",
-    ],
-    tax: [
-      "tax", "vat", "nbr", "income tax", "return", "assessment", "challan", "tax return",
-      "tin", "advance tax", "withholding", "ait", "mushak", "bin", "corporate tax",
-      "\u0995\u09b0", "\u09ad\u09cd\u09af\u09be\u099f", "\u0986\u09af\u09bc\u0995\u09b0",
-      "\u099f\u09bf\u098f\u0987\u098f\u09a8", "\u09ae\u09be\u09b8\u09c1\u0995",
-      "\u09b8\u09be\u09b0\u09cd\u099a\u09be\u09b0\u09cd\u099c",
-    ],
-    company: [
-      "company", "rjsc", "incorporation", "pvt ltd", "limited company",
-      "director", "shareholder", "memorandum", "articles", "corporate",
-      "\u0995\u09cb\u09ae\u09cd\u09aa\u09be\u09a8\u09c0", "\u09b0\u099c\u09bf\u09b8\u09cd\u099f\u09cd\u09b0\u09c7\u09b6\u09a8",
-    ],
-    criminal: [
-      "arrest", "fir", "police", "crime", "bail", "accused",
-      "case filed", "charge", "sentence", "jail", "victim",
-      "\u0997\u09cd\u09b0\u09c7\u09ab\u09cd\u09a4\u09be\u09b0", "\u09ea\u09be\u09b0", "\u09aa\u09c1\u09b2\u09bf\u09b6",
-      "\u099c\u09be\u09ae\u09bf\u09a8\u09be\u09a4", "\u099c\u09c7\u09b2",
-    ],
-    property: [
-      "land", "property", "deed", "mutation", "khatian", "plot",
-      "lease", "mortgage", "tenancy", "eviction", "registration",
-      "sub-registrar", "ac land", "namjaari", "title", "boundary",
-      "encroach", "inheritance", "heir", "partition", "flat", "apartment",
-      "cheque bounce", "cheque", "baynama", "rajuk", "rehab", "builder",
-      "loan default", "foreclosure", "artha rin", "khas", "char",
-      "erosion", "shafi", "preemption", "forged deed", "adverse possession",
-      "survey", "rs cs bs", "probate", "will", "succession",
-      "\u099c\u09ae\u09bf", "\u09b8\u09ae\u09cd\u09aa\u09a4\u09cd\u09a4\u09bf", "\u09a6\u09b2\u09bf\u09b2",
-      "\u09ae\u09c1\u09a4\u09be\u09af\u09bc\u09a8", "\u0996\u09a4\u09bf\u09af\u09bc\u09be\u09a8",
-      "\u09ac\u09be\u09af\u09bc\u09a8\u09be\u09ae\u09be", "\u09ad\u09cb\u0997\u09be\u09a8\u09cd\u09a4\u09b0",
-      "\u0989\u09a4\u09cd\u09a4\u09b0\u09be\u09a7\u09bf\u0995\u09be\u09b0", "\u09ad\u09be\u0997",
-    ],
-    family: [
-      "divorce", "marriage", "talaq", "talak", "khola", "custody", "maintenance",
-      "dower", "mehr", "separation", "spouse", "child support", "family court",
-      "\u09a4\u09b2\u09be\u0995", "\u0996\u09cb\u09b2\u09be", "\u09ac\u09bf\u09ac\u09be\u09b9",
-      "\u09af\u09c1\u09a4\u09bf\u09b8\u09cd\u09ac\u09be\u09b0", "\u09ae\u09cb\u09b9\u09b0\u09be\u09a8\u09be",
-      "\u0997\u09cb\u09af\u09bc\u09c7\u09b0 \u09b9\u0995\u09bf\u0995", "\u0995\u09c1\u09b2",
-    ],
-    labour: [
-      "job", "employment", "salary", "fired", "termination", "labour",
-      "worker", "employee", "overtime", "gratuity", "provident fund", "resignation",
-      "\u099a\u09be\u0995\u09b0\u09c0", "\u09ac\u09c7\u09a4\u09a8", "\u099b\u09c1\u099f\u09c7 \u09af\u09be\u0993\u09af\u09bc\u09be",
-      "\u09b6\u09cd\u09b0\u09ae\u09bf\u0995", "\u0997\u09cd\u09b0\u09c7\u099a\u09c1\u0987\u099f\u09bf",
-    ],
-    contract: [
-      "contract", "agreement", "breach", "payment", "refund",
-      "supplier", "buyer", "deal", "sign", "obligation", "default",
-      "\u099a\u09c1\u0995\u09cd\u09a4\u09bf", "\u099a\u09c1\u0995\u09cd\u09a4\u09bf\u09a8\u09be\u09ae\u09be",
-      "\u09ad\u0999\u09cd\u0997\u09c1\u09b0", "\u09a6\u09c7\u09a8\u09be\u09a6\u09be\u09b0",
-    ],
-    constitutional: [
-      "constitution", "rights", "fundamental", "writ",
-      "high court", "supreme court", "article", "freedom", "liberty",
-      "\u09b8\u0982\u09ac\u09bf\u09a7\u09be\u09a8", "\u0985\u09a7\u09bf\u0995\u09be\u09b0",
-      "\u09b0\u09bf\u099f", "\u09b9\u09be\u0987\u0995\u09cb\u09b0\u09cd\u099f",
-    ],
-    administrative: [
-      "government", "authority", "licence", "permit",
-      "ministry", "department", "public servant", "official",
-      "\u09b8\u09b0\u0995\u09be\u09b0", "\u09b2\u09be\u0987\u09b8\u09c7\u09a8\u09cd\u09b8",
-    ],
-    evidence: [
-      "evidence", "proof", "witness", "document", "admissible", "statement",
-      "\u09aa\u09cd\u09b0\u09ae\u09be\u09a3", "\u09b8\u09be\u0995\u09cd\u09b7\u09cd\u09af",
-    ],
-    general: [],
-  };
-
-  for (const [area, keywords] of Object.entries(areaKeywords)) {
-    if (keywords.some((kw) => msg.includes(kw))) {
-      return area as LawArea;
+  for (const [area, keywords] of Object.entries(AREA_KEYWORDS)) {
+    const count =
+      keywords.en.filter((kw) => msg.includes(kw)).length +
+      keywords.bn.filter((kw) => msg.includes(kw)).length;
+    if (count > bestCount) {
+      bestCount = count;
+      bestArea = area as LawArea;
     }
   }
 
-  return null;
+  return bestCount >= 1 ? bestArea : null;
 }
 
-function matchQA(message: string, area: LawArea | null): QAEntry | null {
-  const msg = message.toLowerCase();
-  let bestMatch: QAEntry | null = null;
-  let bestScore = 0;
-
-  for (const mod of MODULES) {
-    const entries = area
-      ? mod.qaBank.filter((e) => e.area === area || e.area === "general")
-      : mod.qaBank;
-
-    for (const entry of entries) {
-      const score = entry.triggerKeywords.filter((kw) =>
-        msg.includes(kw.toLowerCase())
-      ).length;
-
-      if (score > bestScore) {
-        bestScore = score;
-        bestMatch = entry;
-      }
-    }
-  }
-
-  return bestScore > 0 ? bestMatch : null;
-}
+// ─── Knowledge Query (RAG) ──────────────────────────────────
 
 export function queryKnowledge(
   message: string,
-  lockedArea: LawArea | null = null
+  selectedArea: LawArea | null
 ): KnowledgeResult {
-  const area = lockedArea ?? detectArea(message);
-  const qaEntry = matchQA(message, area);
+  const msg = message.toLowerCase();
+  const searchArea = selectedArea ?? detectArea(message);
 
-  const rules = area
-    ? MODULES.flatMap((m) =>
-        m.rules.filter(
-          (r) =>
-            r.area === area &&
-            (lockedArea ? true : r.tags.some((t) => message.toLowerCase().includes(t)))
-        )
-      ).slice(0, 5)
-    : [];
+  if (!searchArea) {
+    return { matched: false, area: null, qaEntry: null, rules: [], escalate: false, confidence: "low" };
+  }
 
-  let confidence: "high" | "medium" | "low" = "low";
-  if (qaEntry && area) confidence = "high";
-  else if (qaEntry || area) confidence = "medium";
+  const bank = ALL_BANKS.find((b) => b.area === searchArea);
+  if (!bank) {
+    return { matched: false, area: searchArea, qaEntry: null, rules: [], escalate: false, confidence: "low" };
+  }
+
+  let bestEntry: QAEntry | null = null;
+  let bestScore = 0;
+
+  for (const entry of bank.qaBank) {
+    const matchCount = entry.triggerKeywords.filter((kw) =>
+      msg.includes(kw.toLowerCase())
+    ).length;
+    const score = entry.triggerKeywords.length > 0
+      ? matchCount / entry.triggerKeywords.length
+      : 0;
+    if (score > bestScore) {
+      bestScore = score;
+      bestEntry = entry;
+    }
+  }
+
+  if (!bestEntry || bestScore < 0.15) {
+    return { matched: false, area: searchArea, qaEntry: null, rules: [], escalate: false, confidence: "low" };
+  }
+
+  const relatedRules: LegalRule[] = bestEntry.relatedRules
+    .map((rid) => bank.rules.find((r) => r.id === rid))
+    .filter((r): r is LegalRule => r !== undefined);
 
   return {
-    matched: !!qaEntry,
-    area,
-    qaEntry,
-    rules,
-    escalate: qaEntry?.escalate ?? false,
-    escalateReason: qaEntry?.escalateReason,
-    confidence,
+    matched: true,
+    area: searchArea,
+    qaEntry: bestEntry,
+    rules: relatedRules,
+    escalate: bestEntry.escalate,
+    escalateReason: bestEntry.escalateReason,
+    confidence: bestScore >= 0.5 ? "high" : bestScore >= 0.25 ? "medium" : "low",
   };
 }
 
-export function getActiveAreas(): { area: LawArea; label: string; description: string }[] {
-  return MODULES.map((m) => ({
-    area: m.area,
-    label: m.label,
-    description: m.description,
+// ─── Exports ────────────────────────────────────────────────
+
+export function getActiveAreas() {
+  return ALL_BANKS.map((b) => ({
+    area: b.area,
+    label: AREA_META[b.area]?.label ?? b.area,
+    description: AREA_META[b.area]?.description ?? "",
   }));
 }
 
 export function formatIRACResponse(result: KnowledgeResult): string {
-  if (!result.qaEntry) return "";
-  const { irac, escalate, escalateReason } = result.qaEntry;
-
-  let response = `${irac.issue}
-
-`;
-  response += `**What the law says**
-${irac.rule}
-
-`;
-  response += `**How this applies**
-${irac.application}
-
-`;
-  response += `**What you should do**
-${irac.conclusion}`;
-
-  if (escalate && escalateReason) {
-    response += `
-
- **Professional Help Required**
-${escalateReason}`;
-  }
-
-  if (result.rules.length > 0) {
-    response += `
-
-**Applicable Laws**
-`;
-    result.rules.slice(0, 3).forEach((r) => {
-      response += ` ${r.title}  ${r.source}
-`;
-    });
-  }
-
-  return response;
+  if (!result.qaEntry) return "No matching legal information found.";
+  const { irac } = result.qaEntry;
+  return `**${irac.issue}**\n\n${irac.rule}\n\n${irac.application}\n\n${irac.conclusion}`;
 }
 
 export const formatResponse = formatIRACResponse;
 
 export const TIER_PRICING: Record<string, { price: number; label: string }> = {
-  property:       { price: 999,  label: "Property Law Full Guide" },
-  criminal:       { price: 999,  label: "Criminal Law Full Guide" },
-  family:         { price: 999,  label: "Family Law Full Guide"   },
-  labour:         { price: 999,  label: "Labour Law Full Guide"   },
-  contract:       { price: 999,  label: "Contract Law Full Guide" },
-  company:        { price: 1999, label: "Company Law Full Guide"  },
-  tax:            { price: 1999, label: "Tax Law Full Guide"      },
-  nrb:            { price: 1999, label: "NRB Investment Guide"    },
-  constitutional: { price: 999,  label: "Constitutional Law Guide"},
-  general:        { price: 99,   label: "Legal Guide"             },
+  property:       { price: 999,  label: "Full Property Guide" },
+  criminal:       { price: 1299, label: "Full Criminal Defence Guide" },
+  family:         { price: 899,  label: "Full Family Law Guide" },
+  labour:         { price: 799,  label: "Full Labour Rights Guide" },
+  company:        { price: 1499, label: "Full Company Law Guide" },
+  tax:            { price: 999,  label: "Full Tax Compliance Guide" },
+  nrb:            { price: 1299, label: "Full NRB Investment Guide" },
+  constitutional: { price: 1499, label: "Full Constitutional Rights Guide" },
+  consumer:       { price: 599,  label: "Full Consumer Rights Guide" },
+  cyber:          { price: 999,  label: "Full Cyber Law Guide" },
+  contract:       { price: 899,  label: "Full Contract Law Guide" },
+  general:        { price: 999,  label: "Full Legal Guide" },
 };

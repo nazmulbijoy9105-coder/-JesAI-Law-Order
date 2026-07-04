@@ -1,14 +1,21 @@
-//  ILRMF Engine Types 
-// Deterministic output contract for JesAI BD
-// All fields are computed  zero LLM involvement
+//  ILRMF v2.0 Type Definitions — CANONICAL
+//
+// Imports shared types from ./types (Option D).
+// Defines ONLY ILRMF-domain types (VerdictBand, Traces, Scoring).
+
+import type { LawArea, QAEntry, LegalRule, KnowledgeResult } from './types';
+
+// ─── Verdict ────────────────────────────────────────────────
 
 export type VerdictBand = "GREEN" | "YELLOW" | "RED" | "BLACK";
 
+// ─── Tier-1 Checks ─────────────────────────────────────────
+
 export type TierOneCheckType =
   | "LIMITATION"
-  | "REGISTRATION"
   | "JURISDICTION"
   | "EVIDENCE"
+  | "REGISTRATION"
   | "ESCALATION";
 
 export interface TierOneCheck {
@@ -17,6 +24,22 @@ export interface TierOneCheck {
   basis: string;
   penalty: number;
 }
+
+// ─── Scoring ────────────────────────────────────────────────
+
+export interface ScoringBreakdown {
+  baseScore: number;
+  ruleMatchFactor: number;
+  ragConfidenceWeight: number;
+  missingFactPenalty: number;
+  ambiguityPenalty: number;
+  conflictPenalty: number;
+  escalationPenalty: number;
+  rawScore: number;
+  finalScore: number;
+}
+
+// ─── Reasoning Trace ───────────────────────────────────────
 
 export interface Stage1Trace {
   jurisdiction: string;
@@ -33,7 +56,7 @@ export interface Stage2Trace {
   issue: string;
   ruleText: string;
   relatedRuleIds: string[];
-  certaintLevels: string[];
+  certaintyLevels: string[];
   conflictsDetected: boolean;
 }
 
@@ -41,24 +64,6 @@ export interface Stage3Trace {
   application: string;
   pathwayStrength: number;
   tierOneChecks: TierOneCheck[];
-}
-
-export interface ScoringBreakdown {
-  baseScore: number;
-  ruleMatchFactor: number;
-  missingFactPenalty: number;
-  ambiguityPenalty: number;
-  conflictPenalty: number;
-  escalationPenalty: number;
-  rawScore: number;
-  finalScore: number;
-}
-
-export interface ReliefOption {
-  type: string;
-  description: string;
-  conditions: string[];
-  deadline?: string;
 }
 
 export interface Stage4Trace {
@@ -70,7 +75,7 @@ export interface Stage4Trace {
   reliefOptions: string[];
 }
 
-export interface ILRMFTrace {
+export interface ReasoningTrace {
   traceId: string;
   timestamp: string;
   pipelineVersion: string;
@@ -81,25 +86,38 @@ export interface ILRMFTrace {
   stage4: Stage4Trace;
 }
 
-export interface ILRMFResult {
-  responseText: string;
-  source: string;
-  area: string;
-  confidenceScore: number;
-  verdict: VerdictBand;
-  verdictEmoji: string;
-  verdictExplanation: string;
-  escalate: boolean;
-  escalateReason: string | null;
-  language: string;
-  trace: ILRMFTrace;
+// ─── Source Tracking ────────────────────────────────────────
+
+export interface ILRMFSource {
+  engine: "ilrmf_deterministic";
+  entryId: string | null;
+  ruleIds: string[];
+  corpusVersion: string;
 }
 
-export type ReasoningTrace = ILRMFTrace;
+// ─── Engine Input ──────────────────────────────────────────
 
-// Kept for backward compatibility if referenced elsewhere
-export interface TierOneResult {
-  checks: TierOneCheck[];
-  passed: boolean;
-  blockingIssues: string[];
+export interface ILRMFInput {
+  message: string;
+  knowledge: KnowledgeResult;
+  isPaid: boolean;
+  language: "en" | "bn";
+}
+
+// ─── Engine Output ─────────────────────────────────────────
+
+export interface ILRMFResult {
+  verdict: VerdictBand;
+  confidenceScore: number;
+  verdictEmoji: string;
+  verdictExplanation: string;
+  responseText: string;
+  trace: ReasoningTrace;
+  source: ILRMFSource;
+  escalate: boolean;
+  escalateReason: string | null;
+  area: LawArea;
+  language: "en" | "bn";
+  matchedEntryId: string | null;
+  matchedRuleIds: string[];
 }

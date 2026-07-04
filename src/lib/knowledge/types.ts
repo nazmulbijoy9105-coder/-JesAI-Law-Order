@@ -1,81 +1,102 @@
-//  JesAI Knowledge Store  Core Types 
-// NLC validates every entry before it goes live.
+//  JesAI Shared Types — Single Source of Truth
+// 
+// ALL imports of LawArea, QAEntry, LegalRule, KnowledgeResult,
+// KnowledgeBank, IRAC must come from this file.
+//
+// Consumed by:
+//   - knowledge/index.ts        (RAG layer)
+//   - knowledge/banks/*.ts     (all knowledge banks)
+//   - ilrmf/ilrmf-types.ts     (imports LawArea, QAEntry, LegalRule, KnowledgeResult)
+//   - ilrmf/engine.ts         (reads QAEntry.irac, LegalRule.certainty)
+//   - scenarios/manager.ts     (imports LawArea)
+//   - app/api/chat/route.ts   (imports LawArea, KnowledgeResult)
+//
+// No re-definitions anywhere else. If a field changes here,
+// TypeScript catches it at compile time in all consumers.
 
-export type Jurisdiction =
-  | "BD"
-  | "US"
-  | "UK"
-  | "Australia"
-  | "Canada"
-  | "India"
-  | "Germany"
-  | "China"
-  | "BD+US"
-  | "BD+UK"
-  | "BD+Australia"
-  | "BD+Canada"
-  | "BD+India"
-  | "MULTI";
-
-export type Certainty = "confirmed" | "arguable" | "verify-with-lawyer";
+// ─── Law Area ──────────────────────────────────────────────
 
 export type LawArea =
-  | "constitutional"
-  | "criminal"
   | "property"
+  | "criminal"
   | "family"
-  | "contract"
   | "labour"
   | "company"
   | "tax"
   | "nrb"
+  | "constitutional"
+  | "consumer"
+  | "cyber"
+  | "contract"
+  | "general"
   | "administrative"
-  | "evidence"
-  | "general";
+  | "evidence";
 
-//  A single legal rule 
+// ─── Legal Rule ────────────────────────────────────────────
+// certainty flows directly into ILRMF scoring:
+//   confirmed          → weight 1.00
+//   arguable           → weight 0.72
+//   verify-with-lawyer → weight 0.45
+
 export interface LegalRule {
   id: string;
-  area: LawArea;
-  jurisdiction: Jurisdiction;
   title: string;
-  rule: string;
   source: string;
-  certainty: Certainty;
-  tags: string[];
-  lastVerified: string;
-  nlcNote?: string;
+  rule: string;
+  certainty: "confirmed" | "arguable" | "verify-with-lawyer";
 }
 
-//  A Q&A entry 
+// ─── IRAC Structure ────────────────────────────────────────
+// Used by QAEntry and consumed directly by ILRMF Stage 2-4
+
+export interface IRAC {
+  issue: string;
+  rule: string;
+  application: string;
+  conclusion: string;
+}
+
+// ─── QA Entry ──────────────────────────────────────────────
+// Knowledge bank unit. ILRMF reads:
+//   .triggerKeywords → Stage 1 match density
+//   .irac.issue     → Stage 2 issue display
+//   .irac.rule      → Stage 2 rule display
+//   .irac.application → Stage 3 argument
+//   .irac.conclusion → Stage 4 relief
+//   .escalate        → missing fact penalty
+//   .relatedRules    → fetches LegalRule[] for scoring
+
 export interface QAEntry {
   id: string;
-  area: LawArea;
-  jurisdiction: Jurisdiction;
-  triggerKeywords: string[];
   question: string;
-  irac: {
-    issue: string;
-    rule: string;
-    application: string;
-    conclusion: string;
-  };
+  area: LawArea;
+  jurisdiction: string;
+  triggerKeywords: string[];
+  irac: IRAC;
+  relatedRules: string[];
   escalate: boolean;
   escalateReason?: string;
-  relatedRules: string[];
-  lastVerified: string;
 }
 
-//  Subject area module 
-export interface KnowledgeModule {
+// ─── Knowledge Bank ───────────────────────────────────────
+// Container for one law area's rules + Q&A entries
+
+export interface KnowledgeBank {
   area: LawArea;
-  label: string;
-  description: string;
   rules: LegalRule[];
   qaBank: QAEntry[];
 }
 
-//  Query result 
+// ─── Knowledge Result ──────────────────────────────────────
+// Output of queryKnowledge(). Flows directly into
+// ILRMFInput.knowledge with zero transformation.
+//
+// confidence is "high" | "medium" | "low" — NOT a number.
+// ILRMF converts this to a weight:
+//   "high"   → 1.00
+//   "medium" → 0.85
+//   "low"    → 0.70
+
 export interface KnowledgeResult {
   matched: boolean;
   area: LawArea | null;

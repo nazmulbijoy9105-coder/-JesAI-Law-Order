@@ -1,73 +1,77 @@
-//  ILRMF Deterministic Engine 
-// JesAI BD  Zero LLM. Zero randomness. Zero API cost.
+//  ILRMF Deterministic Engine v2.1
+// Zero LLM. Zero randomness. Zero API cost.
 //
-// Implements ILRMF v2.0 four-property definition:
-//   (1) Deterministic sequential staging
-//   (2) Rule-source abstraction (BD statutory corpus)
-//   (3) Confidence-banded verdict emission GREEN/YELLOW/RED/BLACK
-//   (4) Mandatory reasoning trace output
-//
-// Confidence formula (Section 3.8, ILRMF Academic v2.0):
-//   C = (BaseScore * RuleMatchFactor)
-//       - MissingFactPenalty
-//       - AmbiguityPenalty
-//       - ConflictPenalty
-//       - EscalationPenalty
-//   C clamped to [0.0, 1.0]
-//
-// Verdict bands:
-//   GREEN  : C >= 0.85
-//   YELLOW : 0.50 <= C < 0.85
-//   RED    : 0.20 <= C < 0.50
-//   BLACK  : C < 0.20
-//
-// NLC validated  Md Nazmul Islam, Advocate, SCB
-// 
+// Scoring module inlined (no separate ilrmf/scoring/ folder needed).
 
 import { randomUUID } from "crypto";
-import type { QAEntry, LegalRule, KnowledgeResult } from "./types";
+import type { QAEntry, LegalRule } from "./types";
 import type {
+  ILRMFInput,
   ILRMFResult,
   ReasoningTrace,
-  ScoringBreakdown,
-  TierOneCheck,
   VerdictBand,
-  TierOneResult,
+  TierOneCheck,
 } from "./ilrmf-types";
 
-//  Constants 
-const PIPELINE_VERSION = "2.0.0";
+const PIPELINE_VERSION = "2.1.0";
 const CORPUS_VERSION   = "BD.MULTI.v1.0";
-
-// Certainty  weight mapping
-const CERTAINTY_WEIGHTS: Record<string, number> = {
-  "confirmed":            1.00,
-  "arguable":             0.72,
-  "verify-with-lawyer":   0.45,
-};
-
-// Verdict thresholds
-const THRESHOLD_GREEN  = 0.85;
-const THRESHOLD_YELLOW = 0.50;
-const THRESHOLD_RED    = 0.20;
-
-// Penalty values (per Section 3.8)
-const PENALTY_MISSING_FACT  = 0.10;
-const PENALTY_AMBIGUITY     = 0.15;
-const PENALTY_CONFLICT      = 0.20;
-const PENALTY_ESCALATION    = 0.12;
-
-// Completeness threshold  below this emit BLACK immediately
 const COMPLETENESS_THRESHOLD = 0.15;
 
-//  Tier-1 Deterministic Checks 
+// ─── Scoring Constants ─────────────────────────────────────
+
+const CERTAINTY_WEIGHTS: Record<string, number> = {
+  "confirmed": 1.00,
+  "arguable": 0.72,
+  "verify-with-lawyer": 0.45,
+};
+
+const THRESHOLD_GREEN  = 0.70;
+const THRESHOLD_YELLOW = 0.45;
+const THRESHOLD_RED    = 0.20;
+
+const PENALTY_MISSING_FACT = 0.10;
+const PENALTY_AMBIGUITY    = 0.15;
+const PENALTY_CONFLICT     = 0.20;
+const PENALTY_ESCALATION   = 0.12;
+
+// ─── Scoring Functions (inlined) ────────────────────────────
+
+function getRAGWeight(confidence: "high" | "medium" | "low"): number {
+  return confidence === "high" ? 1.0 : confidence === "medium" ? 0.85 : 0.70;
+}
+
+function calculateRuleMatchFactor(rules: LegalRule[]): number {
+  if (rules.length === 0) return 0.75;
+  const weights = rules.map((r) => CERTAINTY_WEIGHTS[r.certainty] ?? 0.5);
+  return weights.reduce((a, b) => a + b, 0) / weights.length;
+}
+
+function detectConflicts(rules: LegalRule[]): boolean {
+  const levels = rules.map((r) => r.certainty);
+  return levels.includes("arguable") && levels.includes("confirmed") && rules.length > 2;
+}
+
+function getVerdictExplanation(v: VerdictBand): string {
+  return {
+    GREEN:  "Applicable rule clearly governs stated facts; proceed with recommended relief.",
+    YELLOW: "Applicable rule exists but fact gaps or ambiguity require professional review before action.",
+    RED:    "Weak or partial rule match; mandatory professional review — do not act unilaterally.",
+    BLACK:  "No operable rule match or jurisdiction bar identified — immediate referral to qualified advocate required.",
+  }[v];
+}
+
+function verdictEmoji(v: VerdictBand): string {
+  return { GREEN: "✅", YELLOW: "⚠️", RED: "🔴", BLACK: "⛔" }[v];
+}
+
+// ─── Tier-1 Check Data ─────────────────────────────────────
 
 const LIMITATION_PATTERNS: { pattern: RegExp; period: string; area: string }[] = [
-  { pattern: /land|property|deed|mutation|khatian/i,   period: "12 years",  area: "property" },
-  { pattern: /contract|agreement|breach|payment/i,     period: "3 years",   area: "contract" },
-  { pattern: /labour|salary|termination|gratuity/i,    period: "3 years",   area: "labour"   },
-  { pattern: /cheque|dishonour|bounce/i,               period: "1 year",    area: "criminal" },
-  { pattern: /company|director|shareholder/i,          period: "3 years",   area: "company"  },
+  { pattern: /land|property|deed|mutation|khatian/i,  period: "12 years", area: "property" },
+  { pattern: /contract|agreement|breach|payment/i,    period: "3 years",  area: "contract" },
+  { pattern: /labour|salary|termination|gratuity/i,   period: "3 years",  area: "labour"   },
+  { pattern: /cheque|dishonour|bounce/i,              period: "1 year",   area: "criminal" },
+  { pattern: /company|director|shareholder/i,         period: "3 years",  area: "company"  },
 ];
 
 const TIME_BAR_PATTERNS = [
@@ -77,27 +81,25 @@ const TIME_BAR_PATTERNS = [
 
 const JURISDICTION_BARS: { pattern: RegExp; bar: string }[] = [
   { pattern: /service.*matter|government.*employee|civil.*servant/i,
-    bar: "Administrative Tribunal has exclusive jurisdiction - High Court writ not maintainable" },
+    bar: "Administrative Tribunal has exclusive jurisdiction — High Court writ not maintainable" },
   { pattern: /labour.*court|industrial.*dispute/i,
     bar: "Labour Court has exclusive jurisdiction under Labour Act 2006" },
   { pattern: /tax.*tribunal|nbr.*appeal/i,
-    bar: "Taxes Appellate Tribunal jurisdiction - exhaust before High Court" },
+    bar: "Taxes Appellate Tribunal jurisdiction — exhaust before High Court" },
 ];
 
 const EVIDENCE_ISSUES: { pattern: RegExp; issue: string; penalty: number }[] = [
   { pattern: /confession.*police|police.*confession/i,
-    issue: "Police confession inadmissible under Evidence Act s.25 - significant evidence risk",
-    penalty: 0.20 },
+    issue: "Police confession inadmissible under Evidence Act s.25", penalty: 0.20 },
   { pattern: /verbal.*agreement|oral.*contract|no.*written/i,
-    issue: "No written agreement - proof challenge; verbal contract enforceable but harder to establish",
-    penalty: 0.15 },
+    issue: "No written agreement — proof challenge", penalty: 0.15 },
   { pattern: /no.*witness|without.*witness/i,
-    issue: "Absence of witnesses reduces evidence quality",
-    penalty: 0.10 },
+    issue: "Absence of witnesses reduces evidence quality", penalty: 0.10 },
   { pattern: /digital.*evidence|electronic.*evidence|screenshot|whatsapp/i,
-    issue: "Electronic evidence requires s.65B certificate - verify availability",
-    penalty: 0.08 },
+    issue: "Electronic evidence requires s.65B certificate", penalty: 0.08 },
 ];
+
+// ─── Tier-1 Runner ─────────────────────────────────────────
 
 function runTierOneChecks(
   message: string,
@@ -107,64 +109,47 @@ function runTierOneChecks(
   const checks: TierOneCheck[] = [];
   const msg = message.toLowerCase();
 
-  //  Limitation check 
-  const limMatch = LIMITATION_PATTERNS.find(
-    (l) => area === l.area || l.pattern.test(msg)
-  );
+  const limMatch = LIMITATION_PATTERNS.find((l) => area === l.area || l.pattern.test(msg));
   if (limMatch) {
     const isTimeBared = TIME_BAR_PATTERNS.some((p) => p.test(msg));
     checks.push({
       checkType: "LIMITATION",
       result: isTimeBared ? "RED" : "GREEN",
       basis: isTimeBared
-        ? `Limitation period concern detected - ${limMatch.area} limitation: ${limMatch.period} (Limitation Act 1908)`
-        : `Within apparent limitation period - ${limMatch.area}: ${limMatch.period} (Limitation Act 1908)`,
+        ? `Limitation concern — ${limMatch.area}: ${limMatch.period}`
+        : `Within limitation period — ${limMatch.area}: ${limMatch.period}`,
       penalty: isTimeBared ? 0.25 : 0,
     });
   }
 
-  //  Jurisdiction check 
   const jurisMatch = JURISDICTION_BARS.find((j) => j.pattern.test(msg));
   if (jurisMatch) {
+    checks.push({ checkType: "JURISDICTION", result: "BLACK", basis: jurisMatch.bar, penalty: 0.40 });
+  }
+
+  for (const ev of EVIDENCE_ISSUES) {
+    if (ev.pattern.test(msg)) {
+      checks.push({ checkType: "EVIDENCE", result: "YELLOW", basis: ev.issue, penalty: ev.penalty });
+    }
+  }
+
+  if (
+    (area === "property" || /deed|register|registration/i.test(msg)) &&
+    /unregister|not register|no register|oral.*sale|verbal.*sale/i.test(msg)
+  ) {
     checks.push({
-      checkType: "JURISDICTION",
-      result: "BLACK",
-      basis: jurisMatch.bar,
-      penalty: 0.40,
+      checkType: "REGISTRATION",
+      result: "YELLOW",
+      basis: "Unregistered deed — Transfer of Property Act s.48: first REGISTERED deed prevails",
+      penalty: 0.15,
     });
   }
 
-  //  Evidence quality check 
-  for (const ev of EVIDENCE_ISSUES) {
-    if (ev.pattern.test(msg)) {
-      checks.push({
-        checkType: "EVIDENCE",
-        result: "YELLOW",
-        basis: ev.issue,
-        penalty: ev.penalty,
-      });
-    }
-  }
-
-  //  Registration / formality check (property) 
-  if (area === "property" || /deed|register|registration/i.test(msg)) {
-    const unregistered = /unregister|not register|no register|oral.*sale|verbal.*sale/i.test(msg);
-    if (unregistered) {
-      checks.push({
-        checkType: "REGISTRATION",
-        result: "YELLOW",
-        basis: "Unregistered deed - Transfer of Property Act s.48: first REGISTERED deed prevails; unregistered position is weaker",
-        penalty: 0.15,
-      });
-    }
-  }
-
-  //  Escalation check 
   if (entry.escalate) {
     checks.push({
       checkType: "ESCALATION",
       result: "YELLOW",
-      basis: entry.escalateReason ?? "Professional legal representation strongly advised for this matter",
+      basis: entry.escalateReason ?? "Professional legal representation strongly advised",
       penalty: PENALTY_ESCALATION,
     });
   }
@@ -172,150 +157,11 @@ function runTierOneChecks(
   return checks;
 }
 
-//  Stage 1  Facts 
-function stage1(
-  message: string,
-  entry: QAEntry,
-  matchScore: number
-): ReasoningTrace["stage1"] {
-  const keywords = entry.triggerKeywords;
-  const msg = message.toLowerCase();
-  const matched = keywords.filter((kw) => msg.includes(kw.toLowerCase()));
-  const matchDensity = keywords.length > 0 ? matched.length / keywords.length : 0;
+// ─── Relief Extractor ──────────────────────────────────────
 
-  return {
-    jurisdiction: entry.jurisdiction,
-    area: entry.area,
-    keywordsMatched: matched,
-    matchDensity,
-    completenessScore: matchDensity,
-    escalateFlag: entry.escalate,
-  };
-}
-
-//  Stage 2  Law 
-function stage2(
-  entry: QAEntry,
-  relatedRules: LegalRule[]
-): ReasoningTrace["stage2"] {
-  const certaintyLevels = relatedRules.map((r) => r.certainty);
-  const hasConflict = certaintyLevels.includes("arguable") &&
-    certaintyLevels.includes("confirmed") &&
-    relatedRules.length > 2;
-
-  return {
-    entryId: entry.id,
-    question: entry.question,
-    issue: entry.irac.issue,
-    ruleText: entry.irac.rule,
-    relatedRuleIds: entry.relatedRules,
-    certaintLevels: certaintyLevels,
-    conflictsDetected: hasConflict,
-  };
-}
-
-//  Stage 3  Argument 
-function stage3(
-  message: string,
-  entry: QAEntry,
-  area: string | null,
-  matchDensity: number
-): { stage: ReasoningTrace["stage3"]; tierOnePenalty: number } {
-  const checks = runTierOneChecks(message, entry, area);
-  const tierOnePenalty = Math.min(
-    checks.reduce((sum, c) => sum + c.penalty, 0),
-    0.60
-  );
-
-  return {
-    stage: {
-      application: entry.irac.application,
-      pathwayStrength: matchDensity,
-      tierOneChecks: checks,
-    },
-    tierOnePenalty,
-  };
-}
-
-//  Stage 4  Relief & Confidence Scoring 
-function stage4(
-  entry: QAEntry,
-  relatedRules: LegalRule[],
-  stage1Out: ReasoningTrace["stage1"],
-  stage2Out: ReasoningTrace["stage2"],
-  tierOnePenalty: number
-): ReasoningTrace["stage4"] {
-
-  const baseScore = stage1Out.matchDensity;
-
-  const weights = relatedRules.map((r) => CERTAINTY_WEIGHTS[r.certainty] ?? 0.5);
-  const ruleMatchFactor = weights.length > 0
-    ? weights.reduce((a, b) => a + b, 0) / weights.length
-    : 0.75;
-
-  const missingFactPenalty = entry.escalate
-    ? Math.min(1 * PENALTY_MISSING_FACT, 0.40)
-    : 0;
-
-  const ambiguityPenalty = relatedRules.some((r) => r.certainty === "arguable")
-    ? Math.min(1 * PENALTY_AMBIGUITY, 0.30)
-    : 0;
-
-  const conflictPenalty = stage2Out.conflictsDetected
-    ? Math.min(1 * PENALTY_CONFLICT, 0.40)
-    : 0;
-
-  const escalationPenalty = tierOnePenalty;
-
-  const rawScore = (baseScore * ruleMatchFactor)
-    - missingFactPenalty
-    - ambiguityPenalty
-    - conflictPenalty
-    - escalationPenalty;
-
-  const finalScore = Math.max(0, Math.min(1, rawScore));
-
-  const scoring: ScoringBreakdown = {
-    baseScore,
-    ruleMatchFactor,
-    missingFactPenalty,
-    ambiguityPenalty,
-    conflictPenalty,
-    escalationPenalty,
-    rawScore,
-    finalScore,
-  };
-
-  const verdict: VerdictBand =
-    finalScore >= THRESHOLD_GREEN  ? "GREEN"  :
-    finalScore >= THRESHOLD_YELLOW ? "YELLOW" :
-    finalScore >= THRESHOLD_RED    ? "RED"    : "BLACK";
-
-  const verdictExplanations: Record<VerdictBand, string> = {
-    GREEN:  "Applicable rule clearly governs stated facts; proceed with recommended relief.",
-    YELLOW: "Applicable rule exists but fact gaps or ambiguity require professional review before action.",
-    RED:    "Weak or partial rule match; mandatory professional review - do not act unilaterally.",
-    BLACK:  "No operable rule match or jurisdiction bar identified - immediate referral to qualified advocate required.",
-  };
-
-  const reliefOptions = extractReliefOptions(entry.irac.conclusion);
-
-  return {
-    conclusion: entry.irac.conclusion,
-    scoringBreakdown: scoring,
-    confidenceScore: finalScore,
-    verdict,
-    verdictExplanation: verdictExplanations[verdict],
-    reliefOptions,
-  };
-}
-
-//  Relief Option Extractor 
 function extractReliefOptions(conclusion: string): string[] {
   const options: string[] = [];
-  const lines = conclusion.split("\n");
-
-  for (const line of lines) {
+  for (const line of conclusion.split("\n")) {
     const clean = line.replace(/^[-*\d\.\s]+/, "").trim();
     if (
       clean.length > 10 &&
@@ -326,41 +172,37 @@ function extractReliefOptions(conclusion: string): string[] {
       options.push(clean);
     }
   }
-
   return options.slice(0, 5);
 }
 
-//  Verdict Emoji 
-function verdictEmoji(v: VerdictBand): string {
-  return { GREEN: "✅", YELLOW: "⚠️", RED: "🔴", BLACK: "⛔" }[v];
-}
+// ─── Response Formatter ─────────────────────────────────────
 
-//  Response Formatter  Deterministic Text 
-function formatDeterministicResponse(
-  entry: QAEntry,
+function formatResponse(
   trace: ReasoningTrace,
   isPaid: boolean,
-  lang: "en" | "bn"
+  lang: "en" | "bn",
+  escalate: boolean,
+  escalateReason?: string
 ): string {
-  const { verdict, confidenceScore, verdictExplanation, reliefOptions } =
-    trace.stage4;
-  const emoji = verdictEmoji(verdict);
-  const scorePercent = Math.round(confidenceScore * 100);
-  const tierChecks = trace.stage3.tierOneChecks;
-
+  const { verdict, confidenceScore, verdictExplanation } = trace.stage4;
+  const pct = Math.round(confidenceScore * 100);
   const lines: string[] = [];
+
+  if (escalate && escalateReason) {
+    lines.push(`🚨 **IMMEDIATE ATTENTION REQUIRED**\n${escalateReason}\n---\n`);
+  }
 
   lines.push(`**${trace.stage2.issue}**\n`);
   lines.push(`**What the law says:**\n${trace.stage2.ruleText}\n`);
 
-  if (tierChecks.length > 0) {
+  if (trace.stage3.tierOneChecks.length > 0) {
     lines.push("**Deterministic Checks:**");
-    for (const check of tierChecks) {
+    for (const c of trace.stage3.tierOneChecks) {
       const icon =
-        check.result === "GREEN"  ? "✅" :
-        check.result === "YELLOW" ? "⚠️" :
-        check.result === "RED"    ? "🔴" : "⛔";
-      lines.push(`${icon} **${check.checkType}:** ${check.basis}`);
+        c.result === "GREEN" ? "✅" :
+        c.result === "YELLOW" ? "⚠️" :
+        c.result === "RED" ? "🔴" : "⛔";
+      lines.push(`${icon} **${c.checkType}:** ${c.basis}`);
     }
     lines.push("");
   }
@@ -371,32 +213,30 @@ function formatDeterministicResponse(
   } else {
     const appLines = trace.stage3.application.split("\n").slice(0, 2).join("\n");
     lines.push(`**How this applies:**\n${appLines}\n`);
-
-    const price = lang === "bn"
-      ? " **পূর্ণ বিশ্লেষণ আনলক করুন** - সম্পূর্ণ অ্যাকশন প্ল্যান, ডকুমেন্ট চেকলিস্ট, ধাপে ধাপে গাইড"
-      : " **Unlock full analysis** - complete action plan, document checklist, step-by-step guide";
-    lines.push(price + "\n");
+    lines.push(
+      lang === "bn"
+        ? "⚠️ **পূর্ণ বিশ্লেষণ আনলক করুন** — সম্পূর্ণ অ্যাকশন প্ল্যান, ডকুমেন্ট চেকলিস্ট"
+        : "⚠️ **Unlock full analysis** — complete action plan, document checklist, step-by-step guide"
+    );
+    lines.push("");
   }
 
   lines.push("---");
-  lines.push(
-    `**Verdict: ${emoji} ${verdict}** (Rule-match confidence: ${scorePercent}%)`
-  );
+  lines.push(`**Verdict: ${verdictEmoji(verdict)} ${verdict}** (Rule-match confidence: ${pct}%)`);
   lines.push(`_${verdictExplanation}_`);
-
   lines.push(
     `\n_Trace ID: ${trace.traceId} | Pipeline: ILRMF v${PIPELINE_VERSION} | Corpus: ${CORPUS_VERSION}_`
   );
-
   lines.push(
-    "\n⚠️ Legal information only - not legal advice. For representation, consult a registered Bangladesh Bar Council advocate."
+    "\n⚖️ Legal information only — not legal advice. For representation, consult a registered Bangladesh Bar Council advocate."
   );
 
   return lines.join("\n");
 }
 
-//  Black Response  No Match 
-function buildBlackResponse(
+// ─── Black Builder ─────────────────────────────────────────
+
+function buildBlack(
   message: string,
   area: string | null,
   lang: "en" | "bn"
@@ -423,7 +263,7 @@ function buildBlackResponse(
       issue: "No matching legal issue identified in current rule corpus",
       ruleText: "No applicable rule found",
       relatedRuleIds: [],
-      certaintLevels: [],
+      certaintyLevels: [],
       conflictsDetected: false,
     },
     stage3: {
@@ -434,103 +274,172 @@ function buildBlackResponse(
     stage4: {
       conclusion: "Refer to qualified legal counsel",
       scoringBreakdown: {
-        baseScore: 0,
-        ruleMatchFactor: 0,
-        missingFactPenalty: 0,
-        ambiguityPenalty: 0,
-        conflictPenalty: 0,
-        escalationPenalty: 0,
-        rawScore: 0,
-        finalScore: 0,
+        baseScore: 0, ruleMatchFactor: 0, ragConfidenceWeight: 0,
+        missingFactPenalty: 0, ambiguityPenalty: 0, conflictPenalty: 0,
+        escalationPenalty: 0, rawScore: 0, finalScore: 0,
       },
       confidenceScore: 0,
       verdict: "BLACK",
-      verdictExplanation:
-        "No operable rule match - query is outside current corpus scope or requires specialist advice.",
+      verdictExplanation: "No operable rule match.",
       reliefOptions: ["Consult a qualified Bangladesh Bar Council advocate"],
     },
   };
 
-  const responseText =
-    lang === "bn"
-      ? `**⛔ BLACK - কোনো প্রযোজ্য নিয়ম মেলেনি**\n\nআপনার প্রশ্ন বর্তমান নিয়ম কর্পাসের সুযোগের বাইরে। দয়া করে একজন যোগ্য আইনজীবীর পরামর্শ নিন।\n\n_Trace ID: ${traceId}_`
-      : `**⛔ BLACK - No operable rule match**\n\nYour query is outside the current rule corpus scope. Please consult a qualified advocate.\n\n_Trace ID: ${traceId}_`;
-
   return {
     verdict: "BLACK",
     confidenceScore: 0,
-    verdictEmoji: verdictEmoji("BLACK"),
+    verdictEmoji: "⛔",
     verdictExplanation: trace.stage4.verdictExplanation,
-    responseText,
+    responseText:
+      lang === "bn"
+        ? `⛔ **BLACK — কোনো প্রযোজ্য নিয়ম মেলেনি**\n\nআপনার প্রশ্নটি বর্তমান কর্পাসের সুযোগের বাইরে।\n\n_Trace ID: ${traceId}_`
+        : `⛔ **BLACK — No operable rule match**\n\nYour query is outside the current rule corpus scope.\n\n_Trace ID: ${traceId}_`,
     trace,
-    source: "ilrmf_deterministic",
+    source: { engine: "ilrmf_deterministic", entryId: null, ruleIds: [], corpusVersion: CORPUS_VERSION },
     escalate: false,
     escalateReason: null,
-    area: area ?? "general",
+    area: (area ?? "general") as ILRMFResult["area"],
     language: lang,
+    matchedEntryId: null,
+    matchedRuleIds: [],
   };
 }
 
-//  Main Engine  Public API 
-export function runILRMF(
-  message: string,
-  result: {
-    matched: boolean;
-    area: string | null;
-    qaEntry: QAEntry | null;
-    rules: LegalRule[];
-    escalate: boolean;
-    escalateReason?: string;
-    confidence: string;
-  },
-  isPaid: boolean,
-  lang: "en" | "bn"
-): ILRMFResult {
+// ─── Main Engine ───────────────────────────────────────────
+
+export function runILRMF(input: ILRMFInput): ILRMFResult {
+  const { message, knowledge, isPaid, language: lang } = input;
   const traceId = randomUUID();
   const now = new Date().toISOString();
 
-  if (!result.matched || !result.qaEntry) {
-    return buildBlackResponse(message, result.area, lang);
+  if (!knowledge.matched || !knowledge.qaEntry) {
+    return buildBlack(message, knowledge.area, lang);
   }
 
-  const entry = result.qaEntry;
-  const relatedRules = result.rules;
+  const entry = knowledge.qaEntry;
+  const rules = knowledge.rules;
 
-  const keywords = entry.triggerKeywords;
+  // ── STAGE 1: Facts ──
   const msg = message.toLowerCase();
-  const matchScore = keywords.filter((kw) =>
+  const matched = entry.triggerKeywords.filter((kw) =>
     msg.includes(kw.toLowerCase())
-  ).length;
+  );
+  const matchDensity =
+    entry.triggerKeywords.length > 0
+      ? matched.length / entry.triggerKeywords.length
+      : 0;
 
-  const s1 = stage1(message, entry, matchScore);
-
-  if (s1.completenessScore < COMPLETENESS_THRESHOLD) {
-    return buildBlackResponse(message, result.area, lang);
+  if (matchDensity < COMPLETENESS_THRESHOLD) {
+    return buildBlack(message, knowledge.area, lang);
   }
 
-  const s2 = stage2(entry, relatedRules);
+  const s1: ReasoningTrace["stage1"] = {
+    jurisdiction: entry.jurisdiction,
+    area: entry.area,
+    keywordsMatched: matched,
+    matchDensity,
+    completenessScore: matchDensity,
+    escalateFlag: entry.escalate,
+  };
 
-  const { stage: s3, tierOnePenalty } = stage3(
-    message,
-    entry,
-    result.area,
-    s1.matchDensity
+  // ── STAGE 2: Law ──
+  const certaintyLevels = rules.map((r) => r.certainty);
+  const conflictsDetected =
+    certaintyLevels.includes("arguable") &&
+    certaintyLevels.includes("confirmed") &&
+    rules.length > 2;
+
+  const s2: ReasoningTrace["stage2"] = {
+    entryId: entry.id,
+    question: entry.question,
+    issue: entry.irac.issue,
+    ruleText: entry.irac.rule,
+    relatedRuleIds: entry.relatedRules,
+    certaintyLevels,
+    conflictsDetected,
+  };
+
+  // ── STAGE 3: Argument + Tier-1 ──
+  const tierOneChecks = runTierOneChecks(message, entry, knowledge.area);
+  const tierOnePenalty = Math.min(
+    tierOneChecks.reduce((s, c) => s + c.penalty, 0),
+    0.60
   );
 
-  const jurisBar = s3.tierOneChecks.find(
+  const s3: ReasoningTrace["stage3"] = {
+    application: entry.irac.application,
+    pathwayStrength: matchDensity,
+    tierOneChecks,
+  };
+
+  // Jurisdiction bar → immediate BLACK
+  const jurisBar = tierOneChecks.find(
     (c) => c.checkType === "JURISDICTION" && c.result === "BLACK"
   );
   if (jurisBar) {
-    const blackResult = buildBlackResponse(message, result.area, lang);
-    blackResult.trace.stage3.tierOneChecks = s3.tierOneChecks;
-    blackResult.responseText =
+    const black = buildBlack(message, knowledge.area, lang);
+    black.trace.stage1 = s1;
+    black.trace.stage2 = s2;
+    black.trace.stage3 = s3;
+    black.responseText =
       lang === "bn"
-        ? `**⛔ BLACK - এখতিয়ার বাধা**\n\n${jurisBar.basis}\n\nদয়া করে সঠিক ট্রাইব্যুনাল বা আদালতে যান।\n\n_Trace ID: ${traceId}_`
-        : `**⛔ BLACK - Jurisdiction Bar**\n\n${jurisBar.basis}\n\nPlease approach the correct tribunal or court.\n\n_Trace ID: ${traceId}_`;
-    return blackResult;
+        ? `⛔ **BLACK — এখতিয়ার বাধা**\n\n${jurisBar.basis}\n\nPlease approach the correct tribunal or court.\n\n_Trace ID: ${traceId}_`
+        : `⛔ **BLACK — Jurisdiction Bar**\n\n${jurisBar.basis}\n\nPlease approach the correct tribunal or court.\n\n_Trace ID: ${traceId}_`;
+    return black;
   }
 
-  const s4 = stage4(entry, relatedRules, s1, s2, tierOnePenalty);
+  // ── STAGE 4: Scoring ──
+  const ruleMatchFactor = calculateRuleMatchFactor(rules);
+  const ragConfidenceWeight = getRAGWeight(knowledge.confidence);
+
+  const missingFactPenalty = entry.escalate
+    ? Math.min(PENALTY_MISSING_FACT, 0.40)
+    : 0;
+
+  const ambiguityPenalty = rules.some((r) => r.certainty === "arguable")
+    ? Math.min(PENALTY_AMBIGUITY, 0.30)
+    : 0;
+
+  const conflictPenalty = conflictsDetected
+    ? Math.min(PENALTY_CONFLICT, 0.40)
+    : 0;
+
+  const rawScore =
+    matchDensity * ruleMatchFactor * ragConfidenceWeight -
+    missingFactPenalty -
+    ambiguityPenalty -
+    conflictPenalty -
+    tierOnePenalty;
+
+  const finalScore = Math.max(0, Math.min(1, rawScore));
+
+  const verdict: VerdictBand =
+    finalScore >= THRESHOLD_GREEN
+      ? "GREEN"
+      : finalScore >= THRESHOLD_YELLOW
+      ? "YELLOW"
+      : finalScore >= THRESHOLD_RED
+      ? "RED"
+      : "BLACK";
+
+  const s4: ReasoningTrace["stage4"] = {
+    conclusion: entry.irac.conclusion,
+    scoringBreakdown: {
+      baseScore: matchDensity,
+      ruleMatchFactor,
+      ragConfidenceWeight,
+      missingFactPenalty,
+      ambiguityPenalty,
+      conflictPenalty,
+      escalationPenalty: tierOnePenalty,
+      rawScore,
+      finalScore,
+    },
+    confidenceScore: finalScore,
+    verdict,
+    verdictExplanation: getVerdictExplanation(verdict),
+    reliefOptions: extractReliefOptions(entry.irac.conclusion),
+  };
 
   const trace: ReasoningTrace = {
     traceId,
@@ -543,45 +452,45 @@ export function runILRMF(
     stage4: s4,
   };
 
-  const responseText = formatDeterministicResponse(entry, trace, isPaid, lang);
-
   return {
-    verdict: s4.verdict,
-    confidenceScore: s4.confidenceScore,
-    verdictEmoji: verdictEmoji(s4.verdict),
+    verdict,
+    confidenceScore: finalScore,
+    verdictEmoji: verdictEmoji(verdict),
     verdictExplanation: s4.verdictExplanation,
-    responseText,
+    responseText: formatResponse(trace, isPaid, lang, entry.escalate, entry.escalateReason),
     trace,
-    source: "ilrmf_deterministic",
+    source: {
+      engine: "ilrmf_deterministic",
+      entryId: entry.id,
+      ruleIds: rules.map((r) => r.id),
+      corpusVersion: CORPUS_VERSION,
+    },
     escalate: entry.escalate,
     escalateReason: entry.escalateReason ?? null,
-    area: result.area ?? "general",
+    area: entry.area,
     language: lang,
+    matchedEntryId: entry.id,
+    matchedRuleIds: rules.map((r) => r.id),
   };
 }
 
-//  Reproducibility Test Helper 
+// ─── Reproducibility Test ──────────────────────────────────
+
 export function reproducibilityTest(
-  message: string,
-  result: Parameters<typeof runILRMF>[1],
-  isPaid: boolean,
-  lang: "en" | "bn",
+  input: ILRMFInput,
   runs: number = 10
-): { passed: boolean; verdicts: VerdictBand[]; scores: number[] } {
+) {
   const verdicts: VerdictBand[] = [];
   const scores: number[] = [];
-
   for (let i = 0; i < runs; i++) {
-    const r = runILRMF(message, result, isPaid, lang);
+    const r = runILRMF(input);
     verdicts.push(r.verdict);
     scores.push(r.confidenceScore);
   }
-
-  const allVerdictsIdentical = verdicts.every((v) => v === verdicts[0]);
-  const allScoresIdentical = scores.every((s) => s === scores[0]);
-
   return {
-    passed: allVerdictsIdentical && allScoresIdentical,
+    passed:
+      verdicts.every((v) => v === verdicts[0]) &&
+      scores.every((s) => s === scores[0]),
     verdicts,
     scores,
   };
