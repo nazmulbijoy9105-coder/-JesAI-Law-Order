@@ -16,7 +16,6 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "co-pvt-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Private Limited Company  Companies Act 1994",
     rule: "Minimum 2, maximum 50 shareholders. Minimum 2 directors. Shares cannot be offered to public. Name must include 'Limited' or 'Ltd'. Registered with RJSC. Separate legal entity with limited liability.",
@@ -27,7 +26,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-opc-001",
-    area: "company",
     jurisdiction: "BD",
     title: "One Person Company (OPC)  Rules 2020",
     rule: "Single Bangladeshi individual can incorporate OPC. Sole member is sole director. No share transfer or new members without converting. Limited liability applies. Cannot be used for banking business.",
@@ -38,7 +36,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-partnership-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Partnership  Partnership Act 1932",
     rule: "Partnership registration with RJSC is optional but recommended. Unregistered firm cannot sue. Maximum 20 partners (10 in banking). Partners have unlimited personal liability.",
@@ -49,7 +46,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-foreign-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Foreign Company Registration",
     rule: "Foreign companies must register with RJSC within 30 days of establishing Bangladesh presence. Options: Branch Office (full commerce), Liaison Office (promotion only), Subsidiary (new BD company). BIDA registration also required.",
@@ -60,7 +56,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-annual-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Annual Compliance  Companies Act 1994",
     rule: "AGM within 120 days of financial year end. Annual return filed with RJSC within 21 days of AGM. Audited financials required. Non-filing: penalty + possible strike-off.",
@@ -71,7 +66,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-pub-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Public Limited Company  Companies Act 1994",
     rule: "Minimum 7 shareholders, no maximum. Minimum 3 directors. Can offer shares to public. Name must include 'Public Limited Company' or 'PLC'. Must obtain prospectus or file statement in lieu. More stringent compliance including mandatory audit regardless of capital.",
@@ -82,7 +76,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-director-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Director Duties and Liabilities  Companies Act 1994",
     rule: "Directors owe fiduciary duty to company. Must act in good faith, avoid conflict of interest, not make secret profits, disclose personal interest in contracts. Breach: liable to repay profits, compensate company, possible criminal liability under S.142-147.",
@@ -93,7 +86,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-meeting-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Company Meetings  Companies Act 1994",
     rule: "Board meeting: at least once per quarter. AGM: within 120 days of financial year end (max 15 months gap). EGM: as needed. Notice period: Board 7 days, AGM 21 days, EGM 21 days (shorter if 95% consent). Quorum: Board = per AOA (usually majority), AGM = 5 members or 25% of total, whichever is less.",
@@ -104,7 +96,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-charge-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Creation and Registration of Charges  Companies Act 1994",
     rule: "Company must register charges on property (mortgage, hypothecation) with RJSC within 30 days of creation. Form VIII for creation, Form IX for satisfaction. Unregistered charge is void against liquidator and any creditor. Applies to: property, uncalled share capital, book debts, goodwill.",
@@ -115,7 +106,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-fdi-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Foreign Direct Investment  Sectors and Restrictions",
     rule: "BIDA Act 2016 + Investment Policy 2021: 100% FDI allowed in most manufacturing and service sectors. Reserved sectors: defense, nuclear energy, security printing, forestry. Restricted: banking (requires BB approval, max 62% foreign), insurance (requires IDRA approval, max 60% foreign), telecommunications (requires BTRC approval). Profit repatriation allowed for FDI companies.",
@@ -126,7 +116,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-windup-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Winding Up by Court  Companies Act 1994",
     rule: "Court can wind up company on petition by: company, creditor, contributory, or Registrar. Grounds: inability to pay debts, just and equitable, deadlock, persistent non-compliance. Official liquidator appointed. Preferential debts paid first: employee wages (4 months), government dues. Contributories liable to deficiency.",
@@ -137,7 +126,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "co-convert-001",
-    area: "company",
     jurisdiction: "BD",
     title: "Conversion of Company Type  Companies Act 1994",
     rule: "Private Ltd can convert to Public Ltd by special resolution (75%) + meeting minimum requirements (7 shareholders, 3 directors). Public Ltd can convert to Private Ltd by special resolution if it has not issued shares to public or has bought back all public shares. OPC converts to Pvt Ltd on adding member.",
@@ -152,7 +140,6 @@ const qaBank: QAEntry[] = [
   //  COMPANY FORMATION 
   {
     id: "co-qa-001",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["register company", "form company", "incorporate", "start company"],
     question: "How do I register a private limited company in Bangladesh?",
@@ -168,7 +155,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-002",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company name clearance", "name approval rjsc", "name availability company", "rjsc name check"],
     question: "How do I get company name clearance from RJSC?",
@@ -184,7 +170,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-003",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["one person company", "opc", "single person company", "single member company"],
     question: "Can one person form a company alone?",
@@ -200,7 +185,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-004",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company vs partnership", "pvt ltd vs firm", "which is better company or firm", "difference company firm"],
     question: "What is the difference between a company and a partnership firm?",
@@ -216,7 +200,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-005",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["register partnership", "firm registration", "partnership deed registration", "register firm"],
     question: "How do I register a partnership firm?",
@@ -232,7 +215,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-006",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["foreign company register", "branch office bangladesh", "liaison office", "foreign branch bd"],
     question: "How does a foreign company register in Bangladesh?",
@@ -249,7 +231,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-007",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["add director", "change director", "remove director", "director appointment removal"],
     question: "How do I add or remove a director?",
@@ -265,7 +246,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-008",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["change company address", "registered office change", "rjsc address", "company address update"],
     question: "How do I change my company's registered address?",
@@ -281,7 +261,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-009",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["annual return company", "agm rjsc", "annual compliance company", "company annual filing"],
     question: "What are the annual compliance requirements for a company?",
@@ -297,7 +276,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-010",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["increase capital", "increase authorized capital", "capital increase", "authorized capital"],
     question: "How do I increase my company's share capital?",
@@ -313,7 +291,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-011",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["transfer shares", "sell shares", "share transfer procedure", "shares sell"],
     question: "How do I transfer shares in a private limited company?",
@@ -329,7 +306,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-012",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["dissolve company", "close company", "wind up company", "company dissolution"],
     question: "How do I close or dissolve a company?",
@@ -346,7 +322,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-013",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["shareholder dispute", "minority shareholder", "oppression mismanagement", "director conflict"],
     question: "What can a minority shareholder do against mismanagement?",
@@ -363,7 +338,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-014",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["trade licence", "business licence", "trade license renewal", "trade licence dhaka"],
     question: "How do I get and renew a trade licence?",
@@ -379,7 +353,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-015",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["rjsc certified copy", "company documents copy", "rjsc documents", "certificate copy"],
     question: "How do I get certified copies of company documents from RJSC?",
@@ -395,7 +368,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-016",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["what is moa aoa", "memorandum articles", "memorandum association", "articles association"],
     question: "What are MOA and AOA and why are they important?",
@@ -411,7 +383,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-017",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["bida registration", "foreign investment", "bida licence", "foreign investor"],
     question: "What is BIDA registration and when do I need it?",
@@ -428,7 +399,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-018",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company bank account", "corporate bank account", "open company account", "business account"],
     question: "How do I open a bank account for my company?",
@@ -444,7 +414,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-019",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company not doing business", "dormant company", "dormant rjsc", "company no activity"],
     question: "What happens if my company is not doing any business?",
@@ -460,7 +429,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-020",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["change company name", "rename company", "company name change rjsc"],
     question: "How do I change my company's name?",
@@ -476,7 +444,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-021",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company secretary", "company law compliant", "cs officer", "company secretary requirement"],
     question: "Does my company need a Company Secretary?",
@@ -492,7 +459,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-022",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["dividend declaration", "declare dividend", "dividend pay company", "dividend procedure"],
     question: "How does a company declare and pay dividends?",
@@ -508,7 +474,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-023",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company audit", "auditor appointment", "company auditor", "audit requirement"],
     question: "When does a company need an auditor?",
@@ -524,7 +489,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-024",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company loan", "company borrowing", "company bank loan", "business loan"],
     question: "Can a company take a bank loan and what documents are needed?",
@@ -540,7 +504,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-025",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company penalty rjsc", "rjsc fine", "non-filing penalty", "company compliance penalty"],
     question: "What are the penalties for non-compliance with RJSC?",
@@ -556,7 +519,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-026",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["merger acquisition", "company merger", "amalgamation", "takeover bangladesh"],
     question: "How do companies merge or get acquired in Bangladesh?",
@@ -573,7 +535,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-027",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["epz company", "sez", "export processing zone", "beza"],
     question: "Can I register a company in EPZ or SEZ?",
@@ -590,7 +551,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-028",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company striking off", "struck off company", "restore struck company", "company removed register"],
     question: "My company was struck off by RJSC  can I restore it?",
@@ -607,7 +567,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-029",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["ngo registration", "society registration", "society act", "nonprofit registration"],
     question: "How do I register an NGO or society in Bangladesh?",
@@ -623,7 +582,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-030",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["startup registration", "startup company", "startup bangladesh", "new business register"],
     question: "What is the easiest way to legally register a startup in Bangladesh?",
@@ -639,7 +597,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-031",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company resolution", "board resolution", "board minutes", "resolution pass"],
     question: "What is a board resolution and when is it needed?",
@@ -655,7 +612,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-032",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company seal", "common seal", "company stamp", "seal requirement"],
     question: "Does my company need a common seal?",
@@ -671,7 +627,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-033",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company contract", "director contract", "director service agreement", "managing director"],
     question: "Can a director be an employee of the company?",
@@ -687,7 +642,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-034",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["intellectual property company", "patent trademark", "trademark registration", "copyright company"],
     question: "How does a company protect its brand and intellectual property?",
@@ -704,7 +658,6 @@ const qaBank: QAEntry[] = [
   //  ENRICHED SECTION: QA 035-050 
   {
     id: "co-qa-035",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["public limited company", "plc registration", "public company", "ipo company"],
     question: "How do I register a public limited company in Bangladesh?",
@@ -721,7 +674,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-036",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["director duties", "fiduciary duty", "director responsibility", "director breach duty"],
     question: "What are the legal duties of a company director in Bangladesh?",
@@ -737,7 +689,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-037",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["board meeting", "board meeting notice", "board meeting quorum", "board minutes"],
     question: "How do I conduct a valid board meeting?",
@@ -753,7 +704,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-038",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company mortgage", "charge registration", "property mortgage company", "form viii rjsc"],
     question: "How does a company register a mortgage or charge on its property?",
@@ -769,7 +719,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-039",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["fdi bangladesh", "foreign investment sectors", "100% foreign ownership", "restricted sectors bangladesh"],
     question: "In which sectors can foreigners invest 100% in Bangladesh?",
@@ -786,7 +735,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-040",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["convert private to public", "private to public conversion", "convert company type", "opc to private"],
     question: "Can I convert my private limited company to a public limited company?",
@@ -802,7 +750,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-041",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["director disqualification", "disqualified director", "who cannot be director", "director barred"],
     question: "Who cannot be a director of a company in Bangladesh?",
@@ -818,7 +765,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-042",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company books inspection", "inspect company records", "shareholder inspection rights", "company accounts access"],
     question: "Can shareholders inspect company books and records?",
@@ -834,7 +780,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-043",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company tax rate", "corporate tax bangladesh", "company income tax", "tax rate company"],
     question: "What is the corporate tax rate for companies in Bangladesh?",
@@ -850,7 +795,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-044",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["related party transaction", "director personal interest", "director conflict interest", "interest disclosure"],
     question: "What are the rules for related party transactions in a company?",
@@ -866,7 +810,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-045",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["reduce share capital", "capital reduction", "decrease authorized capital", "return capital shareholders"],
     question: "Can a company reduce its share capital?",
@@ -883,7 +826,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-046",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["proxy voting", "proxy shareholder meeting", "attend agm by proxy", "proxy form"],
     question: "Can a shareholder attend and vote at a meeting through a proxy?",
@@ -899,7 +841,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-047",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["company fraud", "director fraud", "fraudulent company", "punishment company fraud"],
     question: "What is the punishment for company fraud in Bangladesh?",
@@ -916,7 +857,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-048",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["sole proprietorship", "single business", "proprietorship registration", "individual business"],
     question: "How do I register a sole proprietorship business in Bangladesh?",
@@ -932,7 +872,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-049",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["subsidary company", "holding company", "subsidiary rules", "parent company"],
     question: "What defines a subsidiary and holding company in Bangladesh?",
@@ -948,7 +887,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "co-qa-050",
-    area: "company",
     jurisdiction: "BD",
     triggerKeywords: ["rjsc online", "roc.gov.bd guide", "rjsc portal", "online company registration"],
     question: "How do I use the RJSC online portal (roc.gov.bd) for company filings?",
