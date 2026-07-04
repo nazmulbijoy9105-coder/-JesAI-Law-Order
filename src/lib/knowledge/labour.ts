@@ -10,7 +10,6 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "lab-termination-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Termination of Permanent Worker  Section 26, Labour Act 2006",
     rule: "An employer may terminate a permanent worker without cause by giving 120 days' notice (or pay in lieu) for a monthly-rated worker, or 60 days' notice for others. The worker is entitled to gratuity at the rate of 30 days' wages for every completed year of service.",
@@ -21,7 +20,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-gratuity-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Gratuity Entitlement  Section 27, Labour Act 2006",
     rule: "A worker who has completed at least 1 year of continuous service is entitled to gratuity on termination, retrenchment or voluntary retirement. Rate: 30 days' last wage per completed year of service (or 45 days if employer has no provident fund scheme).",
@@ -32,7 +30,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-retrenchment-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Retrenchment  Section 20, Labour Act 2006",
     rule: "An employer may retrench workers due to redundancy. LIFO principle applies (last in, first out). Worker must get 30 days' notice or wages in lieu, plus gratuity (30 days per year of service). Notice to Chief Inspector required if 15+ workers retrenched.",
@@ -43,7 +40,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-leave-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Annual Leave & Festival Leave  Sections 117118, Labour Act 2006",
     rule: "Workers in industrial establishments earn 1 day's annual leave for every 18 days worked (adult workers). Workers in shops/commercial establishments earn 1 day for every 22 days. In addition, workers are entitled to 11 days' festival leave per year with full wages.",
@@ -54,7 +50,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-overtime-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Overtime  Section 108, Labour Act 2006",
     rule: "Normal working hours are 8 hours per day and 48 hours per week. Overtime must be paid at double the ordinary rate. Total working hours including overtime must not exceed 60 hours per week or 10 hours per day. Overtime must be voluntary (except in emergency).",
@@ -65,7 +60,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-maternity-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Maternity Benefit  Sections 4550, Labour Act 2006",
     rule: "Female workers are entitled to 16 weeks maternity leave (8 weeks before, 8 weeks after delivery) with full wages, provided the worker has been employed for at least 6 months. Maternity benefit is denied for a third or subsequent child.",
@@ -76,7 +70,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-dismissal-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Dismissal for Misconduct  Section 23, Labour Act 2006",
     rule: "An employer may dismiss a worker without notice for proven misconduct. Misconduct includes theft, fraud, dishonesty, habitual absence, damage to property, conviction for a criminal offence, and fighting. Mandatory show-cause notice and domestic enquiry required before dismissal. Worker receives no gratuity if dismissed for misconduct.",
@@ -87,7 +80,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-wages-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Wages Payment  Sections 120123, Labour Act 2006",
     rule: "Wages must be paid within 7 days of the end of the wage period (if fewer than 1,000 workers) or within 10 days (if 1,000 or more workers). Deductions from wages are only permitted for specific reasons such as absence, damage, fine, housing, advance repayment, provident fund and income tax.",
@@ -98,7 +90,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-pf-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Provident Fund  Labour Act 2006 & EPF Ordinance 1961",
     rule: "Where a provident fund scheme exists, both employer and employee typically contribute equally (commonly 810% each). Employer contribution vests progressively: 50% after 3 years, 75% after 5 years, 100% after 10 years. On termination without cause after 10 years, the worker gets 100% of employer's contribution.",
@@ -109,7 +100,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-trade-union-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Trade Union Rights  Section 176, Labour Act 2006",
     rule: "Every worker has the right to form and join a trade union. At least 30% of total workers in an establishment must be members for registration. Unfair labour practices by employers (e.g., dismissing union members for union activity) are prohibited and actionable.",
@@ -120,7 +110,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-probation-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Probationary Workers  Section 22, Labour Act 2006",
     rule: "A worker may be appointed on probation for a maximum of 6 months (can be extended by another 3 months, totaling 9 months). During probation, either party may terminate by giving 60 days' notice or pay in lieu. If not confirmed or terminated within the probation period, they are deemed permanently employed.",
@@ -131,7 +120,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-child-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Child Labour Prohibition  Sections 3438, Labour Act 2006",
     rule: "Children under 14 years cannot be employed. Adolescents (1418 years) can be employed in safe work only, subject to daily/weekly hour limits (max 5 hours/day, 30 hours/week) and night restrictions (cannot work between 7 PM and 7 AM). Employing children is a criminal offence.",
@@ -142,7 +130,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-compensation-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Workplace Injury Compensation  Workmen's Compensation Act 1923",
     rule: "If a worker dies or suffers injury from an accident arising out of and in the course of employment, the employer must pay compensation under the Workmen's Compensation Act 1923. Compensation depends on monthly wages and the nature of injury (partial/permanent disablement or death). No fault of the employer needs to be proven.",
@@ -153,7 +140,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-court-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Labour Court Jurisdiction  Section 33, Labour Act 2006",
     rule: "Labour Courts have exclusive jurisdiction to adjudicate disputes under the Labour Act (except some criminal matters). A complaint must be filed within 2 years of the cause of action. No court fee is required for filing. The court can order reinstatement, back wages, compensation, or gratuity.",
@@ -164,7 +150,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-strike-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Strike and Lockout  Sections 211215, Labour Act 2006",
     rule: "Workers in an essential service cannot strike. In non-essential services, a strike requires a 14-day notice to the employer and a 30% secret ballot vote in favor. Illegal strikes result in loss of wages and potential termination. Employers cannot declare a lockout without following similar conciliation procedures.",
@@ -175,7 +160,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-casual-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Casual, Badli & Temporary Workers  Section 2, Labour Act 2006",
     rule: "A casual worker is engaged for work that is not of a permanent nature. A badli worker substitutes a permanent worker on leave. A temporary worker is employed for a specific project/period. None have automatic right to permanency unless continuously employed for 3 months (badli) or the temporary period exceeds the statutory limit, at which point they may claim permanent status.",
@@ -186,7 +170,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-harassment-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Workplace Sexual Harassment  High Court Guidelines 2009",
     rule: "The Bangladesh High Court (2009) directed all workplaces to form a Complaints Committee (headed by a woman, 50% women members) to address sexual harassment. Employers must display guidelines and treat sexual harassment as a disciplinary offence. No specific statutory act yet, but High Court guidelines have the force of law.",
@@ -197,7 +180,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "lab-service-cert-001",
-    area: "labour",
     jurisdiction: "BD",
     title: "Service Certificate  Section 35, Labour Act 2006",
     rule: "An employer must issue a service certificate (experience letter) to a worker within 3 days of the worker's application, regardless of whether the worker resigned, was terminated, or retrenched. Refusal or delay is a punishable offence. The certificate should state the nature of work and duration of service.",
@@ -211,7 +193,6 @@ const rules: LegalRule[] = [
 const qaBank: QAEntry[] = [
   {
     id: "lab-qa-001",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["wrongful termination", "fired without reason", "unfair dismissal", "terminated illegally", "terminate without notice"],
     question: "I was terminated without notice or reason  what are my rights?",
@@ -228,7 +209,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-002",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["gratuity not paid", "gratuity claim", "gratuity calculation", "service benefit", "terminal benefit"],
     question: "My employer is not paying my gratuity after termination  what can I do?",
@@ -244,7 +224,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-003",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["overtime not paid", "extra hours not paid", "overtime payment", "double rate", "working too many hours"],
     question: "My employer is not paying me for overtime work  what are my rights?",
@@ -260,7 +239,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-004",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["salary not paid", "unpaid wages", "salary withheld", "employer not paying", "non-payment of wages"],
     question: "My employer has not paid my salary for months  what can I do?",
@@ -277,7 +255,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-005",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["maternity leave denied", "maternity benefit", "maternity pay", "pregnant fired", "pregnancy dismissed"],
     question: "I was denied maternity leave or dismissed because of pregnancy  what are my rights?",
@@ -294,7 +271,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-006",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["resignation", "notice period", "resign without notice", "notice pay", "leaving job"],
     question: "Can I resign without serving my notice period?",
@@ -310,7 +286,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-007",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["show cause notice", "misconduct charge", "domestic enquiry", "charge sheet", "disciplinary action"],
     question: "I received a show cause notice for misconduct  what should I do?",
@@ -327,7 +302,6 @@ const qaBank: QAEntry[] = [
   //  ENRICHED SECTION: QA 008-050 
   {
     id: "lab-qa-008",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["probation period", "fired during probation", "probationary worker rights", "probation notice period"],
     question: "Can my employer fire me without any reason while I am on probation?",
@@ -343,7 +317,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-009",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["sick leave", "medical leave", "sick leave entitlement", "medical certificate"],
     question: "How many sick days am I legally entitled to, and can my employer demand a doctor's note?",
@@ -359,7 +332,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-010",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["casual leave", "casual leave rules", "how many casual leave"],
     question: "How many casual leave days do I get per year?",
@@ -375,7 +347,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-011",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["working on friday", "weekly holiday", "friday work compensation", "forced to work friday"],
     question: "Can my employer force me to work on Friday (the weekly holiday)?",
@@ -391,7 +362,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-012",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["child labour", "14 year old job", "underage worker", "can a teenager work"],
     question: "Can a 14-year-old be legally employed in a factory or shop in Bangladesh?",
@@ -408,7 +378,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-013",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["female night shift", "women night work", "can women work at night"],
     question: "Is it legal for female workers to work night shifts in Bangladesh?",
@@ -424,7 +393,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-014",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["workplace injury", "accident in factory", "machine injury compensation", "hurt at work"],
     question: "I was injured at work due to a machine malfunction  can I claim compensation?",
@@ -441,7 +409,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-015",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["worker died at factory", "death compensation", "family compensation death"],
     question: "If a worker dies in a workplace accident, how much compensation does the family get?",
@@ -458,7 +425,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-016",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["labour court case", "how to file case", "file complaint labour", "labour case procedure"],
     question: "How do I file a case in the Labour Court?",
@@ -474,7 +440,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-017",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["go on strike", "strike rules", "legal strike procedure", "workers protest"],
     question: "What is the legal process for workers to go on strike?",
@@ -491,7 +456,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-018",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["casual worker rights", "daily wage gratuity", "temporary worker benefits", "contract worker rights"],
     question: "I am a daily-wage/casual worker  am I entitled to gratuity or notice pay?",
@@ -507,7 +471,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-019",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["employee vs worker", "labour act applicability", "officer labour law", "manager rights"],
     question: "Does the Labour Act apply to managers, officers, and administrative staff?",
@@ -524,7 +487,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-020",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["sexual harassment", "harassment at work", "complaints committee", "boss harassment"],
     question: "I am facing sexual harassment at my workplace  what legal protections do I have?",
@@ -541,7 +503,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-021",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["salary deduction", "illegal deduction", "fine from salary", "damage deduction"],
     question: "Can my employer deduct money from my salary for mistakes or fines?",
@@ -557,7 +518,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-022",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["experience letter", "service certificate", "employer refusing letter", "no experience letter"],
     question: "My employer is refusing to give me my experience/service letter. What can I do?",
@@ -573,7 +533,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-023",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["forced retirement", "retirement age", "mandatory retirement", "retired against will"],
     question: "Can an employer force me to retire at a certain age?",
@@ -589,7 +548,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-024",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["minimum wage", "minimum salary bd", "below minimum wage"],
     question: "What is the minimum wage in Bangladesh?",
@@ -605,7 +563,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-025",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["epz labour law", "export processing zone rules", "epz worker rights", "bepza"],
     question: "Are labour laws different inside the Export Processing Zones (EPZ)?",
@@ -622,7 +579,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-026",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["rest interval", "break time", "tea break law", "lunch break hours"],
     question: "Am I legally entitled to break times or a lunch break during my 8-hour shift?",
@@ -638,7 +594,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-027",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["factory closing down", "employer bankrupt", "company shutdown workers", "unpaid wages bankruptcy"],
     question: "My factory is closing down suddenly  how do I get my unpaid wages and dues?",
@@ -655,7 +610,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-028",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["intern rights", "apprentice", "unpaid internship", "stipend law"],
     question: "Does the Labour Act apply to interns or apprentices?",
@@ -671,7 +625,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-029",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["form trade union", "register union", "union formation steps", "employer anti union"],
     question: "How do we legally form and register a trade union?",
@@ -687,7 +640,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-030",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["leave encashment", "cash out leave", "unused annual leave", "leave balance payment"],
     question: "Can I get paid for my unused annual leave when I leave the company?",
@@ -703,7 +655,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-031",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["suspended pending enquiry", "suspension pay", "suspended without pay"],
     question: "My employer suspended me pending a domestic enquiry  do I get paid during suspension?",
@@ -719,7 +670,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-032",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["final settlement", "full and final", "last dues clearance", "final pay"],
     question: "How long does my employer have to clear my final settlement after I leave?",
@@ -735,7 +685,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-033",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["piece rate worker", "piece rated wage calculation", "paid per piece"],
     question: "I am paid per piece produced  how does overtime and minimum wage apply to me?",
@@ -751,7 +700,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-034",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["equal pay gender", "women paid less", "same work different pay"],
     question: "Is it legal for my employer to pay me less than a male colleague for the same work?",
@@ -768,7 +716,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-035",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["provident fund withdrawal", "pf transfer", "provident fund resign", "pf balance"],
     question: "Can I withdraw my full Provident Fund when I resign?",
@@ -784,7 +731,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-036",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["salary cut", "salary reduced", "pay cut company", "reduced salary without consent"],
     question: "Can my employer reduce my salary without my written consent?",
@@ -800,7 +746,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-037",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["work from home", "remote work", "wfh rights", "telecommuting bd"],
     question: "Do standard labour rights apply if I am working from home (WFH)?",
@@ -816,7 +761,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-038",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["government holiday work", "working on public holiday", "bangla noboborsho work"],
     question: "If I work on a government-declared public holiday (like 26 March or 21 Feb), what am I owed?",
@@ -832,7 +776,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-039",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["foreign worker rights", "expat labour law", "foreign employee bd"],
     question: "Do foreign nationals working in Bangladesh have the same labour rights?",
@@ -848,7 +791,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-040",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["workplace bullying", "harassed by boss", "toxic workplace", "verbal abuse"],
     question: "I am being severely bullied and verbally abused by my manager  is there legal recourse?",
@@ -864,7 +806,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-041",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["change job role", "demotion", "transferred without consent", "forced transfer"],
     question: "Can my employer transfer me to a different city or demote me without my consent?",
@@ -880,7 +821,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-042",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["outsourced worker", "subcontractor employee", "third party payroll", "who is real employer"],
     question: "I work in a factory but I am on a contractor's payroll  who is my legal employer?",
@@ -896,7 +836,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-043",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["refusing to accept resignation", "forced to stay", "employer not accepting resign"],
     question: "My employer is refusing to accept my resignation letter  am I still bound to work?",
@@ -912,7 +851,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-044",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["notice period buyout", "pay instead of notice", "short notice"],
     question: "Can I pay money instead of working my notice period?",
@@ -928,7 +866,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-045",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["labour court order not followed", "employer ignored verdict", "execute labour court order"],
     question: "I won my case in the Labour Court, but the employer is still not paying  what do I do?",
@@ -945,7 +882,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-046",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["probation notice period", "quit during probation", "probation termination notice"],
     question: "How much notice do I have to give if I want to quit during my probation period?",
@@ -961,7 +897,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-047",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["whistleblower", "reported corruption", "fired for reporting", "retaliation reporting"],
     question: "I was fired because I reported illegal activities (corruption/pollution) in my company  am I protected?",
@@ -978,7 +913,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-048",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["bank employee rights", "financial institution labour act", "banker termination"],
     question: "Does the Labour Act apply to bank employees?",
@@ -994,7 +928,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-049",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["grievance committee", "participatory committee", "internal dispute resolution"],
     question: "My company has a Grievance Committee  do I have to use it before going to court?",
@@ -1010,7 +943,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "lab-qa-050",
-    area: "labour",
     jurisdiction: "BD",
     triggerKeywords: ["no appointment letter", "verbal job", "working without letter", "prove employment"],
     question: "I have been working for 2 years but never received an appointment letter  am I still a legal worker?",

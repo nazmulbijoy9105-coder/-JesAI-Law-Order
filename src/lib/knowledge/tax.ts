@@ -13,7 +13,6 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "tax-ita-001",
-    area: "tax",
     jurisdiction: "BD",
     title: "Income Tax Act 2023 - Replaced Ordinance 1984",
     rule: "The Income Tax Act 2023 (  ) came into force on 1 July 2023, fully replacing the Income Tax Ordinance 1984. All income tax matters from FY 2023-24 onward are governed by the new Act.",
@@ -24,7 +23,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "tax-slab-001",
-    area: "tax",
     jurisdiction: "BD",
     title: "Individual Tax Slabs FY 2024-25",
     rule: "Tax-free threshold: BDT 3,50,000 (general). Women/65+ senior: BDT 4,00,000. Freedom fighters/disabled: BDT 4,75,000. Rates: 5%, 10%, 15%, 20%, 25% progressively.",
@@ -35,7 +33,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "tax-vat-001",
-    area: "tax",
     jurisdiction: "BD",
     title: "VAT Standard Rate 15% - VAT Act 2012",
     rule: "Standard VAT rate 15%. Reduced rates: 5%, 7.5%, 10% on specified goods/services. Zero rate on exports. VAT registration threshold: BDT 50 lakh annual turnover.",
@@ -46,7 +43,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "tax-wht-001",
-    area: "tax",
     jurisdiction: "BD",
     title: "Withholding Tax - Income Tax Act 2023 Chapter XII",
     rule: "WHT deducted at source by payer on: salary (slab), bank interest (10-15%), rent (10-15%), contractor (3-7%), professional fees (10%), dividend (10-20%), NRB profit (20% with TIN, 30% without TIN).",
@@ -57,7 +53,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "tax-corporate-001",
-    area: "tax",
     jurisdiction: "BD",
     title: "Corporate Tax Rates FY 2024-25",
     rule: "Publicly traded: 22.5%. Private limited: 27.5%. Bank/insurance listed: 37.5%. Bank unlisted: 40%. Telecom: 45%. Tobacco: 45%. Cooperative: 15%. One-person company: 25%.",
@@ -72,7 +67,6 @@ const qaBank: QAEntry[] = [
   //  TIN & REGISTRATION 
   {
     id: "tax-qa-001",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["need tin", "get tin", "tin registration", "etin", "tin "],
     question: "How do I get a TIN in Bangladesh?",
@@ -88,7 +82,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-002",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tin mandatory", "tin required", "when need tin"],
     question: "When is TIN mandatory in Bangladesh?",
@@ -105,7 +98,6 @@ const qaBank: QAEntry[] = [
   //  INCOME TAX RETURNS 
   {
     id: "tax-qa-003",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["file tax return", "how to file return", "income tax return"],
     question: "How do I file my income tax return in Bangladesh?",
@@ -121,7 +113,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-004",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax slab", "income tax rate", "tax rate 2024", "tax rate 2025"],
     question: "What are the income tax rates for 2024-25?",
@@ -137,7 +128,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-005",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax rebate", "investment rebate", "tax savings", "rebate calculation"],
     question: "How do I reduce tax through investment rebate?",
@@ -153,7 +143,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-006",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["late return", "return late penalty", "missed deadline", "return after november"],
     question: "What happens if I file my tax return late?",
@@ -169,7 +158,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-007",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["minimum tax", "tin holder minimum", "zero income tax", "minimum payment"],
     question: "Is there a minimum tax even below the tax-free limit?",
@@ -186,7 +174,6 @@ const qaBank: QAEntry[] = [
   //  VAT 
   {
     id: "tax-qa-008",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat registration", "mushak registration", "bin registration", "vat certificate"],
     question: "How do I register for VAT?",
@@ -202,7 +189,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-009",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat return", "mushak 9.1", "monthly vat", "vat filing"],
     question: "How do I file a monthly VAT return?",
@@ -218,7 +204,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-010",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat exempt", "zero vat", "no vat goods", "vat free items"],
     question: "Which goods and services are exempt from VAT?",
@@ -235,7 +220,6 @@ const qaBank: QAEntry[] = [
   //  WITHHOLDING TAX 
   {
     id: "tax-qa-011",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["withholding tax", "source tax", "tds bangladesh", "wht deduction"],
     question: "What is withholding tax and who must deduct it?",
@@ -251,7 +235,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-012",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["salary tax deduction", "employee tax", "payroll tax", "salary withholding"],
     question: "How is income tax deducted from salary?",
@@ -268,7 +251,6 @@ const qaBank: QAEntry[] = [
   //  BUSINESS TAX 
   {
     id: "tax-qa-013",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["company tax rate", "corporate tax", "corporate tax rate", "business tax"],
     question: "What is the corporate tax rate in Bangladesh?",
@@ -284,7 +266,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-014",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["advance tax", "quarterly tax", "advance income tax", "quarterly payment"],
     question: "Do I have to pay advance income tax?",
@@ -300,7 +281,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-015",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax audit", "nbr audit", "selected audit", "dcit audit"],
     question: "What happens if NBR audits my tax return?",
@@ -318,7 +298,6 @@ const qaBank: QAEntry[] = [
   //  DISPUTES & APPEALS 
   {
     id: "tax-qa-016",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax appeal", "challenge tax demand", "object tax", "tax dispute"],
     question: "How do I challenge a tax demand I disagree with?",
@@ -335,7 +314,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-017",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax refund", "overpaid tax", "refund income tax", "excess tax paid"],
     question: "How do I get a refund if I overpaid tax?",
@@ -352,7 +330,6 @@ const qaBank: QAEntry[] = [
   //  PROPERTY & CAPITAL GAINS 
   {
     id: "tax-qa-018",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["land sale tax", "property tax", "capital gain tax", "property capital gain"],
     question: "Do I pay tax when selling land or property?",
@@ -368,7 +345,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-019",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["house rent income", "rental income tax", "landlord tax", "rent tax"],
     question: "Do I pay tax on house rent income?",
@@ -385,7 +361,6 @@ const qaBank: QAEntry[] = [
   //  SPECIAL SITUATIONS 
   {
     id: "tax-qa-020",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["undisclosed income", "black money", "undeclared income", "voluntary disclosure"],
     question: "Can I disclose undeclared income and pay tax on it?",
@@ -402,7 +377,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-021",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["freelancer tax", "remote work tax", "digital income tax", "online income foreign"],
     question: "Do freelancers and remote workers pay tax in Bangladesh?",
@@ -418,7 +392,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-022",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["gift tax", "gift money tax", "received gift taxable", "gift from family"],
     question: "Is a gift I received taxable?",
@@ -434,7 +407,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-023",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["bank interest tax", "savings interest", "fd tax", "fixed deposit tax"],
     question: "How is bank interest taxed?",
@@ -450,7 +422,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-024",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax penalty", "tax evasion penalty", "tax fine", "nbr penalty"],
     question: "What are the penalties for tax evasion?",
@@ -466,7 +437,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-025",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["sanchayapatra tax", "savings certificate tax", "national savings tax"],
     question: "What tax applies on sanchayapatra?",
@@ -482,7 +452,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-026",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["surcharge wealth", "net wealth tax", "wealth surcharge", "assets surcharge"],
     question: "What is wealth surcharge in Bangladesh tax?",
@@ -498,7 +467,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-027",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["facebook business tax", "e-commerce tax", "online shop tax", "digital business"],
     question: "Do I pay tax on Facebook or e-commerce income?",
@@ -514,7 +482,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-028",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["remittance tax", "foreign remittance", "nrb remittance", "overseas income"],
     question: "Is foreign remittance taxable in Bangladesh?",
@@ -530,7 +497,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-029",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["stamp duty", "registration fee land", "deed registration cost", "land registration tax"],
     question: "What are stamp duty and registration fees for land?",
@@ -546,7 +512,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-030",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax clearance", "tax proof", "tcc certificate", "tax compliance proof"],
     question: "How do I get proof that I have paid my taxes?",
@@ -563,7 +528,6 @@ const qaBank: QAEntry[] = [
   //  NEW Q&A 031-050 
   {
     id: "tax-qa-031",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["business income tax", "sole trader tax", "proprietorship tax", "business profit tax"],
     question: "How is sole proprietorship business income taxed?",
@@ -579,7 +543,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-032",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["partnership tax", "firm tax", "partnership income tax", "firm income"],
     question: "How is a partnership firm taxed in Bangladesh?",
@@ -595,7 +558,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-033",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["ngo tax", "charitable trust tax", "ngo income tax", "charitable income"],
     question: "Are NGOs and charitable organizations exempt from tax?",
@@ -611,7 +573,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-034",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["supplementary duty", "sd goods", "supplementary duty vat", "sd rate"],
     question: "What is supplementary duty (SD) in Bangladesh?",
@@ -627,7 +588,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-035",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["custom duty import", "import tax", "import duty bangladesh", "customs charge"],
     question: "What taxes apply when importing goods into Bangladesh?",
@@ -643,7 +603,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-036",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["dividends tax", "share dividend", "dividend income tax", "share income"],
     question: "How is dividend income taxed?",
@@ -659,7 +618,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-037",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["transfer pricing", "related party transaction", "multinational tax", "arm's length"],
     question: "What is transfer pricing and does it apply to my business?",
@@ -676,7 +634,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-038",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax return proof bank loan", "bank requires tax return", "loan tax return requirement"],
     question: "Do I need a tax return for a bank loan?",
@@ -692,7 +649,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-039",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["provident fund tax", "gratuity tax", "provident fund taxable", "gratuity taxable"],
     question: "Is provident fund or gratuity taxable?",
@@ -708,7 +664,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-040",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["crypto tax", "bitcoin tax", "cryptocurrency bangladesh tax", "digital asset tax"],
     question: "Is cryptocurrency income taxable in Bangladesh?",
@@ -725,7 +680,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-041",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["salary abroad income", "foreign salary tax", "overseas job tax", "foreign employment"],
     question: "I work abroad - do I pay tax in Bangladesh on my foreign salary?",
@@ -741,7 +695,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-042",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["nbr notice response", "tax notice", "income tax notice", "dcit notice"],
     question: "I received a tax notice from NBR - what do I do?",
@@ -758,7 +711,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-043",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["export income tax", "export earnings tax", "garments export tax", "export exemption"],
     question: "Is export income exempt from tax?",
@@ -774,7 +726,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-044",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["pension tax", "retirement income tax", "government pension", "pension taxable"],
     question: "Is pension income taxable in Bangladesh?",
@@ -790,7 +741,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-045",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat input credit", "input vat", "vat credit claim", "mushak input credit"],
     question: "Can I claim input VAT credit on purchases?",
@@ -806,7 +756,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-046",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["large taxpayer", "ltu", "large taxpayer unit", "ltu registration"],
     question: "What is the Large Taxpayer Unit (LTU) and do I fall under it?",
@@ -822,7 +771,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-047",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["flat apartment purchase tax", "apartment buy tax", "property purchase tax", "flat registration tax"],
     question: "What taxes do I pay when buying a flat?",
@@ -838,7 +786,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-048",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["small business vat", "cottage industry", "small business tax", "cottage vat"],
     question: "Do small businesses and cottage industries pay VAT?",
@@ -854,7 +801,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-049",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["income tax act 2023 changes", "new tax law changes", "ita 2023 vs ordinance 1984", "tax law changes"],
     question: "What are the major changes in the Income Tax Act 2023 vs old law?",
@@ -870,7 +816,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-050",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax consultant", "ca firm", "tax advisor", "income tax help", "need tax help"],
     question: "When do I need a professional tax consultant in Bangladesh?",
@@ -887,7 +832,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "tax-qa-051",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat enforcement", "vat audit", "vat inspection", "nbr vat visit", "vat officer visit", "mushak audit"],
     question: "What happens during a VAT audit by NBR?",
@@ -905,7 +849,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-052",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat deregistration", "close vat", "vat cancellation", "bin cancel", "stop vat registration"],
     question: "How do I cancel or deregister my VAT registration?",
@@ -922,7 +865,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-053",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["agricultural income tax", "krishi aay kor", "farm income tax", "agriculture tax bangladesh"],
     question: "Is agricultural income taxable in Bangladesh?",
@@ -939,7 +881,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-054",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax amnesty", "black money white", "undisclosed asset", "voluntary disclosure scheme", "tax pardon"],
     question: "Is there a current tax amnesty or voluntary disclosure scheme in Bangladesh?",
@@ -957,7 +898,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-055",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["turnover tax", "4 percent tax", "small business tax", "turnover tax bangladesh", "vat turnover"],
     question: "What is turnover tax and who pays it?",
@@ -974,7 +914,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-056",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax assessment", "self assessment", "best judgment", "dcit assessment", "tax officer assessment"],
     question: "What are the different types of tax assessment under ITA 2023?",
@@ -991,7 +930,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-057",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax deduction certificate", "wht certificate", "source tax certificate", "form 108a", "tax credit certificate"],
     question: "How do I claim tax credit for tax already deducted at source?",
@@ -1008,7 +946,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-058",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["vat composition", "composition scheme", "small trader vat", "composition vat", "simplified vat"],
     question: "Is there a simplified VAT scheme for small traders?",
@@ -1025,7 +962,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-059",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["tax return revision", "amend return", "correct tax return", "return mistake", "revise return"],
     question: "Can I revise my tax return if I made a mistake?",
@@ -1042,7 +978,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "tax-qa-060",
-    area: "tax",
     jurisdiction: "BD",
     triggerKeywords: ["nbr online services", "etax portal", "online tax", "digital tax bangladesh", "nbr app", "etaxnbr"],
     question: "What online services does NBR offer for taxpayers?",

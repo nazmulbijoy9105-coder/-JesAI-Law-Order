@@ -30,7 +30,6 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "con-001",
-    area: "constitutional",
     jurisdiction: "BD",
     title: "Constitution of Bangladesh 1972 - Supreme Law",
     rule: "The Constitution of the People's Republic of Bangladesh was adopted on 4 November 1972 and came into force on 16 December 1972 (Victory Day). It is the supreme law of Bangladesh - any law inconsistent with the Constitution is void to the extent of the inconsistency (Article 7).",
@@ -41,7 +40,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "con-002",
-    area: "constitutional",
     jurisdiction: "BD",
     title: "Fundamental Rights - Articles 26-47A",
     rule: "Part III (Articles 26-47A) contains Fundamental Rights. Article 26: all laws inconsistent with fundamental rights are void. Rights include: equality (27), right to life (32), freedom of movement (36), freedom of assembly (37), freedom of association (38), freedom of thought (39), freedom of profession (40), religion (41), property (42).",
@@ -52,7 +50,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "con-003",
-    area: "constitutional",
     jurisdiction: "BD",
     title: "Writ Jurisdiction - Article 102",
     rule: "Article 102: The High Court Division has power to issue writs of: Mandamus, Prohibition, Certiorari, Habeas Corpus, Quo Warranto - to enforce fundamental rights or control unlawful government action. Any aggrieved person can file a writ petition directly in the High Court Division.",
@@ -63,7 +60,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "con-004",
-    area: "constitutional",
     jurisdiction: "BD",
     title: "State Religion - Article 2A (8th Amendment 1988)",
     rule: "Article 2A (inserted by 8th Amendment 1988): The state religion of the Republic is Islam, but other religions may be practised in peace and harmony. This was inserted during Ershad's government. The 15th Amendment 2011 retained Islam as state religion while also restoring secularism as a fundamental principle.",
@@ -74,7 +70,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "con-005",
-    area: "constitutional",
     jurisdiction: "BD",
     title: "15th Amendment 2011 - Secularism, Caretaker Abolished",
     rule: "The 15th Amendment (Constitution (Fifteenth Amendment) Act 2011) made major changes: (1) restored secularism and nationalism as fundamental principles, (2) abolished the Caretaker Government system (13th Amendment repealed), (3) Article 7B inserted - unamendable 'basic structure' provisions including preamble, fundamental principles, fundamental rights, elections.",
@@ -90,7 +85,6 @@ const qaBank: QAEntry[] = [
   //  CONSTITUTION BASICS 
   {
     id: "con-qa-001",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["bangladesh constitution", "when constitution made", "constitution 1972", "bangladesh constitution history"],
     question: "When was the Bangladesh Constitution made and what are its key features?",
@@ -107,7 +101,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-002",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["supreme law bangladesh", "article 7", "law void constitution", "constitution supreme"],
     question: "Is the Constitution the supreme law of Bangladesh?",
@@ -124,7 +117,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-003",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["fundamental principles state policy", "article 8", "nationalism socialism", "four principles constitution"],
     question: "What are the fundamental principles of the Bangladesh Constitution?",
@@ -142,7 +134,6 @@ const qaBank: QAEntry[] = [
   //  FUNDAMENTAL RIGHTS 
   {
     id: "con-qa-004",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["fundamental rights bangladesh", "article 26", "rights constitution", "constitutional rights list"],
     question: "What are the fundamental rights in the Bangladesh Constitution?",
@@ -159,7 +150,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-005",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["right to life", "article 32", "personal liberty", "right to life bangladesh"],
     question: "What does the right to life mean under Article 32?",
@@ -176,7 +166,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-006",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 33", "arrest safeguards", "detained rights", "arrest rights constitution"],
     question: "What are my rights when arrested under the Constitution?",
@@ -194,7 +183,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-007",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["freedom of speech", "article 39", "press freedom", "speech rights bangladesh"],
     question: "Is freedom of speech guaranteed in Bangladesh?",
@@ -211,7 +199,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-008",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 27", "equality before law", "non discrimination", "equal treatment law"],
     question: "What does equality before law mean under Article 27?",
@@ -228,7 +215,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-009",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 35", "double jeopardy", "self incrimination", "trial rights constitution"],
     question: "What are the protections against arbitrary trial and punishment?",
@@ -246,7 +232,6 @@ const qaBank: QAEntry[] = [
   //  WRIT JURISDICTION 
   {
     id: "con-qa-010",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["writ petition", "article 102", "high court writ", "writ jurisdiction bangladesh"],
     question: "What is a writ petition and how do I file one?",
@@ -264,7 +249,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-011",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["habeas corpus", "illegal detention writ", "produce before court", "detained illegally"],
     question: "What is a Habeas Corpus writ and when can I use it?",
@@ -282,7 +266,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-012",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["mandamus writ", "government duty", "force government duty", "public body writ"],
     question: "What is a Mandamus writ and when is it used?",
@@ -301,7 +284,6 @@ const qaBank: QAEntry[] = [
   //  AMENDMENTS HISTORY 
   {
     id: "con-qa-013",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["first amendment 1973", "war crimes amendment", "first constitutional amendment", "1973 amendment"],
     question: "What did the 1st Constitutional Amendment 1973 do?",
@@ -318,7 +300,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-014",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["4th amendment", "baksal", "presidential system", "fourth amendment 1975"],
     question: "What did the 4th Amendment 1975 do and why is it controversial?",
@@ -335,7 +316,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-015",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["5th amendment", "martial law ratification", "bismillah constitution", "fifth amendment 1979"],
     question: "What did the 5th Amendment 1979 do?",
@@ -352,7 +332,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-016",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["7th amendment", "ershad martial law", "seventh amendment 1986", "ershad constitution"],
     question: "What did the 7th Amendment 1986 do?",
@@ -369,7 +348,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-017",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["8th amendment", "state religion islam", "eighth amendment 1988", "islam state religion amendment"],
     question: "When was Islam made the state religion and what does it mean?",
@@ -386,7 +364,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-018",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["12th amendment", "parliamentary system restored", "twelfth amendment 1991", "parliamentary democracy restored"],
     question: "How did Bangladesh return to parliamentary democracy?",
@@ -403,7 +380,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-019",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["13th amendment", "caretaker government", "thirteenth amendment 1996", "caretaker system"],
     question: "What was the caretaker government system and why was it abolished?",
@@ -420,7 +396,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-020",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["15th amendment", "secularism restored", "fifteenth amendment 2011", "basic structure doctrine"],
     question: "What did the 15th Amendment 2011 change?",
@@ -437,7 +412,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-021",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["16th amendment", "judge removal parliament", "sixteenth amendment 2014", "parliament remove judge"],
     question: "What was the 16th Amendment and why was it struck down?",
@@ -454,7 +428,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-022",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["17th amendment", "women reserved seats", "women seats extended", "reserved seats parliament"],
     question: "What did the 17th Amendment 2018 do?",
@@ -472,7 +445,6 @@ const qaBank: QAEntry[] = [
   //  STRUCTURE OF GOVERNMENT 
   {
     id: "con-qa-023",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["president bangladesh", "president role", "president powers", "bangladesh president election"],
     question: "What is the role and power of the President of Bangladesh?",
@@ -489,7 +461,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-024",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["prime minister powers", "prime minister bangladesh", "pm bangladesh constitution", "executive power bangladesh"],
     question: "What powers does the Prime Minister have under the Constitution?",
@@ -506,7 +477,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-025",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["jatiya sangsad", "parliament bangladesh", "national parliament", "sangsad seats"],
     question: "What is the structure of the Bangladesh Parliament (Jatiya Sangsad)?",
@@ -523,7 +493,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-026",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["supreme court bangladesh", "appellate division", "high court division", "judiciary constitution"],
     question: "What is the structure of the Supreme Court of Bangladesh?",
@@ -541,7 +510,6 @@ const qaBank: QAEntry[] = [
   //  EMERGENCY & SPECIAL PROVISIONS 
   {
     id: "con-qa-027",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["emergency provision", "state of emergency", "article 141", "emergency bangladesh constitution"],
     question: "What are the emergency provisions in the Bangladesh Constitution?",
@@ -558,7 +526,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-028",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 7a", "treason constitution", "extra constitutional", "unconstitutional takeover"],
     question: "What does Article 7A say about unconstitutional seizure of power?",
@@ -576,7 +543,6 @@ const qaBank: QAEntry[] = [
   //  DIRECTIVE PRINCIPLES 
   {
     id: "con-qa-029",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["directive principles", "part two constitution", "fundamental principles state policy", "state principles non-justiciable"],
     question: "What are the Fundamental Principles of State Policy and can courts enforce them?",
@@ -594,7 +560,6 @@ const qaBank: QAEntry[] = [
   //  ELECTIONS 
   {
     id: "con-qa-030",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["election commission bangladesh", "article 118", "election commission constitution", "ec bangladesh"],
     question: "What is the constitutional status of the Election Commission?",
@@ -611,7 +576,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-031",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitutional amendment procedure", "how to amend constitution", "two thirds majority", "amendment process bangladesh"],
     question: "How is the Bangladesh Constitution amended?",
@@ -629,7 +593,6 @@ const qaBank: QAEntry[] = [
   //  CONSTITUTIONAL RIGHTS IN PRACTICE 
   {
     id: "con-qa-032",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["preventive detention", "special powers act", "detained without trial", "preventive law bangladesh"],
     question: "Can the government detain someone without trial?",
@@ -647,7 +610,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-033",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["right to property article 42", "property rights constitution", "article 42 property", "government acquire property"],
     question: "What are the constitutional protections for property rights?",
@@ -664,7 +626,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-034",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["freedom of religion article 41", "religious rights", "religion constitution bangladesh", "article 41"],
     question: "What religious freedoms does the Constitution guarantee?",
@@ -681,7 +642,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-035",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 47", "indemnity acts", "article 47a", "indemnity constitution"],
     question: "What is Article 47 and why is it controversial?",
@@ -699,7 +659,6 @@ const qaBank: QAEntry[] = [
   //  CITIZENSHIP & NATIONALITY 
   {
     id: "con-qa-036",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["bangladesh citizenship", "article 6", "citizenship constitution", "bangladeshi national"],
     question: "What does the Constitution say about Bangladesh citizenship?",
@@ -717,7 +676,6 @@ const qaBank: QAEntry[] = [
   //  ANTI-DISCRIMINATION & SPECIAL GROUPS 
   {
     id: "con-qa-037",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["women rights constitution", "article 28", "gender equality", "sex discrimination constitution"],
     question: "What constitutional protections exist for women?",
@@ -734,7 +692,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-038",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["minority rights", "religious minority", "hindu christian buddhist rights", "minority constitution"],
     question: "What rights do religious minorities have under the Constitution?",
@@ -752,7 +709,6 @@ const qaBank: QAEntry[] = [
   //  POST-2024 DEVELOPMENTS 
   {
     id: "con-qa-039",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["2024 uprising", "interim government 2024", "muhammad yunus", "hasina resignation"],
     question: "What happened constitutionally after the 2024 mass uprising?",
@@ -769,7 +725,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-040",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitution reform 2024", "constitutional review commission", "reform commission", "18th amendment"],
     question: "What constitutional reforms are proposed after 2024?",
@@ -787,7 +742,6 @@ const qaBank: QAEntry[] = [
   //  ARTICLE 70 & ANTI-DEFECTION 
   {
     id: "con-qa-041",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 70", "floor crossing", "anti defection", "mp resign party"],
     question: "What is Article 70 and why is it controversial?",
@@ -805,7 +759,6 @@ const qaBank: QAEntry[] = [
   //  CONSTITUTIONAL BODIES 
   {
     id: "con-qa-042",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["comptroller auditor general", "cag bangladesh", "article 127", "public audit bangladesh"],
     question: "What is the role of the Comptroller and Auditor General?",
@@ -822,7 +775,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-043",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["attorney general bangladesh", "article 64", "attorney general role", "state lawyer"],
     question: "What is the role of the Attorney General of Bangladesh?",
@@ -840,7 +792,6 @@ const qaBank: QAEntry[] = [
   //  CONSTITUTIONAL HISTORY MILESTONES 
   {
     id: "con-qa-044",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["basic structure doctrine bangladesh", "unamendable constitution", "basic structure", "article 7b"],
     question: "What is the basic structure doctrine in Bangladesh?",
@@ -857,7 +808,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-045",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["separation of powers bangladesh", "executive legislative judicial", "three branches government", "separation powers"],
     question: "How does the separation of powers work in Bangladesh?",
@@ -874,7 +824,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-046",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["public interest litigation", "pil", "pil bangladesh", "public interest writ"],
     question: "Can anyone file a writ petition on behalf of the public (PIL)?",
@@ -892,7 +841,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-047",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 44", "enforce fundamental rights", "right to remedies", "constitutional remedy"],
     question: "How do I enforce my fundamental rights?",
@@ -910,7 +858,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-048",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["local government constitution", "article 59", "union parishad constitution", "local govt article"],
     question: "What does the Constitution say about local government?",
@@ -927,7 +874,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-049",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["all amendments list", "constitutional amendments bangladesh", "17 amendments", "amendment history full"],
     question: "What is the complete list of all constitutional amendments?",
@@ -944,7 +890,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-050",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitutional case high court", "file constitutional case", "constitutional litigation nlc", "challenge government constitution"],
     question: "How do I challenge a government action in the High Court on constitutional grounds?",
@@ -963,7 +908,6 @@ const qaBank: QAEntry[] = [
   //  CONSTITUTIONAL INTERPRETATION & JUDICIAL REVIEW 
   {
     id: "con-qa-051",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitutional interpretation", "judicial review bangladesh", "court interpret constitution", "supreme court interpret"],
     question: "How do Bangladesh courts interpret the Constitution?",
@@ -980,7 +924,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-052",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["doctrine of eclipse", "eclipse doctrine", "pre-constitutional law", "1972 laws valid", "constitution eclipse"],
     question: "What happens to laws made before the 1972 Constitution?",
@@ -997,7 +940,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-053",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["severability doctrine", "striking down law", "law partially void", "sever unconstitutional part"],
     question: "Can a court strike down only part of a law, or must the whole law go?",
@@ -1014,7 +956,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-054",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["prospective overruling", "retrospective judgment", "court judgment effect", "judgment apply past"],
     question: "Do court judgments apply retroactively or only for the future?",
@@ -1032,7 +973,6 @@ const qaBank: QAEntry[] = [
   //  FUNDAMENTAL RIGHTS - DEEPER ANALYSIS 
   {
     id: "con-qa-055",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["reasonable restrictions", "fundamental rights limits", "rights not absolute", "article 39 restrictions"],
     question: "Are fundamental rights absolute or can the government limit them?",
@@ -1049,7 +989,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-056",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["horizontal application", "fundamental rights private", "private company rights", "rights against private"],
     question: "Do fundamental rights apply against private individuals and companies?",
@@ -1066,7 +1005,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-057",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["compensation constitutional violation", "damages fundamental rights", "money remedy rights", "constitutional tort"],
     question: "Can I get compensation if the government violates my fundamental rights?",
@@ -1085,7 +1023,6 @@ const qaBank: QAEntry[] = [
   //  WRIT JURISDICTION - ADVANCED 
   {
     id: "con-qa-058",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["certiorari writ", "quash order", "illegal order court", "quash government decision"],
     question: "What is a Certiorari writ and when is it used?",
@@ -1103,7 +1040,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-059",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["prohibition writ", "stop proceeding", "prevent illegal action", "stop lower court"],
     question: "What is a Prohibition writ and when is it used?",
@@ -1121,7 +1057,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-060",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["quo warranto", "challenge public office", "illegal appointment", "who holds office"],
     question: "What is a Quo Warranto writ and when is it used?",
@@ -1139,7 +1074,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-061",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["locus standi", "who can file writ", "writ standing", "aggrieved person writ"],
     question: "Who has standing to file a writ petition in Bangladesh?",
@@ -1157,7 +1091,6 @@ const qaBank: QAEntry[] = [
   //  ADMINISTRATIVE LAW & CONSTITUTION 
   {
     id: "con-qa-062",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["natural justice", "audi alteram partem", "fair hearing", "principles natural justice"],
     question: "What are the principles of natural justice in Bangladesh?",
@@ -1174,7 +1107,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-063",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["ultra vires", "beyond power", "authority exceeded power", "void administrative action"],
     question: "What does 'ultra vires' mean and when is government action invalid?",
@@ -1191,7 +1123,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-064",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["delegated legislation", "subordinate legislation", "rule making power", "administrative rule making"],
     question: "Can government departments make laws, or only Parliament?",
@@ -1209,7 +1140,6 @@ const qaBank: QAEntry[] = [
   //  CONSTITUTIONAL BODIES - EXPANDED 
   {
     id: "con-qa-065",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["public service commission", "psc bangladesh", "bpsc", "public service commission constitution"],
     question: "What is the constitutional role of the Public Service Commission?",
@@ -1226,7 +1156,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-066",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["supreme judicial council", "judge removal", "remove judge bangladesh", "judge discipline"],
     question: "How are Supreme Court judges removed from office?",
@@ -1244,7 +1173,6 @@ const qaBank: QAEntry[] = [
   //  SPECIAL CONSTITUTIONAL TOPICS 
   {
     id: "con-qa-067",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["article 70 reform", "floor crossing reform", "anti defection reform", "mp independence vote"],
     question: "What reforms to Article 70 are being proposed?",
@@ -1261,7 +1189,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-068",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitutional review commission 2024", "yunus reform", "interim government reform", "reform proposals 2025"],
     question: "What is the Constitution Review Commission and what is it doing?",
@@ -1278,7 +1205,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-069",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitutional oath", "oath of office", "president oath", "pm oath constitution"],
     question: "What oaths do constitutional office-holders take?",
@@ -1295,7 +1221,6 @@ const qaBank: QAEntry[] = [
 
   {
     id: "con-qa-070",
-    area: "constitutional",
     jurisdiction: "BD",
     triggerKeywords: ["constitutional supremacy vs parliamentary sovereignty", "parliament supreme", "court vs parliament", "judicial supremacy"],
     question: "Is Parliament supreme, or is the Constitution supreme?",

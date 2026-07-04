@@ -9,7 +9,6 @@ import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
 const rules: LegalRule[] = [
   {
     id: "fam-talaq-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Talaq Procedure under MFLO 1961",
     rule: "Husband must send written notice to Chairman of Union Parishad immediately. Talaq becomes effective after 90 days. Without notice, it is a criminal offence under Section 7(2).",
@@ -20,7 +19,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-khul-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Wife's Right to Khul Divorce",
     rule: "A Muslim wife can obtain divorce by returning her mahr (Khul) or through court under Dissolution of Muslim Marriages Act 1939 on grounds like cruelty, desertion, or impotency.",
@@ -31,7 +29,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-denmahr-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Denmahr (Mahr) Enforcement",
     rule: "Denmahr is a legal debt enforceable as a civil contract. Prompt mahr is payable on demand; deferred mahr is payable on divorce or husband's death.",
@@ -42,7 +39,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-custody-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Child Custody (Hizanat) under Muslim Law",
     rule: "Mother gets custody of sons until age 7 and daughters until puberty. Father is the natural guardian. Welfare of the child is the paramount consideration under Guardians and Wards Act 1890.",
@@ -53,7 +49,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-maintenance-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Wife's Maintenance (Nafaqa)",
     rule: "Wife is entitled to maintenance during marriage and iddat period (3 months after divorce). Family Court can fix amount and enforce via property attachment.",
@@ -64,7 +59,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-hindu-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Hindu Marriage and Divorce Status",
     rule: "No comprehensive Hindu Marriage Act in Bangladesh. No legal provision for divorce for Hindus. Only separation allowed under Hindu Married Women's Right to Separate Residence Act 1946.",
@@ -75,7 +69,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-dowry-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Dowry Prohibition and Punishment",
     rule: "Demanding or giving dowry is a criminal offence. Punishment up to 5 years imprisonment or BDT 50,000 fine. Dowry death within 7 years of marriage carries up to life imprisonment.",
@@ -86,7 +79,6 @@ const rules: LegalRule[] = [
   },
   {
     id: "fam-dv-001",
-    area: "family",
     jurisdiction: "BD",
     title: "Domestic Violence Protection",
     rule: "Court can issue Protection Order, Residence Order, and Monetary Relief within 3 working days. Punishment up to 2 years imprisonment.",
@@ -101,7 +93,6 @@ const rules: LegalRule[] = [
 const qaBank: QAEntry[] = [
   {
     id: "fam-qa-001",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["talaq", "divorce", "muslim", "separation", "pronouncement"],
     question: "What is Talaq and how does it work under Bangladesh law?",
@@ -117,7 +108,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-002",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["khul", "khula", "wife divorce", "mutual", "woman divorce"],
     question: "Can a wife divorce her husband in Bangladesh?",
@@ -133,7 +123,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-003",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["denmahr", "mahr", "mehr", "kabin", "kabinanama"],
     question: "What is Denmahr (Mahr) and can a wife claim it in court?",
@@ -149,7 +138,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-004",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["maintenance", "nafaqa", "alimony", "wife support"],
     question: "What maintenance is a Muslim wife entitled to?",
@@ -165,7 +153,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-005",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["custody", "child", "guardianship", "hizanat", "mother", "father"],
     question: "Who gets custody of children after Muslim divorce?",
@@ -181,7 +168,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-006",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["polygamy", "second wife", "second marriage", "multiple wives"],
     question: "Can a Muslim man marry a second wife without permission?",
@@ -198,7 +184,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-007",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["hindu marriage", "hindu divorce"],
     question: "Can Hindus get a divorce in Bangladesh?",
@@ -215,7 +200,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-008",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["dowry", "joutuk", "dowry demand", "dowry death"],
     question: "What are the legal consequences of demanding or giving dowry?",
@@ -232,7 +216,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-009",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["domestic violence", "abuse", "wife beating", "protection order"],
     question: "What protection does a woman have against domestic violence?",
@@ -248,7 +231,6 @@ const qaBank: QAEntry[] = [
   },
   {
     id: "fam-qa-010",
-    area: "family",
     jurisdiction: "BD",
     triggerKeywords: ["child marriage", "age", "minor", "underage", "bal bibah"],
     question: "What is the legal age of marriage and what happens if child marriage occurs?",
