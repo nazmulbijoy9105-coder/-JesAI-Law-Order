@@ -196,34 +196,26 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ response: FALLBACKS[fb], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
       }
       const isInheritance = /(son|father|inherit|ancestral|self-acquired|share|will|gift)/.test(msgLower);
+      const hasLocation = /(dhaka|chittagong|sylhet|rajshahi|khulna|barisal|rangpur|mymensingh|comilla|narayanganj|gazipur|tangail|bogra|cox|s|bazar|pabna|dinajpur|jessore|kushtia|faridpur|madaripur|gopalganj|shariatpur|rajbari|manikganj|munshiganj|narsingdi|kishoreganj|brahmanbaria|chandpur|feni|noakhali|lakshmipur|khagrachari|rangamati|bandarban|habiganj|maulvibazar|sunamganj|netrokona|jamalpur|sherpur|naogaon|natore|sirajganj|pabna|meherpur|chuadanga|jhenaidah|magura|narail|bagerhat|satkhira|pirojpur|jhalokati|bhola|patuakhali|barguna|joypurhat|gaibandha|kurigram|lalmonirhat|nilphamari|panchagarh|thakurgaon|district|upazila|thana|village|mouza|dag|khatian|cs|sa|rs|plot|land|flat|apartment|building|shop|office|factory|warehouse|agricultural|homestead|commercial|residential|industrial)/.test(msgLower);
+      const hasDocument = /(deed|sale deed|bain|kabala|khatian|mutation|cs|sa|rs|dag|plot|registration|registered|unregistered|forged|fake|false|fraud|cheat|betray|agreement|contract|power of attorney|poa|will|gift|partition|release|relinquishment|exchange|lease|mortgage|lien|encumbrance|nec|non-encumbrance|court order|injunction|decree|judgment|fir|gd|general diary|complaint|case|suit|petition|appeal|revision|review|execution|warrant|attachment|auction|sale certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|blueprint|photo|video|witness|affidavit|notary|stamp|revenue|tax|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
+      const hasAction = /(fake|forged|false|fraud|cheat|deceive|betray|trick|scam|con|duped|fooled|misled|misrepresent|conceal|hide|suppress|destroy|tear|burn|alter|tamper|forge|fabricate|create|make|prepare|execute|register|transfer|sell|buy|purchase|acquire|inherit|bequeath|gift|donate|partition|divide|share|release|relinquish|exchange|lease|rent|mortgage|pledge|hypothecate|charge|lien|encumber|attach|seize|confiscate|auction|sell|purchase|acquire|possess|occupy|trespass|encroach|adverse|prescription|evict|eject|remove|dispossess|displace|oust|throw|turn|lock|break|enter|force|trespass|intrude|encroach|invade|usurp|seize|take|grab|capture|occupy|hold|keep|retain|refuse|deny|reject|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|violate|infringe|trespass|encroach|infringe|violate|breach|default|fail|neglect|omit|delay|defer|postpone|suspend|stay|stop|halt|prevent|hinder|obstruct|impede|interfere|intervene|interrupt|disrupt|disturb|interfere|meddle|tamper|alter|change|modify|vary|amend|revise|correct|rectify|remedy|repair|fix|restore|recover|retrieve|reclaim|repossess|reinstate|reinstall|replace|substitute|exchange|swap|trade|barter|transfer|convey|assign|devise|bequeath|gift|donate|grant|give|hand|deliver|surrender|yield|waive|abandon|relinquish|renounce|disclaim|disown|repudiate|reject|refuse|decline|deny|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|default|fail|file|suit|case|petition|application|appeal|revision|review|execution|warrant|attachment|auction|sale|certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|photo|video|witness|affidavit|notary|stamp|revenue|tax|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
+      const hasSubstantiveInfo = hasLocation || hasDocument || hasAction;
+
       const contextualFollowUp = lang === "bn"
         ? (isInheritance
-            ? `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno:
-• Sompotti ki poitrik (dada/propitamoher) naki pitar nijossho uparjon?
-• Apnar dhormo ki (Muslim/Hindu/Christian)?
-• Apni proptoboyoshk ki na ebong biye hoyeche kina?
-
-_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`
-            : `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno aro kichu tothyo din:
-• Sompotti kothay obosthito?
-• Apnar kache ki kagojpotro ache? (dolil, khatian, chuktipotro)
-• Somossati kokhon theke shuru hoyeche?
-
-_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`)
+            ? (hasSubstantiveInfo
+                ? `Apnar tothyo onujayi Bangladesh ain:\n\n1. **Dolil jachai**: Jodi dolil bhul/fake hoy, Sub-Registry e jachai korun. Jodi registration bhul hoy, eita criminal offence (forgery) hote pare.\n2. **Civil o Criminal Suit**: Apni civil suit (damages/recovery) ebong criminal complaint (cheating/forgery) duiti korte paren.\n3. **Shohojogita**: Jodi bondhu ke dhore fela hoy, tahole police e GD/complaint korun.\n\n_Aro nirdishto poramorsher jonno ekti upojoggo advocate-er shathe poramorsho korun._`
+                : `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno:\n• Sompotti ki poitrik (dada/propitamoher) naki pitar nijossho uparjon?\n• Apnar dhormo ki (Muslim/Hindu/Christian)?\n• Apni proptoboyoshk ki na ebong biye hoyeche kina?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`)
+            : (hasSubstantiveInfo
+                ? `Apnar tothyo onujayi Bangladesh ain:\n\n1. **Dolil jachai**: Jodi dolil bhul/fake hoy, Sub-Registry e jachai korun. Jodi registration bhul hoy, eita criminal offence (forgery) hote pare.\n2. **Civil o Criminal Suit**: Apni civil suit (damages/recovery) ebong criminal complaint (cheating/forgery) duiti korte paren.\n3. **Shohojogita**: Jodi bondhu ke dhore fela hoy, tahole police e GD/complaint korun.\n\n_Aro nirdishto poramorsher jonno ekti upojoggo advocate-er shathe poramorsho korun._`
+                : `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno aro kichu tothyo din:\n• Sompotti kothay obosthito?\n• Apnar kache ki kagojpotro ache? (dolil, khatian, chuktipotro)\n• Somossati kokhon theke shuru hoyeche?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`))
         : (isInheritance
-            ? `I understand you are asking about "${message.slice(0, 100)}...". To assess this inheritance matter properly under Bangladesh law:
-• Is the property ancestral (inherited from grandfather) or self-acquired by the father?
-• What is your religion? Muslim, Hindu, and Christian personal laws have different rules.
-• Are you an adult or minor? Married or unmarried?
-
-_These details determine which law applies and what share you may be entitled to._`
-            : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need a few more details:
-• Where is the property located?
-• What documents do you have? (deed, khatian, agreement, FIR)
-• When did this issue start, and has any legal action already been taken?
-
-_These details are essential for accurate legal guidance._`);
-return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
+            ? (hasSubstantiveInfo
+                ? `Based on your information, here is what Bangladesh law says:\n\n1. **Title Verification**: If the deed is fake or forged, verify at the Sub-Registry. Fraudulent registration may be a criminal offence (forgery).\n2. **Civil and Criminal Remedies**: You can file both a civil suit (damages/recovery) and a criminal complaint (cheating/forgery).\n3. **Immediate Steps**: If the friend is traceable, file a GD/complaint with police immediately.\n\n_For more specific guidance, consult a competent advocate._`
+                : `I understand you are asking about "${message.slice(0, 100)}...". To assess this inheritance matter properly under Bangladesh law:\n• Is the property ancestral (inherited from grandfather) or self-acquired by the father?\n• What is your religion? Muslim, Hindu, and Christian personal laws have different rules.\n• Are you an adult or minor? Married or unmarried?\n\n_These details determine which law applies and what share you may be entitled to._`)
+            : (hasSubstantiveInfo
+                ? `Based on your information, here is what Bangladesh law says:\n\n1. **Title Verification**: If the sale deed is fake or forged, verify immediately at the Sub-Registry. A forged deed is void ab initio (invalid from the start).\n2. **Civil and Criminal Remedies**: You can file a civil suit for declaration and recovery, AND a criminal complaint under the Penal Code for cheating (Section 420) and forgery (Section 463-465).\n3. **Immediate Steps**: Gather all evidence (original documents, WhatsApp messages, bank transfers, witness statements). File a GD with police if the friend is absconding.\n\n_For more specific guidance, consult a competent advocate._`
+                : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need a few more details:\n• Where is the property located?\n• What documents do you have? (deed, khatian, agreement, FIR)\n• When did this issue start, and has any legal action already been taken?\n\n_These details are essential for accurate legal guidance._`));
     }
 
     // Step 7: Final fallback
