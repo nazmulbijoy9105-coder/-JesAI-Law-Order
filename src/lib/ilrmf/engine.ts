@@ -4,7 +4,7 @@
 // Scoring module inlined (no separate ilrmf/scoring/ folder needed).
 
 import { randomUUID } from "crypto";
-import type { QAEntry, LegalRule } from "./types";
+import type { QAEntry, LegalRule } from "../shared/types";
 import type {
   ILRMFInput,
   ILRMFResult,
@@ -334,8 +334,8 @@ export function runILRMF(input: ILRMFInput): ILRMFResult {
   }
 
   const s1: ReasoningTrace["stage1"] = {
-    jurisdiction: entry.jurisdiction ?? "BD",
-    area: entry.area ?? knowledge.area ?? "general",
+    jurisdiction: entry.jurisdiction ?? "Bangladesh",
+    area: entry.area ?? "general",
     keywordsMatched: matched,
     matchDensity,
     completenessScore: matchDensity,
@@ -467,7 +467,7 @@ export function runILRMF(input: ILRMFInput): ILRMFResult {
     },
     escalate: entry.escalate,
     escalateReason: entry.escalateReason ?? null,
-    area: entry.area ?? knowledge.area ?? "general",
+    area: entry.area ?? "general",
     language: lang,
     matchedEntryId: entry.id,
     matchedRuleIds: rules.map((r) => r.id),

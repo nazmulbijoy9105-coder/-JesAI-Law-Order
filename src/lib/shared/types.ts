@@ -17,21 +17,16 @@
 // ─── Law Area ──────────────────────────────────────────────
 
 export type LawArea =
-  | "property"
-  | "criminal"
-  | "family"
-  | "labour"
-  | "company"
-  | "tax"
-  | "nrb"
-  | "constitutional"
-  | "consumer"
-  | "cyber"
-  | "contract"
-  | "general"
-  | "administrative"
-  | "evidence";
-
+  | 'property'
+  | 'criminal'
+  | 'family'
+  | 'labour'
+  | 'company'
+  | 'constitutional'
+  | 'contract'
+  | 'nrb'
+  | 'tax'
+  | 'general'
 // ─── Legal Rule ────────────────────────────────────────────
 // certainty flows directly into ILRMF scoring:
 //   confirmed          → weight 1.00
@@ -76,19 +71,10 @@ export interface QAEntry {
   relatedRules: string[];
   escalate: boolean;
   escalateReason?: string;
-  lastVerified?: string;
 }
 
 // ─── Knowledge Bank ───────────────────────────────────────
 // Container for one law area's rules + Q&A entries
-
-export interface KnowledgeBank {
-  area: LawArea;
-  label?: string;
-  description?: string;
-  rules: LegalRule[];
-  qaBank: QAEntry[];
-}
 
 // ─── Knowledge Result ──────────────────────────────────────
 // Output of queryKnowledge(). Flows directly into
@@ -108,4 +94,12 @@ export interface KnowledgeResult {
   escalate: boolean;
   escalateReason?: string;
   confidence: "high" | "medium" | "low";
+}
+
+export interface KnowledgeBank {
+  area?: LawArea;
+  label?: string;
+  description?: string;
+  rules: LegalRule[];
+  qaBank: QAEntry[];
 }

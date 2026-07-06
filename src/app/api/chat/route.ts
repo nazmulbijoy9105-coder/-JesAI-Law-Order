@@ -3,15 +3,15 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import type { LawArea, KnowledgeResult } from "@/lib/knowledge/types";
+import type { LawArea, KnowledgeResult } from "@/lib/shared/types";
 import { queryKnowledge, detectArea, TIER_PRICING } from "@/lib/knowledge";
-import type { ILRMFInput, ILRMFResult, VerdictBand } from "@/lib/knowledge/ilrmf-types";
-import { runILRMF } from "@/lib/knowledge/ilrmf-engine";
+import type { ILRMFInput, ILRMFResult, VerdictBand } from "@/lib/ilrmf/ilrmf-types";
+import { runILRMF } from "@/lib/ilrmf/engine";
 import {
   matchScenario, nextStep,
   isNextStepCommand, isPrevStepCommand,
   type ScenarioSession,
-} from "@/lib/knowledge/scenario-manager";
+} from "@/lib/scenarios/manager";
 
 // ─── Auth ──────────────────────────────────────────────────
 
@@ -154,7 +154,7 @@ export async function POST(req: NextRequest) {
     // Step 1: Subject lock
     if (selectedArea) {
       const det = detectArea(message);
-      if (det && det !== selectedArea && det !== "general" && det !== "administrative" && det !== "evidence") {
+      if (det && det !== selectedArea && det !== "general") {
         return NextResponse.json({ response: outOfScope(selectedArea, det, lang), source: "guard", metadata: { area: selectedArea, confidence: "low", escalate: false, language: lang, paywallActive: false, offTopic: true } });
       }
     }
@@ -189,7 +189,16 @@ export async function POST(req: NextRequest) {
     // Step 6: Area fallback
     const fb = selectedArea ?? knowledgeResult.area;
     if (fb && FALLBACKS[fb]) {
-      return NextResponse.json({ response: FALLBACKS[fb], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
+      const isFirstMessage = !history || history.length === 0;
+      const msgLower = message.toLowerCase().trim();
+      const isJustGreeting = /^(hi|hello|hey|assalamu|salam|greetings)/.test(msgLower);
+      if (isFirstMessage || isJustGreeting || msgLower.length < 10) {
+        return NextResponse.json({ response: FALLBACKS[fb], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
+      }
+      const contextualFollowUp = lang === "bn"
+        ? `I understand your question. To properly assess "${message.slice(0, 100)}..." under Bangladesh law, I need a few more details:\n• Is the property ancestral (inherited from grandfather) or self-acquired by the father?\n• What is your religion? (Muslim/Hindu/Christian)\n• Are you an adult or minor? Married or unmarried?\n\n_Without this information, I cannot give accurate legal guidance._`
+        : `I understand you're asking about "${message.slice(0, 100)}...". To assess this properly under Bangladesh law, I need a few key details:\n• Is the property **ancestral** (inherited from grandfather/great-grandfather) or **self-acquired** by the father?\n• What is your religion? Muslim, Hindu, and Christian personal laws have different inheritance rules.\n• Are you an adult or minor? Married or unmarried?\n\n_These details determine which inheritance law applies and what share you may be entitled to._`;
+      return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
     }
 
     // Step 7: Final fallback

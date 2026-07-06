@@ -5,7 +5,7 @@
 // Audience: Businesses, individuals, law students
 // Last verified: 2025-04-01
 
-import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "../../shared/types";
 
 const rules: LegalRule[] = [
   {

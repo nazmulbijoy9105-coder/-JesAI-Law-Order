@@ -32,10 +32,6 @@ const rules: LegalRule[] = [
     rule: "An easement is a right which the owner or occupier of certain land possesses for the beneficial enjoyment of that land. It includes right of way, right to light, etc.",
     certainty: "confirmed",
   },
-    relatedRules: ["prop-r1", "prop-r2"],
-    escalate: true,
-    escalateReason: "Family property disputes involving father-son conflicts require careful legal assessment under personal law. Immediate consultation recommended.",
-  }
 
 ];
 
@@ -96,7 +92,6 @@ const qaBank: QAEntry[] = [
     relatedRules: ["prop-r1", "prop-r4"],
     escalate: false,
   },
-,
   {
     id: "prop-qa-son-father",
     question: "Son needs legal information against father property",

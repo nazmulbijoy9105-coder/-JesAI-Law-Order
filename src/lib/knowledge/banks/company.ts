@@ -11,7 +11,7 @@
 //  Societies Registration Act 1860 (for NPO)
 // Last verified: 2025-03-09
 
-import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "../../shared/types";
 
 const rules: LegalRule[] = [
   {

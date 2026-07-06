@@ -6,7 +6,7 @@
 // It has NO dependency on ilrmf-engine.ts or ilrmf-types.ts.
 // route.ts decides the flow — scenarios never trigger ILRMF scoring.
 
-import type { LawArea } from "./types";
+import type { LawArea } from "../shared/types";
 
 export interface ScenarioStep {
   stepId: string;

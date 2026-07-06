@@ -1,16 +1,16 @@
 //  JesAI Knowledge Index — RAG Layer
 // Returns KnowledgeResult which flows directly into ILRMFInput.knowledge
 
-import criminalData from "./criminal";
-import { propertyData } from "./property";
-import familyData from "./family";
-import labourData from "./labour";
-import companyData from "./company";
-import taxData from "./tax";
-import nrbData from "./nrb";
-import constitutionalData from "./constitutional";
-import contractData from "./contract";
-import type { LawArea, KnowledgeResult, QAEntry, LegalRule, KnowledgeBank } from "./types";
+import criminalData from "./banks/criminal";
+import familyData from "./banks/family";
+import labourData from "./banks/labour";
+import companyData from "./banks/company";
+import taxData from "./banks/tax";
+import nrbData from "./banks/nrb";
+import constitutionalData from "./banks/constitutional";
+import { KnowledgeBank, KnowledgeResult, LawArea, QAEntry, LegalRule } from "../shared/types";
+import contractData from "./banks/contract";
+import { propertyData } from "./banks/property";
 
 // ─── Area Metadata ──────────────────────────────────────────
 
@@ -167,8 +167,8 @@ export function queryKnowledge(
 export function getActiveAreas() {
   return ALL_BANKS.map((b) => ({
     area: b.area,
-    label: AREA_META[b.area]?.label ?? b.area,
-    description: AREA_META[b.area]?.description ?? "",
+    label: b.area ? (AREA_META[b.area]?.label ?? b.area) : b.area,
+    description: b.area ? (AREA_META[b.area]?.description ?? "") : "",
   }));
 }
 

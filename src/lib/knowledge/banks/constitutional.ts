@@ -25,7 +25,7 @@
 // after mass uprising. Constitution Review Commission formed 2024.
 // Last verified: 2025-03-09
 
-import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "../../shared/types";
 
 const rules: LegalRule[] = [
   {

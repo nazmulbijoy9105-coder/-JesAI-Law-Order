@@ -3,7 +3,7 @@
 // Imports shared types from ./types (Option D).
 // Defines ONLY ILRMF-domain types (VerdictBand, Traces, Scoring).
 
-import type { LawArea, QAEntry, LegalRule, KnowledgeResult } from './types';
+import type { LawArea, QAEntry, LegalRule, KnowledgeResult } from '../shared/types';
 
 // ─── Verdict ────────────────────────────────────────────────
 

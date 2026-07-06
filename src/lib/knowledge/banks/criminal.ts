@@ -7,7 +7,7 @@
 // ILRMF Conformant Corpus v2.0  Expanded semantic triggers
 // Last verified: 2025-03-09
 
-import type { KnowledgeBank, LegalRule, QAEntry } from "./types";
+import type { KnowledgeBank, LegalRule, QAEntry } from "../../shared/types";
 
 const rules: LegalRule[] = [
   {
