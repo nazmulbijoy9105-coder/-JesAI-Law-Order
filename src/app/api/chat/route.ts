@@ -216,6 +216,7 @@ export async function POST(req: NextRequest) {
             : (hasSubstantiveInfo
                 ? `Based on your information, here is what Bangladesh law says:\n\n1. **Title Verification**: If the sale deed is fake or forged, verify immediately at the Sub-Registry. A forged deed is void ab initio (invalid from the start).\n2. **Civil and Criminal Remedies**: You can file a civil suit for declaration and recovery, AND a criminal complaint under the Penal Code for cheating (Section 420) and forgery (Section 463-465).\n3. **Immediate Steps**: Gather all evidence (original documents, WhatsApp messages, bank transfers, witness statements). File a GD with police if the friend is absconding.\n\n_For more specific guidance, consult a competent advocate._`
                 : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need a few more details:\n• Where is the property located?\n• What documents do you have? (deed, khatian, agreement, FIR)\n• When did this issue start, and has any legal action already been taken?\n\n_These details are essential for accurate legal guidance._`));
+      return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
     }
 
     // Step 7: Final fallback
