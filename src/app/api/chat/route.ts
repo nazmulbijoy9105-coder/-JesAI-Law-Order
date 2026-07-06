@@ -187,13 +187,13 @@ export async function POST(req: NextRequest) {
     }
 
     // Step 6: Area fallback
-    const fb = selectedArea ?? knowledgeResult.area;
-    if (fb && FALLBACKS[fb]) {
+    const fb = selectedArea || knowledgeResult.area || "general";
+    if (fb) {
       const isFirstMessage = !history || history.length === 0;
       const msgLower = message.toLowerCase().trim();
       const isJustGreeting = /^(hi|hello|hey|assalamu|salam|greetings)/.test(msgLower);
       if (isFirstMessage || isJustGreeting || msgLower.length < 10) {
-        return NextResponse.json({ response: FALLBACKS[fb], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
+        return NextResponse.json({ response: FALLBACKS[fb] || FALLBACKS["general"], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
       }
       const isInheritance = /(son|father|inherit|ancestral|self-acquired|share|will|gift)/.test(msgLower);
       const hasLocation = /(dhaka|chittagong|sylhet|rajshahi|khulna|barisal|rangpur|mymensingh|comilla|narayanganj|gazipur|tangail|bogra|cox|s|bazar|pabna|dinajpur|jessore|kushtia|faridpur|madaripur|gopalganj|shariatpur|rajbari|manikganj|munshiganj|narsingdi|kishoreganj|brahmanbaria|chandpur|feni|noakhali|lakshmipur|khagrachari|rangamati|bandarban|habiganj|maulvibazar|sunamganj|netrokona|jamalpur|sherpur|naogaon|natore|sirajganj|pabna|meherpur|chuadanga|jhenaidah|magura|narail|bagerhat|satkhira|pirojpur|jhalokati|bhola|patuakhali|barguna|joypurhat|gaibandha|kurigram|lalmonirhat|nilphamari|panchagarh|thakurgaon|district|upazila|thana|village|mouza|dag|khatian|cs|sa|rs|plot|land|flat|apartment|building|shop|office|factory|warehouse|agricultural|homestead|commercial|residential|industrial)/.test(msgLower);
