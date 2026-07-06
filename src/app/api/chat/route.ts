@@ -195,10 +195,35 @@ export async function POST(req: NextRequest) {
       if (isFirstMessage || isJustGreeting || msgLower.length < 10) {
         return NextResponse.json({ response: FALLBACKS[fb], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
       }
+      const isInheritance = /(son|father|inherit|ancestral|self-acquired|share|will|gift)/.test(msgLower);
       const contextualFollowUp = lang === "bn"
-        ? `I understand your question. To properly assess "${message.slice(0, 100)}..." under Bangladesh law, I need a few more details:\n• Is the property ancestral (inherited from grandfather) or self-acquired by the father?\n• What is your religion? (Muslim/Hindu/Christian)\n• Are you an adult or minor? Married or unmarried?\n\n_Without this information, I cannot give accurate legal guidance._`
-        : `I understand you're asking about "${message.slice(0, 100)}...". To assess this properly under Bangladesh law, I need a few key details:\n• Is the property **ancestral** (inherited from grandfather/great-grandfather) or **self-acquired** by the father?\n• What is your religion? Muslim, Hindu, and Christian personal laws have different inheritance rules.\n• Are you an adult or minor? Married or unmarried?\n\n_These details determine which inheritance law applies and what share you may be entitled to._`;
-      return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
+        ? (isInheritance
+            ? `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno:
+• Sompotti ki poitrik (dada/propitamoher) naki pitar nijossho uparjon?
+• Apnar dhormo ki (Muslim/Hindu/Christian)?
+• Apni proptoboyoshk ki na ebong biye hoyeche kina?
+
+_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`
+            : `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno aro kichu tothyo din:
+• Sompotti kothay obosthito?
+• Apnar kache ki kagojpotro ache? (dolil, khatian, chuktipotro)
+• Somossati kokhon theke shuru hoyeche?
+
+_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`)
+        : (isInheritance
+            ? `I understand you are asking about "${message.slice(0, 100)}...". To assess this inheritance matter properly under Bangladesh law:
+• Is the property ancestral (inherited from grandfather) or self-acquired by the father?
+• What is your religion? Muslim, Hindu, and Christian personal laws have different rules.
+• Are you an adult or minor? Married or unmarried?
+
+_These details determine which law applies and what share you may be entitled to._`
+            : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need a few more details:
+• Where is the property located?
+• What documents do you have? (deed, khatian, agreement, FIR)
+• When did this issue start, and has any legal action already been taken?
+
+_These details are essential for accurate legal guidance._`);
+return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
     }
 
     // Step 7: Final fallback
