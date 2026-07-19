@@ -200,10 +200,36 @@ export async function POST(req: NextRequest) {
 
     const intent = detectUserIntent(msgLower);
 
-    if (intent === "sample_request") {
-      const sampleResponse = lang === "bn"
-        ? `**Sample Scenario — Bangladesh Law**\n\n"Rahim and Fatima married in Dhaka in 2018 under Muslim law. After 3 years, Rahim stopped providing maintenance. Fatima wants a divorce but Rahim refuses to grant talaq. She has her nikahnama and witnesses to the neglect."\n\n**Legal issues here:** Maintenance (Section 3, Family Courts Ordinance 1985), grounds for judicial divorce (Dissolution of Muslim Marriages Act 1939), and enforcement through Family Court.\n\n*Does your situation resemble this? Tell me what's different in your case.*`
-        : `**Sample Scenario — Bangladesh Law**\n\n"Rahim and Fatima married in Dhaka in 2018 under Muslim law. After 3 years, Rahim stopped providing maintenance. Fatima wants a divorce but Rahim refuses to grant talaq. She has her nikahnama and witnesses to the neglect."\n\n**Legal issues here:** Maintenance (Section 3, Family Courts Ordinance 1985), grounds for judicial divorce (Dissolution of Muslim Marriages Act 1939), and enforcement through Family Court.\n\n*Does your situation resemble this? Tell me what's different in your case.*`;
+        if (intent === "sample_request") {
+      const area = selectedArea || "general";
+      const samples: Record<string, { en: string; bn: string }> = {
+        criminal: {
+          en: `**Sample — Criminal Law**\n\n"My shop was broken into last night in Dhaka. Cash and goods stolen. No FIR filed yet."\n\n**Issues:** Theft (S.379), police reporting, insurance claim.\n\n*Does this match? Tell me what's different.*`,
+          bn: `**Sample — ফৌজদারি আইন**\n\n"গতরাতে আমার দোকানে চুরি হয়েছে। টাকা ও মালামাল চুরি গেছে। এখনো FIR করা হয়নি।"\n\n**সমস্যা:** চুরি (S.379), পুলিশ রিপোর্ট, বীমা দাবি।\n\n*আপনার ক্ষেত্রে কী ভিন্ন?*`
+        },
+        family: {
+          en: `**Sample — Family Law**\n\n"Husband left 6 months ago, stopped all maintenance. I have nikahnama."\n\n**Issues:** Maintenance (MFLO S.3), judicial divorce grounds.\n\n*Does this match? Tell me what's different.*`,
+          bn: `**Sample — পারিবারিক আইন**\n\n"স্বামী ৬ মাস আগে চলে গেছেন, ভরণপোষণ দেন না। নিকাহনামা আছে।"\n\n**সমস্যা:** ভরণপোষণ (MFLO S.3), বিচারিক তালাকের মানদণ্ড।\n\n*আপনার ক্ষেত্রে কী ভিন্ন?*`
+        },
+        tax: {
+          en: `**Sample — Tax Law**\n\n"NBR sent demand notice claiming I under-reported income by Tk 2 lakh."\n\n**Issues:** Assessment validity, appeal to Commissioner (Appeals), documentation.\n\n*Does this match? Tell me what's different.*`,
+          bn: `**Sample — কর আইন**\n\n"NBR চাহিদা নোটিশ পাঠিয়েছে, আমি ২ লাখ টাকা কম দেখিয়েছি বলে দাবি।"\n\n**সমস্যা:** মূল্যায়নের বৈধতা, কমিশনারের আপিল, কাগজপত্র।\n\n*আপনার ক্ষেত্রে কী ভিন্ন?*`
+        },
+        property: {
+          en: `**Sample — Property Law**\n\n"Neighbor built a wall 2 feet onto my land. I have CS khatian showing boundary."\n\n**Issues:** Boundary dispute, encroachment, survey demarcation.\n\n*Does this match? Tell me what's different.*`,
+          bn: `**Sample — জমি আইন**\n\n"প্রতিবেশী আমার জমিতে ২ ফুট দেয়াল তৈরি করেছে। CS খতিয়ানে সীমানা আছে।"\n\n**সমস্যা:** সীমানা বিরোধ, জবরদখল, সার্ভে নির্ধারণ।\n\n*আপনার ক্ষেত্রে কী ভিন্ন?*`
+        },
+        labour: {
+          en: `**Sample — Labour Law**\n\n"Fired after 5 years without notice or gratuity. Have appointment letter."\n\n**Issues:** Unfair dismissal, gratuity (Labour Act S.2), notice pay.\n\n*Does this match? Tell me what's different.*`,
+          bn: `**Sample — শ্রম আইন**\n\n"৫ বছর চাকরির পর নোটিশ ছাড়া চাকরিচ্যুত, গ্র্যাচুইটি পাইনি। অ্যাপয়েন্টমেন্ট লেটার আছে।"\n\n**সমস্যা:** অন্যায় চাকরিচ্যুতি, গ্র্যাচুইটি (শ্রম আইন S.2), নোটিশ পে।\n\n*আপনার ক্ষেত্রে কী ভিন্ন?*`
+        },
+        general: {
+          en: `**Sample — Legal Scenario**\n\n"Paid Tk 50,000 advance for a flat. Seller now refuses to register the deed."\n\n**Issues:** Breach of contract, specific performance, refund claim.\n\n*Does this match? Tell me what's different.*`,
+          bn: `**Sample — আইনি পরিস্থিতি**\n\n"ফ্ল্যাটের জন্য ৫০,০০০ টাকা অগ্রিম দিয়েছি। বিক্রেতা এখন দলিল রেজিস্ট্রেশন করতে অস্বীকার করছে।"\n\n**সমস্যা:** চুক্তি লঙ্ঘন, নির্দিষ্ট পালন, ফেরত দাবি।\n\n*আপনার ক্ষেত্রে কী ভিন্ন?*`
+        }
+      };
+
+      const sampleResponse = (samples[area] || samples["general"])[lang];
       return NextResponse.json({
         response: sampleResponse,
         source: "sample_scenario",
