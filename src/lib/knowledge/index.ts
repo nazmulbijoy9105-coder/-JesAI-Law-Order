@@ -147,9 +147,8 @@ export function queryKnowledge(
     const matchCount = entry.triggerKeywords.filter((kw) =>
       msg.includes(kw.toLowerCase())
     ).length;
-    const score = entry.triggerKeywords.length > 0
-      ? matchCount / entry.triggerKeywords.length
-      : 0;
+    // Count-based: 1 match = 0.3, 2 = 0.5, 3 = 0.7 (capped at 1.0)
+    const score = matchCount >= 1 ? Math.min(0.3 + (matchCount - 1) * 0.2, 1.0) : 0;
     if (score > bestScore) {
       bestScore = score;
       bestEntry = entry;
