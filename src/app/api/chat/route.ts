@@ -205,23 +205,6 @@ export async function POST(req: NextRequest) {
       const hasAction = /(fake|forged|false|fraud|cheat|deceive|betray|trick|scam|con|duped|fooled|misled|misrepresent|conceal|hide|suppress|destroy|tear|burn|alter|tamper|forge|fabricate|create|make|prepare|execute|register|transfer|sell|buy|purchase|acquire|inherit|bequeath|gift|donate|partition|divide|share|release|relinquish|exchange|lease|rent|mortgage|pledge|hypothecate|charge|lien|encumber|attach|seize|confiscate|auction|sell|purchase|acquire|possess|occupy|trespass|encroach|adverse|prescription|evict|eject|remove|dispossess|displace|oust|throw|turn|lock|break|enter|force|trespass|intrude|encroach|invade|usurp|seize|take|grab|capture|occupy|hold|keep|retain|refuse|deny|reject|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|violate|infringe|trespass|encroach|infringe|violate|breach|default|fail|neglect|omit|delay|defer|postpone|suspend|stay|stop|halt|prevent|hinder|obstruct|impede|interfere|intervene|interrupt|disrupt|disturb|interfere|meddle|tamper|alter|change|modify|vary|amend|revise|correct|rectify|remedy|repair|fix|restore|recover|retrieve|reclaim|repossess|reinstate|reinstall|replace|substitute|exchange|swap|trade|barter|transfer|convey|assign|devise|bequeath|gift|donate|grant|give|hand|deliver|surrender|yield|waive|abandon|relinquish|renounce|disclaim|disown|repudiate|reject|refuse|decline|deny|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|default|fail|file|suit|case|petition|application|appeal|revision|review|execution|warrant|attachment|auction|sale|certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|photo|video|witness|affidavit|notary|stamp|revenue|tax|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
       const hasSubstantiveInfo = hasLocation || hasDocument || hasAction || hasFamily || hasCriminal || hasLabour || hasTax;
 
-      if (fb !== "property" && fb !== "family" && fb !== "general" && hasSubstantiveInfo) {
-        const followUpMsg = lang === "bn"
-          ? "\n\nআপনার তথ্য অনুযায়ী প্রযোজ্য আইন অনুযায়ী প্রতিকার আছে।"
-          : "\n\nBased on your information, the applicable law provides you with legal remedies. Gather all relevant documents and evidence.";
-        return NextResponse.json({
-          response: (FALLBACKS[fb] || FALLBACKS.general) + followUpMsg,
-          source: "area_followup",
-          metadata: {
-            area: fb,
-            confidence: "low",
-            escalate: false,
-            language: lang,
-            paywallActive: false,
-            traceId: ilrmf.trace.traceId
-          }
-        });
-      }
       const contextualFollowUp = lang === "bn"
         ? (isInheritance
             ? (hasSubstantiveInfo
