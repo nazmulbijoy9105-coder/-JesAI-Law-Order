@@ -130,6 +130,98 @@ export async function POST(req: NextRequest) {
     }
 
     const lang = detectLanguage(message);
+    const msgLower = message.toLowerCase().trim();
+
+    // ─── NEW: Echo detection ─────────────────────────────────
+    function isEchoOfPreviousResponse(input: string, history: { role: string; content: string }[]): boolean {
+      if (!history || history.length === 0) return false;
+      const lastAssistantMsg = history
+        .filter(m => m.role === "assistant")
+        .pop()?.content;
+      if (!lastAssistantMsg) return false;
+      const normalize = (s: string) => s.toLowerCase().replace(/\s+/g, " ").trim();
+      const normInput = normalize(input);
+      const normLast = normalize(lastAssistantMsg);
+      const botArtifacts = ["trace id:", "pipeline:", "verdict:", "⚠️ unlock", "⛔ **black", "ilrmf", "corpus"];
+      const hasBotArtifact = botArtifacts.some(a => normInput.includes(a));
+      const similarity = normInput === normLast || (normInput.length > 20 && normLast.includes(normInput.slice(0, 50)));
+      return hasBotArtifact || similarity;
+    }
+
+    if (isEchoOfPreviousResponse(message, history)) {
+      const echoResponse = lang === "bn"
+        ? "Mone hochche apni amar puroborti uttor copy-paste korechen. Apnar nijer obostha ba prosnoti bolen."
+        : "It looks like you pasted my previous response. Please describe your own situation or ask your question in your own words.";
+      return NextResponse.json({
+        response: echoResponse,
+        source: "echo_guard",
+        metadata: { area: selectedArea, confidence: "low", escalate: false, language: lang, paywallActive: false }
+      });
+    }
+
+    // ─── NEW: Category selection detection ───────────────────
+    function isCategorySelection(input: string, area: string | null): boolean {
+      if (!area) return false;
+      const areaLabels: Record<string, string[]> = {
+        criminal: ["police & criminal", "police and criminal", "crime", "police"],
+        family: ["family & marriage", "family law", "marriage", "family"],
+        tax: ["tax law", "tax"],
+        property: ["land & property", "property law", "land law"],
+        labour: ["labour law", "employment"],
+        company: ["company law", "business law"],
+        consumer: ["consumer rights", "consumer law"],
+        cyber: ["cyber law", "digital law"],
+        contract: ["contract law"],
+        constitutional: ["constitutional law"],
+        nrb: ["nrb investment", "nrb law"],
+      };
+      const labels = areaLabels[area] || [];
+      return labels.some(label => input.includes(label));
+    }
+
+    if (isCategorySelection(msgLower, selectedArea)) {
+      const fb = selectedArea || "general";
+      return NextResponse.json({
+        response: FALLBACKS[fb] || FALLBACKS["general"],
+        source: "area_prompt",
+        metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false }
+      });
+    }
+
+    // ─── NEW: Sample/example request detection ────────────────
+    function detectUserIntent(input: string): "question" | "sample_request" | "greeting" | "echo" | "unclear" {
+      const m = input.toLowerCase();
+      if (/^(hi|hello|hey|assalamu|salam)/.test(m)) return "greeting";
+      if (/(sample|example|fact pattern|demo|scenario|show me|give me an example)/.test(m)) return "sample_request";
+      if (m.includes("trace id:") || m.includes("verdict:") || m.includes("pipeline:")) return "echo";
+      if (/\b(what|how|when|where|why|can|could|should|will|is|are|do|does|explain|help|guide)\b/.test(m) || m.includes("?")) return "question";
+      return "unclear";
+    }
+
+    const intent = detectUserIntent(msgLower);
+
+    if (intent === "sample_request") {
+      const sampleResponse = lang === "bn"
+        ? `**Sample Scenario — Bangladesh Law**\n\n"Rahim and Fatima married in Dhaka in 2018 under Muslim law. After 3 years, Rahim stopped providing maintenance. Fatima wants a divorce but Rahim refuses to grant talaq. She has her nikahnama and witnesses to the neglect."\n\n**Legal issues here:** Maintenance (Section 3, Family Courts Ordinance 1985), grounds for judicial divorce (Dissolution of Muslim Marriages Act 1939), and enforcement through Family Court.\n\n*Does your situation resemble this? Tell me what's different in your case.*`
+        : `**Sample Scenario — Bangladesh Law**\n\n"Rahim and Fatima married in Dhaka in 2018 under Muslim law. After 3 years, Rahim stopped providing maintenance. Fatima wants a divorce but Rahim refuses to grant talaq. She has her nikahnama and witnesses to the neglect."\n\n**Legal issues here:** Maintenance (Section 3, Family Courts Ordinance 1985), grounds for judicial divorce (Dissolution of Muslim Marriages Act 1939), and enforcement through Family Court.\n\n*Does your situation resemble this? Tell me what's different in your case.*`;
+      return NextResponse.json({
+        response: sampleResponse,
+        source: "sample_scenario",
+        metadata: { area: selectedArea, confidence: "high", escalate: false, language: lang, paywallActive: false }
+      });
+    }
+
+    if (intent === "unclear" && msgLower.length > 5) {
+      const noQuestionResponse = lang === "bn"
+        ? "Ami apnar prosnoti bujhte parchi na. Ekti nirdishto prosno korun, ba apnar obostha bolen."
+        : "I don't see a specific question. Please ask something specific, or describe your situation.";
+      return NextResponse.json({
+        response: noQuestionResponse,
+        source: "clarification",
+        metadata: { area: selectedArea, confidence: "low", escalate: false, language: lang, paywallActive: false }
+      });
+    }
+
     const sid = getSessionId(req);
     const session = sessions.get(sid);
 
@@ -190,7 +282,7 @@ export async function POST(req: NextRequest) {
     const fb = selectedArea || knowledgeResult.area || "general";
     if (fb) {
       const isFirstMessage = !history || history.length === 0;
-      const msgLower = message.toLowerCase().trim();
+      // msgLower already declared above
       const isJustGreeting = /^(hi|hello|hey|assalamu|salam|greetings)/.test(msgLower);
       if (isFirstMessage || isJustGreeting || msgLower.length < 10) {
         return NextResponse.json({ response: FALLBACKS[fb] || FALLBACKS["general"], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
@@ -201,14 +293,25 @@ export async function POST(req: NextRequest) {
       const hasLabour = /(termination|salary|wages|gratuity|notice period|unfair dismissal|employment contract|appointment letter|overtime|leave|maternity|workplace|employer|employee|labour court|industrial dispute|trade union|collective bargaining|minimum wage|bonus|provident fund)/i.test(msgLower);
       const hasLocation = /(dhaka|chittagong|sylhet|rajshahi|khulna|barisal|rangpur|mymensingh|comilla|narayanganj|gazipur|tangail|bogra|cox|s|bazar|pabna|dinajpur|jessore|kushtia|faridpur|madaripur|gopalganj|shariatpur|rajbari|manikganj|munshiganj|narsingdi|kishoreganj|brahmanbaria|chandpur|feni|noakhali|lakshmipur|khagrachari|rangamati|bandarban|habiganj|maulvibazar|sunamganj|netrokona|jamalpur|sherpur|naogaon|natore|sirajganj|pabna|meherpur|chuadanga|jhenaidah|magura|narail|bagerhat|satkhira|pirojpur|jhalokati|bhola|patuakhali|barguna|joypurhat|gaibandha|kurigram|lalmonirhat|nilphamari|panchagarh|thakurgaon|district|upazila|thana|village|mouza|dag|khatian|cs|sa|rs|plot|land|flat|apartment|building|shop|office|factory|warehouse|agricultural|homestead|commercial|residential|industrial)/.test(msgLower);
       const hasTax = /(tax|income tax|vat|gst|property tax|land tax|holding tax|municipal tax|city tax|development tax|surcharge|cess|levy|duty|customs|excise|stamp duty|registration fee|court fee|government fee|official fee| Treasury challan|challan|tax return|itr|tax assessment|tax notice|tax demand|tax refund|tax exemption|tax deduction|tax credit|tax rebate|tax certificate|tax clearance|tax penalty|tax interest|tax audit)/.test(msgLower);
-      const hasDocument = /(deed|sale deed|bain|kabala|khatian|mutation|cs|sa|rs|dag|plot|registration|registered|unregistered|forged|fake|false|fraud|cheat|betray|agreement|contract|power of attorney|poa|will|gift|partition|release|relinquishment|exchange|lease|mortgage|lien|encumbrance|nec|non-encumbrance|court order|injunction|decree|judgment|fir|gd|general diary|complaint|case|suit|petition|appeal|revision|review|execution|warrant|attachment|auction|sale certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|blueprint|photo|video|witness|affidavit|notary|stamp|revenue|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
-      const hasAction = /(fake|forged|false|fraud|cheat|deceive|betray|trick|scam|con|duped|fooled|misled|misrepresent|conceal|hide|suppress|destroy|tear|burn|alter|tamper|forge|fabricate|create|make|prepare|execute|register|transfer|sell|buy|purchase|acquire|inherit|bequeath|gift|donate|partition|divide|share|release|relinquish|exchange|lease|rent|mortgage|pledge|hypothecate|charge|lien|encumber|attach|seize|confiscate|auction|sell|purchase|acquire|possess|occupy|trespass|encroach|adverse|prescription|evict|eject|remove|dispossess|displace|oust|throw|turn|lock|break|enter|force|trespass|intrude|encroach|invade|usurp|seize|take|grab|capture|occupy|hold|keep|retain|refuse|deny|reject|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|violate|infringe|trespass|encroach|infringe|violate|breach|default|fail|neglect|omit|delay|defer|postpone|suspend|stay|stop|halt|prevent|hinder|obstruct|impede|interfere|intervene|interrupt|disrupt|disturb|interfere|meddle|tamper|alter|change|modify|vary|amend|revise|correct|rectify|remedy|repair|fix|restore|recover|retrieve|reclaim|repossess|reinstate|reinstall|replace|substitute|exchange|swap|trade|barter|transfer|convey|assign|devise|bequeath|gift|donate|grant|give|hand|deliver|surrender|yield|waive|abandon|relinquish|renounce|disclaim|disown|repudiate|reject|refuse|decline|deny|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|default|fail|file|suit|case|petition|application|appeal|revision|review|execution|warrant|attachment|auction|sale|certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|photo|video|witness|affidavit|notary|stamp|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
-      // Per-area info flags (no longer merged into one OR)
+      const hasDocument = /(deed|sale deed|bain|kabala|khatian|mutation|cs|sa|rs|dag|plot|registration|registered|unregistered|forged|fake|false|fraud|cheat|betray|agreement|contract|power of attorney|poa|will|gift|partition|release|relinquishment|exchange|lease|mortgage|lien|encumbrance|nec|non-encumbrance|court order|injunction|decree|judgment|fir|gd|general diary|complaint|case|suit|petition|appeal|revision|review|execution|warrant|attachment|auction|sale certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|blueprint|photo|video|witness|affidavit|notary|stamp|revenue|tax|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
+      const hasAction = /(fake|forged|false|fraud|cheat|deceive|betray|trick|scam|con|duped|fooled|misled|misrepresent|conceal|hide|suppress|destroy|tear|burn|alter|tamper|forge|fabricate|create|make|prepare|execute|register|transfer|sell|buy|purchase|acquire|inherit|bequeath|gift|donate|partition|divide|share|release|relinquish|exchange|lease|rent|mortgage|pledge|hypothecate|charge|lien|encumber|attach|seize|confiscate|auction|sell|purchase|acquire|possess|occupy|trespass|encroach|adverse|prescription|evict|eject|remove|dispossess|displace|oust|throw|turn|lock|break|enter|force|trespass|intrude|encroach|invade|usurp|seize|take|grab|capture|occupy|hold|keep|retain|refuse|deny|reject|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|violate|infringe|trespass|encroach|infringe|violate|breach|default|fail|neglect|omit|delay|defer|postpone|suspend|stay|stop|halt|prevent|hinder|obstruct|impede|interfere|intervene|interrupt|disrupt|disturb|interfere|meddle|tamper|alter|change|modify|vary|amend|revise|correct|rectify|remedy|repair|fix|restore|recover|retrieve|reclaim|repossess|reinstate|reinstall|replace|substitute|exchange|swap|trade|barter|transfer|convey|assign|devise|bequeath|gift|donate|grant|give|hand|deliver|surrender|yield|waive|abandon|relinquish|renounce|disclaim|disown|repudiate|reject|refuse|decline|deny|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|default|fail|file|suit|case|petition|application|appeal|revision|review|execution|warrant|attachment|auction|sale|certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|photo|video|witness|affidavit|notary|stamp|revenue|tax|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
+      const hasSubstantiveInfo = hasLocation || hasDocument || hasAction || hasFamily || hasCriminal || hasLabour || hasTax;
 
       const contextualFollowUp = lang === "bn"
-        ? `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Shothik poramorsho dewar jonno aro kichu tothyo din:\n• Somossati kokhon theke shuru hoyeche?\n• Kon kon shonstha ba shokti e somporkit?\n• Apnar kache ki kagojpotro ache?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`
-        : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need more details:\n• When did this issue start?\n• Which institutions or authorities are involved?\n• What documents do you have?\n\n_These details are essential for accurate legal guidance._`;
-
+        ? (isInheritance
+            ? (hasSubstantiveInfo
+                ? `Apnar tothyo onujayi Bangladesh ain:\n\n1. **Dolil jachai**: Jodi dolil bhul/fake hoy, Sub-Registry e jachai korun. Jodi registration bhul hoy, eita criminal offence (forgery) hote pare.\n2. **Civil o Criminal Suit**: Apni civil suit (damages/recovery) ebong criminal complaint (cheating/forgery) duiti korte paren.\n3. **Shohojogita**: Jodi bondhu ke dhore fela hoy, tahole police e GD/complaint korun.\n\n_Aro nirdishto poramorsher jonno ekti upojoggo advocate-er shathe poramorsho korun._`
+                : `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno:\n• Sompotti ki poitrik (dada/propitamoher) naki pitar nijossho uparjon?\n• Apnar dhormo ki (Muslim/Hindu/Christian)?\n• Apni proptoboyoshk ki na ebong biye hoyeche kina?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`)
+            : (hasSubstantiveInfo
+                ? `Apnar tothyo onujayi Bangladesh ain:\n\n1. **Dolil jachai**: Jodi dolil bhul/fake hoy, Sub-Registry e jachai korun. Jodi registration bhul hoy, eita criminal offence (forgery) hote pare.\n2. **Civil o Criminal Suit**: Apni civil suit (damages/recovery) ebong criminal complaint (cheating/forgery) duiti korte paren.\n3. **Shohojogita**: Jodi bondhu ke dhore fela hoy, tahole police e GD/complaint korun.\n\n_Aro nirdishto poramorsher jonno ekti upojoggo advocate-er shathe poramorsho korun._`
+                : `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Eti shothik mullayoner jonno aro kichu tothyo din:\n• Sompotti kothay obosthito?\n• Apnar kache ki kagojpotro ache? (dolil, khatian, chuktipotro)\n• Somossati kokhon theke shuru hoyeche?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`))
+        : (isInheritance
+            ? (hasSubstantiveInfo
+                ? `Based on your information, here is what Bangladesh law says:\n\n1. **Title Verification**: If the deed is fake or forged, verify at the Sub-Registry. Fraudulent registration may be a criminal offence (forgery).\n2. **Civil and Criminal Remedies**: You can file both a civil suit (damages/recovery) and a criminal complaint (cheating/forgery).\n3. **Immediate Steps**: If the friend is traceable, file a GD/complaint with police immediately.\n\n_For more specific guidance, consult a competent advocate._`
+                : `I understand you are asking about "${message.slice(0, 100)}...". To assess this inheritance matter properly under Bangladesh law:\n• Is the property ancestral (inherited from grandfather) or self-acquired by the father?\n• What is your religion? Muslim, Hindu, and Christian personal laws have different rules.\n• Are you an adult or minor? Married or unmarried?\n\n_These details determine which law applies and what share you may be entitled to._`)
+            : (hasSubstantiveInfo
+                ? `Based on your information, here is what Bangladesh law says:\n\n1. **Title Verification**: If the sale deed is fake or forged, verify immediately at the Sub-Registry. A forged deed is void ab initio (invalid from the start).\n2. **Civil and Criminal Remedies**: You can file a civil suit for declaration and recovery, AND a criminal complaint under the Penal Code for cheating (Section 420) and forgery (Section 463-465).\n3. **Immediate Steps**: Gather all evidence (original documents, WhatsApp messages, bank transfers, witness statements). File a GD with police if the friend is absconding.\n\n_For more specific guidance, consult a competent advocate._`
+                : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need a few more details:\n• Where is the property located?\n• What documents do you have? (deed, khatian, agreement, FIR)\n• When did this issue start, and has any legal action already been taken?\n\n_These details are essential for accurate legal guidance._`));
       return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
     }
 
@@ -226,4 +329,4 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   return NextResponse.json({ status: "healthy", engine: "ILRMF v2.1.0", mode: "deterministic", llmEnabled: false, timestamp: new Date().toISOString() });
-}
+} 
