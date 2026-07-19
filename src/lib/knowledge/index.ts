@@ -44,10 +44,11 @@ const ALL_BANKS: KnowledgeBank[] = [
 
 // ─── Dual-Language Area Detection ───────────────────────────
 
-const AREA_KEYWORDS: Record<string, { en: string[]; bn: string[] }> = {
+const AREA_KEYWORDS: Record<string, { en: string[]; bn: string[]; negatives?: RegExp[] }> = {
   property: {
     en: ["land", "property", "deed", "khatian", "mutation", "dag", "mouza", "possession", "boundary", "namjari", "purchase", "sale deed", "register", "encroached", "adverse possession"],
     bn: ["জমি", "সম্পত্তি", "দলিল", "খতিয়ান", "মিউটেশন", "দাগ", "মৌজা", "দখল", "সীমানা", "নামজারি", "ক্রয়", "বিক্রয় দলিল", "রেজিস্ট্রি", "ভোগদখল", "জব্দ", "দখলদারিকরণ"],
+    negatives: [/taxi/i],
   },
   criminal: {
     en: ["fir", "police", "criminal", "murder", "theft", "fraud", "bail", "arrest", "penal code", "crpc", "cheque bounce", "dishonour", "case", "accused"],
@@ -97,6 +98,18 @@ export function detectArea(message: string): LawArea | null {
   let bestCount = 0;
 
   for (const [area, keywords] of Object.entries(AREA_KEYWORDS)) {
+    if (keywords.negatives) {
+      const hasNegative = keywords.negatives.some(function(neg) { return neg.test(msg); });
+      if (hasNegative) continue;
+    }
+    if (keywords.negatives) {
+      const hasNegative = keywords.negatives.some(function(neg) { return neg.test(msg); });
+      if (hasNegative) continue;
+    }
+    if (keywords.negatives) {
+      const hasNegative = keywords.negatives.some(function(neg) { return neg.test(msg); });
+      if (hasNegative) continue;
+    }
     const count =
       keywords.en.filter((kw) => msg.includes(kw)).length +
       keywords.bn.filter((kw) => msg.includes(kw)).length;
@@ -158,7 +171,7 @@ export function queryKnowledge(
     rules: relatedRules,
     escalate: bestEntry.escalate,
     escalateReason: bestEntry.escalateReason,
-    confidence: bestScore >= 0.5 ? "high" : bestScore >= 0.25 ? "medium" : "low",
+    confidence: bestScore >= 0.7 ? "high" : bestScore >= 0.5 ? "medium" : "low",
   };
 }
 
