@@ -196,18 +196,77 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ response: FALLBACKS[fb] || FALLBACKS["general"], source: "area_prompt", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
       }
       const isInheritance = /(son|father|inherit|ancestral|self-acquired|share|will|gift)/.test(msgLower);
-      const hasFamily = /(divorce|marriage|nikah|talaq|khula|custody|maintenance|dowry|domestic violence|husband|wife|child|children|guardian|ward|adoption|inheritance|family property|family dispute)/i.test(msgLower);
-      const hasCriminal = /(fir|arrest|bail|assault|theft|fraud|cheating|forgery|murder|rape|kidnapping|extortion|robbery|dacoity|riot|unlawful assembly|criminal breach|criminal intimidation|attempt|conspiracy|abetment|police|court|jail|prison|sentence|punishment|penal code|crpc|evidence)/i.test(msgLower);
-      const hasLabour = /(termination|salary|wages|gratuity|notice period|unfair dismissal|employment contract|appointment letter|overtime|leave|maternity|workplace|employer|employee|labour court|industrial dispute|trade union|collective bargaining|minimum wage|bonus|provident fund)/i.test(msgLower);
-      const hasLocation = /(dhaka|chittagong|sylhet|rajshahi|khulna|barisal|rangpur|mymensingh|comilla|narayanganj|gazipur|tangail|bogra|cox|s|bazar|pabna|dinajpur|jessore|kushtia|faridpur|madaripur|gopalganj|shariatpur|rajbari|manikganj|munshiganj|narsingdi|kishoreganj|brahmanbaria|chandpur|feni|noakhali|lakshmipur|khagrachari|rangamati|bandarban|habiganj|maulvibazar|sunamganj|netrokona|jamalpur|sherpur|naogaon|natore|sirajganj|pabna|meherpur|chuadanga|jhenaidah|magura|narail|bagerhat|satkhira|pirojpur|jhalokati|bhola|patuakhali|barguna|joypurhat|gaibandha|kurigram|lalmonirhat|nilphamari|panchagarh|thakurgaon|district|upazila|thana|village|mouza|dag|khatian|cs|sa|rs|plot|land|flat|apartment|building|shop|office|factory|warehouse|agricultural|homestead|commercial|residential|industrial)/.test(msgLower);
-      const hasTax = /(tax|income tax|vat|gst|property tax|land tax|holding tax|municipal tax|city tax|development tax|surcharge|cess|levy|duty|customs|excise|stamp duty|registration fee|court fee|government fee|official fee| Treasury challan|challan|tax return|itr|tax assessment|tax notice|tax demand|tax refund|tax exemption|tax deduction|tax credit|tax rebate|tax certificate|tax clearance|tax penalty|tax interest|tax audit)/.test(msgLower);
+      // NOTE: original regex had a stray "|s|" alternative (from a mangled "Cox's Bazar" entry)
+      // which matched almost any message containing the letter "s". Fixed below.
+      const hasLocation = /(dhaka|chittagong|sylhet|rajshahi|khulna|barisal|rangpur|mymensingh|comilla|narayanganj|gazipur|tangail|bogra|cox's bazar|coxs bazar|pabna|dinajpur|jessore|kushtia|faridpur|madaripur|gopalganj|shariatpur|rajbari|manikganj|munshiganj|narsingdi|kishoreganj|brahmanbaria|chandpur|feni|noakhali|lakshmipur|khagrachari|rangamati|bandarban|habiganj|maulvibazar|sunamganj|netrokona|jamalpur|sherpur|naogaon|natore|sirajganj|meherpur|chuadanga|jhenaidah|magura|narail|bagerhat|satkhira|pirojpur|jhalokati|bhola|patuakhali|barguna|joypurhat|gaibandha|kurigram|lalmonirhat|nilphamari|panchagarh|thakurgaon|district|upazila|thana|village|mouza|dag|khatian|cs|sa|rs|plot|land|flat|apartment|building|shop|office|factory|warehouse|agricultural|homestead|commercial|residential|industrial)/.test(msgLower);
       const hasDocument = /(deed|sale deed|bain|kabala|khatian|mutation|cs|sa|rs|dag|plot|registration|registered|unregistered|forged|fake|false|fraud|cheat|betray|agreement|contract|power of attorney|poa|will|gift|partition|release|relinquishment|exchange|lease|mortgage|lien|encumbrance|nec|non-encumbrance|court order|injunction|decree|judgment|fir|gd|general diary|complaint|case|suit|petition|appeal|revision|review|execution|warrant|attachment|auction|sale certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|blueprint|photo|video|witness|affidavit|notary|stamp|revenue|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
       const hasAction = /(fake|forged|false|fraud|cheat|deceive|betray|trick|scam|con|duped|fooled|misled|misrepresent|conceal|hide|suppress|destroy|tear|burn|alter|tamper|forge|fabricate|create|make|prepare|execute|register|transfer|sell|buy|purchase|acquire|inherit|bequeath|gift|donate|partition|divide|share|release|relinquish|exchange|lease|rent|mortgage|pledge|hypothecate|charge|lien|encumber|attach|seize|confiscate|auction|sell|purchase|acquire|possess|occupy|trespass|encroach|adverse|prescription|evict|eject|remove|dispossess|displace|oust|throw|turn|lock|break|enter|force|trespass|intrude|encroach|invade|usurp|seize|take|grab|capture|occupy|hold|keep|retain|refuse|deny|reject|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|violate|infringe|trespass|encroach|infringe|violate|breach|default|fail|neglect|omit|delay|defer|postpone|suspend|stay|stop|halt|prevent|hinder|obstruct|impede|interfere|intervene|interrupt|disrupt|disturb|interfere|meddle|tamper|alter|change|modify|vary|amend|revise|correct|rectify|remedy|repair|fix|restore|recover|retrieve|reclaim|repossess|reinstate|reinstall|replace|substitute|exchange|swap|trade|barter|transfer|convey|assign|devise|bequeath|gift|donate|grant|give|hand|deliver|surrender|yield|waive|abandon|relinquish|renounce|disclaim|disown|repudiate|reject|refuse|decline|deny|dispute|challenge|contest|oppose|resist|defy|violate|breach|break|default|fail|file|suit|case|petition|application|appeal|revision|review|execution|warrant|attachment|auction|sale|certificate|possession|delivery|eviction|ejectment|trespass|boundary|survey|demarcation|map|plan|photo|video|witness|affidavit|notary|stamp|rent|lease|tenancy|landlord|tenant|occupancy|possession|adverse|prescription|limitation|12 years|30 years|prescription|easement|right of way|right to light|right to air|right to water|drainage|path|road|highway|river|canal|pond|tank|well|tube well|borehole|boundary|wall|fence|pillar|demarcation|survey|map|plan)/.test(msgLower);
-      // Per-area info flags (no longer merged into one OR)
 
-      const contextualFollowUp = lang === "bn"
-        ? `Ami apnar prosno bujhte parchi: "${message.slice(0, 100)}...". Shothik poramorsho dewar jonno aro kichu tothyo din:\n• Somossati kokhon theke shuru hoyeche?\n• Kon kon shonstha ba shokti e somporkit?\n• Apnar kache ki kagojpotro ache?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`
-        : `I understand you are asking about "${message.slice(0, 100)}...". To help you properly under Bangladesh law, I need more details:\n• When did this issue start?\n• Which institutions or authorities are involved?\n• What documents do you have?\n\n_These details are essential for accurate legal guidance._`;
+      // Per-area adaptive follow-up. This block only runs after RAG + ILRMF have
+      // already failed to match real knowledge (verdict === BLACK), so it must
+      // NEVER return canned "legal guidance" text here — that was tried (see
+      // commit ea99f0b) and reverted (c177f6b) because it displaced honest
+      // uncertainty with fake-specific boilerplate. It only decides which
+      // clarifying questions to ask, and skips ones the user already answered.
+      function buildFollowUp(): { bn: string; en: string } {
+        const preview = message.slice(0, 100);
+
+        if (fb === "property" && isInheritance) {
+          return {
+            bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik mullayoner jonno:\n• Sompotti ki poitrik (dada/propitamoher) naki pitar nijossho uparjon?\n• Apnar dhormo ki (Muslim/Hindu/Christian)?\n• Apni proptoboyoshk ki na ebong biye hoyeche kina?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`,
+            en: `I understand you're asking about "${preview}...". To assess this inheritance matter:\n• Is the property ancestral (from the grandfather) or self-acquired by the father?\n• What is your religion? (Muslim/Hindu/Christian)\n• Are you an adult, and are you married?\n\n_These details determine which law applies and what share you may be entitled to._`,
+          };
+        }
+
+        if (fb === "property") {
+          const bnQs: string[] = [];
+          const enQs: string[] = [];
+          if (!hasLocation) { bnQs.push("সম্পত্তিটি কোথায় অবস্থিত?"); enQs.push("Where is the property located?"); }
+          if (!hasDocument) { bnQs.push("আপনার কাছে কী কাগজপত্র আছে? (দলিল, খতিয়ান, চুক্তিপত্র)"); enQs.push("What documents do you have? (deed, khatian, agreement)"); }
+          if (!hasAction) { bnQs.push("সমস্যাটি কখন শুরু হয়েছে, এবং ইতিমধ্যে কোনো আইনি পদক্ষেপ নেওয়া হয়েছে কি?"); enQs.push("When did this start, and has any legal action already been taken?"); }
+          if (bnQs.length === 0) { bnQs.push("আর কোনো প্রাসঙ্গিক বিস্তারিত জানাতে পারবেন?"); enQs.push("Is there any other relevant detail you can share?"); }
+          return {
+            bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik poramorsher jonno:\n${bnQs.map((q) => `• ${q}`).join("\n")}\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`,
+            en: `I understand you're asking about "${preview}...". To help you properly:\n${enQs.map((q) => `• ${q}`).join("\n")}\n\n_These details are essential for accurate legal guidance._`,
+          };
+        }
+
+        if (fb === "family") {
+          return {
+            bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik poramorsher jonno:\n• Apnar bishoy ta ki? (biye, talaq, denmohor, khoroposh, custody, ityadi)\n• Ei somossati kokhon theke shuru hoyeche?\n• Family Court e age kono avedon kora hoyeche ki?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`,
+            en: `I understand you're asking about "${preview}...". To help you properly:\n• What is the specific family issue? (marriage, talaq/divorce, mahr, maintenance, custody, etc.)\n• When did this issue start?\n• Has any application already been filed in Family Court?\n\n_These details are essential for accurate legal guidance._`,
+          };
+        }
+
+        if (fb === "criminal") {
+          return {
+            bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik poramorsher jonno:\n• Ki ghotona ghotechhe, ebong kokhon?\n• Kono FIR ba GD kora hoyeche ki?\n• Accused ba avijukto ke ke?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`,
+            en: `I understand you're asking about "${preview}...". To help you properly:\n• What happened, and when?\n• Has an FIR or GD already been filed?\n• Who is the accused?\n\n_These details are essential for accurate legal guidance._`,
+          };
+        }
+
+        if (fb === "labour") {
+          return {
+            bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik poramorsher jonno:\n• Apnar employment contract ba appointment letter ache ki?\n• Ki dhoroner somossa (termination, salary, notice period, ityadi)?\n• Employer er shathe kono legal step neya hoyeche ki?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`,
+            en: `I understand you're asking about "${preview}...". To help you properly:\n• Do you have an employment contract or appointment letter?\n• What type of issue is this (termination, unpaid salary, notice period, etc.)?\n• Has any legal step already been taken with the employer?\n\n_These details are essential for accurate legal guidance._`,
+          };
+        }
+
+        if (fb === "tax") {
+          return {
+            bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik poramorsher jonno:\n• Apnar income source ki? (salary, business, rental, ityadi)\n• Kono tax notice ashe ki?\n• Assessment year ki?\n\n_Ei tothyo chhara shothik tax poramorsho dewa shombhob noy._`,
+            en: `I understand you're asking about "${preview}...". To help you properly:\n• What is your income source? (salary, business, rental, etc.)\n• Have you received any tax notice?\n• What assessment year is this for?\n\n_These details are necessary for accurate tax advice._`,
+          };
+        }
+
+        return {
+          bn: `Ami apnar prosno bujhte parchi: "${preview}...". Shothik poramorsho dewar jonno aro kichu tothyo din:\n• Somossati kokhon theke shuru hoyeche?\n• Kon kon shonstha ba shokti e somporkit?\n• Apnar kache ki kagojpotro ache?\n\n_Ei tothyo chhara shothik ain poramorsho dewa shombhob noy._`,
+          en: `I understand you are asking about "${preview}...". To help you properly under Bangladesh law, I need more details:\n• When did this issue start?\n• Which institutions or authorities are involved?\n• What documents do you have?\n\n_These details are essential for accurate legal guidance._`,
+        };
+      }
+
+      const followUp = buildFollowUp();
+      const contextualFollowUp = lang === "bn" ? followUp.bn : followUp.en;
 
       return NextResponse.json({ response: contextualFollowUp, source: "contextual_followup", metadata: { area: fb, confidence: "low", escalate: false, language: lang, paywallActive: false, ilrmfVerdict: "BLACK", traceId: ilrmf.trace.traceId } });
     }
